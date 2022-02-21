@@ -22,7 +22,7 @@ class PokerGameTests: XCTestCase {
                 print("카드를 못뽑았습니다.")
                 return
             }
-            print("뽑은카드: \(card.toString())")
+            print("뽑은카드: \(card)")
         }
         print("남은 카드 갯수: \(cardDeck.count)")
         
@@ -37,7 +37,7 @@ class PokerGameTests: XCTestCase {
             print("카드를 못뽑았습니다.")
             return
         }
-        print("뽑은카드: \(card.toString())")
+        print("뽑은카드: \(card)")
         print("남은 카드 갯수: \(cardDeck.count)")
     }
     
@@ -61,7 +61,7 @@ class PokerGameTests: XCTestCase {
                 return
             }
             let card = CardData(pattern: .clover, number: $0)
-            print(card.toString())
+            print(card)
         }
     }
 }

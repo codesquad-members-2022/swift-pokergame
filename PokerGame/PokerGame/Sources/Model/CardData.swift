@@ -15,10 +15,6 @@ struct CardData {
     let pattern: CardPattern
     let number: Int
         
-    func toString() -> String {
-        "\(pattern.rawValue)\(numberToString())"
-    }
-    
     func numberToString() -> String {
         switch number {
         case 1:
@@ -32,6 +28,12 @@ struct CardData {
         default:
             return String(number)
         }
+    }
+}
+
+extension CardData: CustomStringConvertible {
+    var description: String {
+        "\(pattern.rawValue)\(numberToString())"
     }
 }
 
