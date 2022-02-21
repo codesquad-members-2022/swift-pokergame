@@ -13,7 +13,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupBackgroundPattern()
         setupCards()
-        // setupCardsWithStack()
+        
+        let spades6 = Card(suit: .spades, number: .six)
+        print(spades6)
+        let heartQueen = Card(suit: .hearts, number: .queen)
+        print(heartQueen)
+        let diamondsAce = Card(suit: .diamonds, number: .ace)
+        print(diamondsAce)
     }
     
     func setupBackgroundPattern() {
