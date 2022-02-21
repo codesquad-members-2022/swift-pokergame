@@ -14,8 +14,10 @@ class PokerBoardViewController: UIViewController {
         static let cardOffset: CGFloat = 3
     }
     let playerCardViews = [PlayerCardView(), PlayerCardView(),
-                           PlayerCardView(), PlayerCardView(),
-                           PlayerCardView()]
+                           PlayerCardView(), PlayerCardView()]
+    let dealerCardView = PlayerCardView()
+    
+    let pokerGame = PokerGame(playType: .sevenCard, playerCount: 3)
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
@@ -23,6 +25,7 @@ class PokerBoardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pokerGame.delegate = self
         attribute()
         layout()
     }
@@ -38,10 +41,25 @@ class PokerBoardViewController: UIViewController {
         let safeAreaWidth = safeArea.layoutFrame.width - 80
         let cardWidth = safeAreaWidth / 7
         let cardHeight = cardWidth * 1.27
+        let yAxisOffset = 20.0
         
         playerCardViews.enumerated().forEach { index, view in
             self.view.addSubview(view)
-            view.frame = CGRect(x: Constants.cardOffset, y: CGFloat(index * 80) + 80.0, width: safeAreaWidth, height: cardHeight)
+            let yPosition = CGFloat(index) * (cardHeight + yAxisOffset) + 80.0
+            view.frame = CGRect(x: 30, y: yPosition, width: safeAreaWidth, height: cardHeight)
         }
+    }
+}
+
+extension PokerBoardViewController: PokerGameDelegate {
+    func player(index: Int, player: Player) {
+//        let playerView = playerCardViews[index]
+//        playerView.cards.forEach {
+//            $0.image =
+//        }
+    }
+    
+    func dealer(dealer: Player) {
+        
     }
 }
