@@ -25,17 +25,6 @@ class PokerBoardViewController: UIViewController {
         super.viewDidLoad()
         attribute()
         layout()
-        testCode()
-    }
-    
-    func testCode() {
-        (0..<15).forEach {
-            guard let card = CardModel(pattern: .clover, number: $0) else {
-                print("nil")
-                return
-            }
-            print(card.toString())
-        }
     }
     
     private func attribute() {

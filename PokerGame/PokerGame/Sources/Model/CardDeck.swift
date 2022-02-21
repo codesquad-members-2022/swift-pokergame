@@ -9,7 +9,11 @@ import Foundation
 
 class CardDeck {
     
-    var deck: [CardData] = []
+    public private(set) var deck: [CardData] = []
+    
+    var count: Int {
+        deck.count
+    }
     
     init() {
         deck = CardData.CardPattern.allCases.flatMap { pattern in
