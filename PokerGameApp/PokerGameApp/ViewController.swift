@@ -9,39 +9,61 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let CARD_INSET: CGFloat = 3
+    let CARD_COUNT = 7
+    
     let bgImageName = "bg_pattern"
-    var backgroundImageView: (() -> UIImageView?)!
+    let cardImageName = "card-back"
+    var backgroundImageView: ((CGFloat) -> UIImageView?)!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-//        # Step1
         if let bgPattern = UIImage.init(named: bgImageName) {
             self.view.backgroundColor = UIColor.init(patternImage: bgPattern)
         }
         
-//        # Step2
-//        backgroundImageView = { [self] in
-//
-//            guard let image = UIImage.init(named: bgImageName) else { return nil }
-//
-//            let imageView = UIImageView(image: UIImage.init(named: bgImageName))
-//            imageView.frame = self.view.frame
-//            imageView.contentMode = .center
-//            return imageView
-//        }
-//
-//        let gesture = UITapGestureRecognizer.init(target: self, action: #selector(changeBackground))
-//        self.view.addGestureRecognizer(gesture)
-//        self.view.isUserInteractionEnabled = true
+        let readableFrame = view.readableContentGuide.layoutFrame
+        let widthExceptSafeAreaAndInset = readableFrame.width - (CARD_INSET * CGFloat(CARD_COUNT))
+        
+        backgroundImageView = { [self] (width: CGFloat) -> UIImageView? in
+            
+            let imageView = UIImageView(image: UIImage(named: cardImageName))
+            imageView.contentMode = .scaleToFill
+            imageView.frame.size = CGSize(width: width, height: width * 1.27)
+            
+            return imageView
+        }
+        
+        for _ in 0..<CARD_COUNT {
+            
+            guard let imageView = backgroundImageView(widthExceptSafeAreaAndInset / 7) else {
+                continue
+            }
+            
+            if view.subviews.count == 0 {
+                
+                imageView.frame.origin = CGPoint(
+                    x: readableFrame.minX,
+                    y: readableFrame.minY
+                )
+                view.addSubview(imageView)
+                continue
+            }
+            
+            view.addSubview(imageView)
+            let lastSubView = view.subviews.max(by: {$0.frame.maxX < $1.frame.maxX})!
+            imageView.frame.origin = CGPoint(
+                x: lastSubView.frame.maxX + CARD_INSET,
+                y: lastSubView.frame.origin.y
+            )
+            
+        }
     }
-    
-//    @objc func changeBackground() {
-//        if let imageView = self.view.subviews.filter({type(of: $0.self) == UIImageView.self}).first {
-//            imageView.removeFromSuperview()
-//        } else if let imageView = backgroundImageView() {
-//            self.view.addSubview(imageView)
-//        }
-//    }
 }
 
