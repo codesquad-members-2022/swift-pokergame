@@ -15,5 +15,16 @@
 - 다음 카드 뒷면 이미지를 다운로드해서 프로젝트 Assets.xcassets에 추가한다.
 
 <img src = "https://user-images.githubusercontent.com/44107696/154877518-9599dc6c-4133-487c-a06f-919536321df7.png" width="940" height="810">
-    + backgroundColor 설정 중 UIColor(patternImage:)를 활용하여 Asset의 이미지를 패턴화시켜 UIColor로 변환하여 적용
-    + 배경 변경 후에는 Light Content로 수정된 StausBar도 색이 묻히지 않고 잘 표시됨
+    * backgroundColor 설정 중 UIColor(patternImage:)를 활용하여 Asset의 이미지를 패턴화시켜 UIColor로 변환하여 적용
+    * 배경 변경 후에는 Light Content로 수정된 StausBar도 색이 묻히지 않고 잘 표시됨
+
+- ViewController 클래스에서 코드로 7개 UIImageView를 생성하고, 추가해서 카드 뒷면을 보여준다
+    + 주의사항 우선 스택뷰StackView를 사용하지 말고 직접 UIImageView를 7개 생성해야 한다
+- 화면 크기를 구하고 균등하게 7등분해서 이미지를 표시해야 한다
+- 카드 가로와 세로 비율은 1:1.27로 지정한다
+
+<img src = "https://user-images.githubusercontent.com/44107696/154882336-8a6d3a8c-6471-409c-bc36-5eaa19fd6310.png" width="1000" height="900">
+    * class 프로퍼티로 카드 뒷면 Image, 값 변경이 가능한 xPosition 선언
+    * ImageView 생성 함수 구현. 13pro의 가로값 390을 7개로 분할할 때, 카드 너비 54 / 카드 간 간격 2로 설정하면 정확히 나눠지므로 이를 토대로 카드의 너비와 높이 할당
+    * frame을 통한 위치 설정 중 y 값은 50으로 고정
+    * 7개의 카드를 만들기 위해 viewDidLoad에서 반복문을 통해 함수 호출
