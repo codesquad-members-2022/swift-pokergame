@@ -13,9 +13,9 @@ class PokerBoardViewController: UIViewController {
     enum Constants {
         static let cardOffset: CGFloat = 3
     }
-    
-    let cardStackView = UIStackView()
-    var cards: [UIImageView] = (0..<7).map{ _ in  UIImageView()}
+    let playerCardViews = [PlayerCardView(), PlayerCardView(),
+                           PlayerCardView(), PlayerCardView(),
+                           PlayerCardView()]
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
@@ -31,34 +31,17 @@ class PokerBoardViewController: UIViewController {
         if let backImage = UIImage(named: "bg_pattern") {
             self.view.backgroundColor = UIColor(patternImage: backImage)
         }
-        
-        cards.forEach {
-            $0.image = UIImage(named: "card-back")
-        }
-        
-        cardStackView.spacing = Constants.cardOffset
     }
     
     private func layout() {
-        self.view.addSubview(cardStackView)
-        
         let safeArea = self.view.safeAreaLayoutGuide
-        
-        cardStackView.translatesAutoresizingMaskIntoConstraints = false
-        cardStackView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 5).isActive = true
-        cardStackView.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 5).isActive = true
-        cardStackView.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -5).isActive = true
-        
-        self.view.layoutIfNeeded()
-        
-        let cardWidth = (cardStackView.frame.width - (Constants.cardOffset * 6)) / 7
+        let safeAreaWidth = safeArea.layoutFrame.width - 80
+        let cardWidth = safeAreaWidth / 7
         let cardHeight = cardWidth * 1.27
-
-        cards.enumerated().forEach { index, view in
-            cardStackView.addArrangedSubview(view)
-            view.translatesAutoresizingMaskIntoConstraints = false
-            view.widthAnchor.constraint(equalToConstant: cardWidth).isActive = true
-            view.heightAnchor.constraint(equalToConstant: cardHeight).isActive = true
+        
+        playerCardViews.enumerated().forEach { index, view in
+            self.view.addSubview(view)
+            view.frame = CGRect(x: Constants.cardOffset, y: CGFloat(index * 80) + 80.0, width: safeAreaWidth, height: cardHeight)
         }
     }
 }
