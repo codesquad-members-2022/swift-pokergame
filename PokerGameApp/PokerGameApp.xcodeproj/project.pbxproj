@@ -40,7 +40,7 @@
 		1E95A0E327C32767005FE52A = {
 			isa = PBXGroup;
 			children = (
-				1E95A0EE27C32767005FE52A /* PokerGame */,
+				1E95A0EE27C32767005FE52A /* PokerGameApp */,
 				1E95A0ED27C32767005FE52A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,7 +53,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1E95A0EE27C32767005FE52A /* PokerGame */ = {
+		1E95A0EE27C32767005FE52A /* PokerGameApp */ = {
 			isa = PBXGroup;
 			children = (
 				1E95A0EF27C32767005FE52A /* AppDelegate.swift */,
@@ -64,7 +64,7 @@
 				1E95A0FA27C32768005FE52A /* LaunchScreen.storyboard */,
 				1E95A0FD27C32768005FE52A /* Info.plist */,
 			);
-			path = PokerGame;
+			path = PokerGameApp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,7 +102,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1E95A0E727C32767005FE52A /* Build configuration list for PBXProject "PokerGame" */;
+			buildConfigurationList = 1E95A0E727C32767005FE52A /* Build configuration list for PBXProject "PokerGameApp" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -291,7 +291,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MPN6WL3W3U;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PokerGame/Info.plist;
+				INFOPLIST_FILE = PokerGameApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -302,7 +302,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sanghyeok.test.PokerGame;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sanghyeok.test.PokerGameApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -319,7 +319,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MPN6WL3W3U;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PokerGame/Info.plist;
+				INFOPLIST_FILE = PokerGameApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -330,7 +330,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sanghyeok.test.PokerGame;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sanghyeok.test.PokerGameApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -341,7 +341,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1E95A0E727C32767005FE52A /* Build configuration list for PBXProject "PokerGame" */ = {
+		1E95A0E727C32767005FE52A /* Build configuration list for PBXProject "PokerGameApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1E95A0FE27C32768005FE52A /* Debug */,
