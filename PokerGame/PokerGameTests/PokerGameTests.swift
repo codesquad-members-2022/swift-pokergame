@@ -1,16 +1,26 @@
-//___FILEHEADER___
+//
+//  PokerGameTests.swift
+//  PokerGameTests
+//
+//  Created by seongha shin on 2022/02/21.
+//
 
 import XCTest
 
-class ___FILEBASENAMEASIDENTIFIER___: XCTestCase {
+class PokerGameTests: XCTestCase {
+
+    override func setUpWithError() throws {
+    }
+
+    override func tearDownWithError() throws {
+    }
 
     func testExample() throws {
+        testCode()
     }
 
     func testPerformanceExample() throws {
-        testCode()
     }
-    
     
     func testCode() {
         (0..<15).forEach {
@@ -22,5 +32,4 @@ class ___FILEBASENAMEASIDENTIFIER___: XCTestCase {
             print(card.toString())
         }
     }
-
 }

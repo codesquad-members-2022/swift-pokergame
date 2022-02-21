@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E0CD2C5327C320C50067B01E"
-               BuildableName = "&#x1109;&#x1175;&#x11bc;&#x1112;&#x1161;&#x110b;&#x1174;&#x1111;&#x1169;&#x110f;&#x1165;&#x1100;&#x1166;&#x110b;&#x1175;&#x11b7;.app"
+               BuildableName = "PokerGame.app"
                BlueprintName = "PokerGame"
                ReferencedContainer = "container:PokerGame.xcodeproj">
             </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E0CD2C5327C320C50067B01E"
-            BuildableName = "&#x1109;&#x1175;&#x11bc;&#x1112;&#x1161;&#x110b;&#x1174;&#x1111;&#x1169;&#x110f;&#x1165;&#x1100;&#x1166;&#x110b;&#x1175;&#x11b7;.app"
+            BuildableName = "PokerGame.app"
             BlueprintName = "PokerGame"
             ReferencedContainer = "container:PokerGame.xcodeproj">
          </BuildableReference>
@@ -92,7 +92,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E0CD2C5327C320C50067B01E"
-            BuildableName = "&#x1109;&#x1175;&#x11bc;&#x1112;&#x1161;&#x110b;&#x1174;&#x1111;&#x1169;&#x110f;&#x1165;&#x1100;&#x1166;&#x110b;&#x1175;&#x11b7;.app"
+            BuildableName = "PokerGame.app"
             BlueprintName = "PokerGame"
             ReferencedContainer = "container:PokerGame.xcodeproj">
          </BuildableReference>
