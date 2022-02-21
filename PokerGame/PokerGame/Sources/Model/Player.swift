@@ -8,5 +8,14 @@
 import Foundation
 
 class Player {
+    let name: String
+    public private(set) var cards: [CardData] = []
     
+    init(name: String) {
+        self.name = name
+    }
+    
+    func add(card: CardData) {
+        cards.append(card)
+    }
 }
