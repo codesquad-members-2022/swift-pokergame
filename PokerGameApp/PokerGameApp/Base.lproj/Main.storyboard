@@ -30,10 +30,29 @@
                             <constraint firstItem="ALd-cn-V5T" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="oT6-2u-vYD"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="MvZ-A9-Abq" kind="show" id="qta-29-PKD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="139" y="138"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="aTd-yl-qmT">
+            <objects>
+                <viewController storyboardIdentifier="SecondViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MvZ-A9-Abq" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fp1-qF-8LL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="e1r-02-2JB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="LOg-hB-BM6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C2b-T5-ITw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1139" y="134"/>
         </scene>
     </scenes>
     <resources>
