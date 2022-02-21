@@ -8,10 +8,23 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var cards = [UIImageView](repeating: UIImageView(), count: 7)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern") ?? UIImage())
+        setImageView()
+    }
+    
+    func setImageView() {
+        for eachImageViewIndex in 0..<cards.count {
+            let xPosition = CGFloat(5*(1+eachImageViewIndex) + 50*eachImageViewIndex)
+            let currentFrame = CGRect(x: xPosition, y: 47, width: 50, height: 50*1.27)
+            cards[eachImageViewIndex] = UIImageView(frame: currentFrame)
+            cards[eachImageViewIndex].image = UIImage(named: "card-back")
+            self.view.addSubview(cards[eachImageViewIndex])
+        }
     }
 
 
