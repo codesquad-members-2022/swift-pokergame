@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         let cardWidth = (screenSize.width - totalBlank) / numberOfCard
         let cardHeight = cardWidth * 1.27
         let cardBackSide = UIImage(named: "card-back.png")
-        let margin : CGFloat = 55
+        let margin : CGFloat = cardWidth + blank
         for i in 0..<Int(numberOfCard) {
             let imageView = UIImageView(frame: CGRect(x: (margin * CGFloat(i))+blank, y: 40, width: cardWidth,height: cardHeight))
             imageView.contentMode = .scaleToFill
