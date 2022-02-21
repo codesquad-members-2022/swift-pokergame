@@ -16,6 +16,9 @@ class ViewController: UIViewController {
     var cardWidth : CGFloat {
         (screenSize.width - (spaceBetweenCards * CGFloat(cards.count) - 1))/CGFloat(cards.count)
     }
+    var cardHeight : CGFloat {
+        cardWidth * 1.27
+    }
     var startOffsetX:CGFloat = 4
 
     override func viewDidLoad() {
@@ -27,7 +30,7 @@ class ViewController: UIViewController {
         safeArea = self.view.safeAreaInsets
         for (index,card) in cards.enumerated() {
             card.image = UIImage(named: "card-back.png")
-            card.frame = CGRect(x: startOffsetX + CGFloat(index) * (cardWidth + spaceBetweenCards), y: safeArea.top, width: cardWidth, height: cardWidth * 1.26)
+            card.frame = CGRect(x: startOffsetX + CGFloat(index) * (cardWidth + spaceBetweenCards), y: safeArea.top, width: cardWidth, height: cardHeight)
         }
     }
         
