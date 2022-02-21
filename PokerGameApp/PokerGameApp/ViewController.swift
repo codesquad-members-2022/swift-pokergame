@@ -22,17 +22,17 @@ class ViewController: UIViewController {
         }
         
         // 화면 크기
-        print(self.view.frame.width, self.view.frame.height)
         let width = self.view.frame.width / 7
         let height = width * 1.27
+        var xPos = 0.0
+        var yPos = 60.0
         
         for i in 0..<7 {
-            cards[i].frame.size.width = width
-            cards[i].frame.size.height = height
+            cards[i].frame = CGRect(x: xPos, y: yPos, width: width, height: height)
             view.addSubview(cards[i])
+            
+            xPos = xPos + width
         }
-        
-        print("추가된 이미지뷰의 수", view.subviews.count)
     }
 }
 
