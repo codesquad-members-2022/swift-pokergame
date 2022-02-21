@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E00879A727C350D40044A6EB /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00879A627C350D40044A6EB /* CardModel.swift */; };
 		E0CD2C5827C320C50067B01E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD2C5727C320C50067B01E /* AppDelegate.swift */; };
 		E0CD2C5A27C320C50067B01E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD2C5927C320C50067B01E /* SceneDelegate.swift */; };
 		E0CD2C5F27C320C50067B01E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0CD2C5D27C320C50067B01E /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E00879A627C350D40044A6EB /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		E0CD2C5427C320C50067B01E /* PokerGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0CD2C5727C320C50067B01E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0CD2C5927C320C50067B01E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E00879A527C350C10044A6EB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E00879A627C350D40044A6EB /* CardModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		E0CD2C4B27C320C50067B01E = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +136,7 @@
 		E0CD2C8727C320DB0067B01E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				E00879A527C350C10044A6EB /* Model */,
 				E0CD2C8A27C3225A0067B01E /* Present */,
 				E0CD2C5727C320C50067B01E /* AppDelegate.swift */,
 				E0CD2C5927C320C50067B01E /* SceneDelegate.swift */,
@@ -293,6 +304,7 @@
 				E0CD2C8C27C322700067B01E /* PokerBoardViewController.swift in Sources */,
 				E0CD2C5827C320C50067B01E /* AppDelegate.swift in Sources */,
 				E0CD2C5A27C320C50067B01E /* SceneDelegate.swift in Sources */,
+				E00879A727C350D40044A6EB /* CardModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +485,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PokerGame/Configuration/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "싱하의 포커게임";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -500,6 +513,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PokerGame/Configuration/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "싱하의 포커게임";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
