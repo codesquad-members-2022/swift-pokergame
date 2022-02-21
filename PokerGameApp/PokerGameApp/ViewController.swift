@@ -8,11 +8,27 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+//    private var barStyle: UIStatusBarStyle = .lightContent {
+//        willSet {
+//            setNeedsStatusBarAppearanceUpdate()
+//        }
+//    }
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return barStyle
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        UIApplication.shared.statusBarStyle = .lightContent
+        
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { timer in
+            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "SecondViewController")
+            vc.modalPresentationStyle = .fullScreen
+            UIApplication.shared.statusBarStyle = .darkContent
+            self.present(vc, animated: true, completion: nil)
+        }
     }
-
-
 }
 

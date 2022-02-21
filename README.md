@@ -1,10 +1,9 @@
 # swift-pokergame
 
----
-
 # step1
 
-- [ ] 앱 기본 설정을 지정해서 StatusBar 스타일을 LightContent로 보이도록 한다.
+- [x] 앱 기본 설정을 지정해서 StatusBar 스타일을 LightContent로 보이도록 한다.
+* 앱 기본 설정을 할 수 있는 Info.plist 파일을 이용하는 방법과 뷰 컨트롤러마다 설정하는 방법 실습을 진행하였습니다.
 - [ ] ViewController 클래스에서 self.view 배경을 다음 이미지 패턴으로 지정한다. 이미지 파일은 Assets에 추가한다.
 - [x] 다음 카드 뒷면 이미지를 다운로드해서 프로젝트 Assets.xcassets에 추가한다.
 - [ ] ViewController 클래스에서 코드로 7개 UIImageView를 생성하고, 추가해서 카드 뒷면을 보여준다.
