@@ -11,9 +11,12 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        setBackgroundColor()
     }
-
+    
+    func setBackgroundColor(){
+        self.view.backgroundColor = UIColor.init(patternImage: UIImage(named: "bg_pattern")!)
+    }
 
 }
 
