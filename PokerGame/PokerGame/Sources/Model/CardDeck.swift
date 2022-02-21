@@ -24,15 +24,16 @@ class CardDeck {
     }
     
     func shuffle() {
-        var newDeck = [CardData]()
-        while count != 0 {
-            guard let randomCard = removeOne() else {
+        (0..<deck.count).forEach { index in
+            guard let randomIndex = (index..<deck.count).randomElement() else {
                 return
             }
-            newDeck.append(randomCard)
+            let targetCard = deck[index]
+            let randomCard = deck[randomIndex]
+            
+            deck[index] = randomCard
+            deck[randomIndex] = targetCard
         }
-        
-        deck = newDeck
     }
     
     func removeOne() -> CardData? {
