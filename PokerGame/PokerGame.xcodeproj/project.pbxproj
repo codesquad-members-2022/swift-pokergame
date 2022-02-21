@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E00879A727C350D40044A6EB /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00879A627C350D40044A6EB /* CardModel.swift */; };
-		E00879AF27C378420044A6EB /* ________________Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00879AE27C378420044A6EB /* ________________Tests.swift */; };
-		E00879B527C378840044A6EB /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00879A627C350D40044A6EB /* CardModel.swift */; };
+		E00879A727C350D40044A6EB /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00879A627C350D40044A6EB /* CardData.swift */; };
+		E00879BD27C37CAD0044A6EB /* PokerGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00879BC27C37CAD0044A6EB /* PokerGameTests.swift */; };
+		E00879C327C37CD70044A6EB /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00879A627C350D40044A6EB /* CardData.swift */; };
 		E0CD2C5827C320C50067B01E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD2C5727C320C50067B01E /* AppDelegate.swift */; };
 		E0CD2C5A27C320C50067B01E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD2C5927C320C50067B01E /* SceneDelegate.swift */; };
 		E0CD2C5F27C320C50067B01E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0CD2C5D27C320C50067B01E /* Main.storyboard */; };
@@ -19,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E00879B027C378420044A6EB /* PBXContainerItemProxy */ = {
+		E00879BE27C37CAD0044A6EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E0CD2C4C27C320C50067B01E /* Project object */;
 			proxyType = 1;
@@ -29,10 +29,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E00879A627C350D40044A6EB /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
-		E00879AC27C378420044A6EB /* 싱하의포커게임Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "싱하의포커게임Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E00879AE27C378420044A6EB /* ________________Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "________________Tests.swift"; path = "../싱하의포커게임Tests/________________Tests.swift"; sourceTree = "<group>"; };
-		E0CD2C5427C320C50067B01E /* 싱하의포커게임.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "싱하의포커게임.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E00879A627C350D40044A6EB /* CardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
+		E00879BA27C37CAD0044A6EB /* PokerGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E00879BC27C37CAD0044A6EB /* PokerGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameTests.swift; sourceTree = "<group>"; };
+		E0CD2C5427C320C50067B01E /* PokerGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0CD2C5727C320C50067B01E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0CD2C5927C320C50067B01E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E0CD2C5E27C320C50067B01E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -43,7 +43,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E00879A927C378420044A6EB /* Frameworks */ = {
+		E00879B727C37CAD0044A6EB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -63,24 +63,24 @@
 		E00879A527C350C10044A6EB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E00879A627C350D40044A6EB /* CardModel.swift */,
+				E00879A627C350D40044A6EB /* CardData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		E00879AD27C378420044A6EB /* 싱하의포커게임Tests */ = {
+		E00879BB27C37CAD0044A6EB /* PokerGameTests */ = {
 			isa = PBXGroup;
 			children = (
-				E00879AE27C378420044A6EB /* ________________Tests.swift */,
+				E00879BC27C37CAD0044A6EB /* PokerGameTests.swift */,
 			);
-			path = "싱하의포커게임Tests";
+			path = PokerGameTests;
 			sourceTree = "<group>";
 		};
 		E0CD2C4B27C320C50067B01E = {
 			isa = PBXGroup;
 			children = (
 				E0CD2C5627C320C50067B01E /* PokerGame */,
-				E00879AD27C378420044A6EB /* 싱하의포커게임Tests */,
+				E00879BB27C37CAD0044A6EB /* PokerGameTests */,
 				E0CD2C5527C320C50067B01E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,8 +88,8 @@
 		E0CD2C5527C320C50067B01E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E0CD2C5427C320C50067B01E /* 싱하의포커게임.app */,
-				E00879AC27C378420044A6EB /* 싱하의포커게임Tests.xctest */,
+				E0CD2C5427C320C50067B01E /* PokerGame.app */,
+				E00879BA27C37CAD0044A6EB /* PokerGameTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -144,22 +144,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E00879AB27C378420044A6EB /* 싱하의포커게임Tests */ = {
+		E00879B927C37CAD0044A6EB /* PokerGameTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E00879B227C378420044A6EB /* Build configuration list for PBXNativeTarget "싱하의포커게임Tests" */;
+			buildConfigurationList = E00879C227C37CAD0044A6EB /* Build configuration list for PBXNativeTarget "PokerGameTests" */;
 			buildPhases = (
-				E00879A827C378420044A6EB /* Sources */,
-				E00879A927C378420044A6EB /* Frameworks */,
-				E00879AA27C378420044A6EB /* Resources */,
+				E00879B627C37CAD0044A6EB /* Sources */,
+				E00879B727C37CAD0044A6EB /* Frameworks */,
+				E00879B827C37CAD0044A6EB /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E00879B127C378420044A6EB /* PBXTargetDependency */,
+				E00879BF27C37CAD0044A6EB /* PBXTargetDependency */,
 			);
-			name = "싱하의포커게임Tests";
-			productName = "싱하의포커게임Tests";
-			productReference = E00879AC27C378420044A6EB /* 싱하의포커게임Tests.xctest */;
+			name = PokerGameTests;
+			productName = PokerGameTests;
+			productReference = E00879BA27C37CAD0044A6EB /* PokerGameTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		E0CD2C5327C320C50067B01E /* PokerGame */ = {
@@ -176,7 +176,7 @@
 			);
 			name = PokerGame;
 			productName = PokerGame;
-			productReference = E0CD2C5427C320C50067B01E /* 싱하의포커게임.app */;
+			productReference = E0CD2C5427C320C50067B01E /* PokerGame.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -189,7 +189,7 @@
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
-					E00879AB27C378420044A6EB = {
+					E00879B927C37CAD0044A6EB = {
 						CreatedOnToolsVersion = 13.2.1;
 						TestTargetID = E0CD2C5327C320C50067B01E;
 					};
@@ -212,13 +212,13 @@
 			projectRoot = "";
 			targets = (
 				E0CD2C5327C320C50067B01E /* PokerGame */,
-				E00879AB27C378420044A6EB /* 싱하의포커게임Tests */,
+				E00879B927C37CAD0044A6EB /* PokerGameTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E00879AA27C378420044A6EB /* Resources */ = {
+		E00879B827C37CAD0044A6EB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -238,12 +238,12 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E00879A827C378420044A6EB /* Sources */ = {
+		E00879B627C37CAD0044A6EB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E00879AF27C378420044A6EB /* ________________Tests.swift in Sources */,
-				E00879B527C378840044A6EB /* CardModel.swift in Sources */,
+				E00879BD27C37CAD0044A6EB /* PokerGameTests.swift in Sources */,
+				E00879C327C37CD70044A6EB /* CardData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,17 +254,17 @@
 				E0CD2C8C27C322700067B01E /* PokerBoardViewController.swift in Sources */,
 				E0CD2C5827C320C50067B01E /* AppDelegate.swift in Sources */,
 				E0CD2C5A27C320C50067B01E /* SceneDelegate.swift in Sources */,
-				E00879A727C350D40044A6EB /* CardModel.swift in Sources */,
+				E00879A727C350D40044A6EB /* CardData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E00879B127C378420044A6EB /* PBXTargetDependency */ = {
+		E00879BF27C37CAD0044A6EB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E0CD2C5327C320C50067B01E /* PokerGame */;
-			targetProxy = E00879B027C378420044A6EB /* PBXContainerItemProxy */;
+			targetProxy = E00879BE27C37CAD0044A6EB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -288,35 +288,37 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		E00879B327C378420044A6EB /* Debug */ = {
+		E00879C027C37CAD0044A6EB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shingha.----------------Tests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.shingha.PokerGameTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/싱하의포커게임.app/싱하의포커게임";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PokerGame.app/PokerGame";
 			};
 			name = Debug;
 		};
-		E00879B427C378420044A6EB /* Release */ = {
+		E00879C127C37CAD0044A6EB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shingha.----------------Tests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.shingha.PokerGameTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/싱하의포커게임.app/싱하의포커게임";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PokerGame.app/PokerGame";
 			};
 			name = Release;
 		};
@@ -456,7 +458,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shingha.PokerGame;
-				PRODUCT_NAME = "싱하의포커게임";
+				PRODUCT_NAME = PokerGame;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -483,7 +485,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shingha.PokerGame;
-				PRODUCT_NAME = "싱하의포커게임";
+				PRODUCT_NAME = PokerGame;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -493,11 +495,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E00879B227C378420044A6EB /* Build configuration list for PBXNativeTarget "싱하의포커게임Tests" */ = {
+		E00879C227C37CAD0044A6EB /* Build configuration list for PBXNativeTarget "PokerGameTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E00879B327C378420044A6EB /* Debug */,
-				E00879B427C378420044A6EB /* Release */,
+				E00879C027C37CAD0044A6EB /* Debug */,
+				E00879C127C37CAD0044A6EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
