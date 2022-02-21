@@ -7,12 +7,13 @@
 
 import Foundation
 
-class Card {
+internal class Card {
     
     let shape: Shape
     let number: Int
     
-    enum Shape: String {
+    // 입력받은 타입에 맞는 유니코드를 출력하기 위해 열거형 사용
+    internal enum Shape: String {
         case spade = "\u{2660}", heart = "\u{1F5A4}", diamond = "\u{25C6}", clover = "\u{1F340}"
     }
     
@@ -22,10 +23,11 @@ class Card {
     }
     
     func printCardUsingString(){
-        print(shape.rawValue, numberConvert(number: number))
+        print(shape.rawValue + numberConvert(number: number))
     }
     
-    func numberConvert(number: Int) -> String {
+    // 값 비교 후 형 변환을 위해 switch 사용
+    private func numberConvert(number: Int) -> String {
         switch number {
         case 1:
             return "A"

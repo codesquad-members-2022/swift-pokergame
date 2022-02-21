@@ -8,13 +8,15 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setBackgroundImage()
         addCard(count: 7)
+        
+        let cardClass = Card(shape: .heart, number: 13)
+        cardClass.printCardUsingString()
         
     }
     
