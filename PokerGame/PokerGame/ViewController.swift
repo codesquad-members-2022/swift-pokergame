@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     func putCardsOnView(originX:CGFloat,y:CGFloat,count:CGFloat,inset: CGFloat) {
         
         let inset:CGFloat = 10
-        var currentXPosition:CGFloat = originX + inset                       //시작 xPosition에 0이아닌 inset을 넣음으로써 좌측에 여백을 줄 수있다
+        var currentXPosition:CGFloat = originX + inset                       //시작 OriginX에 inset을 더함으로써 좌측에 여백을 줄 수있다
         //현재 시작점에서부터 전체Frame의 크기를 다시 계산한다.
         let superViewFrame = self.view.frame.width - currentXPosition //인자로 들어오는 originX값에서 부터 count나 inset에 상관없이 동일한 뷰를 보여줌
         
