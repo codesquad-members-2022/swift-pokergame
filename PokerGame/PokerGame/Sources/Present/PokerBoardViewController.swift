@@ -11,7 +11,7 @@ import UIKit
 class PokerBoardViewController: UIViewController {
     
     let cardContainerView = UIView()
-    let cards: [UIImageView] = Array(repeating: UIImageView(), count: 7)
+    var cards: [UIImageView] = []
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
@@ -19,6 +19,11 @@ class PokerBoardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.cards = (0..<7).map{ _ in
+            UIImageView()
+        }
+        
         bind()
         attribute()
         layout()
@@ -32,21 +37,42 @@ class PokerBoardViewController: UIViewController {
         if let backImage = UIImage(named: "bg_pattern") {
             self.view.backgroundColor = UIColor(patternImage: backImage)
         }
-        cardContainerView.backgroundColor = .red
+        
+        cards.forEach {
+            $0.image = UIImage(named: "card-back")
+        }
     }
     
     private func layout() {
         self.view.addSubview(cardContainerView)
+        
         cards.forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
             cardContainerView.addSubview($0)
         }
         
         let safeArea = self.view.safeAreaLayoutGuide
         
         cardContainerView.translatesAutoresizingMaskIntoConstraints = false
-        cardContainerView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
-        cardContainerView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        cardContainerView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        cardContainerView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        cardContainerView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 5).isActive = true
+        cardContainerView.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 5).isActive = true
+        cardContainerView.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -5).isActive = true
+        cardContainerView.heightAnchor.constraint(equalTo: cards[0].heightAnchor).isActive = true
+        
+        self.view.layoutIfNeeded()
+        
+        let cardOffset = 3.0
+        let cardWidth = (cardContainerView.frame.width - (cardOffset * 6)) / 7
+        let cardHeight = cardWidth * 1.27
+        
+        cards.enumerated().forEach { index, view in
+            if index == 0 {
+                view.leftAnchor.constraint(equalTo: cardContainerView.leftAnchor).isActive = true
+            } else {
+                view.leftAnchor.constraint(equalTo: cards[index - 1].rightAnchor, constant: cardOffset).isActive = true
+            }
+            view.widthAnchor.constraint(equalToConstant: cardWidth).isActive = true
+            view.heightAnchor.constraint(equalToConstant: cardHeight).isActive = true
+        }
     }
 }
