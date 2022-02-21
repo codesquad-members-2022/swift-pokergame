@@ -27,14 +27,25 @@
 
 - [X] 앱 기본 설정을 지정해서 StatusBar 스타일을 LightContent로 보이도록 한다.
  
- 앱의 기본설정으로 가서 statusBar Style을 Light content로 바꾸어보았다.
-![스크린샷 2022-02-21 오전 11 14 04](https://user-images.githubusercontent.com/80263729/154877931-7c8e0837-9334-4635-a654-1a750d6379eb.png)
+ 앱의 기본설정으로 가서 statusBar Style을 Light content로 바꾸어보았다.이때 Status bar Style만 바꿔서 안되고 그림과 같은 속성을 NO로 하여 추가해준다.
+ 이후 바꾸고 싶은 곳에서 밑과같이 코드를 작성해준다 
+ ~~~swift
+ // StatusBar 색상 변경
+UIApplication.shared.statusBarStyle = .lightContent
+UIApplication.shared.setStatusBarStyle(.lightContent, animated: true)
+// StatusBar Hidden
+UIApplication.shared.isStatusBarHidden = true
+UIApplication.shared.setStatusBarHidden(true, with: .slide) // .none, .slide, .fade
+ ~~~
 
-`하지만..여전히 StatusBar는 똑같이 검은색이었고`
+![스크린샷 2022-02-21 오후 9 12 18](https://user-images.githubusercontent.com/80263729/154953041-f4eaf688-c6aa-468f-b9de-e85e9d6690ee.png)
+
+- 코드로 구현하는 방법: 위에서 No로 설정한 View controller-based status bar appearance를 Yes로 둔다.
 ViewController에 밑과같이 함수를 재정의 하니 성공적으로 실행이 됬다.(UIStatusBarStyle은 get only라 viewDidLoad같은데서 값을 바꾸려하면 에러가뜸.)
 
 ![스크린샷 2022-02-21 오후 12 28 13](https://user-images.githubusercontent.com/80263729/154884387-571ff9bc-e52c-404e-8b9f-368fcf83a6e6.png)
 
+[코드 출처](https://mrgamza.tistory.com/630)
 
 - [X] ViewController 클래스에서 self.view 배경을 정해진 이미지 패턴으로 지정한다. 이미지 파일은 Assets에 추가한다. 
 - `배경을 설정하는 것이지만 BackgroundColor에 지정을 해주어야하고 이는 곧 UIColor를 넣어야하는 것이기에 네이밍에 주의한다`
@@ -71,8 +82,13 @@ ViewController에 밑과같이 함수를 재정의 하니 성공적으로 실행
 
 
 - 추가 학습거리
-  - 앱 기본 설정(Info.plist)을 변경하는 방식에 대해 학습하고 앱 표시 이름을 변경한다.  
-  ![스크린샷 2022-02-21 오후 4 37 27](https://user-images.githubusercontent.com/80263729/154916273-149e2429-ee99-48a0-9822-b02ad9e7e4da.png)
+  - 앱 기본 설정(Info.plist)을 변경하는 방식에 대해 학습하고 앱 표시 이름을 변경한다.
+  - Target의 general에 가면 Display Name을 바꿀 수 있다.
+![스크린샷 2022-02-21 오후 9 19 50](https://user-images.githubusercontent.com/80263729/154954137-79c52da6-45b9-4bef-a8ec-50e903e0a882.png)
+  
+  - 앱이름을 변경할 때 info.plist에 가면 BudleDisplayName과 BundleName도 있고 Value는 PRODUCT_NAME이라 되있고 상당히 혼란스러웠다
+    - [여기](https://docs.unrealengine.com/udk/Three/UDKInfoPListApple_iOSKR.html)를 참고하여 많은 이해가 되었다.
+    - [공식문서](https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundlename) 
   
   - 프로젝트의 Assets.xcassets 안의 json알아보기
   
@@ -88,6 +104,3 @@ ViewController에 밑과같이 함수를 재정의 하니 성공적으로 실행
   
   JSON파일도 바로 바뀌는 걸 볼수 있다.
   ![스크린샷 2022-02-21 오전 11 49 46](https://user-images.githubusercontent.com/80263729/154881080-ccbb8bab-a149-4472-884a-d2e07312a750.png)
-
-  
-  
