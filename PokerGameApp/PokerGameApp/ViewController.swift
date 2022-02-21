@@ -9,26 +9,39 @@ import UIKit
 
 class ViewController: UIViewController {
     
-//    private var barStyle: UIStatusBarStyle = .lightContent {
-//        willSet {
-//            setNeedsStatusBarAppearanceUpdate()
-//        }
-//    }
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//        return barStyle
-//    }
+    let bgImageName = "bg_pattern"
+    var backgroundImageView: (() -> UIImageView?)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UIApplication.shared.statusBarStyle = .lightContent
-        
-        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { timer in
-            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "SecondViewController")
-            vc.modalPresentationStyle = .fullScreen
-            UIApplication.shared.statusBarStyle = .darkContent
-            self.present(vc, animated: true, completion: nil)
+//        # Step1
+        if let bgPattern = UIImage.init(named: bgImageName) {
+            self.view.backgroundColor = UIColor.init(patternImage: bgPattern)
         }
+        
+//        # Step2
+//        backgroundImageView = { [self] in
+//
+//            guard let image = UIImage.init(named: bgImageName) else { return nil }
+//
+//            let imageView = UIImageView(image: UIImage.init(named: bgImageName))
+//            imageView.frame = self.view.frame
+//            imageView.contentMode = .center
+//            return imageView
+//        }
+//
+//        let gesture = UITapGestureRecognizer.init(target: self, action: #selector(changeBackground))
+//        self.view.addGestureRecognizer(gesture)
+//        self.view.isUserInteractionEnabled = true
     }
+    
+//    @objc func changeBackground() {
+//        if let imageView = self.view.subviews.filter({type(of: $0.self) == UIImageView.self}).first {
+//            imageView.removeFromSuperview()
+//        } else if let imageView = backgroundImageView() {
+//            self.view.addSubview(imageView)
+//        }
+//    }
 }
 
