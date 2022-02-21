@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var cards = [UIImageView](repeating: UIImageView(), count: 7)
+    var cards: [UIImageView] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,12 +18,18 @@ class ViewController: UIViewController {
     }
     
     func setImageView() {
-        for eachImageViewIndex in 0..<cards.count {
-            let xPosition = CGFloat(5*(1+eachImageViewIndex) + 50*eachImageViewIndex)
-            let currentFrame = CGRect(x: xPosition, y: 47, width: 50, height: 50*1.27)
-            cards[eachImageViewIndex] = UIImageView(frame: currentFrame)
-            cards[eachImageViewIndex].image = UIImage(named: "card-back")
-            self.view.addSubview(cards[eachImageViewIndex])
+        guard let cardImage = UIImage(named: "card-back") else {return}
+        let maxNumberOfCards = 7
+        let cardWidth = 50
+        let cardHeight = 1.27*Float(cardWidth)
+        let spacingFromTop = 47
+        for eachImageViewIndex in 0..<maxNumberOfCards {
+            let xPosition = CGFloat(5*(1+eachImageViewIndex) + cardWidth*eachImageViewIndex)
+            let currentFrame = CGRect(x: CGFloat(xPosition), y: CGFloat(spacingFromTop), width: CGFloat(cardWidth), height: CGFloat(cardHeight))
+            let newImageView = UIImageView(frame: currentFrame)
+            newImageView.image = cardImage
+            self.view.addSubview(newImageView)
+            cards.append(UIImageView(frame: currentFrame))
         }
     }
 
@@ -51,3 +57,4 @@ struct ViewPreview: PreviewProvider {
             .previewDevice("iPhone 13 Pro")
     }
 }
+
