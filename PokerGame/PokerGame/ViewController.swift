@@ -71,7 +71,7 @@ class ViewController: UIViewController {
     
     //MARK: 카드 레이아웃 만들기
     func configureCardsBackSide() {
-
+        
         //크기와 높이는 이미 정해져있다. 변수를 사용해서 쉽게 사용하도록 했다
         let width:CGFloat = 390 / 8 //약간의 공백을 주기 위해서 7이 아닌 8로 나누어 주었다. -> 48.5가 나오고 총 8개의 공백이 나오므로 6으로 공백값을 주자.
         let height:CGFloat = width * 1.27 //가로 세로 비율은 1: 1.27이므로 곱해준다.
