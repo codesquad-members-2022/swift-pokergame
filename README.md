@@ -24,7 +24,8 @@
 > 
 
 ### 실행화면
-![Simulator Screen Shot - iPhone 13 Pro - 2022-02-21 at 11 10 01](https://user-images.githubusercontent.com/62687919/154877627-9d06324b-fd45-47e0-81b4-643f189f6fcb.png)
+<img width="281" alt="스크린샷 2022-02-21 오후 2 22 46" src="https://user-images.githubusercontent.com/62687919/154894266-6d3dc726-90f3-4afd-88f1-988e4a80547c.png">
+
 
 ### 공부내용
 1. UIStatusBar에는 default, darkContent, lightContent가 있으며 이는 상단의 배터리잔량표시 등 상태 텍스트색을 변경합니다.
