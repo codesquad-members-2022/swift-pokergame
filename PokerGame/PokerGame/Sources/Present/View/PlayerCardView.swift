@@ -10,7 +10,8 @@ import UIKit
 
 class PlayerCardView: UIStackView {
         
-    var cards: [UIImageView] = (0..<7).map{ _ in  UIImageView()}
+    let name = UILabel()
+    let cards: [UIImageView] = (0..<7).map{ _ in  UIImageView()}
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,22 +24,36 @@ class PlayerCardView: UIStackView {
     }
     
     private func attribute() {
-        self.spacing = 3
+        self.spacing = -3
         self.distribution = .fillEqually
         
         cards.forEach {
             $0.image = UIImage(named: "card-back")
         }
+        
+        name.text = ""
+        name.font = .systemFont(ofSize: 25)
+        name.textColor = .black
+        name.backgroundColor = .gray
+        name.clipsToBounds = true
+        name.layer.cornerRadius = 5
     }
     
     func layout() {
+        name.frame = CGRect(x: 0, y: -35, width: 50, height: 30)
+        
         cards.enumerated().forEach { index, view in
             self.addArrangedSubview(view)
         }
+        
+        self.addSubview(name)
     }
     
     func setCardImage(player: Player) {
         self.isHidden = false
+        name.text = " \(player.name) "
+        name.sizeToFit()
+        
         cards.enumerated().forEach { index, cardView in
             if index < player.cards.count {
                 cardView.isHidden = false

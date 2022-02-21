@@ -19,6 +19,7 @@ class PokerBoardViewController: UIViewController {
     let dealerCardView = PlayerCardView()
     
     let pokerGame = PokerGame()
+    let pokerType = PokerType.sevenCard
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
@@ -30,7 +31,7 @@ class PokerBoardViewController: UIViewController {
         layout()
         
         pokerGame.delegate = self
-        pokerGame.action.playGame(.sevenCard, 4)
+        pokerGame.action.playGame(pokerType, 4)
     }
     
     private func attribute() {
@@ -45,19 +46,20 @@ class PokerBoardViewController: UIViewController {
     
     private func layout() {
         let safeArea = self.view.safeAreaLayoutGuide
-        let safeAreaWidth = safeArea.layoutFrame.width - 80
-        let cardWidth = safeAreaWidth / 7
+        let cardWidth = safeArea.layoutFrame.width / 8.0
         let cardHeight = cardWidth * 1.27
-        let yAxisOffset = 20.0
+        let safeAreaWidth = cardWidth * CGFloat(pokerType.rawValue) - (6 * 3)
+        let topOffset = 100.0
+        let yAxisOffset = 50.0
         
         playerCardViews.enumerated().forEach { index, view in
             self.view.addSubview(view)
-            let yPosition = CGFloat(index) * (cardHeight + yAxisOffset) + 80.0
+            let yPosition = CGFloat(index) * (cardHeight + yAxisOffset) + topOffset
             view.frame = CGRect(x: 15, y: yPosition, width: safeAreaWidth, height: cardHeight)
         }
         
         self.view.addSubview(dealerCardView)
-        let yPosition = CGFloat(playerCardViews.count) * (cardHeight + yAxisOffset) + 80.0
+        let yPosition = CGFloat(playerCardViews.count) * (cardHeight + yAxisOffset) + topOffset
         dealerCardView.frame = CGRect(x: 15, y: yPosition, width: safeAreaWidth, height: cardHeight)
     }
 }
