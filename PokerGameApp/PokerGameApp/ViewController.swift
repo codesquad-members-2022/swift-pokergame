@@ -32,14 +32,12 @@ class ViewController: UIViewController {
             card.image = cardImage
             card.contentMode = .scaleAspectFit
       
-
             self.view.addSubview(card)
         }
-        
-      
-        
-        
-        
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
 
