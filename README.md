@@ -5,25 +5,29 @@
 
 ## 작업내역
 
-| 날짜       | 번호   | 내용                 | 비고                             |
-| ---------- | :----- | -------------------- | -------------------------------- |
-|            | Step_2 | 카드 클래스 구현하기 |                                  |
-| 2022.02.21 | Step_1 | 게임보드 만들기      | 프로젝트 셋팅 및 Step_1단계 진행 |
+| 날짜       | 번호   | 내용                       | 비고                             |
+| ---------- | :----- | -------------------------- | -------------------------------- |
+| 2022.02.21 | Step_2 | 카드 데이터 & 카드 덱 구현 |                                  |
+| 2022.02.21 | Step_1 | 게임보드 만들기            | 프로젝트 셋팅 및 Step_1단계 진행 |
 
 ------
 
-## [Step_2] 카드 클래스 구현하기 & 카드 덱 구현
+## [Step_2] 카드 데이터 & 카드 덱 구현
 
 ### 체크리스트
 
-- [x] 카드데이터를 관리할 Class 제작
-- [x] 카드 객체 인스턴트를 만들어서 출력한다
-- [x] 카드정보를 출력하기 위한 문자열을 반환하는 함수 제작
-- [x] 단위테스트
-  - [x]  CardData 객체 인스턴스 테스트
-  - [x] CardDeck 인스턴스 테스트
-  - [x] CardDeck Shuffle() 테스트
-  - [x] CardDeck RemoveOne() 테스트
+- [x] 카드데이터를 관리할 Struct 제작
+- [x] 카드데이터를 문자열을 변환하는 함수 제작
+  - [x] 단위테스트
+    - [x] CardData 객체 인스턴스 & 출력 테스트
+
+- [x] CardDeck 클래스 구현
+- [x] CardDeck 필요 함수 구현
+  - [x] 단위테스트
+    - [x] CardDeck 인스턴스 테스트
+    - [x] CardDeck Shuffle() 테스트
+    - [x] CardDeck RemoveOne() 테스트
+    - [x] CardDeck Reset() 테스트
 
 
 ### 핵심기능
@@ -62,14 +66,16 @@
   PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.heart, number: 13), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.clover, number: 1),
   ...
   PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.clover, number: 13)]
+  남은 카드 갯수: 52
   ```
-
+  
 * CardDeck Shuffle() 테스트
 
   ```
   [PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.diamond, number: 7), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.clover, number: 3), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.heart, number: 2), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.spade, number: 7), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.diamond, number: 5), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.heart, number: 11), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.diamond, number: 3), 
   ...
   PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.heart, number: 6), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.spade, number: 8), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.clover, number: 1), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.clover, number: 12), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.spade, number: 12), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.clover, number: 11), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.diamond, number: 12), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.clover, number: 9)]
+  남은 카드 갯수: 52
   ```
   
 * CardDeck RemoveOne() 테스트
@@ -79,11 +85,20 @@
   남은 카드 갯수: 51
   ```
   
-  
+* CardDeck Reset() 테스트
+
+  ```
+  뽑은카드: ♠7
+  뽑은카드: ♣5
+  뽑은카드: ♥A
+  남은 카드 갯수: 49
+  카드 덱 리셋
+  남은 카드 갯수: 52
+  ```
 
 
 
-
+------
 
 ## [Step_1] 게임 보드 만들기
 
