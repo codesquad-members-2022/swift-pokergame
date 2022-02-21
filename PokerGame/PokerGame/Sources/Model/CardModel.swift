@@ -7,18 +7,10 @@
 
 import Foundation
 
-class CardModel {
+struct CardData {
     let pattern: CardPattern
     let number: Int
-    
-    init?(pattern: CardPattern, number: Int) {
-        guard number > 0 && number <= 13 else {
-            return nil
-        }
-        self.pattern = pattern
-        self.number = number
-    }
-    
+        
     func toString() -> String {
         "\(pattern.rawValue)\(numberToString())"
     }
@@ -39,7 +31,7 @@ class CardModel {
     }
 }
 
-extension CardModel {
+extension CardData {
     enum CardPattern: String {
         case spade = "♠"
         case diamond = "♦"
