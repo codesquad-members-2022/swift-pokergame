@@ -21,6 +21,8 @@
 			</array>
 		</dict>
 	</dict>
+	<key>CFBundleName</key>
+	<string>pokepoke</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
 </dict>
