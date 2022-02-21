@@ -8,12 +8,19 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        setBackgroundImage()
     }
-
+    
+    private func setBackgroundImage() {
+        // Color에 Image넣어야해서 옵셔널바인딩
+        guard let backgroundImage = UIImage(named: "bg_pattern.png") else { return }
+        view.backgroundColor = UIColor(patternImage: backgroundImage)
+    }
 
 }
 
+ 
