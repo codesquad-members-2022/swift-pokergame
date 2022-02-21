@@ -15,6 +15,7 @@
 		1BEB001627C332C1005738B5 /* PokerGameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB001527C332C1005738B5 /* PokerGameAppTests.swift */; };
 		1BEB002027C332C1005738B5 /* PokerGameAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB001F27C332C1005738B5 /* PokerGameAppUITests.swift */; };
 		1BEB002227C332C1005738B5 /* PokerGameAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB002127C332C1005738B5 /* PokerGameAppUITestsLaunchTests.swift */; };
+		1BEB002F27C33583005738B5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1BEB002E27C33583005738B5 /* README.md */; };
 		1BEBFFFF27C332BF005738B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEBFFFE27C332BF005738B5 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		1BEB001B27C332C1005738B5 /* PokerGameAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerGameAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEB001F27C332C1005738B5 /* PokerGameAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameAppUITests.swift; sourceTree = "<group>"; };
 		1BEB002127C332C1005738B5 /* PokerGameAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1BEB002E27C33583005738B5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		1BEBFFFB27C332BF005738B5 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEBFFFE27C332BF005738B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,6 +98,7 @@
 		1BEBFFF227C332BF005738B5 = {
 			isa = PBXGroup;
 			children = (
+				1BEB002E27C33583005738B5 /* README.md */,
 				1BEBFFFD27C332BF005738B5 /* PokerGameApp */,
 				1BEB001427C332C1005738B5 /* PokerGameAppTests */,
 				1BEB001E27C332C1005738B5 /* PokerGameAppUITests */,
@@ -247,6 +250,7 @@
 			files = (
 				1BEB000B27C332C1005738B5 /* LaunchScreen.storyboard in Resources */,
 				1BEB000827C332C1005738B5 /* Assets.xcassets in Resources */,
+				1BEB002F27C33583005738B5 /* README.md in Resources */,
 				1BEB000627C332BF005738B5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
