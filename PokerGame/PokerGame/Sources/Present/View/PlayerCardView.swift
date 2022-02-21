@@ -36,4 +36,20 @@ class PlayerCardView: UIStackView {
             self.addArrangedSubview(view)
         }
     }
+    
+    func setCardImage(player: Player) {
+        self.isHidden = false
+        cards.enumerated().forEach { index, cardView in
+            if index < player.cards.count {
+                cardView.isHidden = false
+                
+                let card = player.cards[index]
+                if let cardImageName = card.pattern.rawValue.first {
+                    cardView.image = UIImage(named: "\(cardImageName)\(card.numberToString())")
+                }
+            } else {
+                cardView.isHidden = true
+            }
+        }
+    }
 }
