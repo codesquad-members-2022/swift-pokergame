@@ -15,6 +15,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern") ?? UIImage())
         setImageView()
+        let newCard = Card(number: .ace, symbol: .spade)
+        printCardDescription(newCard)
     }
     
     func setImageView() {
@@ -32,7 +34,10 @@ class ViewController: UIViewController {
             cards.append(UIImageView(frame: currentFrame))
         }
     }
-
+    
+    func printCardDescription(_ card: Card) {
+        print(card.makeDescription())
+    }
 
 }
 
