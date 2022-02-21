@@ -13,31 +13,35 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(patternImage: Image.backgroundPatternImage) //ViewBackground Pattern
-        
-        let inset:CGFloat = 3
-        let xPosition:CGFloat = 0 //x위치만 바뀌기 떄문에 var로 선언해주었다
-        let yPosition:CGFloat = 40.0
-        
-        putCardsOnView(originX: xPosition, y: yPosition, inset: inset, count: 7) //여러개의 카드 View에 올리기
+
+        putCardsOnView(originX: 100, y: 40, count: 3,inset: 10) //여러개의 카드 View에 올리기
         
     }
     
     //putCardOnView함수를 몇번 실행할지 정하는 함수
     //ViewDidLoad를 좀 더 깔끔하게 만들기 위해 만들었다.
     //여러개의 카드를 View에 올리기 때문에 x라는 변수명 대신 originX라는 변수명을 정했다.
-    func putCardsOnView(originX:CGFloat,y:CGFloat,inset:CGFloat, count:Int) {
-        var xPosition:CGFloat = originX
-        for _ in 0..<count {
-            putCardOnView(x: xPosition, y: y,inset: inset)
-            xPosition += 390 / 7.0 //카드를 하나 둘떄마다 둔 카드의 너비+ inset을 더한만큼 이동하게 만들고자 했다.
+    func putCardsOnView(originX:CGFloat,y:CGFloat,count:CGFloat,inset: CGFloat) {
+        
+        let inset:CGFloat = 10
+        var currentXPosition:CGFloat = originX + inset                       //시작 xPosition에 0이아닌 inset을 넣음으로써 좌측에 여백을 줄 수있다
+        //현재 시작점에서부터 전체Frame의 크기를 다시 계산한다.
+        let superViewFrame = self.view.frame.width - currentXPosition //인자로 들어오는 originX값에서 부터 count나 inset에 상관없이 동일한 뷰를 보여줌
+        
+        //핸드폰 기종에 상관없이 View의 크기를 기준으로 frame을 분할하고자 정의했다.
+        let width:CGFloat = (superViewFrame / count) - inset //크기를 inset만큼 줄이면 그러지는 좌표x는 inset만큼 커지므로 여백을 줄수 있다.
+        let height:CGFloat = width * 1.27
+        
+        //루프를 돌면서 한장 한장 View에 넣는다.
+        for _ in 0..<Int(count) {
+            putCardOnView(x: currentXPosition, y: 40.0, width: width, height: height)
+            currentXPosition += superViewFrame / count //카드를 하나 둘떄마다 둔 카드의 너비 + inset을 더한만큼 x 값을 이동하게 만들고자 했다.
         }
     }
 
     //View의 원하는 좌표 x,y에 width,height를 크기의 사각형의 카드를 올리기
-    func putCardOnView(x:CGFloat,y:CGFloat,inset:CGFloat) {
-        let width:CGFloat = 390.0 / 8.0
-        let height:CGFloat = width * 1.27
-        let card = UIImageView(frame: CGRect(x: x + inset, y: y, width: width, height: height))
+    func putCardOnView(x:CGFloat,y:CGFloat,width:CGFloat, height:CGFloat) {
+        let card = UIImageView(frame: CGRect(x: x, y: y, width: width, height: height))
         card.image = Image.backImageOfCard
         self.view.addSubview(card)
     }
