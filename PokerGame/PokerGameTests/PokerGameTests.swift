@@ -33,12 +33,17 @@ class PokerGameTests: XCTestCase {
     
     func testCardDeckRemoveOne() {
         let cardDeck = CardDeck()
-        guard let card = cardDeck.removeOne() else {
-            print("카드를 못뽑았습니다.")
-            return
+        var removeCard = [String]()
+        (0..<52).forEach { index in
+            guard let card = cardDeck.removeOne() else {
+                return
+            }
+            
+            XCTAssertFalse(removeCard.contains(card.description), "중복된 카드가 뽑혔습니다!")
+            removeCard.append(card.description)
         }
-        print("뽑은카드: \(card)")
-        print("남은 카드 갯수: \(cardDeck.count)")
+        
+        XCTAssertTrue(cardDeck.count == 0, "카드가 남아 있습니다")
     }
     
     func testCardDeckShuffle() {
