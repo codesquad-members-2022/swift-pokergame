@@ -18,10 +18,32 @@ class CardModel {
         self.pattern = pattern
         self.number = number
     }
+    
+    func toString() -> String {
+        "\(pattern.rawValue)\(numberToString())"
+    }
+    
+    func numberToString() -> String {
+        switch number {
+        case 1:
+            return "A"
+        case 11:
+            return "J"
+        case 12:
+            return "Q"
+        case 13:
+            return "K"
+        default:
+            return String(number)
+        }
+    }
 }
 
 extension CardModel {
     enum CardPattern: String {
-        case spade, diamond, heart, clover
+        case spade = "♠"
+        case diamond = "♦"
+        case heart = "♥"
+        case clover = "♣"
     }
 }
