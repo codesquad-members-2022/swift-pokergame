@@ -12,10 +12,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let pattern: UIImage = #imageLiteral(resourceName: "bg_pattern")
-        view.backgroundColor = UIColor(patternImage: pattern)
-        
+        addPattern(to: self.view, pattern: #imageLiteral(resourceName: "bg_pattern"))
         addCardImages(superView: self.view, count: 7)
+    }
+    
+    private func addPattern(to view: UIView, pattern: UIImage) {
+        view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
     }
 
     private func addCardImages(superView: UIView, count: Int) {
