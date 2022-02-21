@@ -64,11 +64,11 @@
 				BCB1A00F27C32E1100D7B8FD /* AppDelegate.swift */,
 				BCB1A01127C32E1100D7B8FD /* SceneDelegate.swift */,
 				BCB1A01327C32E1100D7B8FD /* ViewController.swift */,
+				BC8BDC0227C38938008E38F3 /* Card.swift */,
 				BCB1A01527C32E1100D7B8FD /* Main.storyboard */,
 				BCB1A01827C32E1200D7B8FD /* Assets.xcassets */,
 				BCB1A01A27C32E1200D7B8FD /* LaunchScreen.storyboard */,
 				BCB1A01D27C32E1200D7B8FD /* Info.plist */,
-				BC8BDC0227C38938008E38F3 /* Card.swift */,
 			);
 			path = PockerGameApp;
 			sourceTree = "<group>";
