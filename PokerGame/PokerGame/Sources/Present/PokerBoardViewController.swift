@@ -11,7 +11,7 @@ import UIKit
 class PokerBoardViewController: UIViewController {
     
     let cardContainerView = UIView()
-    var cards: [UIImageView] = []
+    var cards: [UIImageView] = (0..<7).map{ _ in  UIImageView()}
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
@@ -19,18 +19,8 @@ class PokerBoardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.cards = (0..<7).map{ _ in
-            UIImageView()
-        }
-        
-        bind()
         attribute()
         layout()
-    }
-    
-    private func bind() {
-        
     }
     
     private func attribute() {
@@ -47,7 +37,6 @@ class PokerBoardViewController: UIViewController {
         self.view.addSubview(cardContainerView)
         
         cards.forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
             cardContainerView.addSubview($0)
         }
         
@@ -66,6 +55,7 @@ class PokerBoardViewController: UIViewController {
         let cardHeight = cardWidth * 1.27
         
         cards.enumerated().forEach { index, view in
+            view.translatesAutoresizingMaskIntoConstraints = false
             if index == 0 {
                 view.leftAnchor.constraint(equalTo: cardContainerView.leftAnchor).isActive = true
             } else {
