@@ -8,31 +8,27 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    var cards = [UIImageView]()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern")!)
-        
-        for i in 0..<7 {
-            cards.append(UIImageView(image: UIImage(named: "card-back")))
+        if let backgroundPattern = UIImage(named: "bg_pattern") {
+            self.view.backgroundColor = UIColor(patternImage: backgroundPattern)
         }
         
-        // 화면 크기
-        let width = self.view.frame.width / 7
-        let height = width * 1.27
-        var xPos = 0.0
-        var yPos = 60.0
+        let cardOffset = 5.0
+        let cardWidth = (self.view.frame.width - (cardOffset * 8)) / 7
+        let cardHeight = cardWidth * 1.27
+        var xPos = 5.0
+        let yPos = 60.0
         
         for i in 0..<7 {
-            cards[i].frame = CGRect(x: xPos, y: yPos, width: width, height: height)
-            view.addSubview(cards[i])
+            let cardImage = UIImageView(image: UIImage(named: "card-back"))
+            cardImage.frame = CGRect(x: xPos , y: yPos, width: cardWidth, height: cardHeight)
+            cardImage.contentMode = .scaleAspectFit
+            view.addSubview(cardImage)
             
-            xPos = xPos + width
+            xPos += cardWidth + cardOffset
         }
     }
 }
-
