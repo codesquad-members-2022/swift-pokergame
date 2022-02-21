@@ -19,6 +19,7 @@ class PokerGameTests: XCTestCase {
         let cardDeck = CardDeck()
         
         print(cardDeck.deck)
+        
     }
     
     func testCardInstance() {
