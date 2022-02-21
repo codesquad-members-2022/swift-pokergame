@@ -32,7 +32,7 @@ struct CardData {
 }
 
 extension CardData {
-    enum CardPattern: String {
+    enum CardPattern: String, CaseIterable {
         case spade = "♠"
         case diamond = "♦"
         case heart = "♥"
