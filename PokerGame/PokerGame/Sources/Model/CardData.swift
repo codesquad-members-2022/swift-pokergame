@@ -32,10 +32,10 @@ extension CardData: CustomStringConvertible {
 
 extension CardData {
     enum CardPattern: String, CaseIterable {
-        case spade = "♠"
-        case diamond = "♦"
-        case heart = "♥"
-        case clover = "♣"
+        case spade
+        case diamond
+        case heart
+        case clover
     }
     
     enum CardNumber: Int {
