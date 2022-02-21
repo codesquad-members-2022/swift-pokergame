@@ -9,11 +9,20 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        guard let backgroundImage = UIImage(named: "bg_pattern") else { return }
+        self.view.backgroundColor = UIColor(patternImage: backgroundImage)
     }
-
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+        
+    }
+    
 
 }
 
