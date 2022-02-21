@@ -36,5 +36,4 @@ class PlayerCardView: UIStackView {
             self.addArrangedSubview(view)
         }
     }
-    
 }

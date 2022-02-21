@@ -7,12 +7,18 @@
 
 import Foundation
 
+protocol PokerGameDelegate {
+    func player(index: Int, player: Player)
+    func dealer(dealer: Player)
+}
+
 class PokerGame {
-    
     let cardDeck = CardDeck()
-    let dealer = Dealer(name: "딜러")
+    let dealer = Player(name: "딜러")
     public private(set) var players: [Player] = []
     let playType: PokerType
+    
+    var delegate: PokerGameDelegate?
     
     init(playType: PokerType, playerCount: Int) {
         self.playType = playType
@@ -28,7 +34,7 @@ class PokerGame {
                 return
             }
             let playerName = playerNames.remove(at: randomIndex)
-            self.players.append(PokerPlayer(name: playerName))
+            self.players.append(Player(name: playerName))
         }
     }
     
@@ -48,6 +54,11 @@ class PokerGame {
             
             dealer.add(card: card)
         }
+        
+        players.enumerated().forEach { index, player in
+            self.delegate?.player(index: index, player: player)
+        }
+        self.delegate?.dealer(dealer: self.dealer)        
     }
 }
 
