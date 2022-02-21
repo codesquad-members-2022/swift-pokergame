@@ -9,7 +9,9 @@ class ViewController: UIViewController {
     }
     
     func setBackgroundColor(){
-        self.view.backgroundColor = UIColor.init(patternImage: UIImage(named: "bg_pattern")!)
+        if let patternImage = UIImage(named: "bg_pattern"){
+            self.view.backgroundColor = UIColor.init(patternImage: patternImage)
+        }
     }
     
     func setInitialImageView(_ cardsCount: CGFloat){
