@@ -9,15 +9,34 @@ import Foundation
 
 class Card {
     
-    enum Number: Int { // 각 case별로 숫자를 각각 넣지 않고, 맨 앞의 case에 해당하는 숫자만 rawValue에 할당하면, 그 뒤의 case들은 자동으로 맨 앞 case의 rawValue에 +1된 Integer가 할당되기 때문에 enum 타입을 선택
+    enum Number: Int, CustomStringConvertible { // 각 case별로 숫자를 각각 넣지 않고, 맨 앞의 case에 해당하는 숫자만 rawValue에 할당하면, 그 뒤의 case들은 자동으로 맨 앞 case의 rawValue에 +1된 Integer가 할당되기 때문에 enum 타입을 선택
         case ace = 1 ,two ,three ,four ,five ,six ,seven , eight, nine, ten, jack, queen, king
+        
+        var description: String {
+            switch self.rawValue {
+            case 1:
+                return("A")
+            case 11:
+                return("J")
+            case 12:
+                return("Q")
+            case 13:
+                return("K")
+            default:
+                return(String(self.rawValue))
+            }
+        }
     }
     
-    enum Symbol: Character { // 해당 타입에는 case별 rawValue를 갖는 것 외에 다른 메서드나 프로퍼티가 있을 필요가 없어, 가장 간단한 타입인 enum 타입을 선택
+    enum Symbol: Character, CustomStringConvertible { // 해당 타입에는 case별 rawValue를 갖는 것 외에 다른 메서드나 프로퍼티가 있을 필요가 없어, 가장 간단한 타입인 enum 타입을 선택
         case heart = "❤️"
         case spade = "♠️"
         case diamond = "🔷"
         case club = "♣️"
+        
+        var description: String {
+            return String(self.rawValue)
+        }
     }
     
     var number: Number
@@ -27,22 +46,11 @@ class Card {
         self.number = number
         self.symbol = symbol
     }
-    
-    func makeDescription() -> String {
-        var numberValue: String
-        switch self.number.rawValue {
-        case 1:
-            numberValue = "A"
-        case 11:
-            numberValue = "J"
-        case 12:
-            numberValue = "Q"
-        case 13:
-            numberValue = "K"
-        default:
-            numberValue = String(number.rawValue)
-            
-        }
-        return "모양: \(symbol.rawValue), 숫자: \(numberValue)"
+
+}
+
+extension Card: CustomStringConvertible {
+    var description: String {
+        return symbol.description + number.description
     }
 }
