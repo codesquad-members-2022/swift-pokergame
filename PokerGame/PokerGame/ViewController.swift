@@ -8,12 +8,14 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setBackgroundImage()
         addCard(count: 7)
+        
     }
     
     private func setBackgroundImage() {
