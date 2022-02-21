@@ -30,7 +30,6 @@ class CardDeck {
             }
             let targetCard = deck[index]
             let randomCard = deck[randomIndex]
-            
             deck[index] = randomCard
             deck[randomIndex] = targetCard
         }
@@ -44,10 +43,15 @@ class CardDeck {
     }
     
     func reset() {
-        deck = CardData.CardPattern.allCases.flatMap { pattern in
-            (1...13).compactMap { number in
-                CardData(pattern: pattern, number: number)
+        deck = CardData.CardPattern.allCases.reduce([]) { resultDeck, pattern in
+            var newCards = [CardData]()
+            (1...13).forEach {
+                guard let card = CardData(pattern: pattern, number: $0) else {
+                    return
+                }
+                newCards.append(card)
             }
+            return resultDeck + newCards
         }
     }
 }
