@@ -29,10 +29,10 @@ class Card {
     }
     
     enum Symbol: Character, CustomStringConvertible { // 해당 타입에는 case별 rawValue를 갖는 것 외에 다른 메서드나 프로퍼티가 있을 필요가 없어, 가장 간단한 타입인 enum 타입을 선택
-        case heart = "❤️"
-        case spade = "♠️"
-        case diamond = "🔷"
-        case club = "♣️"
+        case heart = "\u{1F5A4}"
+        case spade = "\u{2660}"
+        case diamond = "\u{25C6}"
+        case club = "\u{1F340}"
         
         var description: String {
             return String(self.rawValue)
