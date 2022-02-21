@@ -86,6 +86,7 @@
 				E00879CE27C3A61F0044A6EB /* Player.swift */,
 				E00879CC27C3A60D0044A6EB /* Dealer.swift */,
 				E00879D027C3AB920044A6EB /* PokerPlayer.swift */,
+				E00879C727C3A5640044A6EB /* PokerGame.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -168,7 +169,6 @@
 			isa = PBXGroup;
 			children = (
 				E0CD2C8B27C322700067B01E /* PokerBoardViewController.swift */,
-				E00879C727C3A5640044A6EB /* PokerGame.swift */,
 			);
 			path = Present;
 			sourceTree = "<group>";
