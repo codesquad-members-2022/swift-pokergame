@@ -44,7 +44,7 @@ class CardDeck {
     
     func reset() {
         deck = CardData.CardPattern.allCases.flatMap { pattern in
-            (1...13).map { number in
+            (1...13).compactMap { number in
                 CardData(pattern: pattern, number: number)
             }
         }

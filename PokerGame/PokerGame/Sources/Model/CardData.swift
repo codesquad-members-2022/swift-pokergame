@@ -13,27 +13,20 @@ import Foundation
 /// 초기화 시 설정된 값만 사용한다
 struct CardData {
     let pattern: CardPattern
-    let number: Int
-        
-    func numberToString() -> String {
-        switch number {
-        case 1:
-            return "A"
-        case 11:
-            return "J"
-        case 12:
-            return "Q"
-        case 13:
-            return "K"
-        default:
-            return String(number)
+    let number: CardNumber
+    
+    init?(pattern: CardPattern, number: Int) {
+        guard let number = CardNumber.init(rawValue: number) else {
+            return nil
         }
+        self.pattern = pattern
+        self.number = number
     }
 }
 
 extension CardData: CustomStringConvertible {
     var description: String {
-        "\(pattern.rawValue)\(numberToString())"
+        "\(pattern.rawValue)\(number)"
     }
 }
 
@@ -43,5 +36,26 @@ extension CardData {
         case diamond = "♦"
         case heart = "♥"
         case clover = "♣"
+    }
+    
+    enum CardNumber: Int {
+        case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
+    }
+}
+
+extension CardData.CardNumber: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .ace:
+            return "A"
+        case .jack:
+            return "J"
+        case .queen:
+            return "Q"
+        case .king:
+            return "K"
+        default:
+            return String(self.rawValue)
+        }
     }
 }
