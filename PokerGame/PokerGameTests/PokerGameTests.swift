@@ -14,15 +14,14 @@ class PokerGameTests: XCTestCase {
 
     override func tearDownWithError() throws {
     }
-
-    func testExample() throws {
-        testCode()
-    }
-
-    func testPerformanceExample() throws {
+    
+    func testCardDeck() {
+        let cardDeck = CardDeck()
+        
+        print(cardDeck.deck)
     }
     
-    func testCode() {
+    func testCardInstance() {
         (0..<15).forEach {
             guard $0 > 0 && $0 <= 13 else {
                 print("nil")
