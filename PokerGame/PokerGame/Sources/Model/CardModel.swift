@@ -8,17 +8,20 @@
 import Foundation
 
 class CardModel {
-    let type: CardType
+    let pattern: CardPattern
     let number: Int
     
-    init(type: CardType, number: Int) {
-        self.type = type
+    init?(pattern: CardPattern, number: Int) {
+        guard number > 0 && number <= 13 else {
+            return nil
+        }
+        self.pattern = pattern
         self.number = number
     }
 }
 
 extension CardModel {
-    enum CardType {
+    enum CardPattern: String {
         case spade, diamond, heart, clover
     }
 }
