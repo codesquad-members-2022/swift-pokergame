@@ -11,8 +11,18 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //StatusBar
+        
+        //ViewBackgroung Pattern
         self.view.backgroundColor = UIColor(patternImage: Image.backgroundPatternImage)
+        
+        
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     
 }
 
