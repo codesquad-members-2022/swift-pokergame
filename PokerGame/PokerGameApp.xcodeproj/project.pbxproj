@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B74D6C7427C3249B00E6E735 /* PokerGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B74D6C7427C3249B00E6E735 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B74D6C7727C3249B00E6E735 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B74D6C7927C3249B00E6E735 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B74D6C7B27C3249B00E6E735 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,7 +40,7 @@
 		B74D6C6B27C3249B00E6E735 = {
 			isa = PBXGroup;
 			children = (
-				B74D6C7627C3249B00E6E735 /* PokerGame */,
+				B74D6C7627C3249B00E6E735 /* PokerGameApp */,
 				B74D6C7527C3249B00E6E735 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,12 +48,12 @@
 		B74D6C7527C3249B00E6E735 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B74D6C7427C3249B00E6E735 /* PokerGame.app */,
+				B74D6C7427C3249B00E6E735 /* PokerGameApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B74D6C7627C3249B00E6E735 /* PokerGame */ = {
+		B74D6C7627C3249B00E6E735 /* PokerGameApp */ = {
 			isa = PBXGroup;
 			children = (
 				B74D6C7727C3249B00E6E735 /* AppDelegate.swift */,
@@ -64,15 +64,15 @@
 				B74D6C8227C3249B00E6E735 /* LaunchScreen.storyboard */,
 				B74D6C8527C3249B00E6E735 /* Info.plist */,
 			);
-			path = PokerGame;
+			path = PokerGameApp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B74D6C7327C3249B00E6E735 /* PokerGame */ = {
+		B74D6C7327C3249B00E6E735 /* PokerGameApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B74D6C8827C3249B00E6E735 /* Build configuration list for PBXNativeTarget "PokerGame" */;
+			buildConfigurationList = B74D6C8827C3249B00E6E735 /* Build configuration list for PBXNativeTarget "PokerGameApp" */;
 			buildPhases = (
 				B74D6C7027C3249B00E6E735 /* Sources */,
 				B74D6C7127C3249B00E6E735 /* Frameworks */,
@@ -82,9 +82,9 @@
 			);
 			dependencies = (
 			);
-			name = PokerGame;
+			name = PokerGameApp;
 			productName = PokerGame;
-			productReference = B74D6C7427C3249B00E6E735 /* PokerGame.app */;
+			productReference = B74D6C7427C3249B00E6E735 /* PokerGameApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -102,7 +102,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B74D6C6F27C3249B00E6E735 /* Build configuration list for PBXProject "PokerGame" */;
+			buildConfigurationList = B74D6C6F27C3249B00E6E735 /* Build configuration list for PBXProject "PokerGameApp" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -115,7 +115,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B74D6C7327C3249B00E6E735 /* PokerGame */,
+				B74D6C7327C3249B00E6E735 /* PokerGameApp */,
 			);
 		};
 /* End PBXProject section */
@@ -341,7 +341,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B74D6C6F27C3249B00E6E735 /* Build configuration list for PBXProject "PokerGame" */ = {
+		B74D6C6F27C3249B00E6E735 /* Build configuration list for PBXProject "PokerGameApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B74D6C8627C3249B00E6E735 /* Debug */,
@@ -350,7 +350,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B74D6C8827C3249B00E6E735 /* Build configuration list for PBXNativeTarget "PokerGame" */ = {
+		B74D6C8827C3249B00E6E735 /* Build configuration list for PBXNativeTarget "PokerGameApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B74D6C8927C3249B00E6E735 /* Debug */,
