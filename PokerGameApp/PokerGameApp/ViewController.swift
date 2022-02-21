@@ -9,16 +9,22 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let CARD_INSET: CGFloat = 3
+    let CARD_INSET: CGFloat = 4
     let CARD_COUNT = 7
     
     let bgImageName = "bg_pattern"
     let cardImageName = "card-back"
-    var backgroundImageView: ((CGFloat) -> UIImageView?)!
+    var imageViewFactory: ((CGFloat) -> UIImageView?)!
     
+    var readableFrame: CGRect!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        readableFrame = view.safeAreaLayoutGuide.layoutFrame
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -28,41 +34,32 @@ class ViewController: UIViewController {
             self.view.backgroundColor = UIColor.init(patternImage: bgPattern)
         }
         
-        let readableFrame = view.readableContentGuide.layoutFrame
-        let widthExceptSafeAreaAndInset = readableFrame.width - (CARD_INSET * CGFloat(CARD_COUNT))
+        let readableWidthExceptInset = readableFrame.width - (CARD_INSET * CGFloat(CARD_COUNT+1))
         
-        backgroundImageView = { [self] (width: CGFloat) -> UIImageView? in
+        imageViewFactory = { [self] (width: CGFloat) -> UIImageView? in
             
             let imageView = UIImageView(image: UIImage(named: cardImageName))
-            imageView.contentMode = .scaleToFill
             imageView.frame.size = CGSize(width: width, height: width * 1.27)
-            
             return imageView
         }
         
         for _ in 0..<CARD_COUNT {
             
-            guard let imageView = backgroundImageView(widthExceptSafeAreaAndInset / 7) else {
-                continue
-            }
-            
-            if view.subviews.count == 0 {
-                
-                imageView.frame.origin = CGPoint(
-                    x: readableFrame.minX,
-                    y: readableFrame.minY
-                )
-                view.addSubview(imageView)
+            guard let imageView = imageViewFactory(readableWidthExceptInset / 7) else {
                 continue
             }
             
             view.addSubview(imageView)
-            let lastSubView = view.subviews.max(by: {$0.frame.maxX < $1.frame.maxX})!
-            imageView.frame.origin = CGPoint(
-                x: lastSubView.frame.maxX + CARD_INSET,
-                y: lastSubView.frame.origin.y
+            
+            let lastCardInPile = view.subviews.max(by: {$0.frame.maxX < $1.frame.maxX})!
+            let isFirst = view.subviews.count == 1
+            
+            let position = CGPoint(
+                x: (isFirst ? 0 : lastCardInPile.frame.maxX) + CARD_INSET,
+                y: readableFrame.minY
             )
             
+            imageView.frame.origin = position
         }
     }
 }
