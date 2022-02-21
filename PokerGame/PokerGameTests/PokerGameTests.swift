@@ -15,11 +15,27 @@ class PokerGameTests: XCTestCase {
     override func tearDownWithError() throws {
     }
     
+    func testCardDeckRemoveOne() {
+        let cardDeck = CardDeck()
+        guard let card = cardDeck.removeOne() else {
+            print("카드를 못뽑았습니다.")
+            return
+        }
+        print("뽑은카드: \(card.toString())")
+        print("남은 카드 갯수: \(cardDeck.count)")
+    }
+    
+    func testCardDeckShuffle() {
+        let cardDeck = CardDeck()
+        cardDeck.shuffle()
+        print(cardDeck.deck)
+        print("남은 카드 갯수: \(cardDeck.count)")
+    }
+    
     func testCardDeck() {
         let cardDeck = CardDeck()
-        
         print(cardDeck.deck)
-        
+        print("남은 카드 갯수: \(cardDeck.count)")
     }
     
     func testCardInstance() {
