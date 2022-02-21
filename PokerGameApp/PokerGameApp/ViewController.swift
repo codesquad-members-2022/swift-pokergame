@@ -18,8 +18,8 @@ class ViewController: UIViewController {
     func createCardSet(numberOfCard: CGFloat){
         let screenSize = UIScreen.main.bounds
         let blank : CGFloat = 4
-        let totalMargin : CGFloat = (numberOfCard + 1) * blank
-        let cardWidth = (screenSize.width - totalMargin) / numberOfCard
+        let totalBlank : CGFloat = (numberOfCard + 1) * blank
+        let cardWidth = (screenSize.width - totalBlank) / numberOfCard
         let cardHeight = cardWidth * 1.27
         let cardBackSide = UIImage(named: "card-back.png")
         let margin : CGFloat = 55
