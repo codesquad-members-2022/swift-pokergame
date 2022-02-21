@@ -10,7 +10,11 @@ import UIKit
 
 class PokerBoardViewController: UIViewController {
     
-    let cardContainerView = UIView()
+    enum Constants {
+        static let cardOffset: CGFloat = 3
+    }
+    
+    let cardStackView = UIStackView()
     var cards: [UIImageView] = (0..<7).map{ _ in  UIImageView()}
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -31,36 +35,28 @@ class PokerBoardViewController: UIViewController {
         cards.forEach {
             $0.image = UIImage(named: "card-back")
         }
+        
+        cardStackView.spacing = Constants.cardOffset
     }
     
     private func layout() {
-        self.view.addSubview(cardContainerView)
-        
-        cards.forEach {
-            cardContainerView.addSubview($0)
-        }
+        self.view.addSubview(cardStackView)
         
         let safeArea = self.view.safeAreaLayoutGuide
         
-        cardContainerView.translatesAutoresizingMaskIntoConstraints = false
-        cardContainerView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 5).isActive = true
-        cardContainerView.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 5).isActive = true
-        cardContainerView.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -5).isActive = true
-        cardContainerView.heightAnchor.constraint(equalTo: cards[0].heightAnchor).isActive = true
+        cardStackView.translatesAutoresizingMaskIntoConstraints = false
+        cardStackView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 5).isActive = true
+        cardStackView.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 5).isActive = true
+        cardStackView.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -5).isActive = true
         
         self.view.layoutIfNeeded()
         
-        let cardOffset = 3.0
-        let cardWidth = (cardContainerView.frame.width - (cardOffset * 6)) / 7
+        let cardWidth = (cardStackView.frame.width - (Constants.cardOffset * 6)) / 7
         let cardHeight = cardWidth * 1.27
-        
+
         cards.enumerated().forEach { index, view in
+            cardStackView.addArrangedSubview(view)
             view.translatesAutoresizingMaskIntoConstraints = false
-            if index == 0 {
-                view.leftAnchor.constraint(equalTo: cardContainerView.leftAnchor).isActive = true
-            } else {
-                view.leftAnchor.constraint(equalTo: cards[index - 1].rightAnchor, constant: cardOffset).isActive = true
-            }
             view.widthAnchor.constraint(equalToConstant: cardWidth).isActive = true
             view.heightAnchor.constraint(equalToConstant: cardHeight).isActive = true
         }
