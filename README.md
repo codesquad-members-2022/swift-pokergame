@@ -78,9 +78,6 @@ ViewController에 밑과같이 함수를 재정의 하니 성공적으로 실행
  - 결과
    ![스크린샷 2022-02-21 오후 5 21 01](https://user-images.githubusercontent.com/80263729/154915448-fd1e36e8-97f3-423a-a235-4c35c659168c.png)
 
-
-
-
 - 추가 학습거리
   - 앱 기본 설정(Info.plist)을 변경하는 방식에 대해 학습하고 앱 표시 이름을 변경한다.
   - Target의 general에 가면 Display Name을 바꿀 수 있다.
@@ -100,7 +97,14 @@ ViewController에 밑과같이 함수를 재정의 하니 성공적으로 실행
   `현재 Asset에 있는 이미지들의 상황을 나타내준다`  
   예를들어 card_back이라는 이미지의 폴더의 json을 열어보면 현재 이미지가 x3에 세팅이 되어있음을 알수있는 것이다  
   심지어 실시간으로 바뀌기 때문에 만약 xcode에서 내가 이미지를 x1으로 세팅하면..  
-
   
   JSON파일도 바로 바뀌는 걸 볼수 있다.
   ![스크린샷 2022-02-21 오전 11 49 46](https://user-images.githubusercontent.com/80263729/154881080-ccbb8bab-a149-4472-884a-d2e07312a750.png)
+  
+  - AutoLayout없이 카드 배치해보기
+    - UIImageView(frame:)을 이용하면 설정한 값으로 위치와 크기를 정해서 View에 올릴 수 있다.
+    - 위 메서드 안의 frame을 자세히보면 CGRect(x:,y:,width:,:height:)기 되는데 여기서 x,y는 만드는 사각형의 오른쪽 밑 꼭지점이다.(이를 인지 안하면 사각형이 엉뚱한 위치에 있거나 잘릴 수 있다)
+  
+  
+  
+  
