@@ -8,18 +8,14 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var cardSet : [UIImageView] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         if let backGround = UIImage(named: "bg_pattern.png"){
             self.view.backgroundColor = UIColor(patternImage: backGround)
         }
-        createUIImageView()
-        for i in cardSet{
-            self.view.addSubview(i)
-        }
+        createCardSet()
     }
-    func createUIImageView(){
+    func createCardSet(){
         let screenSize = UIScreen.main.bounds
         let cardWidth = (screenSize.width - 32) / 7
         let cardHeight = cardWidth * 1.27
@@ -31,7 +27,7 @@ class ViewController: UIViewController {
             imageView.layer.cornerRadius = 3
             imageView.clipsToBounds = true
             imageView.image = cardBackSide
-            cardSet.append(imageView)
+            self.view.addSubview(imageView)
         }
     }
 }
