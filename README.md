@@ -19,3 +19,8 @@
 <p align="center">
 <img src="https://user-images.githubusercontent.com/36659877/154878037-17b43d02-e53d-46cd-980a-f31d1baad97d.png" width="500" height="300"> 
 </p>
+
+
+### **- Background 설정하기 **
+- UIColor 의 생성자중 `init(patternImage image: UIImage)` 을 사용하여 UIImage 를 다운받은 배경으로 지정해준다. 
+  

@@ -15,13 +15,52 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aKi-3x-rWb" userLabel="Card1">
+                                <rect key="frame" x="20" y="44" width="38" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R79-8r-Mu4" userLabel="Card2">
+                                <rect key="frame" x="66" y="44" width="38" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yfN-mk-y35" userLabel="Card3">
+                                <rect key="frame" x="112" y="44" width="38" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i2I-YY-GUf" userLabel="Card4">
+                                <rect key="frame" x="158" y="44" width="38" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FZN-Qg-GSt" userLabel="Card5">
+                                <rect key="frame" x="204" y="44" width="38" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nTo-Ug-huV" userLabel="Card6">
+                                <rect key="frame" x="250" y="44" width="38" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wEP-HF-KPG" userLabel="Card7">
+                                <rect key="frame" x="296" y="44" width="38" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outletCollection property="cards" destination="aKi-3x-rWb" collectionClass="NSMutableArray" id="hbK-NH-hPW"/>
+                        <outletCollection property="cards" destination="R79-8r-Mu4" collectionClass="NSMutableArray" id="p0f-Dk-7dI"/>
+                        <outletCollection property="cards" destination="yfN-mk-y35" collectionClass="NSMutableArray" id="oo1-JM-XhO"/>
+                        <outletCollection property="cards" destination="i2I-YY-GUf" collectionClass="NSMutableArray" id="wn8-LM-1QC"/>
+                        <outletCollection property="cards" destination="FZN-Qg-GSt" collectionClass="NSMutableArray" id="PXu-tB-uB3"/>
+                        <outletCollection property="cards" destination="nTo-Ug-huV" collectionClass="NSMutableArray" id="69I-Ph-IYP"/>
+                        <outletCollection property="cards" destination="wEP-HF-KPG" collectionClass="NSMutableArray" id="Svj-Rb-f0R"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="133" y="100"/>
+            <point key="canvasLocation" x="131.8840579710145" y="99.776785714285708"/>
         </scene>
     </scenes>
     <resources>
