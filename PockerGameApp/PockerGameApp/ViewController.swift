@@ -8,35 +8,35 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    var cards: [UIImageView] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern") ?? UIImage())
         setImageView()
         let newCard = Card(number: .ace, symbol: .spade)
-        printCardDescription(newCard)
+        printDescription(of: newCard)
     }
     
     func setImageView() {
         guard let cardImage = UIImage(named: "card-back") else {return}
         let maxNumberOfCards = 7
-        let cardWidth = 50
-        let cardHeight = 1.27*Float(cardWidth)
-        let spacingFromTop = 47
+        let cardWidth = CGFloat(50)
+        let cardHeight = CGFloat(1.27*Float(cardWidth))
+        let spacingFromTop = CGFloat(47)
+        let spacingBetweenCards = CGFloat(5)
+        let defaultSpace = CGFloat(1)
         for eachImageViewIndex in 0..<maxNumberOfCards {
-            let xPosition = CGFloat(5*(1+eachImageViewIndex) + cardWidth*eachImageViewIndex)
-            let currentFrame = CGRect(x: CGFloat(xPosition), y: CGFloat(spacingFromTop), width: CGFloat(cardWidth), height: CGFloat(cardHeight))
+            let eachImageViewIndex = CGFloat(eachImageViewIndex)
+            let xPosition = spacingBetweenCards*(defaultSpace+eachImageViewIndex) + cardWidth*eachImageViewIndex
+            let currentFrame = CGRect(x: xPosition, y: spacingFromTop, width: cardWidth, height: cardHeight)
             let newImageView = UIImageView(frame: currentFrame)
             newImageView.image = cardImage
             self.view.addSubview(newImageView)
-            cards.append(UIImageView(frame: currentFrame))
         }
     }
     
-    func printCardDescription(_ card: Card) {
-        print(card.makeDescription())
+    func printDescription(of target: CustomStringConvertible) {
+        print(target.description)
     }
 
 }
