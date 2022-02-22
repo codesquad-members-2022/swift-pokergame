@@ -13,6 +13,8 @@ class ViewController: UIViewController {
         if let backGround = UIImage(named: "bg_pattern.png"){
             self.view.backgroundColor = UIColor(patternImage: backGround)
         }
+        let card = Card(shape: .heart, number: .Q)
+        print(card.string)
         createCardSet(numberOfCard: 7)
     }
     func createCardSet(numberOfCard: CGFloat){
@@ -32,5 +34,7 @@ class ViewController: UIViewController {
             self.view.addSubview(imageView)
         }
     }
+    
 }
+
 
