@@ -9,6 +9,7 @@ import Foundation
 
 struct CardDeck {
     private var cards: [Card]
+    private var defaultCards: [Card]
     
     public init() {
         var cards = [Card]()
@@ -17,7 +18,8 @@ struct CardDeck {
                 cards.append(Card(suit: suit, number: number))
             }
         }
-        self.cards = cards
+        self.defaultCards = cards
+        self.cards = defaultCards
         shuffle()
     }
     
@@ -38,13 +40,7 @@ struct CardDeck {
     }
     
     public mutating func reset() {
-        var cards = [Card]()
-        for suit in CardSuit.allCases {
-            for number in CardNumber.allCases {
-                cards.append(Card(suit: suit, number: number))
-            }
-        }
-        self.cards = cards
+        self.cards = defaultCards
         shuffle()
     }
 }
