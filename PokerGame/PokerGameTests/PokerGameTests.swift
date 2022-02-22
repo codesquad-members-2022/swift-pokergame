@@ -16,19 +16,20 @@ class PokerGameTests: XCTestCase {
     }
     
     func testCardDeckReset() {
+        let removeCount = 3
         let cardDeck = CardDeck()
-        (0..<3).forEach { _ in
+        (0..<removeCount).forEach { _ in
             guard let card = cardDeck.removeOne() else {
                 print("카드를 못뽑았습니다.")
                 return
             }
             print("뽑은카드: \(card)")
         }
-        print("남은 카드 갯수: \(cardDeck.count)")
+        XCTAssertEqual(cardDeck.count, 52 - removeCount)
         
         print("카드 덱 리셋")
         cardDeck.reset()
-        print("남은 카드 갯수: \(cardDeck.count)")
+        XCTAssertEqual(cardDeck.count, 52)
     }
     
     func testCardDeckRemoveOne() {
@@ -42,31 +43,29 @@ class PokerGameTests: XCTestCase {
             XCTAssertFalse(removeCard.contains(card.description), "중복된 카드가 뽑혔습니다!")
             removeCard.append(card.description)
         }
-        
-        XCTAssertTrue(cardDeck.count == 0, "카드가 남아 있습니다")
+        XCTAssertEqual(cardDeck.count, 51)
     }
     
     func testCardDeckShuffle() {
         let cardDeck = CardDeck()
         cardDeck.shuffle()
         print(cardDeck.deck)
-        print("남은 카드 갯수: \(cardDeck.count)")
+        XCTAssertEqual(cardDeck.count, 52)
     }
     
     func testCardDeck() {
         let cardDeck = CardDeck()
-        print(cardDeck.deck)
-        print("남은 카드 갯수: \(cardDeck.count)")
+        XCTAssertEqual(cardDeck.count, 52)
     }
     
     func testCardInstance() {
-        (0..<15).forEach {
-            guard $0 > 0 && $0 <= 13 else {
+        let cards = (0..<15).flatMap { number -> CardData? in
+            guard number > 0 && number <= 13 else {
                 print("nil")
-                return
+                return nil
             }
-            let card = CardData(pattern: .clover, number: $0)
-            print(card)
+            return CardData(pattern: .clover, number: number)
         }
+        XCTAssertEqual(cards.count, 13)
     }
 }
