@@ -9,25 +9,31 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    
     func showCardImages() {
         let cardOffset = 5.0
         let cardWidth = (view.frame.width - (cardOffset * 8)) / 7
         let cardHeight = cardWidth * 1.27
-        var xPos = 5.0
-        let yPos = 60.0
+        var xPosition = 5.0
+        let yPosition = 60.0
         
-        for _ in 0..<7 {
-            let cardImage = UIImageView(image: UIImage(named: "card-back"))
-            cardImage.frame = CGRect(x: xPos , y: yPos, width: cardWidth, height: cardHeight)
-            cardImage.contentMode = .scaleAspectFit
-            view.addSubview(cardImage)
-            
-            xPos += cardWidth + cardOffset
+        
+        var cardImages: [UIImageView] = (0..<7).map { _ in UIImageView(image: getImage(name: "card-back")) }
+        for i in 0..<7 {
+            cardImages[i].frame = CGRect(x: xPosition , y: yPosition, width: cardWidth, height: cardHeight)
+            cardImages[i].contentMode = .scaleAspectFit
+            cardImages.append(cardImages[i])
+            view.addSubview(cardImages[i])
+            xPosition += (cardWidth + cardOffset)
         }
     }
     
     
-    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    func getImage(name: String) -> UIImage? {
+        return UIImage(named: name)
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
