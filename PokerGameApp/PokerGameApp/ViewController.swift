@@ -8,11 +8,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-
     @IBOutlet var cards: [UIImageView]!
     let spaceBetweenCards :CGFloat = 8
     let screenSize: CGRect = UIScreen.main.bounds
-    var safeArea : UIEdgeInsets!
+    var topSafeArea : CGFloat = 47
     var cardWidth : CGFloat {
         (screenSize.width - (spaceBetweenCards * CGFloat(cards.count) - 1))/CGFloat(cards.count)
     }
@@ -20,17 +19,15 @@ class ViewController: UIViewController {
         cardWidth * 1.27
     }
     var startOffsetX:CGFloat = 4
-
+    let background = UIImage(named:"bg_pattern.png")!
+    let cardImage = UIImage(named: "card-back.png")!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named:"bg_pattern.png")!)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        safeArea = self.view.safeAreaInsets
+        self.view.backgroundColor = UIColor(patternImage:background)
         for (index,card) in cards.enumerated() {
-            card.image = UIImage(named: "card-back.png")
-            card.frame = CGRect(x: startOffsetX + CGFloat(index) * (cardWidth + spaceBetweenCards), y: safeArea.top, width: cardWidth, height: cardHeight)
+            card.image = cardImage
+            card.frame = CGRect(x: startOffsetX + CGFloat(index) * (cardWidth + spaceBetweenCards), y: topSafeArea, width: cardWidth, height: cardHeight)
         }
     }
         
