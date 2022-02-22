@@ -18,14 +18,23 @@ struct CardDeck {
             }
         }
         self.cards = cards
+        shuffle()
     }
     
     var count: Int {
         return cards.count
     }
     
-    func shuffle() {
+    mutating func shuffle() {
+        // Fisher–Yates shuffle
+        var cards = self.cards
+        var shuffled = [Card]()
         
+        while !cards.isEmpty {
+            let roll = Int.random(in: 0..<cards.count)
+            shuffled.append(cards.remove(at: roll))
+        }
+        self.cards = shuffled
     }
     
     func removeOne() {
