@@ -2,17 +2,31 @@ import Foundation
 
 struct CardDeck{
     
-    var count: Int
+    private var deck: [Card] = []
+    private (set) var count: Int = 0
     
-    func shuffle(){
+    init(){
+        reset()
+    }
+    
+    mutating func shuffle(){
         
     }
     
-    func removeOne(){
-        
+    mutating func removeOne()-> Card{
+        count -= 1
+        return deck.removeLast()
     }
     
-    func reset(){
-        
+    mutating func reset(){
+        self.deck = []
+        for suit in Card.Suit.allCases{
+            for number in Card.Number.allCases{
+                guard let card = Card(suit: suit, number: number) else{ continue }
+                self.deck.append(card)
+            }
+        }
+        self.count = self.deck.count
+        shuffle()
     }
 }
