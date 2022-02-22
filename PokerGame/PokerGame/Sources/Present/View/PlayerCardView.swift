@@ -27,11 +27,6 @@ class PlayerCardView: UIStackView {
         self.spacing = -3
         self.distribution = .fillEqually
         
-        cards.forEach {
-            $0.image = UIImage(named: "card-back")
-        }
-        
-        name.text = ""
         name.font = .systemFont(ofSize: 25)
         name.textColor = .black
         name.backgroundColor = .gray
@@ -59,9 +54,7 @@ class PlayerCardView: UIStackView {
                 cardView.isHidden = false
                 
                 let card = player.cards[index]
-                if let cardImageName = card.pattern.rawValue.first {
-                    cardView.image = UIImage(named: "\(cardImageName)\(card)")
-                }
+                cardView.image = UIImage(named: "\(card)")
             } else {
                 cardView.isHidden = true
             }

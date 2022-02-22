@@ -20,6 +20,7 @@ class PokerBoardViewController: UIViewController {
     
     let pokerGame = PokerGame()
     let pokerType = PokerType.sevenCard
+    let playerCount = 3
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
@@ -31,7 +32,7 @@ class PokerBoardViewController: UIViewController {
         layout()
         
         pokerGame.delegate = self
-        pokerGame.action.startGame(pokerType, 4)
+        pokerGame.startGame(pokerType: pokerType, playerCount: playerCount)
     }
     
     private func attribute() {
@@ -45,22 +46,24 @@ class PokerBoardViewController: UIViewController {
     }
     
     private func layout() {
+        let topOffset = 100.0
+        let xSpacing = 3.0
+        let ySpacing = 50.0
+        
         let safeArea = self.view.safeAreaLayoutGuide
         let cardWidth = safeArea.layoutFrame.width / 8.0
         let cardHeight = cardWidth * 1.27
-        let safeAreaWidth = cardWidth * CGFloat(pokerType.rawValue) - (6 * 3)
-        let topOffset = 100.0
-        let yAxisOffset = 50.0
+        let playerCardViewWidth = cardWidth * CGFloat(pokerType.rawValue) - (6 * xSpacing)
         
-        playerCardViews.enumerated().forEach { index, view in
-            self.view.addSubview(view)
-            let yPosition = CGFloat(index) * (cardHeight + yAxisOffset) + topOffset
-            view.frame = CGRect(x: 15, y: yPosition, width: safeAreaWidth, height: cardHeight)
+        playerCardViews.enumerated().forEach {
+            self.view.addSubview($1)
+            let yPosition = CGFloat($0) * (cardHeight + ySpacing) + topOffset
+            $1.frame = CGRect(x: 15, y: yPosition, width: playerCardViewWidth, height: cardHeight)
         }
         
         self.view.addSubview(dealerCardView)
-        let yPosition = CGFloat(playerCardViews.count) * (cardHeight + yAxisOffset) + topOffset
-        dealerCardView.frame = CGRect(x: 15, y: yPosition, width: safeAreaWidth, height: cardHeight)
+        let yPosition = CGFloat(playerCardViews.count) * (cardHeight + ySpacing) + topOffset
+        dealerCardView.frame = CGRect(x: 15, y: yPosition, width: playerCardViewWidth, height: cardHeight)
     }
 }
 
