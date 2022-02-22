@@ -44,6 +44,7 @@ class ViewController: UIViewController {
             }
             
             let cardImageView = UIImageView(image: cardImage)
+            cardImageView.contentMode = .scaleToFill
             self.view.addSubview(cardImageView)
             cardImageView.frame.size = CGSize(width: width - 5, height: width * 1.27)
             cardImageView.frame.origin.x = cardImageView.frame.width * CGFloat(i) + CGFloat(4 * (i + 1))
