@@ -14,6 +14,7 @@
 		72A82E5A27C343930044C900 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72A82E5927C343930044C900 /* Assets.xcassets */; };
 		72A82E5D27C343930044C900 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72A82E5B27C343930044C900 /* LaunchScreen.storyboard */; };
 		72A82E6527C355120044C900 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 72A82E6427C355110044C900 /* README.md */; };
+		72F3982527C3836A001FDF3E /* PockerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F3982427C3836A001FDF3E /* PockerCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		72A82E5C27C343930044C900 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		72A82E5E27C343930044C900 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		72A82E6427C355110044C900 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		72F3982427C3836A001FDF3E /* PockerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockerCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				72A82E5027C343920044C900 /* AppDelegate.swift */,
 				72A82E5227C343920044C900 /* SceneDelegate.swift */,
 				72A82E5427C343920044C900 /* ViewController.swift */,
+				72F3982427C3836A001FDF3E /* PockerCard.swift */,
 				72A82E5627C343920044C900 /* Main.storyboard */,
 				72A82E5927C343930044C900 /* Assets.xcassets */,
 				72A82E5B27C343930044C900 /* LaunchScreen.storyboard */,
@@ -145,6 +148,7 @@
 				72A82E5527C343920044C900 /* ViewController.swift in Sources */,
 				72A82E5127C343920044C900 /* AppDelegate.swift in Sources */,
 				72A82E5327C343920044C900 /* SceneDelegate.swift in Sources */,
+				72F3982527C3836A001FDF3E /* PockerCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

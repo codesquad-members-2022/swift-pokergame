@@ -16,6 +16,7 @@ class ViewController: UIViewController {
         view.backgroundColor = UIColor(patternImage: getPatternImage())
         makeCards()
         addCardToView()
+        choiceCard()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -34,7 +35,6 @@ class ViewController: UIViewController {
             return
         }
         let widthGap = 55.0
-        
         for i in 0 ..< 7{
             let cardView = UIImageView(frame: CGRect(x: (5 + (Double(i) * widthGap)), y: 54.0, width: (widthGap - 5), height: 63.5))
             cardView.image = cardBackImage
@@ -47,5 +47,10 @@ class ViewController: UIViewController {
         for i in cards{
             view.addSubview(i)
         }
+    }
+    
+    private func choiceCard(){
+        let card = PockerCard(shape: .hearts, number: 12)
+        let card2 = PockerCard(shape: .clubs, number: 7)
     }
 }
