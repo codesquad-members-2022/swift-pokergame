@@ -42,19 +42,8 @@ class ViewController: UIViewController {
     }
     
     func makeRandomCardInfo() -> Card?{
-        guard let cardRandomShape = Card.Shape.allCases.randomElement() else{
+        guard let cardRandomShape = Card.Shape.allCases.randomElement(), let cardRandomNum = Card.CardNumber.allCases.randomElement() else{
             return nil
-        }
-        
-        let randomNum = Int.random(in: 1...13)
-        var cardRandomNum: Card.CardNumber{
-            switch randomNum{
-            case 1: return Card.CardNumber.one
-            case 11: return Card.CardNumber.eleven
-            case 12: return Card.CardNumber.twelve
-            case 13: return Card.CardNumber.thirteen
-            default : return Card.CardNumber.others(randomNum)
-            }
         }
         
         let cardInfo = Card(number: cardRandomNum, shape: cardRandomShape)

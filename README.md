@@ -313,20 +313,23 @@ class Card: CustomStringConvertible{
     
     
     // 한정된 범위에 맞춰 enum 타입으로 수정
-    enum CardNumber: CustomStringConvertible{
-        case one, eleven, twelve, thirteen, others(Int)
+    enum CardNumber: CaseIterable ,CustomStringConvertible{
+        case one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen
         var description: String{
             switch self {
-            case .one:
-                return "A"
-            case .eleven:
-                return "J"
-            case .twelve:
-                return "Q"
-            case .thirteen:
-                return "K"
-            case .others(let int):
-                return "\(int)"
+            case .one: return "A"
+            case .two: return "2"
+            case .three: return "3"
+            case .four: return "4"
+            case .five: return "5"
+            case .six: return "6"
+            case .seven: return "7"
+            case .eight: return "8"
+            case .nine: return "9"
+            case .ten: return "10"
+            case .eleven: return "J"
+            case .twelve: return "Q"
+            case .thirteen: return "K"
             }
         }
     }
@@ -386,19 +389,8 @@ class ViewController: UIViewController {
     }
     
     func makeRandomCardInfo() -> Card?{
-        guard let cardRandomShape = Card.Shape.allCases.randomElement() else{
+        guard let cardRandomShape = Card.Shape.allCases.randomElement(), let cardRandomNum = Card.CardNumber.allCases.randomElement() else{
             return nil
-        }
-        
-        let randomNum = Int.random(in: 1...13)
-        var cardRandomNum: Card.CardNumber{
-            switch randomNum{
-            case 1: return Card.CardNumber.one
-            case 11: return Card.CardNumber.eleven
-            case 12: return Card.CardNumber.twelve
-            case 13: return Card.CardNumber.thirteen
-            default : return Card.CardNumber.others(randomNum)
-            }
         }
         
         let cardInfo = Card(number: cardRandomNum, shape: cardRandomShape)
@@ -413,11 +405,17 @@ class ViewController: UIViewController {
 }
 ``` 
 
-- CardNumber 또한 한정된 범위를 지니고 있으므로 enum 타입으로 수정했으며, 특수한 문자 변환 없는 숫자들은 연관값을 사용하여 문자열화
+- CardNumber 또한 한정된 범위를 지니고 있으므로 enum 타입으로 수정
 - 범용성이 떨어졌던 이전 수정의 이니셜라이저는 상위의 값을 전달받아 할당해주는 형태로 수정. (차후에는 Int, String 등을 받은 걸 변환시켜 할당하는 요소도 추가 고려 중)
 - makeCardInfo 함수는 makeRandomInfo 함수로 이름을 변경, 이에 맞춰 적절한 범위 내의 랜덤 값을 변환하여 Card에 값을 전달하도록 수정. 잘못된 값이 들어갈 경우 nil로 전달하도록 리턴 타입은 Card?
 - Card 인스턴스 생성 시, nil이 들어갈 경우 alert를 통해서 재입력 부탁 메세지 출력
 
 
 ## 카드덱 구현하고 테스트하기
-### 프로그래밍 요구사항
+### 기능 요구사항
+- 앞서 만든 모든 종류의 카드 객체 인스턴스를 포함하는 카드덱 구조체를 구현한다.
+- 객체지향 설계 방식에 맞도록 내부 속성을 모두 감추고 다음 인터페이스만 보이도록 구현한다.
+    + count 갖고 있는 카드 개수를 반환한다.
+    + shuffle 기능은 전체 카드를 랜덤하게 섞는다.
+    + removeOne 기능은 카드 인스턴스 중에 하나를 반환하고 목록에서 삭제한다.
+    + reset 처음처럼 모든 카드를 다시 채워넣는다.
