@@ -419,3 +419,94 @@ class ViewController: UIViewController {
     + shuffle 기능은 전체 카드를 랜덤하게 섞는다.
     + removeOne 기능은 카드 인스턴스 중에 하나를 반환하고 목록에서 삭제한다.
     + reset 처음처럼 모든 카드를 다시 채워넣는다.
+
+    ```swift
+    class ViewController: UIViewController {
+        private let cardImage = UIImage(named: "card-back")
+        
+        @IBOutlet weak var horizonStack: UIStackView!
+        
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            
+            horizonStack.frame.size.height = horizonStack.frame.width / 7 * 1.27
+            horizonStack.distribution = .fillEqually
+            horizonStack.spacing = 3
+            
+            if let pattern = UIImage(named: "bg_pattern"){
+                self.view.backgroundColor = UIColor(patternImage: pattern)
+            }
+            
+            for _ in 0...6{
+                makeImageView()
+                
+                if let cardInfo = makeRandomCardInfo(){
+                    showCardInfo(card: cardInfo)
+                } else{
+                    let alert = UIAlertController(title: "잘못된 호출", message: "모양이나 숫자 입력이 잘못되었습니다. 다시 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
+                    self.present(alert, animated: true)
+                }
+            }
+        }
+
+        func makeImageView(){
+            let imageView = UIImageView(image: self.cardImage)
+
+            self.horizonStack.addArrangedSubview(imageView)
+        }
+        
+        func makeRandomCardInfo() -> Card?{
+            guard let cardRandomShape = Card.Shape.allCases.randomElement(), let cardRandomNum = Card.CardNumber.allCases.randomElement() else{
+                return nil
+            }
+            
+            let cardInfo = Card(number: cardRandomNum, shape: cardRandomShape)
+            
+            return cardInfo
+        }
+        
+        func showCardInfo(card: Card){
+            // description 생략 시에도 description을 가져와서 출력
+            print(card)
+        }
+    }
+    ``` 
+    * CardDeck에는 52장의 카드를 담을 deck 프로퍼티와 드로우된 카드들을 기록하는 removedCards로 구현 (덱에서 나간 카드들은 현실에서도 어떤 카드인지 공개되지 않으므로 private 설정 후, 어떤 메서드로도 내부를 볼 수 있는 로직 구현하지 않음)
+    * count 구현, 보통 개수는 출력과 관련되는 경우가 많으므로 return 값 설정
+    * shuffle 구현, Fisher-Yates shuffle 알고리즘에 맞춰 랜덤 값으로 나온 인덱스의 value를 신규 덱에 넣고 기존 덱에서는 삭제. 이를 기존 덱이 빌 때까지 반복한 뒤, 반복이 끝나면 신규 덱을 기존 덱에 할당
+    * reset 구현, 빠진 카드들을 다시 주워담아서 합치는 형태로 구현했으며 빠진 카드가 없으면 괜히 로직이 실행되지 않도록 guard 구문 작성
+    * removeOne 구현, 보통 카드를 드로우할 때에는 맨 뒷장이 빠지므로 removeLast로 구현. 남은 카드가 없을 수도 있으므로 리턴은 옵셔널 Card
+    * 카드 구성은 기본적으로 52장 세팅이므로 4개의 문양 별로 13장의 카드 생성 로직 구성
+
+- 상위 모듈에서 카드덱 기능을 확인할 수 있도록 테스트 코드를 추가한다
+- XCTest 같은 단위 테스트가 아니라, 카드덱 함수를 호출해서 원하는 데로 동작하는지 확인할 수 있는 코드를 작성한다
+    + 테스트 시나리오와 비슷한 형태로 테스트 구문 구현 ( guard 조건 시, 아래 구문 미실행 부분들도 추가로 검토 진행함 )
+    
+    ```swift
+    func testCardDeck(){
+        // 카드 초기화
+        var deck = CardDeck()
+        // 초기화 카드 수 52장 확인
+        let firstDecks = deck.count()
+        
+        // 카드 셔플
+        deck.shuffle()
+        
+        deck.reset()
+        
+        // 카드 뽑기
+        let card1 = deck.removeOne()
+        let secondDecks = deck.count()
+        
+        // 카드 또뽑기
+        let card2 = deck.removeOne()
+        let thirdDecks = deck.count()
+        
+        // 카드 리셋
+        deck.reset()
+        let fourthDecks = deck.count()
+    }
+    ```
+
+<img src = "https://user-images.githubusercontent.com/44107696/155133976-84732446-1b2b-4fbf-8ec3-169ef4477fbc.png" width="800" height="800">
+

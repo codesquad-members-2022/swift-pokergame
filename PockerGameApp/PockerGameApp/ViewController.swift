@@ -33,6 +33,8 @@ class ViewController: UIViewController {
                 self.present(alert, animated: true)
             }
         }
+        
+        testCardDeck()
     }
 
     func makeImageView(){
@@ -54,5 +56,29 @@ class ViewController: UIViewController {
     func showCardInfo(card: Card){
         // description 생략 시에도 description을 가져와서 출력
         print(card)
+    }
+    
+    func testCardDeck(){
+        // 카드 초기화
+        var deck = CardDeck()
+        // 초기화 카드 수 52장 확인
+        let firstDecks = deck.count()
+        
+        // 카드 셔플
+        deck.shuffle()
+        
+        deck.reset()
+        
+        // 카드 뽑기
+        let card1 = deck.removeOne()
+        let secondDecks = deck.count()
+        
+        // 카드 또뽑기
+        let card2 = deck.removeOne()
+        let thirdDecks = deck.count()
+        
+        // 카드 리셋
+        deck.reset()
+        let fourthDecks = deck.count()
     }
 }
