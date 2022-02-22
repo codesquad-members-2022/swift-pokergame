@@ -63,7 +63,7 @@ class Card: CustomStringConvertible{
     
 
     var description: String {
-        return "\(self.symbol.rawValue)\(self.description)"
+        return "\(self.symbol.rawValue)\(self.number.description)"
     }
 
     
