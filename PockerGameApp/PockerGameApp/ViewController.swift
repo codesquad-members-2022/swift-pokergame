@@ -21,16 +21,24 @@ class ViewController: UIViewController {
         print("---counts---")
         print(deck.count)
         print("---initial card---")
-        print(deck.cards)
+        print(deck)
         
         print("---shuffled---")
         deck.shuffle()
-        print(deck.cards)
+        print(deck)
         
         print("---draw---")
         print(deck.draw())
         print(deck.count)
-        print(deck.cards)
+        print(deck)
+        print(deck.draw())
+        print(deck.count)
+        print(deck)
+        
+        print("---Reset---")
+        deck.reset()
+        print(deck.count)
+        print(deck)
     }
     
     func setupBackgroundPattern() {
