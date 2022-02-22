@@ -10,7 +10,8 @@ import Foundation
 // CardDeck은 각각의 고유 인스턴스인 Card들을 담는 단순한 통 개념이므로 Struct로 구현
 struct CardDeck{
     private var deck: [Card] = []
-    private var removedDeck: [Card] = []
+    // reset시, 다시 거둬들일 카드 기록
+    private var removedCards: [Card] = []
     
     func count() -> Int{
         let count = deck.count
@@ -30,27 +31,22 @@ struct CardDeck{
     }
     
     mutating func reset(){
-        guard !removedDeck.isEmpty else{
+        guard !removedCards.isEmpty else{
             return
         }
         
-        deck.append(contentsOf: removedDeck)
-        deck.sort(by: { card1, card2 in
-            card1.description > card2.description
-        })
-        removedDeck.removeAll()
+        deck.append(contentsOf: removedCards)
+        removedCards.removeAll()
+        deck.shuffle()
     }
     
     mutating func removeOne() -> Card?{
-        guard !deck.isEmpty else{
+        guard let removeCard = deck.last else{
             return nil
         }
         
-        let index = Int.random(in: 0..<deck.count)
-        let removeCard = deck[index]
-        
-        deck.remove(at: index)
-        removedDeck.append(removeCard)
+        deck.removeLast()
+        removedCards.append(removeCard)
         
         return removeCard
     }
