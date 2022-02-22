@@ -17,7 +17,7 @@ class PokerGameTests: XCTestCase {
     
     func testPokerCardDistribution() {
         let pokerType = PokerType.sevenCard
-        let pokerPlayerCount = 9
+        let pokerPlayerCount = 3
         let pokerGame = PokerGame()
         pokerGame.delegate = self
         pokerGame.startGame(pokerType: pokerType, playerCount: pokerPlayerCount)
@@ -74,10 +74,10 @@ extension PokerGameTests: PokerGameDelegate {
     }
     
     func player(index: Int, player: Player) {
-        
+        print("\(player)")
     }
     
     func dealer(dealer: Player) {
-        
+        print("\(dealer)")
     }
 }

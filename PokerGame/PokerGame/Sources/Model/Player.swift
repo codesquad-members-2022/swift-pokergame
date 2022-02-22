@@ -19,3 +19,9 @@ class Player {
         cards.append(card)
     }
 }
+
+extension Player: CustomStringConvertible {
+    var description: String {
+        "Name: \(name), cards: \(cards)"
+    }
+}
