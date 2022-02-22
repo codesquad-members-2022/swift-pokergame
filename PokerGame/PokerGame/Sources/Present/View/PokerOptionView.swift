@@ -8,16 +8,24 @@
 import Foundation
 import UIKit
 
+protocol PokerOptionDelegate {
+    func onPokerTypeSelected(pokerType: PokerGame.PokerType)
+    func onPlayerCountSelected(playerCount: Int)
+}
+
 class PokerOptionView: UIStackView {
     
-    let pokerTypeView = UIStackView()
-    let pokerTypeButtons = (0..<PokerGame.PokerType.allCases.count).map { _ in UIButton()}
+    let typeView = UIStackView()
+    let typeButtons = (0..<PokerGame.PokerType.allCases.count).map { _ in UIButton()}
     
-    let pokerPlayerView = UIStackView()
-    let pokerPlayerButtons = (0..<Environment.maxPlayer - 1).map { _ in UIButton()}
+    let playerView = UIStackView()
+    let playerButtons = (0..<Environment.maxPlayer - 1).map { _ in UIButton()}
+    
+    var delegate: PokerOptionDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        bind()
         attribute()
         layout()
     }
@@ -26,65 +34,75 @@ class PokerOptionView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func bind() {
+        typeButtons.enumerated().forEach { index, button in
+            button.addAction(UIAction(handler: { sender in
+                (0..<self.typeButtons.count).forEach {
+                    self.typeButtons[$0].isEnabled = index != $0
+                }
+                self.delegate?.onPokerTypeSelected(pokerType: index == 0 ?.sevenCard : .fiveCard)
+            }), for: .touchUpInside)
+        }
+        
+        playerButtons.enumerated().forEach { index, button in
+            button.addAction(UIAction(handler: { sender in
+                (0..<self.playerButtons.count).forEach {
+                    self.playerButtons[$0].isEnabled = index != $0
+                }
+                self.delegate?.onPlayerCountSelected(playerCount: index + 2)
+            }), for: .touchUpInside)
+        }
+    }
+    
     private func attribute() {
         self.axis = .vertical
         self.distribution = .fillEqually
         self.spacing = 5
         
-        pokerTypeView.distribution = .fillEqually
-        pokerTypeView.clipsToBounds = true
-        pokerTypeView.layer.cornerRadius = 8
-        pokerTypeView.layer.borderWidth = 1.5
-        pokerTypeView.layer.borderColor = UIColor.white.cgColor
+        typeView.distribution = .fillEqually
+        typeView.clipsToBounds = true
+        typeView.layer.cornerRadius = 8
+        typeView.layer.borderWidth = 1.5
+        typeView.layer.borderColor = UIColor.white.cgColor
         
-        pokerTypeButtons.enumerated().forEach {
-            $1.setBackgroundImage(UIColor.white.image(), for: .selected)
+        typeButtons.enumerated().forEach {
+            $1.setBackgroundImage(UIColor.white.image(), for: .disabled)
             $1.setBackgroundImage(UIColor.clear.image(), for: .normal)
-            $1.setTitleColor(.black, for: .selected)
-            $1.setTitleColor(.white, for: .normal )
-            $1.layer.borderWidth = 0.5
-            $1.layer.borderColor = UIColor.white.cgColor
+            $1.setTitleColor(.black, for: .disabled)
+            $1.setTitleColor(.white, for: .normal)
             let pokerType: PokerGame.PokerType = $0 == 0 ? .sevenCard : .fiveCard
-            $1.setTitle("\(pokerType.rawValue) Cards", for: .normal)
+            $1.setTitle("\(pokerType.cardCount) Cards", for: .normal)
             $1.titleLabel?.font = .systemFont(ofSize: 15)
         }
         
-        pokerPlayerView.distribution = .fillEqually
-        pokerPlayerView.clipsToBounds = true
-        pokerPlayerView.layer.cornerRadius = 8
-        pokerPlayerView.layer.borderWidth = 1.5
-        pokerPlayerView.layer.borderColor = UIColor.white.cgColor
+        playerView.distribution = .fillEqually
+        playerView.clipsToBounds = true
+        playerView.layer.cornerRadius = 8
+        playerView.layer.borderWidth = 1.5
+        playerView.layer.borderColor = UIColor.white.cgColor
         
-        pokerPlayerButtons.enumerated().forEach {
-            $1.setBackgroundImage(UIColor.white.image(), for: .selected)
+        playerButtons.enumerated().forEach {
+            $1.setBackgroundImage(UIColor.white.image(), for: .disabled)
             $1.setBackgroundImage(UIColor.clear.image(), for: .normal)
-            $1.setTitleColor(.black, for: .selected)
+            $1.setTitleColor(.black, for: .disabled)
             $1.setTitleColor(.white, for: .normal )
             $1.layer.borderWidth = 0.5
             $1.layer.borderColor = UIColor.white.cgColor
             $1.setTitle("\($0+2)명", for: .normal)
             $1.titleLabel?.font = .systemFont(ofSize: 15)
         }
-//        self.spacing = -3
-//        self.distribution = .fillEqually
-//
-//        name.font = .systemFont(ofSize: 25)
-//        name.textColor = .black
-//        name.backgroundColor = .gray
-//        name.clipsToBounds = true
-//        name.layer.cornerRadius = 5
     }
     
     func layout() {
-        pokerTypeView.frame = CGRect(origin: CGPoint(x: 100, y: 0), size: CGSize(width: 100, height: 50))
-        self.addArrangedSubview(pokerTypeView)
-        pokerTypeButtons.forEach {
-            pokerTypeView.addArrangedSubview($0)
+        typeView.frame = CGRect(origin: CGPoint(x: 100, y: 0), size: CGSize(width: 100, height: 50))
+        self.addArrangedSubview(typeView)
+        typeButtons.forEach {
+            typeView.addArrangedSubview($0)
         }
         
-        self.addArrangedSubview(pokerPlayerView)
-        pokerPlayerButtons.forEach {
-            pokerPlayerView.addArrangedSubview($0)
+        self.addArrangedSubview(playerView)
+        playerButtons.forEach {
+            playerView.addArrangedSubview($0)
         }
     }
 }

@@ -9,27 +9,13 @@ import Foundation
 import UIKit
 
 class PokerBoardViewController: UIViewController {
-    
-    enum Constants {
-        static let maxCardCount = 7
-        static let leftOffset = 15.0
-        static let bottomOffset = 50.0
-        static let cardSpacing = 3.0
-        static let cardViewsSpacing = 50.0
-        static let cardSizeRatio = 1.27
         
-        static let defaultPokerType = PokerGame.PokerType.sevenCard
-        static let defaultPlayerCount = 4
-    }
-    
     let pokerOptionView = PokerOptionView()
     let playerCardViews = [PlayerCardView(), PlayerCardView(),
                            PlayerCardView(), PlayerCardView()]
     let dealerCardView = PlayerCardView()
     
     let pokerGame = PokerGame()
-    var pokerType = Constants.defaultPokerType
-    var playerCount = Constants.defaultPlayerCount
     
     //MARK: - Override
     
@@ -39,10 +25,13 @@ class PokerBoardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bind()
+        pokerGame.delegate = self
+        pokerOptionView.delegate = pokerGame
         
-        pokerOptionView.pokerTypeButtons[Constants.defaultPokerType == .sevenCard ? 0 : 1].isSelected = true
-        pokerOptionView.pokerPlayerButtons[Constants.defaultPlayerCount - 2].isSelected = true
+        let defaultTypeIndex = pokerGame.pokerType == .sevenCard ? 0 : 1
+        pokerOptionView.typeButtons[defaultTypeIndex].isEnabled = false
+        let defaultPlayerCountIndex = pokerGame.playerCount - 2
+        pokerOptionView.playerButtons[defaultPlayerCountIndex].isEnabled = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,25 +39,10 @@ class PokerBoardViewController: UIViewController {
         attribute()
         layout()
         
-        startPoker()
+        pokerGame.start()
     }
     
     //MARK: - Method
-    
-    private func bind() {
-        pokerOptionView.pokerTypeButtons.enumerated().forEach { index, button in
-            button.addAction(UIAction(handler: { sender in
-                let pokerType: PokerGame.PokerType = index == 0 ?.sevenCard : .fiveCard
-                self.onPokerTypeButtonTapped(index: index, pokerType: pokerType)
-            }), for: .touchUpInside)
-        }
-        
-        pokerOptionView.pokerPlayerButtons.enumerated().forEach { index, button in
-            button.addAction(UIAction(handler: { sender in
-                self.onPlayerCountButtonTapped(index: index, playerCount: index + 2)
-            }), for: .touchUpInside)
-        }
-    }
     
     private func attribute() {
         if let backImage = UIImage(named: "bg_pattern") {
@@ -83,71 +57,50 @@ class PokerBoardViewController: UIViewController {
     private func layout() {
         let safeAreaFrame = self.view.safeAreaLayoutGuide.layoutFrame
         let topOffset = safeAreaFrame.minY
+        let leftOffset = 15.0
+        let bottomOffset = self.view.frame.height - safeAreaFrame.height - safeAreaFrame.minY + 20
+        let cardSpacing = 3.0
+        let cardSizeRatio = 1.27
+        let maxCardCount = 7
         
+        //포커 옵션 레이아웃
         let optionViewWidth = 150.0
         let optionViewHeight = 80.0
         let pokerOptionPositionX = (safeAreaFrame.width / 2) - (optionViewWidth / 2)
+        let pokerOptionPositionY = topOffset
         self.view.addSubview(pokerOptionView)
-        pokerOptionView.frame = CGRect(x: pokerOptionPositionX, y: topOffset, width: optionViewWidth, height: optionViewHeight)
+        pokerOptionView.frame = CGRect(x: pokerOptionPositionX, y: pokerOptionPositionY, width: optionViewWidth, height: optionViewHeight)
         
-        let cardWidth = safeAreaFrame.width / CGFloat(Constants.maxCardCount + 1)
-        let cardHeight = cardWidth * Constants.cardSizeRatio
-        let cardSpacingCount = CGFloat(Constants.maxCardCount - 1)
-        let playerCardViewWidth = cardWidth * CGFloat(pokerType.rawValue) - (cardSpacingCount * Constants.cardSpacing)
+        //플레이어 카드뷰 레이아웃
+        let optionViewOffset = 50.0
+        let cardViewsSpacing = 50.0
+        let cardWidth = safeAreaFrame.width / CGFloat(maxCardCount + 1)
+        let cardTotalSpacing = CGFloat(maxCardCount - 1) * cardSpacing
+        let cardCount = CGFloat(self.pokerGame.pokerType.cardCount)
+        let playerCardViewWidth = cardWidth * cardCount - cardTotalSpacing
+        let playerCardViewHeight = cardWidth * cardSizeRatio
         
         playerCardViews.enumerated().forEach {
             self.view.addSubview($1)
-            let yOffset = (topOffset * 2) + optionViewHeight
-            let yPosition = CGFloat($0) * (cardHeight + Constants.cardViewsSpacing) + yOffset
-            $1.frame = CGRect(x: Constants.leftOffset, y: yPosition, width: playerCardViewWidth, height: cardHeight)
+            let yOffset = topOffset + optionViewHeight + optionViewOffset
+            let xPosition = leftOffset
+            let yPosition = CGFloat($0) * (playerCardViewHeight + cardViewsSpacing) + yOffset
+            $1.frame = CGRect(x: xPosition, y: yPosition, width: playerCardViewWidth, height: playerCardViewHeight)
         }
         
+        //딜러 카드뷰 레이아웃
         self.view.addSubview(dealerCardView)
-        let yPosition = safeAreaFrame.height - cardHeight - Constants.bottomOffset
-        dealerCardView.frame = CGRect(x: Constants.leftOffset, y: yPosition, width: playerCardViewWidth, height: cardHeight)
-    }
-    
-    private func startPoker() {
-        playerCardViews.forEach {
-            $0.isHidden = true
-        }
-        layout()
-        pokerGame.delegate = self
-        pokerGame.start(pokerType: pokerType, playerCount: playerCount)
-    }
-    
-    //MARK: - Events
-    
-    private func onPokerTypeButtonTapped(index: Int, pokerType: PokerGame.PokerType) {
-        if self.pokerType == pokerType {
-            return
-        }
-        
-        (0..<pokerOptionView.pokerTypeButtons.count).forEach {
-            pokerOptionView.pokerTypeButtons[$0].isSelected = index == $0
-        }
-        
-        self.pokerType = pokerType
-        startPoker()
-    }
-    
-    private func onPlayerCountButtonTapped(index: Int, playerCount: Int) {
-        if self.playerCount == playerCount {
-            return
-        }
-        
-        (0..<pokerOptionView.pokerPlayerButtons.count).forEach {
-            pokerOptionView.pokerPlayerButtons[$0].isSelected = index == $0
-        }
-        
-        self.playerCount = playerCount
-        startPoker()
+        let yPosition = self.view.frame.height - playerCardViewHeight - bottomOffset
+        dealerCardView.frame = CGRect(x: leftOffset, y: yPosition, width: playerCardViewWidth, height: playerCardViewHeight)
     }
 }
 
 extension PokerBoardViewController: PokerGameDelegate {
-    func emptyCardDeck() {
-        
+    func startPoker() {
+        playerCardViews.forEach {
+            $0.isHidden = true
+        }
+        layout()
     }
     
     func player(index: Int, player: Player) {
