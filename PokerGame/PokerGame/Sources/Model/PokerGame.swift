@@ -13,11 +13,6 @@ protocol PokerGameDelegate {
     func emptyCardDeck()
 }
 
-enum PokerType: Int {
-    case sevenCard = 7
-    case fiveCard = 5
-}
-
 class PokerGame {
     
     var delegate: PokerGameDelegate?
@@ -31,10 +26,11 @@ class PokerGame {
         }
     }
     
-    func startGame(pokerType: PokerType, playerCount: Int) {
+    func start(pokerType: PokerType, playerCount: Int) {
         var players: [Player] = [Player(name: "Dealer")]
         players += createPlayers(count: playerCount)
         let cardDeck = CardDeck()
+        cardDeck.shuffle()
         let cardCount = pokerType.rawValue
         
         for _ in 0..<cardCount {
@@ -54,4 +50,9 @@ class PokerGame {
     }
 }
 
-
+extension PokerGame {
+    enum PokerType: Int, CaseIterable {
+        case sevenCard = 7
+        case fiveCard = 5
+    }
+}
