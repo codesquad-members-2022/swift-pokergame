@@ -44,7 +44,7 @@ class Card: CustomStringConvertible{
     var suit: CardSuit
     var number: CardNumber
     var description: String{
-        return "\(suit)\(number)"
+        return "\(suit.rawValue)\(number)"
     }
     
     init(_ cardSuitindex: Int, _ cardNumber: Int){
