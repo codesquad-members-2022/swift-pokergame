@@ -57,11 +57,11 @@ class Card: CustomStringConvertible{
         return "\(suit)\(number)"
     }
     
-    init?(cardSuitindex: Int, cardNumber: Int){
-        if(cardSuitindex>=Suit.allCases.count || cardNumber<=0 || cardNumber > 13){
+    init?(suitIndex: Int, number: Int){
+        if(suitIndex>=Suit.allCases.count || number<=0 || number > 13){
             return nil
         }
-        self.suit = Suit.allCases[cardSuitindex]
-        self.number = Number(cardNumber)
+        self.suit = Suit.allCases[suitIndex]
+        self.number = Number(number)
     }
 }
