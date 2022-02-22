@@ -15,6 +15,11 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern") ?? UIImage())
         
         configureCard()
+        
+        let sampleCard1 = Card(symbol: .heart, rank: .Q)
+        let sampleCard2 = Card(symbol: .spade, rank: .seven)
+        printCardInfo(card: sampleCard1)
+        printCardInfo(card: sampleCard2)
                                             
     }
     
@@ -39,6 +44,10 @@ class ViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    func printCardInfo(card: Card) {
+        print(card.getCardInfo())
     }
 
 
