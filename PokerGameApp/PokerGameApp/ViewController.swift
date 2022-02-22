@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern") ?? UIImage())
         
-        configureCard()
+        configureCard(numberOfCards: 7)
         
         let sampleCard1 = Card(symbol: .heart, rank: .Q)
         let sampleCard2 = Card(symbol: .spade, rank: .seven)
@@ -23,17 +23,17 @@ class ViewController: UIViewController {
                                             
     }
     
-    func configureCard(){
+    func configureCard(numberOfCards: Int){
         
         let screenWidth = UIScreen.main.bounds.size.width
         let cardImage = UIImage(named: "card-back") ?? UIImage()
         let gap = 5.0
         
-        for i in 0..<7 {
+        for i in 0..<numberOfCards {
             
-            let cardXPosition: CGFloat =  CGFloat(CGFloat(i) * (screenWidth/7.0) + gap )
-        
-            let card = UIImageView(frame: CGRect(x: cardXPosition , y: 70, width: screenWidth/7.0 - gap, height: (screenWidth/7.0 - gap) * 1.25))
+            let numberOfCards = CGFloat(numberOfCards)
+            let cardXPosition: CGFloat =  CGFloat(CGFloat(i) * (screenWidth/numberOfCards) + gap )
+            let card = UIImageView(frame: CGRect(x: cardXPosition , y: 70, width: screenWidth/numberOfCards - gap, height: (screenWidth/numberOfCards - gap) * 1.25))
             
             card.image = cardImage
             card.contentMode = .scaleAspectFit
