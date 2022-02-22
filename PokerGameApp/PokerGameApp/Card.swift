@@ -8,7 +8,8 @@
 import Foundation
 
 
-class Card{
+class Card: CustomStringConvertible{
+    
     
     // 카드 모양은 한정되어 있으므로 enum으로 구현
     enum symbol: String {
@@ -20,7 +21,7 @@ class Card{
     
     // Card의 rank는 한정되어있고, 후에 카드 랭크를 비교할때는 rawValue로 처리를 해주면
     // 편할것 같아 enum으로 구현.
-    enum rank: Int {
+    enum rank: Int, CustomStringConvertible {
         case A = 1
         case two
         case three
@@ -45,7 +46,8 @@ class Card{
             default : return String(describing: self.rawValue)
             }
         }
-     }
+    }
+     
     
     
     let symbol: symbol
@@ -59,16 +61,10 @@ class Card{
         
     }
     
-    func getCardInfo() -> String {
-        
-        return "\(self.symbol.rawValue)\(self.number.description)"
-        
+
+    var description: String {
+        return "\(self.symbol.rawValue)\(self.description)"
     }
-    
-    
-    
-    
-    
-    
+
     
 }
