@@ -21,13 +21,14 @@ class ViewController: UIViewController {
     func configureCard(){
         
         let screenWidth = UIScreen.main.bounds.size.width
+        let cardImage = UIImage(named: "card-back") ?? UIImage()
+        let gap = 5.0
         
         for i in 0..<7 {
             
-            let cardImage = UIImage(named: "card-back") ?? UIImage()
-            let cardLeftXPosition: CGFloat =  CGFloat(CGFloat(i) * (screenWidth/7.0) + 5.0 )
+            let cardXPosition: CGFloat =  CGFloat(CGFloat(i) * (screenWidth/7.0) + gap )
         
-            let card = UIImageView(frame: CGRect(x: cardLeftXPosition , y: 70, width: screenWidth/7.0 - 5, height: (screenWidth/7.0 - 5) * 1.25))
+            let card = UIImageView(frame: CGRect(x: cardXPosition , y: 70, width: screenWidth/7.0 - gap, height: (screenWidth/7.0 - gap) * 1.25))
             
             card.image = cardImage
             card.contentMode = .scaleAspectFit
