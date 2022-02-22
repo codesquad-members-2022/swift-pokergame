@@ -14,7 +14,11 @@ class ViewController: UIViewController {
         
         self.view.backgroundColor = UIColor(patternImage: Image.backgroundPatternImage) //ViewBackground Pattern
 
-        putCardsOnView(originX: 100, y: 40, count: 3,inset: 10) //여러개의 카드 View에 올리기
+        putCardsOnView(originX: 0, y: 40, count: 7,inset: 10) //여러개의 카드 View에 올리기
+
+        let card = Card()
+        
+        print(card.info.description)
         
     }
     
