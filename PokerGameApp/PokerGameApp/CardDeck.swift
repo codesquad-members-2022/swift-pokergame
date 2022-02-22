@@ -28,7 +28,7 @@ struct CardDeck{
         self.deck = []
         for suit in Card.Suit.allCases{
             for number in Card.Number.allCases{
-                guard let card = Card(suit: suit, number: number) else{ continue }
+                let card = Card(suit: suit, number: number)
                 self.deck.append(card)
             }
         }
