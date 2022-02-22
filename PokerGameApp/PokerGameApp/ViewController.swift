@@ -47,7 +47,7 @@ class ViewController: UIViewController {
     }
     
     func printCardInfo(card: Card) {
-        print(card.getCardInfo())
+        print(card.description)
     }
 
 
