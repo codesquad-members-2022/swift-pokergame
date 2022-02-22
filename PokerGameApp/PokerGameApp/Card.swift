@@ -9,13 +9,19 @@ import Foundation
 
 struct Card {
     // 카드에는 4개의 모양, 13개의 숫자가 정해져 있어 enum 타입으로 정의
-    enum Shape : String {
+    enum Shape : String, CustomStringConvertible {
+        var description: String {
+            return rawValue
+        }
         case heart = "❤️"
         case spade = "♠️"
         case clover = "♣️"
         case diamond = "♦️"
     }
-    enum Number : String {
+    enum Number : String, CustomStringConvertible {
+        var description: String {
+            return rawValue
+        }
         case A
         case two = "2"
         case three = "3"
@@ -40,6 +46,6 @@ struct Card {
 
 extension Card: CustomStringConvertible {
     var description: String {
-        return "\(shape.rawValue)\(number.rawValue)"
+        return "\(shape)\(number)"
     }
 }
