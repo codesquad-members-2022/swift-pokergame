@@ -18,7 +18,6 @@ struct CardDeck: Equatable {
     init() {
         let allNumberCases = Card.Number.allCases
         let allSymbolCases = Card.Symbol.allCases
-        self.deck = [Card]()
         for numberCase in allNumberCases {
             for symbolCase in allSymbolCases {
                 self.deck.append(Card(number: numberCase, symbol: symbolCase))
@@ -37,14 +36,10 @@ struct CardDeck: Equatable {
         
         for indexToSwap1 in 0..<count-1 {
             let indexToSwap2 = Int.random(in: indexToSwap1..<count)
-            let tempCard = self.deck[indexToSwap1]
-            self.deck[indexToSwap1] = self.deck[indexToSwap2]
-            self.deck[indexToSwap2] = tempCard
+            self.deck.swapAt(indexToSwap1, indexToSwap2)
         }
         if self.deck[count-1] == self.originDeck[count-1] {
-            let tempCard = self.deck[count-1]
-            self.deck[count-1] = self.deck[count-2]
-            self.deck[count-2] = tempCard
+            self.deck.swapAt(count-1, count-2)
         }
     }
     
@@ -56,7 +51,7 @@ struct CardDeck: Equatable {
         self.deck = self.originDeck
     }
     
-    public func last() -> Card? {
+    public func last() -> Card? { // Test시 사용하기 위한 메서드
         return self.deck.last
     }
 }
