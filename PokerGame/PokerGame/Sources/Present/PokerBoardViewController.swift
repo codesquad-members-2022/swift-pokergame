@@ -29,9 +29,9 @@ class PokerBoardViewController: UIViewController {
         attribute()
         layout()
         
-        let defaultTypeIndex = Environment.Poker.defaultType == .sevenCard ? 0 : 1
+        let defaultTypeIndex = PokerGame.Constants.defaultType == .sevenCard ? 0 : 1
         pokerOptionView.typeButtons[defaultTypeIndex].isEnabled = false
-        let defaultPlayerCountIndex = Environment.Player.defaultCount - 2
+        let defaultPlayerCountIndex = Player.Constants.defaultCount - 2
         pokerOptionView.playerButtons[defaultPlayerCountIndex].isEnabled = false
     }
     
