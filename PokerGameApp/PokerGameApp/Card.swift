@@ -6,7 +6,7 @@ class Card: CustomStringConvertible{
      카드 모양은 4가지만 존재하기 때문에 열거형으로 각 케이스를 선언했습니다.
      굳이 클래스나 구조체로 만들 필요 없이 각 케이스별로 일정한 문자열값을 보여주면 된다고 생각했습니다.
      */
-    internal enum CardSuit: CustomStringConvertible, CaseIterable{
+    internal enum Suit: CustomStringConvertible, CaseIterable{
         case clover
         case diamond
         case club
@@ -31,7 +31,7 @@ class Card: CustomStringConvertible{
      실제 정수타입의 숫자값과 출력을 위한 문자열값을 모두 가지고 있어야 한다고 생각했고,
      열거형으로 13가지의 케이스를 모두 선언하기 보다는 구조체의 description 프로퍼티값을 switch를 통해 각기 다른 값을 가지도록 하는 것이 더 효율적이라고 생각했습니다.
      */
-    internal struct CardNumber: CustomStringConvertible{
+    internal struct Number: CustomStringConvertible{
         var number: Int
         var description: String{
             switch number{
@@ -51,17 +51,17 @@ class Card: CustomStringConvertible{
         }
     }
     
-    var suit: CardSuit
-    var number: CardNumber
+    var suit: Suit
+    var number: Number
     var description: String{
         return "\(suit)\(number)"
     }
     
     init?(cardSuitindex: Int, cardNumber: Int){
-        if(cardSuitindex>=CardSuit.allCases.count || cardNumber<=0 || cardNumber > 13){
+        if(cardSuitindex>=Suit.allCases.count || cardNumber<=0 || cardNumber > 13){
             return nil
         }
-        self.suit = CardSuit.allCases[cardSuitindex]
-        self.number = CardNumber(cardNumber)
+        self.suit = Suit.allCases[cardSuitindex]
+        self.number = Number(cardNumber)
     }
 }
