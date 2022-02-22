@@ -59,4 +59,33 @@ class ViewController: UIViewController {
         stackView.frame = readableFrame
         stackView.frame.size.height = cardWidth * 1.27
     }
+    
+    @IBAction func makeAndPrintRandomCardTouchUpInside(_ sender: UIButton) {
+        print(CardFactory.randomCard().read)
+    }
+    
+    @IBAction func makeAndPrintCardDeckTouchUpInside(_ sender: UIButton) {
+        print(CardFactory.deckOfCard().readAll)
+    }
+    
+    @IBAction func makeAndReadRandomCardTouchUpInside(_ sender: UIButton) {
+        alert(with: CardFactory.randomCard().read)
+    }
+    
+    @IBAction func makeAndReadCardDeckTouchUpInside(_ sender: UIButton) {
+        alert(with: CardFactory.deckOfCard().readAll)
+    }
+    
+    private func alert(with message: String) {
+        
+        let alert = UIAlertController.init(title: "값은 아래와 같습니다", message: message, preferredStyle: .alert)
+        let action = UIAlertAction.init(title: "닫기", style: .destructive) { _ in
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.addAction(action)
+        
+        self.show(alert, sender: nil)
+    }
 }
+
