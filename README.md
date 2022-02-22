@@ -160,3 +160,56 @@
     }
     ```
     * 문양과 숫자 정보를 합쳐서 리턴해주는 cardInformation 함수
+
+- ViewController에서 특정한 카드 객체 인스턴스를 만들어서 콘솔에 출력한다
+- 데이터를 처리하는 코드와 출력하는 코드를 분리한다
+    + 랜덤으로 문양과 숫자를 선택해서 카드 인스턴스를 만들어주는 makeCardInfo 함수 구현
+    + 전달받은 카드 인스턴스의 정보를 출력해주는 showCardInfo 함수 구현
+    
+    ```swift
+    class ViewController: UIViewController {
+        private let cardImage = UIImage(named: "card-back")
+        
+        @IBOutlet weak var horizonStack: UIStackView!
+        
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            
+            horizonStack.frame.size.height = horizonStack.frame.width / 7 * 1.27
+            horizonStack.distribution = .fillEqually
+            horizonStack.spacing = 3
+            
+            if let pattern = UIImage(named: "bg_pattern"){
+                self.view.backgroundColor = UIColor(patternImage: pattern)
+            }
+            
+            for _ in 0...6{
+                makeImageView()
+                let cardInfo = makeCardInfo()
+                showCardInfo(card: cardInfo)
+            }
+        }
+
+        func makeImageView(){
+            let imageView = UIImageView(image: self.cardImage)
+
+            self.horizonStack.addArrangedSubview(imageView)
+        }
+        
+        func makeCardInfo() -> Card{
+            let shapes: [Shape] = [.clover, .dia, .heart, .spade]
+            let shapeRandomNum = Int.random(in: 0...3)
+            let cardRandomNum = Int.random(in: 1...13)
+            
+            let cardInfo = Card(number: CardNumber(num: cardRandomNum), shape: shapes[shapeRandomNum])
+            
+            return cardInfo
+        }
+        
+        func showCardInfo(card: Card){
+            print(card.cardInformation())
+        }
+    }
+    ``` 
+    
+<img src = "https://user-images.githubusercontent.com/44107696/155056906-3b59e657-5364-4444-8a31-51cdc8f0c61e.png" width="800" height="800">
