@@ -7,27 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E42EABC027C3235D005BC23D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42EABBF27C3235D005BC23D /* AppDelegate.swift */; };
-		E42EABC227C3235D005BC23D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42EABC127C3235D005BC23D /* SceneDelegate.swift */; };
-		E42EABC427C3235D005BC23D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42EABC327C3235D005BC23D /* ViewController.swift */; };
-		E42EABC727C3235D005BC23D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E42EABC527C3235D005BC23D /* Main.storyboard */; };
-		E42EABC927C3235F005BC23D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E42EABC827C3235F005BC23D /* Assets.xcassets */; };
-		E42EABCC27C3235F005BC23D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E42EABCA27C3235F005BC23D /* LaunchScreen.storyboard */; };
+		E45634F927C46F0E0008D897 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45634F827C46F0E0008D897 /* AppDelegate.swift */; };
+		E45634FB27C46F0E0008D897 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45634FA27C46F0E0008D897 /* SceneDelegate.swift */; };
+		E45634FD27C46F0E0008D897 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45634FC27C46F0E0008D897 /* ViewController.swift */; };
+		E456350027C46F0E0008D897 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E45634FE27C46F0E0008D897 /* Main.storyboard */; };
+		E456350227C46F0F0008D897 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E456350127C46F0F0008D897 /* Assets.xcassets */; };
+		E456350527C46F0F0008D897 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E456350327C46F0F0008D897 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E42EABBC27C3235D005BC23D /* TexasHoldem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TexasHoldem.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E42EABBF27C3235D005BC23D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E42EABC127C3235D005BC23D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E42EABC327C3235D005BC23D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E42EABC627C3235D005BC23D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E42EABC827C3235F005BC23D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E42EABCB27C3235F005BC23D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		E42EABCD27C3235F005BC23D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E45634F527C46F0E0008D897 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E45634F827C46F0E0008D897 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E45634FA27C46F0E0008D897 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		E45634FC27C46F0E0008D897 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E45634FF27C46F0E0008D897 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E456350127C46F0F0008D897 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E456350427C46F0F0008D897 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E456350627C46F0F0008D897 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E42EABB927C3235D005BC23D /* Frameworks */ = {
+		E45634F227C46F0E0008D897 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -37,72 +37,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E42EABB327C3235D005BC23D = {
+		E45634EC27C46F0E0008D897 = {
 			isa = PBXGroup;
 			children = (
-				E42EABBE27C3235D005BC23D /* TexasHoldem */,
-				E42EABBD27C3235D005BC23D /* Products */,
+				E45634F727C46F0E0008D897 /* PokerGameApp */,
+				E45634F627C46F0E0008D897 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		E42EABBD27C3235D005BC23D /* Products */ = {
+		E45634F627C46F0E0008D897 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E42EABBC27C3235D005BC23D /* TexasHoldem.app */,
+				E45634F527C46F0E0008D897 /* PokerGameApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E42EABBE27C3235D005BC23D /* TexasHoldem */ = {
+		E45634F727C46F0E0008D897 /* PokerGameApp */ = {
 			isa = PBXGroup;
 			children = (
-				E42EABBF27C3235D005BC23D /* AppDelegate.swift */,
-				E42EABC127C3235D005BC23D /* SceneDelegate.swift */,
-				E42EABC327C3235D005BC23D /* ViewController.swift */,
-				E42EABC527C3235D005BC23D /* Main.storyboard */,
-				E42EABC827C3235F005BC23D /* Assets.xcassets */,
-				E42EABCA27C3235F005BC23D /* LaunchScreen.storyboard */,
-				E42EABCD27C3235F005BC23D /* Info.plist */,
+				E45634F827C46F0E0008D897 /* AppDelegate.swift */,
+				E45634FA27C46F0E0008D897 /* SceneDelegate.swift */,
+				E45634FC27C46F0E0008D897 /* ViewController.swift */,
+				E45634FE27C46F0E0008D897 /* Main.storyboard */,
+				E456350127C46F0F0008D897 /* Assets.xcassets */,
+				E456350327C46F0F0008D897 /* LaunchScreen.storyboard */,
+				E456350627C46F0F0008D897 /* Info.plist */,
 			);
-			path = TexasHoldem;
+			path = PokerGameApp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E42EABBB27C3235D005BC23D /* TexasHoldem */ = {
+		E45634F427C46F0E0008D897 /* PokerGameApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E42EABD027C3235F005BC23D /* Build configuration list for PBXNativeTarget "TexasHoldem" */;
+			buildConfigurationList = E456350927C46F0F0008D897 /* Build configuration list for PBXNativeTarget "PokerGameApp" */;
 			buildPhases = (
-				E42EABB827C3235D005BC23D /* Sources */,
-				E42EABB927C3235D005BC23D /* Frameworks */,
-				E42EABBA27C3235D005BC23D /* Resources */,
+				E45634F127C46F0E0008D897 /* Sources */,
+				E45634F227C46F0E0008D897 /* Frameworks */,
+				E45634F327C46F0E0008D897 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = TexasHoldem;
-			productName = TexasHoldem;
-			productReference = E42EABBC27C3235D005BC23D /* TexasHoldem.app */;
+			name = PokerGameApp;
+			productName = PokerGameApp;
+			productReference = E45634F527C46F0E0008D897 /* PokerGameApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E42EABB427C3235D005BC23D /* Project object */ = {
+		E45634ED27C46F0E0008D897 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
-					E42EABBB27C3235D005BC23D = {
+					E45634F427C46F0E0008D897 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
 				};
 			};
-			buildConfigurationList = E42EABB727C3235D005BC23D /* Build configuration list for PBXProject "TexasHoldem" */;
+			buildConfigurationList = E45634F027C46F0E0008D897 /* Build configuration list for PBXProject "PokerGameApp" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -110,55 +110,55 @@
 				en,
 				Base,
 			);
-			mainGroup = E42EABB327C3235D005BC23D;
-			productRefGroup = E42EABBD27C3235D005BC23D /* Products */;
+			mainGroup = E45634EC27C46F0E0008D897;
+			productRefGroup = E45634F627C46F0E0008D897 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E42EABBB27C3235D005BC23D /* TexasHoldem */,
+				E45634F427C46F0E0008D897 /* PokerGameApp */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E42EABBA27C3235D005BC23D /* Resources */ = {
+		E45634F327C46F0E0008D897 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E42EABCC27C3235F005BC23D /* LaunchScreen.storyboard in Resources */,
-				E42EABC927C3235F005BC23D /* Assets.xcassets in Resources */,
-				E42EABC727C3235D005BC23D /* Main.storyboard in Resources */,
+				E456350527C46F0F0008D897 /* LaunchScreen.storyboard in Resources */,
+				E456350227C46F0F0008D897 /* Assets.xcassets in Resources */,
+				E456350027C46F0E0008D897 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E42EABB827C3235D005BC23D /* Sources */ = {
+		E45634F127C46F0E0008D897 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E42EABC427C3235D005BC23D /* ViewController.swift in Sources */,
-				E42EABC027C3235D005BC23D /* AppDelegate.swift in Sources */,
-				E42EABC227C3235D005BC23D /* SceneDelegate.swift in Sources */,
+				E45634FD27C46F0E0008D897 /* ViewController.swift in Sources */,
+				E45634F927C46F0E0008D897 /* AppDelegate.swift in Sources */,
+				E45634FB27C46F0E0008D897 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		E42EABC527C3235D005BC23D /* Main.storyboard */ = {
+		E45634FE27C46F0E0008D897 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E42EABC627C3235D005BC23D /* Base */,
+				E45634FF27C46F0E0008D897 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		E42EABCA27C3235F005BC23D /* LaunchScreen.storyboard */ = {
+		E456350327C46F0F0008D897 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E42EABCB27C3235F005BC23D /* Base */,
+				E456350427C46F0F0008D897 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -166,7 +166,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		E42EABCE27C3235F005BC23D /* Debug */ = {
+		E456350727C46F0F0008D897 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -227,7 +227,7 @@
 			};
 			name = Debug;
 		};
-		E42EABCF27C3235F005BC23D /* Release */ = {
+		E456350827C46F0F0008D897 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -282,7 +282,7 @@
 			};
 			name = Release;
 		};
-		E42EABD127C3235F005BC23D /* Debug */ = {
+		E456350A27C46F0F0008D897 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -291,7 +291,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FCQD35AW5P;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TexasHoldem/Info.plist;
+				INFOPLIST_FILE = PokerGameApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -302,7 +302,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = co.Song.TexasHoldem;
+				PRODUCT_BUNDLE_IDENTIFIER = co.Song.PokerGameApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -310,7 +310,7 @@
 			};
 			name = Debug;
 		};
-		E42EABD227C3235F005BC23D /* Release */ = {
+		E456350B27C46F0F0008D897 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -319,7 +319,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FCQD35AW5P;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TexasHoldem/Info.plist;
+				INFOPLIST_FILE = PokerGameApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -330,7 +330,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = co.Song.TexasHoldem;
+				PRODUCT_BUNDLE_IDENTIFIER = co.Song.PokerGameApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -341,25 +341,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E42EABB727C3235D005BC23D /* Build configuration list for PBXProject "TexasHoldem" */ = {
+		E45634F027C46F0E0008D897 /* Build configuration list for PBXProject "PokerGameApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E42EABCE27C3235F005BC23D /* Debug */,
-				E42EABCF27C3235F005BC23D /* Release */,
+				E456350727C46F0F0008D897 /* Debug */,
+				E456350827C46F0F0008D897 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E42EABD027C3235F005BC23D /* Build configuration list for PBXNativeTarget "TexasHoldem" */ = {
+		E456350927C46F0F0008D897 /* Build configuration list for PBXNativeTarget "PokerGameApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E42EABD127C3235F005BC23D /* Debug */,
-				E42EABD227C3235F005BC23D /* Release */,
+				E456350A27C46F0F0008D897 /* Debug */,
+				E456350B27C46F0F0008D897 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = E42EABB427C3235D005BC23D /* Project object */;
+	rootObject = E45634ED27C46F0E0008D897 /* Project object */;
 }

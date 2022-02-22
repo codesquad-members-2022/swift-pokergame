@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  TexasHoldem
+//  PokerGameApp
 //
-//  Created by 송태환 on 2022/02/21.
+//  Created by 송태환 on 2022/02/22.
 //
 
 import UIKit
