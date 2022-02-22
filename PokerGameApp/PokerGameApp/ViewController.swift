@@ -19,8 +19,8 @@ class ViewController: UIViewController {
         cardWidth * 1.27
     }
     var startOffsetX:CGFloat = 4
-    let background = UIImage(named:"bg_pattern.png")!
-    let cardImage = UIImage(named: "card-back.png")!
+    let background = UIImage(named:"bg_pattern.png") ?? UIImage()
+    let cardImage = UIImage(named: "card-back.png") ?? UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
