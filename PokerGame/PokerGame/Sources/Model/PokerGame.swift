@@ -10,49 +10,47 @@ import Foundation
 protocol PokerGameDelegate {
     func player(index: Int, player: Player)
     func dealer(dealer: Player)
+    func emptyCardDeck()
+}
+
+enum PokerType: Int {
+    case sevenCard = 7
+    case fiveCard = 5
 }
 
 class PokerGame {
     
     var delegate: PokerGameDelegate?
     
-    func createPlayer(count: Int) -> [Player] {
+    func createPlayers(count: Int) -> [Player] {
         var playerNames = ["shingha", "bibi", "alex", "rosa", "chez", "ocean", "pigbag"]
-
-        return (0..<count).compactMap { _ in
-            guard let randomIndex = (0..<playerNames.count).randomElement() else {
-                return nil
-            }
+        return (0..<count).map { _ in
+            let randomIndex = Int.random(in: 0..<playerNames.count)
             let playerName = playerNames.remove(at: randomIndex)
             return Player(name: playerName)
         }
     }
     
     func startGame(pokerType: PokerType, playerCount: Int) {
-        let players = createPlayer(count: playerCount)
-        let dealer = Player(name: "Dealer")
-        
+        var players: [Player] = [Player(name: "Dealer")]
+        players += createPlayers(count: playerCount)
         let cardDeck = CardDeck()
-        let distributionCount = pokerType.rawValue
-        (0..<distributionCount).forEach() { _ in
-            players.forEach() {
+        let cardCount = pokerType.rawValue
+        
+        for _ in 0..<cardCount {
+            for player in players {
                 guard let card = cardDeck.removeOne() else {
+                    self.delegate?.emptyCardDeck()
                     return
                 }
-                $0.add(card: card)
+                player.add(card: card)
             }
-
-            guard let card = cardDeck.removeOne() else {
-                return
-            }
-
-            dealer.add(card: card)
         }
-
-        players.enumerated().forEach { index, player in
-            self.delegate?.player(index: index, player: player)
+        
+        (1..<players.count).forEach {
+            self.delegate?.player(index: $0 - 1, player: players[$0])
         }
-        self.delegate?.dealer(dealer: dealer)
+        self.delegate?.dealer(dealer: players[0])
     }
 }
 

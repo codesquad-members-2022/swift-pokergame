@@ -17,9 +17,10 @@ class PokerGameTests: XCTestCase {
     
     func testPokerCardDistribution() {
         let pokerType = PokerType.sevenCard
+        let pokerPlayerCount = 9
         let pokerGame = PokerGame()
         pokerGame.delegate = self
-        pokerGame.startGame(pokerType: pokerType, playerCount: 3)
+        pokerGame.startGame(pokerType: pokerType, playerCount: pokerPlayerCount)
     }
     
     func testCardDeckReset() {
@@ -54,7 +55,7 @@ class PokerGameTests: XCTestCase {
         XCTAssertEqual(cardDeck.count, 52)
     }
     
-    func testCardDeck() {
+    func testCardDeckInstance() {
         let cardDeck = CardDeck()
         XCTAssertEqual(cardDeck.count, 52)
     }
@@ -68,6 +69,10 @@ class PokerGameTests: XCTestCase {
 }
 
 extension PokerGameTests: PokerGameDelegate {
+    func emptyCardDeck() {
+        
+    }
+    
     func player(index: Int, player: Player) {
         
     }

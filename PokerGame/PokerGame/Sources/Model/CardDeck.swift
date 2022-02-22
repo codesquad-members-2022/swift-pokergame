@@ -19,15 +19,17 @@ class CardDeck {
         deck.count
     }
     
+    var isEmpty: Bool {
+        deck.isEmpty
+    }
+    
     init() {
         reset()
     }
     
     func shuffle() {
         (0..<deck.count).forEach { index in
-            guard let randomIndex = (index..<deck.count).randomElement() else {
-                return
-            }
+            let randomIndex = Int.random(in: index..<deck.count)
             let targetCard = deck[index]
             let randomCard = deck[randomIndex]
             deck[index] = randomCard
@@ -36,9 +38,10 @@ class CardDeck {
     }
     
     func removeOne() -> CardData? {
-        guard let randomIndex = (0..<deck.count).randomElement() else {
+        if isEmpty {
             return nil
         }
+        let randomIndex = Int.random(in: 0..<deck.count)
         return deck.remove(at: randomIndex)
     }
     

@@ -35,12 +35,11 @@ class PlayerCardView: UIStackView {
     }
     
     func layout() {
-        name.frame = CGRect(x: 0, y: -35, width: 50, height: 30)
-        
         cards.enumerated().forEach { index, view in
             self.addArrangedSubview(view)
         }
         
+        name.frame = CGRect(x: 0, y: -35, width: 50, height: 30)
         self.addSubview(name)
     }
     
@@ -50,13 +49,11 @@ class PlayerCardView: UIStackView {
         name.sizeToFit()
         
         cards.enumerated().forEach { index, cardView in
-            if index < player.cards.count {
-                cardView.isHidden = false
-                
+            let isEnable = index < player.cards.count
+            cardView.isHidden = !isEnable
+            if isEnable {
                 let card = player.cards[index]
                 cardView.image = UIImage(named: "\(card)")
-            } else {
-                cardView.isHidden = true
             }
         }
     }
