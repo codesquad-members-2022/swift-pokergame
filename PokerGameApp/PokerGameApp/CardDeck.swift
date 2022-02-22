@@ -20,8 +20,8 @@ struct CardDeck{
         }
     }
     
-    mutating func removeOne()-> Card{
-        return deck.removeLast()
+    mutating func removeOne()-> Card?{
+        return deck.popLast()
     }
     
     mutating func reset(){
