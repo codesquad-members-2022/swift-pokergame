@@ -43,5 +43,7 @@ class ViewController: UIViewController {
         }
         
         showCardImages()
+        
+        let card = Card(shape: Card.CardShape.diamond, number: Card.CardNumber.eight)
     }
 }
