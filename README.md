@@ -211,12 +211,12 @@ ViewController에 밑과같이 함수를 재정의 하니 성공적으로 실행
 
 - Static에 비해 이것이 문제이다. 사실 Thread saftety도 문제가 없다.
 - 하지만 `컴파일러가 최적화를 못하는 것` 이 문제
-- 특히 `Objective-C` 가 이 방식을 택하기 때문에 문제가 
+- 특히 `Objective-C` 가 이 방식을 택하기 때문에 문제가 생길 수 있다.
 
 <img width="60%" alt="스크린샷 2022-02-22 오후 3 43 55" src="https://user-images.githubusercontent.com/80263729/155077186-6e431d1e-4096-43f9-86cb-e8d50186729c.png">
 
 - Static Dispatch로 강제할 수 있는 방법이 있다.
-  - final, private등을 쓰는 버를
+  - final, private등을 쓰는 버릇
     - 해당 메소드,프로퍼티는 상속되지 않기 때문에 static하게 처리한다.
   - dynamic 쓰지 않기
   - objc연동 최소화
@@ -363,7 +363,7 @@ VWT는 fix size안에 포함이 되어있기 때문에 Copy가 되더라도 계�
   before
 <img width="40%" alt="스크린샷 2022-02-22 오후 5 49 24" src="https://user-images.githubusercontent.com/80263729/155096061-97944293-35af-4252-9958-decf6a352a67.png">
 
-  after
+  after  
 <img width="40%" alt="스크린샷 2022-02-22 오후 5 50 28" src="https://user-images.githubusercontent.com/80263729/155096254-644757ba-06cc-4a65-baab-7bd921fef30a.png">
 
 
