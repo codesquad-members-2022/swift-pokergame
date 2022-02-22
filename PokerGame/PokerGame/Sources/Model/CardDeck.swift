@@ -13,7 +13,7 @@ import Foundation
 ///변형이 일어나는 데이터이기 때문에 클래스로 제작
 class CardDeck: CustomStringConvertible {
     
-    public private(set) var deck: [Card] = []
+    private var deck: [Card] = []
     
     var description: String {
         let deckData = String(deck.reduce(""){ $0 + "\($1), "}.dropLast(2))
