@@ -38,9 +38,8 @@ class ViewController: UIViewController {
     func testCardPrinting(){
         for cardNumberIndex in 0..<12{
             let cardSuitIndex = Int.random(in: 0...3)
-            if let card = Card(suit: Card.Suit.allCases[cardSuitIndex], number: Card.Number.allCases[cardNumberIndex]){
-                printCard(card)
-            }
+            let card = Card(suit: Card.Suit.allCases[cardSuitIndex], number: Card.Number.allCases[cardNumberIndex])
+            printCard(card)
         }
     }
     

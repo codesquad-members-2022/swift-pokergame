@@ -49,7 +49,7 @@ class Card: CustomStringConvertible{
         return "\(suit)\(number)"
     }
     
-    init?(suit: Suit, number: Number){
+    init(suit: Suit, number: Number){
         self.suit = suit
         self.number = number
     }
