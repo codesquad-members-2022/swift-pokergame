@@ -49,6 +49,8 @@ class ViewController: UIViewController {
             cardImageView.frame.size = CGSize(width: width - 5, height: width * 1.27)
             cardImageView.frame.origin.x = cardImageView.frame.width * CGFloat(i) + CGFloat(4 * (i + 1))
             cardImageView.frame.origin.y = self.view.safeAreaLayoutGuide.layoutFrame.origin.y
+            
+            print(self.view.)
         }
     }
     
