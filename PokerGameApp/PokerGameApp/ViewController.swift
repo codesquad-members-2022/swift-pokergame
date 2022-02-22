@@ -11,13 +11,13 @@ class ViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
+    
     func showCardImages() {
         let cardOffset = 5.0
         let cardWidth = (view.frame.width - (cardOffset * 8)) / 7
         let cardHeight = cardWidth * 1.27
         var xPosition = 5.0
         let yPosition = 60.0
-        
         
         var cardImages: [UIImageView] = (0..<7).map { _ in UIImageView(image: getImage(name: "card-back")) }
         for i in 0..<7 {
