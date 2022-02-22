@@ -60,7 +60,7 @@ class PlayerCardView: UIStackView {
                 
                 let card = player.cards[index]
                 if let cardImageName = card.pattern.rawValue.first {
-                    cardView.image = UIImage(named: "\(cardImageName)\(card.numberToString())")
+                    cardView.image = UIImage(named: "\(cardImageName)\(card)")
                 }
             } else {
                 cardView.isHidden = true
