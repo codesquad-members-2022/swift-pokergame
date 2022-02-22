@@ -76,9 +76,8 @@
 		E00879A527C350C10044A6EB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E00879A627C350D40044A6EB /* Card.swift */,
-				E00879C427C37D900044A6EB /* CardDeck.swift */,
-				E00879CE27C3A61F0044A6EB /* Player.swift */,
+				E00879F327C522640044A6EB /* Player */,
+				E00879F227C5223F0044A6EB /* Card */,
 				E00879C727C3A5640044A6EB /* PokerGame.swift */,
 			);
 			path = Model;
@@ -99,6 +98,23 @@
 				E00879DF27C48FBD0044A6EB /* PokerOptionView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E00879F227C5223F0044A6EB /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				E00879A627C350D40044A6EB /* Card.swift */,
+				E00879C427C37D900044A6EB /* CardDeck.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		E00879F327C522640044A6EB /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				E00879CE27C3A61F0044A6EB /* Player.swift */,
+			);
+			path = Player;
 			sourceTree = "<group>";
 		};
 		E0CD2C4B27C320C50067B01E = {
