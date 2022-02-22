@@ -10,7 +10,12 @@ struct CardDeck{
     }
     
     mutating func shuffle(){
-        
+        for i in 0..<deck.count-1{
+            let randomIndex = Int.random(in: i..<deck.count)
+            let temp = deck[i]
+            deck[i] = deck[randomIndex]
+            deck[randomIndex] = temp
+        }
     }
     
     mutating func removeOne()-> Card{
@@ -27,6 +32,5 @@ struct CardDeck{
             }
         }
         self.count = self.deck.count
-        shuffle()
     }
 }
