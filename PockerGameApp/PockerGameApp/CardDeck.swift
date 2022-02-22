@@ -26,15 +26,11 @@ struct CardDeck {
     }
     
     mutating func shuffle() {
-        // Fisher–Yates shuffle
-        var cards = self.cards
-        var shuffled = [Card]()
-        
-        while !cards.isEmpty {
+        // Mordern Fisher-Yates Shuffle (in-place)
+        for i in 0..<cards.count-1 {
             let roll = Int.random(in: 0..<cards.count)
-            shuffled.append(cards.remove(at: roll))
+            cards.swapAt(i, roll)
         }
-        self.cards = shuffled
     }
     
     func removeOne() {
