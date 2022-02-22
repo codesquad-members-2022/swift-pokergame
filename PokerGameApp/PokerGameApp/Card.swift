@@ -31,23 +31,24 @@ class Card: CustomStringConvertible{
      실제 정수타입의 숫자값과 출력을 위한 문자열값을 모두 가지고 있어야 한다고 생각했고,
      열거형으로 13가지의 케이스를 모두 선언하기 보다는 구조체의 description 프로퍼티값을 switch를 통해 각기 다른 값을 가지도록 하는 것이 더 효율적이라고 생각했습니다.
      */
-    internal struct Number: CustomStringConvertible{
-        var number: Int
-        var description: String{
-            switch number{
-            case 11:
-                return "A"
-            case 12:
-                return "Q"
-            case 13:
-                return "K"
-            default:
-                return String(number)
-            }
-        }
+    internal enum Number:String, CustomStringConvertible, CaseIterable{
         
-        init(_ number: Int){
-            self.number = number
+        case ace = "A"
+        case two = "2"
+        case three = "3"
+        case four = "4"
+        case five = "5"
+        case six = "6"
+        case seven = "7"
+        case eight = "8"
+        case nine = "9"
+        case ten = "10"
+        case jump = "J"
+        case queen = "Q"
+        case king = "K"
+        
+        var description: String{
+            return self.rawValue
         }
     }
     
