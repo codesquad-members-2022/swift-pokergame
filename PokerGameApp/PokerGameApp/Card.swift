@@ -17,6 +17,7 @@ struct Card {
         self.number = number
     }
     
+    
     var description: String {
         return "\(shape.description)\(number.description)"
     }
