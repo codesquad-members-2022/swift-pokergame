@@ -36,13 +36,13 @@ class ViewController: UIViewController {
     }
     
     func setCardViews(count: Int) {
+        guard let cardImage = UIImage(named: "card-back") else {
+            return
+        }
+        
         let width = Double(self.view.frame.size.width) / Double(count)
         
         for i in 0..<count {
-            guard let cardImage = UIImage(named: "card-back") else {
-                return
-            }
-            
             let cardImageView = UIImageView(image: cardImage)
             cardImageView.contentMode = .scaleToFill
             self.view.addSubview(cardImageView)
@@ -50,7 +50,6 @@ class ViewController: UIViewController {
             cardImageView.frame.origin.x = cardImageView.frame.width * CGFloat(i) + CGFloat(4 * (i + 1))
             cardImageView.frame.origin.y = self.view.safeAreaLayoutGuide.layoutFrame.origin.y
             
-            print(self.view.)
         }
     }
     
