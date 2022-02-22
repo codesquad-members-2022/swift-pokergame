@@ -118,13 +118,85 @@ ViewController에 밑과같이 함수를 재정의 하니 성공적으로 실행
 ### 요구사항 
 
 - [X] 객체지향 프로그래밍 방식에 충실하게 카드 클래스(class)를 설계한다.
+  - 숫자를 나타낼 Rank와 모양을 나타낼 Suit를 타입으로 정했고 이를 합해서 Struct로 CarInfo라는 구조체를 만들어서 Card Class에 담아보자
+  ![스크린샷 2022-02-22 오후 8 32 20](https://user-images.githubusercontent.com/80263729/155123901-0965da4e-8886-425d-abce-e40482b27a68.png)
+
 - [X] 속성으로 모양 4개 중에 하나, 숫자 1-13개 중에 하나를 가질 수 있다.
 - [X] 모양이나 숫자도 적당한 데이터 구조로 표현한다. 클래스 혹은 Nested enum 타입으로 표현해도 된다.
 - [X] 어떤 이유로 데이터 구조를 선택했는지 주석(comment)으로 구체적인 설명을 남긴다.
 - [X] 카드 정보를 출력하기 위한 문자열을 반환하는 함수를 구현한다.
 - [X] 문자열에서 1은 A로, 11은 J로, 12는 Q로, 13은 K로 출력한다.
+~~~swift
+struct CardInfo:CustomStringConvertible {
+    var description: String {
+        return "\(suit)\(rank)"
+    }
+    
+    //랜덤한 값으로 뽑힌 suit와 rank는 private으로 설정하여 밖에서 수정하거나 확인하지 못하게 하였다.
+    private var suit:String = Suit.randomSuit
+    private var rank:String = Rank.randomRank
+    
+    
+    //카드의 모양(suit)를 나타내줄 Enum
+    //카드의 모양은 총 네가지로 고정되어 있으므로 예외처리를 원활하게 하기 위해서 Enum으로 설정한다.
+    enum Suit:String,CaseIterable {
+        case spade = "♠️"
+        case heart = "❤️"
+        case diamond = "♦️"
+        case clover = "♣️"
+        
+        //랜덤 값을 뽑아내는 프로퍼티, 값을 넣지않고 타입 자체에서 값을 뽑아내기 위해 Static을 사용했다.
+        static var randomSuit:String {
+            Suit.allCases.randomElement()?.rawValue ?? "유효한 Suit가 없습니다."
+        }
+    }
+    
+    //카드의 Rank(숫자)를 나타내줄 Enum
+    //카드의 숫자는 1~13으로 일정한 값만이 들어올것이기 때문에 예외처리를 원활하게 하기 위해서 enum으로 만든다.
+    enum Rank {
+        
+        //카드의 Rank는 2종류로 나울수있다.
+        case numberType(Int)        //숫자 2,3,4,5,6,7,8,9
+        case alphabetType(Int)   //알파벳 A,J,Q,K
+        
+        //각 숫자 1~13까지 모두 case를 주면 코드가 길어지므로 숫자와 알파벳를 나타내는 두가지 케이스에 조건을 달아서 나타내 보았다.
+        var rank:String {
+            switch self {
+            case .numberType(let number): return String(number)
+            case .alphabetType(let alphabet) where alphabet == 1: return "A"
+            case .alphabetType(let alphabet) where alphabet == 11: return "J"
+            case .alphabetType(let alphabet) where alphabet == 12: return "Q"
+            case .alphabetType(let alphabet) where alphabet == 13: return "K"
+            default: return "유효하지 않은 숫자입니다 1~13사이의 숫자를 입력해주세요"
+            }
+        }
+        
+        //Rank는 RawValue값을 지정해주지 않아서 CaseLiterable프로토콜을 준수하지 못하기 때문에 allCase를 따로 만들어 준다.
+        private static var allCases:[CardInfo.Rank] {   //Allcase는 이 Enum안에서만 사용이 되고 밖에서는 알필요도 없기 때문에 private선언한다.
+            var ranks = [CardInfo.Rank]()
+            for i in 1...13 {
+                if i > 1 && 10 > i {                    //1보다 크고 10보다 작으면 숫자타입
+                ranks.append(Rank.numberType(i))
+                } else {                                //그외는 알파벳 타입
+                ranks.append(Rank.alphabetType(i))
+                }
+            }
+            return ranks
+        }
+        
+        //만든 allcase를 이용해서 랜덤값을 뽑는 Static프로퍼티를 만들어본다.
+        static var randomRank:String {
+            Rank.allCases.randomElement()?.rank ?? "유효한 Rank가 없습니다."
+        }
+    }
+}
+~~~
+
 - [X] ViewController에서 특정한 카드 객체 인스턴스를 만들어서 콘솔에 출력한다
 - [X] 데이터를 처리하는 코드와 출력하는 코드를 분리한다
+
+![스크린샷 2022-02-22 오후 8 35 20](https://user-images.githubusercontent.com/80263729/155124413-ff6f8d60-ccd3-40be-bc99-56b5eb1ee1bc.png)
+
 
 ### 학습키워드
 
@@ -378,6 +450,3 @@ VWT는 fix size안에 포함이 되어있기 때문에 Copy가 되더라도 계�
 **고려 할 수 있는 성능 최적화 기법**
 - Struct에 클래스 타입의 Property가 많으면 값 타입으로 대체해서 Reference Counting을 줄이자
 - Mutable해야 한다면 Copy-on-Write를 구현해보자.
-
-
-
