@@ -1,4 +1,46 @@
-## 2022.02.17 Step2
+## 2022.02.22 Step3
+
+## 작업목록
+
+- [x] 포커게임 타입 정의
+- [x] 플레이어, 딜러 클래스 생성
+- [x] 포커게임 클래스 생성
+- [x] 카드 배분 함수 제작 
+- [x] XCTest 코드 작성
+  - [x] 전체 카드를 뽑았을때 중복없이 잘 뽑히는지
+  - [x] 카드 배분 후 포커플레이 타입에 따라 카드가 맞게 배분 되었는지
+- [x] 포커게임 화면 만들기
+  - [x] 한명의 플레이어의 카드를 보여줄 view 제작
+  - [x] 위에서 만든 view를 5개 출력
+  - [x] 카드 이미지 설정
+- [x] 포커게임 상단 옵션 View 만들기
+- [x] 옵션 View 버튼 연결
+
+## 학습키워드
+
+* 단위테스트, MVC, 비지니스로직
+
+## 고민과해결
+
+* delegate의 남발
+  * OptionView(상단 메뉴 View)를 제작할 때 해당 뷰에서도 delegate를 통해 처리하도록 구현
+    * OptionView의 delegate는 비지니스 로직이 받아서 처리하도록
+  * 빌드에서는 동작이 잘 되었지만, 단위 테스트에서 참조가 걸려 테스트를 진행하지 못함
+  * 해당 파일의 Target을 설정하여 가져올까도 했지만, 뭔가 찝찝한 느낌이 듬
+    * OptionView의 delegate는 ViewController에서 구현해 놓음
+  * 위의 방법을 지우고, ViewController에서 OptionView의 버튼들 Action 바인딩해서 사용하는 로직으로 수정
+* MVC
+  * 프로젝트의 기능을 구현하다보니, 코드가 ViewController로 점점 모이는 구조가 됨
+  * 우선, OptionView와 CardView를 레이어단위로 나눠서 구현
+  * Input을 처리하는 View의 이벤트는 ViewController에서 PokerGame(비지니스로직)과 연결
+  * 포커타입, 사용자 수 이벤트 발생하면 PokerGame에서 처리 후 Delegate를 통해 ViewController로 전달
+  * ViewController에서는 받은 데이터로 Layout을 재 설정
+
+
+
+------
+
+## 2022.02.21 Step2
 
 ## 작업목록
 
@@ -31,7 +73,7 @@
 
 
 
-## 2022.02.17 작업목록
+## 2022.02.21 작업목록
 
 - [x] git 저장소 fork & 프로젝트 생성
 - [x] 기본 폴더 구조 정리
