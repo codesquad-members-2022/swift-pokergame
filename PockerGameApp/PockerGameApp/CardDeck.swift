@@ -30,6 +30,11 @@ struct CardDeck {
         self.originDeck = deck
     }
     
+    init(_ cardArray: [Card]) {
+        self.deck = cardArray
+        self.originDeck = cardArray
+    }
+    
     public mutating func shuffle() { // Knuth Shuffle 로직 사용하여 구현
         let count = self.count
         
@@ -50,5 +55,12 @@ struct CardDeck {
     
     public mutating func reset() {
         self.deck = self.originDeck
+    }
+}
+
+extension CardDeck: Equatable {
+    static func == (lhs: CardDeck, rhs: CardDeck) -> Bool {
+        if lhs.deck == rhs.deck { return true }
+        else { return false }
     }
 }
