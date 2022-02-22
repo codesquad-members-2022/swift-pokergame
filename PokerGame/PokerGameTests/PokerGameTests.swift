@@ -65,12 +65,8 @@ class PokerGameTests: XCTestCase {
     }
     
     func testCardInstance() {
-        let cards = (0..<15).compactMap { number -> CardData? in
-            guard number > 0 && number <= 13 else {
-                print("nil")
-                return nil
-            }
-            return CardData(pattern: .clover, number: number)
+        let cards: [CardData] = CardData.CardNumber.allCases.map {
+            CardData(pattern: .clover, number: $0)
         }
         XCTAssertEqual(cards.count, 13)
     }
