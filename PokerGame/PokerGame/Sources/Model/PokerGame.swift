@@ -15,8 +15,8 @@ protocol PokerGameDelegate {
 
 class PokerGame {
     var delegate: PokerGameDelegate?
-    public private(set) var pokerType = Environment.defaultPokerType
-    public private(set) var playerCount = Environment.defaultPlayerCount
+    public private(set) var pokerType = Environment.Poker.defaultType
+    public private(set) var playerCount = Environment.Player.defaultCount
         
     func createPlayers(count: Int) -> [Player] {
         var playerNames = ["shingha", "bibi", "alex", "rosa", "chez", "ocean", "pigbag"]

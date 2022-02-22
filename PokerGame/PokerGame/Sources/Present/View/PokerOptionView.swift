@@ -14,7 +14,7 @@ class PokerOptionView: UIStackView {
     let typeButtons = (0..<PokerGame.PokerType.allCases.count).map { _ in UIButton()}
     
     let playerView = UIStackView()
-    let playerButtons = (0..<Environment.maxPlayerCount - 1).map { _ in UIButton()}
+    let playerButtons = (0..<Environment.Player.limitCount - 1).map { _ in UIButton()}
     
     override init(frame: CGRect) {
         super.init(frame: frame)
