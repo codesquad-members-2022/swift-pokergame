@@ -59,8 +59,4 @@ struct CardDeck {
 }
 
 extension CardDeck: Equatable {
-    static func == (lhs: CardDeck, rhs: CardDeck) -> Bool {
-        if lhs.deck == rhs.deck { return true }
-        else { return false }
-    }
 }
