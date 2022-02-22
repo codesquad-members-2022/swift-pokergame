@@ -11,7 +11,8 @@
 
 ### 학습 키워드
 
-- UIStackView
+- Info.plist
 - StatusBar
+- UIStackView
 
 ### 고민과 해결
