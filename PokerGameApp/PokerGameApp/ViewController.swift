@@ -14,7 +14,7 @@ class ViewController: UIViewController {
             self.view.backgroundColor = UIColor(patternImage: backGround)
         }
         let card = Card(shape: .heart, number: .Q)
-        print(card.string)
+        print(card)
         createHand(numberOfCard: 7)
     }
     func createHand(numberOfCard: Int){
