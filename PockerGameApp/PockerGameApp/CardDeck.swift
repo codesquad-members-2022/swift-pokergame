@@ -11,7 +11,13 @@ struct CardDeck {
     private var cards: [Card]
     
     init() {
-        
+        var cards = [Card]()
+        for suit in CardSuit.allCases {
+            for number in CardNumber.allCases {
+                cards.append(Card(suit: suit, number: number))
+            }
+        }
+        self.cards = cards
     }
     
     var count: Int {
