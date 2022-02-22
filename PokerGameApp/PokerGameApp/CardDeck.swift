@@ -12,10 +12,10 @@ struct CardDeck{
     }
     
     mutating func shuffle(){
-        for i in 0..<deck.count-1{
-            let randomIndex = Int.random(in: i..<deck.count)
-            let temp = deck[i]
-            deck[i] = deck[randomIndex]
+        for startIndex in 0..<deck.count-1{
+            let randomIndex = Int.random(in: startIndex..<deck.count)
+            let temp = deck[startIndex]
+            deck[startIndex] = deck[randomIndex]
             deck[randomIndex] = temp
         }
     }
