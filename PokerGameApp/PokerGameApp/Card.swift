@@ -7,19 +7,26 @@
 
 import Foundation
 struct CardDeck {
-    private var cards : [Card] = []
+    private let originCards : [Card]
+    private var cards : [Card]
     var count : Int {
         return cards.count
     }
     init() {
+        var tempCardArr : [Card] = []
         for i in Card.Shape.allCases {
             for j in Card.Number.allCases{
-                cards.append(Card(shape: i, number: j))
+                tempCardArr.append(Card(shape: i, number: j))
             }
         }
+        originCards = tempCardArr
+        cards = originCards
     }
     mutating func removeOne() -> Card? {
         return self.cards.popLast()
+    }
+    mutating func reset() {
+        cards = originCards
     }
 }
 struct Card {
