@@ -8,12 +8,29 @@
 import Foundation
 
 struct PockerCard{ // class를 상속받지 않기에 메모리 효율이 좋은 struct를 사용하였습니다.
-    enum Shape: Character, CaseIterable{ // 이를 채택하는 곳은 PockerCard 외에 없기에 중첩된 타입을 사용하였습니다.
+    enum Shape: Character, CaseIterable, CustomStringConvertible{ // 이를 채택하는 곳은 PockerCard 외에 없기에 중첩된 타입을 사용하였습니다.
         case spades = "♠️", hearts = "♥️", diamonds = "♦️", clubs = "♣️"
+        var description: String{
+            switch self{
+            case .spades: return "♠️"
+            case .hearts: return "♥️"
+            case .diamonds: return "♦️"
+            case .clubs: return "♣️"
+            }
+        }
     }
     
-    enum Number: Int{
-        case A = 1, two, three, four, five, six, seven, eight, nine, ten, J, Q, K
+    enum Number: Int, CustomStringConvertible{
+        case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
+        var description: String{
+            switch self{
+            case .ace: return "ace"
+            case .jack: return "jack"
+            case .queen: return "queen"
+            case .king: return "king"
+            default: return "\(self.rawValue)"
+            }
+        }
     }
     
     let shape: Shape
@@ -23,13 +40,11 @@ struct PockerCard{ // class를 상속받지 않기에 메모리 효율이 좋은
         self.shape = shape
         self.number = number
     }
+
 }
 
 extension PockerCard: CustomStringConvertible{
     var description: String {
-        switch number{
-        case .A, .J, .Q, .K: return "\(shape.rawValue)\(number)"
-        default: return "\(shape.rawValue)\(number.rawValue)"
-        }
+       return "\(shape.rawValue)\(number.rawValue)"
     }
 }
