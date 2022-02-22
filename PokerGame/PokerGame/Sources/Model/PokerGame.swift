@@ -9,6 +9,10 @@ import Foundation
 
 class PokerGame {
     
+    enum Constants {
+        static let defaultType = PokerGame.PokerType.fiveCard
+    }
+    
     struct Action {
         var inputPokerType: (PokerType) -> Void = { _ in }
         var inputPlayerCount: (Int) -> Void = { _ in }
@@ -25,8 +29,8 @@ class PokerGame {
     var action = Action()
     var state = State()
     
-    private var pokerType = Environment.Poker.defaultType
-    private var playerCount = Environment.Player.defaultCount
+    private var pokerType = Constants.defaultType
+    private var playerCount = Player.Constants.defaultCount
         
     private var players = [Player]()
     private var dealer = Player(name: "Dealer")
