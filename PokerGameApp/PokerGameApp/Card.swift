@@ -18,7 +18,8 @@ class Card{
         case spade = "♠️"
     }
     
-    // Card의 rank는 한정되어있고, 카드를 생성할때
+    // Card의 rank는 한정되어있고, 후에 카드 랭크를 비교할때는 rawValue로 처리를 해주면
+    // 편할것 같아 enum으로 구현.
     enum rank: Int {
         case A = 1
         case two
