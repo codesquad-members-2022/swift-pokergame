@@ -37,16 +37,12 @@ class ViewController: UIViewController {
     }
     
     func makeCardInfo() -> Card{
-        let shapes: [Shape] = [.clover, .dia, .heart, .spade]
-        let shapeRandomNum = Int.random(in: 0...3)
-        let cardRandomNum = Int.random(in: 1...13)
-        
-        let cardInfo = Card(number: CardNumber(num: cardRandomNum), shape: shapes[shapeRandomNum])
+        let cardInfo = Card()
         
         return cardInfo
     }
     
     func showCardInfo(card: Card){
-        print(card.cardInformation())
+        print(card.description)
     }
 }

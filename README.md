@@ -213,3 +213,81 @@
     ``` 
     
 <img src = "https://user-images.githubusercontent.com/44107696/155056906-3b59e657-5364-4444-8a31-51cdc8f0c61e.png" width="800" height="800">
+
+### 수정사항
+```swift
+// 하나의 카드가 가지게 될 Card 인스턴스는 항상 고유한 값이 되어야 하므로 class로 설계
+class Card: CustomStringConvertible{
+    private let number: Card.CardNumber
+    private let shape: Card.Shape
+    
+    var description: String{
+        let cardValue = shape.description + number.description
+        return cardValue
+    }
+    
+    // 랜덤 문양, 숫자의 카드 인스턴스 초기화
+    init(){
+        guard let shapeRandomNum = Shape.allCases.randomElement() else{
+            print("적절한 Case 값을 찾지 못하였습니다.")
+            fatalError()
+        }
+        
+        let cardRandomNum = Int.random(in: 1...13)
+        
+        self.number = CardNumber(num: cardRandomNum)
+        self.shape = shapeRandomNum
+    }
+    
+    // 변경해줘야 하는 값의 종류가 다소 많은 편이며, 카드의 값을 오로지 숫자로만 사용하는 놀이 등도 존재하므로 숫자와 문자열 모두 보관할 수 있는 형태를 생각함. 고유한 값으로 존재하거나 꼭 참조될 필요가 없으므로 Struct로 표현
+    struct CardNumber: CustomStringConvertible{
+        private let number: Int
+        var description: String{
+            switch number{
+            case 1:
+                return "A"
+            case 11:
+                return "J"
+            case 12:
+                return "Q"
+            case 13:
+                return "K"
+            default:
+                return number.description
+            }
+        }
+        
+        init(num: Int){
+            guard num <= 13 || num != 0 else{
+                print("적절하지 못한 값이 발견되었습니다 : \(num)")
+                fatalError()
+            }
+            
+            number = num
+        }
+    }
+
+    // 4가지 문양밖에 없는 간단한 변환 처리이므로 enum으로 간소하게 표현
+    enum Shape: CaseIterable, CustomStringConvertible{
+        case heart, dia, spade, clover
+        var description: String{
+            switch self {
+            case .heart:
+                return "♥️"
+            case .dia:
+                return "♦️"
+            case .spade:
+                return "♠️"
+            case .clover:
+                return "♣️"
+            }
+        }
+    }
+}
+``` 
+
+- Card 인스턴스의 주요 프로퍼티의 타입인 CardNumber와 Shape은 Card 클래스와의 관계성이 높으며, 차후 재사용 가능성이 낮으므로 nested 형태로 수정
+- CustomStringConvertible을 채택하고 description의 오버라이드를 통해 속성을 문자열 값으로 전달하도록 모든 커스텀 속성들 수정
+- CardNumber는 인자로 Int를 받으니 Int.random 사용. Shape은 가지고 있는 속성들을 random으로 선택하는 로직을 구현하기 위해 caseIterable 프로토콜 채택 (케이스들을 순회할 수 있도록 만들어주며, allCases라는 모든 케이스를 배열로 담은 프로퍼티를 호출할 수 있음)
+- guard 구문을 활용하여 예외사항에 대한 alert를 콘솔창에 띄워주며 더이상 작업이 진행되지 못하도록 fatalError 호출
+- VC 내에서는 Card 인스턴스를 인자 없이 생성 가능하게 되었고, 출력 함수또한 description을 호출하는 형태로 변경
