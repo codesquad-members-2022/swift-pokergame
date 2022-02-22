@@ -42,7 +42,7 @@ class PokerOptionView: UIStackView {
             $1.setTitleColor(.black, for: .disabled)
             $1.setTitleColor(.white, for: .normal)
             let pokerType: PokerGame.PokerType = $0 == 0 ? .sevenCard : .fiveCard
-            $1.setTitle("\(pokerType.cardCount) Cards", for: .normal)
+            $1.setTitle("\(pokerType.rawValue) Cards", for: .normal)
             $1.titleLabel?.font = .systemFont(ofSize: 15)
         }
         
