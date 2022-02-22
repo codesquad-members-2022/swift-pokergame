@@ -9,13 +9,13 @@ import Foundation
 class Card {
     //카드모양 에 관련된 이모지 를 열거형으로 선언 하여 관련된 값들을 Suit 를 통해 쉽게 얻을수 있음.
     //각 카드 는 4개의 다른 모양의 suit 가 있으므로 Card 클래스 안에 선언.
-    enum Suit : Character {
+    enum Suit : Character, CaseIterable {
         case spades = "♠️", clubs = "♣️", heart = "♥️", diamonds = "♦️"
     }
     
     //각 카드의 값들을 열거형으로 선언 하여 관련된 값들을 Rank 를 통해 쉽게 얻을수 있음.
     //ace 부터 ten 까지 는 1~10의 Int, J,Q,K 의 값들은 후에 유니코드 -> Character 로 변환될 예정.
-    enum Rank : Int {
+    enum Rank : Int, CaseIterable {
         case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack = 74, king, queen = 81
     }
     
