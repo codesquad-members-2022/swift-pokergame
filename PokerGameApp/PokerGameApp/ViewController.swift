@@ -6,7 +6,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setBackgroundColor()
         setInitialImageView(7)
-        //testCardPrinting()
+        testCardPrinting()
         testCardDeckCreation()
     }
     
@@ -36,9 +36,9 @@ class ViewController: UIViewController {
     }
     
     func testCardPrinting(){
-        for cardNumberIndex in 0..<12{
-            let cardSuitIndex = Int.random(in: 0...3)
-            let card = Card(suit: Card.Suit.allCases[cardSuitIndex], number: Card.Number.allCases[cardNumberIndex])
+        for _ in 0..<7{
+            guard let suit = Card.Suit.allCases.randomElement(), let number = Card.Number.allCases.randomElement() else { return }
+            let card = Card(suit: suit, number: number)
             printCard(card)
         }
     }
