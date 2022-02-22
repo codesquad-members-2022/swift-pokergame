@@ -33,8 +33,8 @@ struct CardDeck {
         }
     }
     
-    mutating func draw() -> Card {
-        return cards.removeLast()
+    mutating func draw() -> Card? {
+        return cards.popLast()
     }
     
     mutating func reset() {
