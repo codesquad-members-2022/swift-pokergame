@@ -33,8 +33,8 @@ struct CardDeck {
         }
     }
     
-    func removeOne() {
-        
+    mutating func draw() -> Card {
+        return cards.removeLast()
     }
     
     func reset() {
