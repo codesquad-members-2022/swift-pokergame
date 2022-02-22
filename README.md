@@ -158,3 +158,199 @@
 2. 여기서 자주 사용되는 `50`이나 숫자값들을 의미있는 코드로 표현해보세요. 숫자만 보면 이게 어떤 의미인지 알 수 없으니 상수로 선언해서 어떤 의미인지 표현해주는 게 좋습니다.
 
 	50을 `cardWidth`, 50*1.27을 `cardHeight`, 47을 `spacingFromTop` 상수로 선언하여 사용하도록 수정했습니다.
+
+
+
+---
+
+---
+
+## 2. 카드 클래스 구현하기
+
+### 📌체크 리스트
+
+- [x] 카드의 숫자, 모양을 프로퍼티로 갖는 `Card` 클래스 생성
+	- [x] 카드 정보를 출력하기 위한 문자열을 출력하는 메서드를 포함한다.
+- [x] ViewController에서 특정한 카드 객체 인스턴스를 만들어 콘솔에 출력한다.
+	- [x] 데이터를 처리하는 코드와 출력하는 코드를 분리한다.
+- [x] 앱 아이콘을 추가해본다.
+
+
+
+---
+
+### 💻진행 과정
+
+1. 카드의 정보를 프로퍼티로 갖는 Card 클래스를 선언했습니다. 카드의 숫자를 **number** 프로퍼티에, 기호 모양을 **symbol** 프로퍼티에 갖도록 했습니다.
+
+	```swift
+	class Card {
+	    
+	    enum Number: Int {
+	        case ace = 1 ,two ,three ,four ,five ,six ,seven , eight, nine, ten, jack, queen, king
+	    }
+	    
+	    enum Symbol: Character {
+	        case heart = "❤️"
+	        case spade = "♠️"
+	        case diamond = "🔷"
+	        case club = "♣️"
+	    }
+	    
+	    var number: Number
+	    var symbol: Symbol
+	    
+	    init(number: Number, symbol: Symbol) {
+	        self.number = number
+	        self.symbol = symbol
+	    }
+	    
+	    func makeDescription() -> String {
+	        var numberValue: String
+	        switch self.number.rawValue {
+	        case 1:
+	            numberValue = "A"
+	        case 11:
+	            numberValue = "J"
+	        case 12:
+	            numberValue = "Q"
+	        case 13:
+	            numberValue = "K"
+	        default:
+	            numberValue = String(number.rawValue)
+	            
+	        }
+	        return "모양: \(symbol.rawValue), 숫자: \(numberValue)"
+	    }
+	}
+	```
+
+	number의 타입에 해당하는 Number을 enum 타입으로 선언했습니다. number가 될 수 있는 케이스가 13가지인데, 해당 케이스 별로 직접 rawValue를 지정해주지 않아도 되며, number가 가질 수 있는 케이스를 제한할 수도 있기 때문에 해당 타입으로 선언했습니다. 
+
+	symbol의 타입에 해당하는 Symbol 또한 enum 타입으로 선언했습니다. Symbol 타입은 케이스 별로 rawValue를 갖는 것 외에는 다른 메서드나 연산 프로퍼티를 가질 필요가 없다고 판단하여, 가장 간단한 타입인 enum 타입으로 선언했습니다.
+
+2. 이전에 공부했던, 앱의 아이콘을 만드는 방법을 다시 공부할 겸 앱의 아이콘을 만들어 추가했습니다. 추가한 앱의 아이콘은 아래와 같이 확인할 수 있습니다.
+
+	<img src="https://user-images.githubusercontent.com/92504186/154935762-971b3380-3fbd-4533-ae73-ee31a9de4d01.jpg" alt="SS 2022-02-21 PM 07 10 21" width="10%;" />
+
+3. ViewController 클래스에 아래의 코드를 추가하여, 임의의 카드 인스턴스를 생성해 출력했습니다.
+
+	```swift
+	// class ViewController: UIViewController
+	override func viewDidLoad() {
+	    ...
+	    let newCard = Card(number: .ace, symbol: .spade)
+	    printCardDescription(newCard)
+	}
+	
+	func printCardDescription(_ card: Card) {
+	    print(card.makeDescription())
+	}
+	```
+
+	<img src="https://user-images.githubusercontent.com/92504186/154937843-8110c182-7aa3-405c-960e-9145185d063a.jpg" alt="SS 2022-02-21 PM 06 57 34" width="30%;" />
+
+
+
+---
+
+### 🤔코드리뷰 후 추가 수정사항
+
+1. description을 처리하는 것을 지원하는 CustomStringConvertible 프로토콜을 학습해보세요
+
+	```swift
+	protocol CustomStringConvertible
+	```
+
+	> A type with a customized textual representation.
+	>
+	> 텍스트적인 표현을 커스터마이즈해주는 타입
+
+	해당 프로토콜을 채택하지 않은 구조체를 Print하면 아래와 같이 출력됩니다.
+
+	```swift
+	struct Milk {
+	    var title: String = ""
+	    var amount: Int = 0
+	    var type: MilkType = .Choco
+	}
+	
+	print(Milk()) // Prints "Milk(title: "", amount: 0, type: MilkType.Choco)"
+	```
+
+	 Milk 구조체가 `CustomStringConvertible` 프로토콜을 채택하여 `description` 프로퍼티를 지정해주면 원하는 형태로 출력할 수 있습니다.
+
+	```swift
+	extension Milk: CustomStringConvertible {
+	    var description: String {
+	        return self.type.rawValue + self.amount + "우유"
+	    }
+	}
+	
+	print(Milk(amount: 150)) // Prints "Choco150우유"
+	```
+
+	---
+
+	위의 `CustomStringConvertible` 프로토콜을 채택하여 수정한 Card클래스는 아래와 같습니다.
+
+	```swift
+	class Card {
+	    
+	    enum Number: Int, CustomStringConvertible {
+	        case ace = 1 ,two ,three ,four ,five ,six ,seven , eight, nine, ten, jack, queen, king
+	        
+	        var description: String {
+	            switch self.rawValue {
+	            case 1:
+	                return("A")
+	            case 11:
+	                return("J")
+	            case 12:
+	                return("Q")
+	            case 13:
+	                return("K")
+	            default:
+	                return(String(self.rawValue))
+	            }
+	        }
+	    }
+	    
+	    enum Symbol: Character, CustomStringConvertible {
+	        case heart = "❤️"
+	        case spade = "♠️"
+	        case diamond = "🔷"
+	        case club = "♣️"
+	        
+	        var description: String {
+	            return String(self.rawValue)
+	        }
+	    }
+	    
+	    var number: Number
+	    var symbol: Symbol
+	    
+	    init(number: Number, symbol: Symbol) {
+	        self.number = number
+	        self.symbol = symbol
+	    }
+	
+	}
+	
+	extension Card: CustomStringConvertible {
+	    var description: String {
+	        return symbol.description + number.description
+	    }
+	}
+	```
+
+2. self.view.addSubview()로도 추가를 하는데 cards.append()를 다시 하는 이유가 뭘까요? 안해도 상관없지 않을까요?
+
+	처음 생각으로는, 나중에 각각의 카드 UIImageView의 Image 프로퍼티를 수정해주게 될 것이라 생각해서, 모든 UIImageView들을 하나의 배열에 담아놨었습니다. 하지만 self.view에 subView로 이미 추가해놨기 때문에, self.view.subviews 배열을 이용하면 해당 UIImageView에 접근할 수 있게 됩니다. 따라서 cards 배열을 삭제했습니다.
+
+
+
+---
+
+---
+
