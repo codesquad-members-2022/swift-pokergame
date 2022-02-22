@@ -29,8 +29,6 @@ class PokerBoardViewController: UIViewController {
         attribute()
         layout()
         
-        pokerGame.delegate = self
-        
         let defaultTypeIndex = Environment.Poker.defaultType == .sevenCard ? 0 : 1
         pokerOptionView.typeButtons[defaultTypeIndex].isEnabled = false
         let defaultPlayerCountIndex = Environment.Player.defaultCount - 2
@@ -40,18 +38,42 @@ class PokerBoardViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        pokerGame.start()
+        pokerGame.action.pokerStart()
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if event?.subtype == .motionShake {
+            pokerGame.action.pokerStart()
+        }
     }
     
     //MARK: - Method
     
     private func bind() {
+        
+        pokerGame.state.updateLayout = { pokerType in
+            self.playerCardViews.forEach {
+                $0.isHidden = true
+            }
+            self.layout(pokerType: pokerType)
+        }
+        
+        pokerGame.state.didCreatePlayers = { players in
+            players.enumerated().forEach {
+                self.playerCardViews[$0].setCardImage(player: $1)
+            }
+        }
+        
+        pokerGame.state.didCreateDealer = { dealer in
+            self.dealerCardView.setCardImage(player: dealer)
+        }
+        
         pokerOptionView.typeButtons.enumerated().forEach { index, button in
             button.addAction(UIAction(handler: { sender in
                 (0..<self.pokerOptionView.typeButtons.count).forEach {
                     self.pokerOptionView.typeButtons[$0].isEnabled = index != $0
                 }
-                self.pokerGame.inputPokerType(pokerType: index == 0 ?.sevenCard : .fiveCard)
+                self.pokerGame.action.inputPokerType(index == 0 ?.sevenCard : .fiveCard)
             }), for: .touchUpInside)
         }
         
@@ -60,7 +82,7 @@ class PokerBoardViewController: UIViewController {
                 (0..<self.pokerOptionView.playerButtons.count).forEach {
                     self.pokerOptionView.playerButtons[$0].isEnabled = index != $0
                 }
-                self.pokerGame.inputPlayerCount(playerCount: index + 2)
+                self.pokerGame.action.inputPlayerCount(index + 2)
             }), for: .touchUpInside)
         }
     }
@@ -75,7 +97,7 @@ class PokerBoardViewController: UIViewController {
         }
     }
     
-    private func layout() {
+    private func layout(pokerType: PokerGame.PokerType = .sevenCard) {
         let safeAreaFrame = self.view.safeAreaLayoutGuide.layoutFrame
         let topOffset = safeAreaFrame.minY
         let leftOffset = 15.0
@@ -97,7 +119,7 @@ class PokerBoardViewController: UIViewController {
         let cardViewsSpacing = 50.0
         let cardWidth = safeAreaFrame.width / CGFloat(maxCardCount + 1)
         let cardTotalSpacing = CGFloat(maxCardCount - 1) * cardSpacing
-        let cardCount = CGFloat(self.pokerGame.pokerType.cardCount)
+        let cardCount = CGFloat(pokerType.rawValue)
         let playerCardViewWidth = cardWidth * cardCount - cardTotalSpacing
         let playerCardViewHeight = cardWidth * cardSizeRatio
         
@@ -113,23 +135,5 @@ class PokerBoardViewController: UIViewController {
         self.view.addSubview(dealerCardView)
         let yPosition = self.view.frame.height - playerCardViewHeight - bottomOffset
         dealerCardView.frame = CGRect(x: leftOffset, y: yPosition, width: playerCardViewWidth, height: playerCardViewHeight)
-    }
-}
-
-extension PokerBoardViewController: PokerGameDelegate {
-    func startPoker() {
-        playerCardViews.forEach {
-            $0.isHidden = true
-        }
-        layout()
-    }
-    
-    func player(index: Int, player: Player) {
-        let playerView = playerCardViews[index]
-        playerView.setCardImage(player: player)
-    }
-    
-    func dealer(dealer: Player) {
-        dealerCardView.setCardImage(player: dealer)
     }
 }

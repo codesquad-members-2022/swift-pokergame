@@ -10,10 +10,10 @@ import Foundation
 public enum Environment {
     enum Player {
         static let limitCount = 4
-        static let defaultCount = 4
+        static let defaultCount = 2
     }
     
     enum Poker {
-        static let defaultType = PokerGame.PokerType.sevenCard        
+        static let defaultType = PokerGame.PokerType.fiveCard
     }
 }

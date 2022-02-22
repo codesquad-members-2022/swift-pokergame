@@ -69,8 +69,8 @@ class PokerGameTests: XCTestCase {
     }
     
     func testCardInstance() {
-        let cards: [CardData] = CardData.CardNumber.allCases.map {
-            CardData(pattern: .clover, number: $0)
+        let cards: [Card] = Card.Number.allCases.map {
+            Card(pattern: .clover, number: $0)
         }
         XCTAssertEqual(cards.count, 13)
     }
@@ -82,12 +82,12 @@ extension PokerGameTests: PokerGameDelegate {
     }
     
     func player(index: Int, player: Player) {
-        XCTAssertEqual(player.cards.count, Constants.testPokerType.cardCount)
+        XCTAssertEqual(player.cards.count, Constants.testPokerType.rawValue)
         XCTAssertEqual(index, testPlayerCount)
         testPlayerCount += 1
     }
     
     func dealer(dealer: Player) {
-        XCTAssertEqual(dealer.cards.count, Constants.testPokerType.cardCount)
+        XCTAssertEqual(dealer.cards.count, Constants.testPokerType.rawValue)
     }
 }
