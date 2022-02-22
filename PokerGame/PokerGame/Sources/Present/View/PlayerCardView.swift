@@ -26,12 +26,18 @@ class PlayerCardView: UIStackView {
     private func attribute() {
         self.spacing = -3
         self.distribution = .fillEqually
+        self.backgroundColor = .clear
         
         name.font = .systemFont(ofSize: 25)
         name.textColor = .black
         name.backgroundColor = .gray
         name.clipsToBounds = true
         name.layer.cornerRadius = 5
+        
+        cards.forEach {
+            $0.clipsToBounds = true
+            $0.layer.cornerRadius = 10
+        }
     }
     
     func layout() {

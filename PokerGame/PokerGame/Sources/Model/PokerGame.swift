@@ -8,14 +8,15 @@
 import Foundation
 
 protocol PokerGameDelegate {
+    func startPoker()
     func player(index: Int, player: Player)
     func dealer(dealer: Player)
-    func emptyCardDeck()
 }
 
 class PokerGame {
-    
     var delegate: PokerGameDelegate?
+    public private(set) var pokerType = PokerType.sevenCard
+    public private(set) var playerCount = 4
     
     func createPlayers(count: Int) -> [Player] {
         var playerNames = ["shingha", "bibi", "alex", "rosa", "chez", "ocean", "pigbag"]
@@ -26,17 +27,18 @@ class PokerGame {
         }
     }
     
-    func start(pokerType: PokerType, playerCount: Int) {
+    func start() {
+        self.delegate?.startPoker()
+        
         var players: [Player] = [Player(name: "Dealer")]
         players += createPlayers(count: playerCount)
         let cardDeck = CardDeck()
         cardDeck.shuffle()
-        let cardCount = pokerType.rawValue
+        let cardCount = pokerType.cardCount
         
         for _ in 0..<cardCount {
             for player in players {
                 guard let card = cardDeck.removeOne() else {
-                    self.delegate?.emptyCardDeck()
                     return
                 }
                 player.add(card: card)
@@ -50,9 +52,28 @@ class PokerGame {
     }
 }
 
+extension PokerGame: PokerOptionDelegate {
+    func onPokerTypeSelected(pokerType: PokerGame.PokerType) {
+        self.pokerType = pokerType
+        start()
+    }
+    
+    func onPlayerCountSelected(playerCount: Int) {
+        self.playerCount = playerCount
+        start()
+    }
+}
+
+
 extension PokerGame {
-    enum PokerType: Int, CaseIterable {
-        case sevenCard = 7
-        case fiveCard = 5
+    enum PokerType: CaseIterable {
+        case sevenCard
+        case fiveCard
+    }
+}
+
+extension PokerGame.PokerType {
+    var cardCount: Int {
+        self == .sevenCard ? 7 : 5
     }
 }
