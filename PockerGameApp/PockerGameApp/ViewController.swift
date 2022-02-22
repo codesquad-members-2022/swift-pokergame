@@ -9,10 +9,15 @@ import UIKit
 
 class ViewController: UIViewController {
     private let cardImage = UIImage(named: "card-back")
-    private var cardXPosition: Double = 0
+    
+    @IBOutlet weak var horizonStack: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        horizonStack.frame.size.height = horizonStack.frame.width / 7 * 1.27
+        horizonStack.distribution = .fillEqually
+        horizonStack.spacing = 3
         
         if let pattern = UIImage(named: "bg_pattern"){
             self.view.backgroundColor = UIColor(patternImage: pattern)
@@ -24,16 +29,8 @@ class ViewController: UIViewController {
     }
 
     func makeImageView(){
-        let cardWidth: Double = 54
-        let cardHeight: Double = cardWidth * 1.27
+        let imageView = UIImageView(image: self.cardImage)
         
-        let imageView = UIImageView(frame: CGRect(x: self.cardXPosition, y: 50, width: cardWidth, height: cardHeight))
-        imageView.image = self.cardImage
-        
-        // 나열을 위해 x 값 변경 (카드 가로 54 / 카드 간격 2 ; 13pro 가로 390)
-        self.cardXPosition += 56
-        
-        self.view.addSubview(imageView)
+        self.horizonStack.addArrangedSubview(imageView)
     }
 }
-

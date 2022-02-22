@@ -34,3 +34,129 @@
 
 <img src = "https://user-images.githubusercontent.com/44107696/154883567-2a4e1066-ae91-4d9f-a354-ba8afefaed30.png" width="800" height="890">
     * Info plist에서 BundleName 추가. 시뮬레이터 홈 화면에서 변경된 Yu-Gi-Oh!로 앱 이름 표시되는 것을 확인
+    
+- Stack View 추가
+    + 추가 후 코드 변경되기 전의 코드
+    ```swift
+    class ViewController: UIViewController {
+        private let cardImage = UIImage(named: "card-back")
+        private var cardXPosition: Double = 0
+        
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            
+            if let pattern = UIImage(named: "bg_pattern"){
+                self.view.backgroundColor = UIColor(patternImage: pattern)
+            }
+            
+            for _ in 0...6{
+                makeImageView()
+            }
+        }
+
+        func makeImageView(){
+            let cardWidth: Double = 54
+            let cardHeight: Double = cardWidth * 1.27
+            
+            let imageView = UIImageView(frame: CGRect(x: self.cardXPosition, y: 50, width: cardWidth, height: cardHeight))
+            imageView.image = self.cardImage
+            
+            // 나열을 위해 x 값 변경 (카드 가로 54 / 카드 간격 2 ; 13pro 가로 390)
+            self.cardXPosition += 56
+            
+            self.horizonStack.addSubview(imageView)
+        }
+    }
+    ```
+    
+    + Stack View에 맞춰서 코드 변경
+        * StackView는 Auto layout을 적용해 내부에 배치된 view들을 배치하므로 subview 개개로 크기 등의 요소를 조절하는 것이 의미 없어지므로 makeImageView 함수는 imageView를 image 매개변수로 생성하고 addArrangedSubview를 통해 StackView의 stack에 추가하는 로직으로 수정
+        * StackView의 높이는 7개의 subview 각각의 너비에 1.27배로 계산 (기존 카드의 너비 대비 높이가 나올 수 있도록). subview 간의 간격은 3, 동일 크기로 stackview를 채우도록 fill equally로 설정.
+        
+    ```swift
+    class ViewController: UIViewController {
+        private let cardImage = UIImage(named: "card-back")
+        
+        @IBOutlet weak var horizonStack: UIStackView!
+        
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            
+            horizonStack.frame.size.height = horizonStack.frame.width / 7 * 1.27
+            horizonStack.distribution = .fillEqually
+            horizonStack.spacing = 3
+            
+            if let pattern = UIImage(named: "bg_pattern"){
+                self.view.backgroundColor = UIColor(patternImage: pattern)
+            }
+            
+            for _ in 0...6{
+                makeImageView()
+            }
+        }
+
+        func makeImageView(){
+            let imageView = UIImageView(image: self.cardImage)
+            
+            self.horizonStack.addArrangedSubview(imageView)
+        }
+    }
+    ```
+
+
+## 카드 클래스 구현하기
+### 프로그래밍 요구사항
+- 객체지향 프로그래밍 방식에 충실하게 카드 클래스(class)를 설계한다.
+    + 속성으로 모양 4개 중에 하나, 숫자 1-13개 중에 하나를 가질 수 있다.
+    + 모양이나 숫자도 적당한 데이터 구조로 표현한다. 클래스 혹은 Nested enum 타입으로 표현해도 된다.
+    + 어떤 이유로 데이터 구조를 선택했는지 주석(comment)으로 구체적인 설명을 남긴다.
+    + 카드 정보를 출력하기 위한 문자열을 반환하는 함수를 구현한다.
+    + 문자열에서 1은 A로, 11은 J로, 12는 Q로, 13은 K로 출력한다.
+    
+    ```swift
+    struct CardNumber{
+        private let number: Int
+        var changedNumber: String{
+            switch number{
+            case 1:
+                return "A"
+            case 11:
+                return "J"
+            case 12:
+                return "Q"
+            case 13:
+                return "K"
+            default:
+                return number.description
+            }
+        }
+        
+        init(num: Int){
+            number = num
+        }
+    }
+
+    enum Shape: String{
+        case heart = "♥️", case dia = "♦️", case spade = "♠️", case clover = "♣️"
+    }
+    ```
+    * 숫자 값은 변환 값 외에 실제 숫자를 사용하는 경우도 있으므로 모두 보관할 수 있는 Struct로 고려 (enum은 상기의 목적을 이루기 위해 모든 숫자 나열 필요, 클래스는 참조나 고유 값 등이 필요하지 않으므로)
+    * 문양은 4가지 밖에 안 되는 간단한 상황이므로 enum으로 고려
+    
+    ```swift
+    class Card{
+        private let number: CardNumber
+        private let shape: Shape
+        
+        func cardInformation() -> String{
+            let cardValue = shape.rawValue + number.changedNumber
+            return cardValue
+        }
+        
+        init(number: CardNumber, shape: Shape){
+            self.number = number
+            self.shape = shape
+        }
+    }
+    ```
+    * 문양과 숫자 정보를 합쳐서 리턴해주는 cardInformation 함수
