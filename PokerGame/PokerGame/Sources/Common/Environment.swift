@@ -8,7 +8,12 @@
 import Foundation
 
 public enum Environment {
-    static let maxPlayerCount = 4
-    static let defaultPokerType = PokerGame.PokerType.sevenCard
-    static let defaultPlayerCount = 4
+    enum Player {
+        static let limitCount = 4
+        static let defaultCount = 4
+    }
+    
+    enum Poker {
+        static let defaultType = PokerGame.PokerType.sevenCard        
+    }
 }
