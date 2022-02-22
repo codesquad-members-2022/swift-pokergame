@@ -16,8 +16,11 @@ class ViewController: UIViewController {
         let card = Card(shape: .heart, number: .Q)
         print(card)
         createHand(numberOfCard: 7)
-        let deck = CardDeck()
-        print(deck.printDeck())
+        var deck = CardDeck()
+        print(deck.count)
+        print(deck.removeOne())
+        print(deck.count)
+        
         
     }
     func createHand(numberOfCard: Int){

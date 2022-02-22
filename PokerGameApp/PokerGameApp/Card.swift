@@ -18,6 +18,9 @@ struct CardDeck {
             }
         }
     }
+    mutating func removeOne() -> Card? {
+        return self.cards.popLast()
+    }
 }
 struct Card {
     // 카드에는 4개의 모양, 13개의 숫자가 정해져 있어 enum 타입으로 정의
