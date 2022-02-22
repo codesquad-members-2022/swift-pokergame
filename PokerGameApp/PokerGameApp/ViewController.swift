@@ -9,58 +9,54 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let CARD_INSET: CGFloat = 4
-    let CARD_COUNT = 7
+    let CARD_INSET: CGFloat = 3
+    let CARD_COUNT = 5
+    var cards: [UIImageView]!
     
     let bgImageName = "bg_pattern"
     let cardImageName = "card-back"
-    var imageViewFactory: ((CGFloat) -> UIImageView?)!
     
     var readableFrame: CGRect!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewSafeAreaInsetsDidChange() {
-        super.viewSafeAreaInsetsDidChange()
-        readableFrame = view.safeAreaLayoutGuide.layoutFrame
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
         if let bgPattern = UIImage.init(named: bgImageName) {
             self.view.backgroundColor = UIColor.init(patternImage: bgPattern)
         }
+    }
+    
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        readableFrame = self.view.readableContentGuide.layoutFrame
+        let totalRow: Int = (CARD_COUNT / 7) + (CARD_COUNT % 7 > 0 ? 1 : 0)
         
-        let readableWidthExceptInset = readableFrame.width - (CARD_INSET * CGFloat(CARD_COUNT+1))
+        for i in 1...totalRow {
+            if i == totalRow {
+                setStackView(cardNumber: (totalRow == 1 ? CARD_COUNT : 7 % CARD_COUNT))
+            } else {
+                setStackView(cardNumber: 7)
+            }
+        }
+    }
+    
+    func setStackView(cardNumber: Int) {
+        let cardWidth = (readableFrame.width / CGFloat(7)) - CARD_INSET
         
-        imageViewFactory = { [self] (width: CGFloat) -> UIImageView? in
-            
+        cards = (0..<cardNumber).compactMap { _ in
             let imageView = UIImageView(image: UIImage(named: cardImageName))
-            imageView.frame.size = CGSize(width: width, height: width * 1.27)
+            imageView.contentMode = .scaleAspectFit
             return imageView
         }
         
-        for _ in 0..<CARD_COUNT {
-            
-            guard let imageView = imageViewFactory(readableWidthExceptInset / 7) else {
-                continue
-            }
-            
-            view.addSubview(imageView)
-            
-            let lastCardInPile = view.subviews.max(by: {$0.frame.maxX < $1.frame.maxX})!
-            let isFirst = view.subviews.count == 1
-            
-            let position = CGPoint(
-                x: (isFirst ? 0 : lastCardInPile.frame.maxX) + CARD_INSET,
-                y: readableFrame.minY
-            )
-            
-            imageView.frame.origin = position
-        }
+        let stackView = UIStackView.init(arrangedSubviews: cards)
+        self.view.addSubview(stackView)
+        
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.alignment = .leading
+        stackView.spacing = CARD_INSET
+        stackView.frame = readableFrame
+        stackView.frame.size.height = cardWidth * 1.27
     }
 }
-
