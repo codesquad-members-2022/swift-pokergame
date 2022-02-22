@@ -60,7 +60,8 @@ class ViewController: UIViewController {
                 deck.shuffle()
                 print("전체 \(deck.count)장의 카드를 섞었습니다.")
             case "remove":
-                print("\(deck.removeOne())\n총 \(deck.count)장의 카드가 남아있습니다.")
+                guard let removedCard = deck.removeOne() else { continue }
+                print("\(removedCard)\n총 \(deck.count)장의 카드가 남아있습니다.")
             default:
                 print("테스트 종료")
                 break
