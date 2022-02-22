@@ -28,11 +28,6 @@ class PokerBoardViewController: UIViewController {
         bind()
         attribute()
         layout()
-        
-        let defaultTypeIndex = PokerGame.Constants.defaultType == .sevenCard ? 0 : 1
-        pokerOptionView.typeButtons[defaultTypeIndex].isEnabled = false
-        let defaultPlayerCountIndex = Player.Constants.defaultCount - 2
-        pokerOptionView.playerButtons[defaultPlayerCountIndex].isEnabled = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -76,10 +71,10 @@ class PokerBoardViewController: UIViewController {
             }), for: .touchUpInside)
         }
         
-        pokerOptionView.playerButtons.enumerated().forEach { index, button in
+        pokerOptionView.playerButtons.forEach { index, button in
             button.addAction(UIAction(handler: { sender in
-                (0..<self.pokerOptionView.playerButtons.count).forEach {
-                    self.pokerOptionView.playerButtons[$0].isEnabled = index != $0
+                self.pokerOptionView.playerButtons.forEach {
+                    $1.isEnabled = index != $0
                 }
                 self.pokerGame.action.inputPlayerCount(index + 2)
             }), for: .touchUpInside)

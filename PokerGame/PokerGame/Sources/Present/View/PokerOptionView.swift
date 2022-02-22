@@ -14,12 +14,18 @@ class PokerOptionView: UIStackView {
     let typeButtons = (0..<PokerGame.PokerType.allCases.count).map { _ in UIButton()}
     
     let playerView = UIStackView()
-    let playerButtons = (0..<Player.Constants.limitCount - 1).map { _ in UIButton()}
+    var playerButtons = (2...Player.Constants.limitCount).reduce(into: [Int:UIButton]()) {
+        $0[$1] = UIButton()
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         attribute()
         layout()
+        
+        let defaultTypeIndex = PokerGame.Constants.defaultType == .sevenCard ? 0 : 1
+        typeButtons[defaultTypeIndex].isEnabled = false
+        playerButtons[Player.Constants.defaultCount]?.isEnabled = false
     }
     
     required init(coder: NSCoder) {
@@ -52,13 +58,13 @@ class PokerOptionView: UIStackView {
         playerView.layer.borderWidth = 1.5
         playerView.layer.borderColor = UIColor.white.cgColor
         
-        playerButtons.enumerated().forEach {
+        playerButtons.forEach {
             $1.setBackgroundImage(UIImage(named: "buttonBg"), for: .disabled)
             $1.setTitleColor(.black, for: .disabled)
             $1.setTitleColor(.white, for: .normal )
             $1.layer.borderWidth = 0.5
             $1.layer.borderColor = UIColor.white.cgColor
-            $1.setTitle("\($0+2)명", for: .normal)
+            $1.setTitle("\($0)명", for: .normal)
             $1.titleLabel?.font = .systemFont(ofSize: 15)
         }
     }
@@ -71,8 +77,8 @@ class PokerOptionView: UIStackView {
         }
         
         self.addArrangedSubview(playerView)
-        playerButtons.forEach {
-            playerView.addArrangedSubview($0)
+        playerButtons.sorted(by: { $0.key < $1.key}).forEach {
+            playerView.addArrangedSubview($0.value)
         }
     }
 }
