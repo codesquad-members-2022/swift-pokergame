@@ -35,8 +35,9 @@ class ViewController: UIViewController {
         
         for addImage in 0..<count {
             let imageView = UIImageView(image: image)
-            // 여백을 위해 width - 3
-            imageView.frame = CGRect(x: positionX, y: 50, width: width - 3, height: hight)
+            let margin = 3.0
+            
+            imageView.frame = CGRect(x: positionX, y: 50, width: width - margin, height: hight)
             
             positionX += width
             view.addSubview(imageView)
