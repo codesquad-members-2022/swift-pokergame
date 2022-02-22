@@ -31,8 +31,8 @@ struct Card {
         case heart = "♥"
         case club = "♣"
         
-        var description: Character {
-            return rawValue
+        var description: String {
+            return String(rawValue)
         }
     }
 
