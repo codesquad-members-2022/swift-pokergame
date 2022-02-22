@@ -28,9 +28,9 @@ class PokerBoardViewController: UIViewController {
         pokerGame.delegate = self
         pokerOptionView.delegate = pokerGame
         
-        let defaultTypeIndex = pokerGame.pokerType == .sevenCard ? 0 : 1
+        let defaultTypeIndex = Environment.defaultPokerType == .sevenCard ? 0 : 1
         pokerOptionView.typeButtons[defaultTypeIndex].isEnabled = false
-        let defaultPlayerCountIndex = pokerGame.playerCount - 2
+        let defaultPlayerCountIndex = Environment.defaultPlayerCount - 2
         pokerOptionView.playerButtons[defaultPlayerCountIndex].isEnabled = false
     }
     
