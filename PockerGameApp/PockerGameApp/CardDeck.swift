@@ -10,7 +10,7 @@ import Foundation
 struct CardDeck {
     private var cards: [Card]
     
-    init() {
+    public init() {
         var cards = [Card]()
         for suit in CardSuit.allCases {
             for number in CardNumber.allCases {
@@ -21,11 +21,11 @@ struct CardDeck {
         shuffle()
     }
     
-    var count: Int {
+    public var count: Int {
         return cards.count
     }
     
-    mutating func shuffle() {
+    public mutating func shuffle() {
         // Mordern Fisher-Yates Shuffle (in-place)
         for i in 0..<cards.count-1 {
             let roll = Int.random(in: 0..<cards.count)
@@ -33,11 +33,11 @@ struct CardDeck {
         }
     }
     
-    mutating func draw() -> Card? {
+    public mutating func draw() -> Card? {
         return cards.popLast()
     }
     
-    mutating func reset() {
+    public mutating func reset() {
         var cards = [Card]()
         for suit in CardSuit.allCases {
             for number in CardNumber.allCases {
