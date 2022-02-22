@@ -13,15 +13,7 @@ class ViewController: UIViewController {
         if let backGround = UIImage(named: "bg_pattern.png"){
             self.view.backgroundColor = UIColor(patternImage: backGround)
         }
-        let card = Card(shape: .heart, number: .Q)
-        print(card)
         createHand(numberOfCard: 7)
-        var deck = CardDeck()
-        print(deck.count)
-        print(deck.removeOne())
-        print(deck.count)
-        
-        
     }
     func createHand(numberOfCard: Int){
         let screenSize = UIScreen.main.bounds
@@ -40,7 +32,6 @@ class ViewController: UIViewController {
             self.view.addSubview(imageView)
         }
     }
-    
 }
 
 

@@ -22,6 +22,14 @@ struct CardDeck {
         originCards = tempCardArr
         cards = originCards
     }
+    mutating func shuffle() {
+        for i in 0..<self.count {
+            guard let randomIndex = (i..<self.count).randomElement() else {continue}
+            let tempCard = cards[i]
+            cards[i] = cards[randomIndex]
+            cards[randomIndex] = tempCard
+        }
+    }
     mutating func removeOne() -> Card? {
         return self.cards.popLast()
     }
