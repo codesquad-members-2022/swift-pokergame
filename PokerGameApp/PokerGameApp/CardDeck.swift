@@ -3,7 +3,9 @@ import Foundation
 struct CardDeck{
     
     private var deck: [Card] = []
-    private (set) var count: Int = 0
+    var count: Int{
+        return deck.count
+    }
     
     init(){
         reset()
@@ -19,7 +21,6 @@ struct CardDeck{
     }
     
     mutating func removeOne()-> Card{
-        count -= 1
         return deck.removeLast()
     }
     
@@ -31,6 +32,5 @@ struct CardDeck{
                 self.deck.append(card)
             }
         }
-        self.count = self.deck.count
     }
 }
