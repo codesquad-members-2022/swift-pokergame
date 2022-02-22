@@ -50,7 +50,6 @@ class PokerBoardViewController: UIViewController {
     //MARK: - Method
     
     private func bind() {
-        
         pokerGame.state.updateLayout = { pokerType in
             self.playerCardViews.forEach {
                 $0.isHidden = true
