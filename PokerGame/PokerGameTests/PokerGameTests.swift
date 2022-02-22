@@ -24,11 +24,22 @@ class PokerGameTests: XCTestCase {
     
     func testPokerStart() {
         let pokerGame = PokerGame()
-        pokerGame.inputPokerType(pokerType: Constants.testPokerType)
-        pokerGame.inputPlayerCount(playerCount: Constants.testPlayerCount)
         
-        pokerGame.delegate = self
-        pokerGame.start()
+        pokerGame.state.didCreatePlayers = { players in
+            XCTAssertEqual(players.count, Constants.testPlayerCount)
+            
+            players.forEach {
+                XCTAssertEqual($0.cards.count, Constants.testPokerType.rawValue)
+            }
+        }
+        
+        pokerGame.state.didCreateDealer = { dealer in
+            XCTAssertEqual(dealer.cards.count, Constants.testPokerType.rawValue)
+        }
+                
+        pokerGame.action.inputPokerType(Constants.testPokerType)
+        pokerGame.action.inputPlayerCount(Constants.testPlayerCount)
+        pokerGame.action.pokerStart()
     }
     
     func testCardDeckReset() {
@@ -44,16 +55,18 @@ class PokerGameTests: XCTestCase {
         XCTAssertEqual(cardDeck.count, 52)
     }
     
-    func testCardDeckRemoveOne() {
+    func testCardDeckRemoveOne() {        
         let cardDeck = CardDeck()
-        var removeCards = [String]()
+        var removedCards = [Card]()
         (0..<52).forEach { _ in
             guard let card = cardDeck.removeOne() else {
                 return
             }
             
-            XCTAssertFalse(removeCards.contains(card.description), "중복된 카드가 뽑혔습니다")
-            removeCards.append(card.description)
+            removedCards.forEach {
+                XCTAssertFalse($0 == card, "중복된 카드가 뽑혔습니다")
+            }
+            removedCards.append(card)
         }
     }
     
@@ -73,21 +86,5 @@ class PokerGameTests: XCTestCase {
             Card(pattern: .clover, number: $0)
         }
         XCTAssertEqual(cards.count, 13)
-    }
-}
-
-extension PokerGameTests: PokerGameDelegate {
-    func startPoker() {
-        
-    }
-    
-    func player(index: Int, player: Player) {
-        XCTAssertEqual(player.cards.count, Constants.testPokerType.rawValue)
-        XCTAssertEqual(index, testPlayerCount)
-        testPlayerCount += 1
-    }
-    
-    func dealer(dealer: Player) {
-        XCTAssertEqual(dealer.cards.count, Constants.testPokerType.rawValue)
     }
 }

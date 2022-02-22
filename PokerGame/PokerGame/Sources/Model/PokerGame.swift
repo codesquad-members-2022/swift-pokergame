@@ -37,12 +37,10 @@ class PokerGame {
         
         action.inputPokerType = { pokerType in
             self.pokerType = pokerType
-            self.start()
         }
         
         action.inputPlayerCount = { playerCount in
             self.playerCount = playerCount
-            self.start()
         }
     }
     
