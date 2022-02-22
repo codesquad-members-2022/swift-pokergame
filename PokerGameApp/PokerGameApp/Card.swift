@@ -32,11 +32,14 @@ class Card {
     }
     let shape : CardShape
     let number : CardNumber
-    var string: String {
-        return "\(shape.rawValue)\(number.rawValue)"
-    }
     init(shape : CardShape, number: CardNumber) {
         self.shape = shape
         self.number = number
+    }
+}
+
+extension Card: CustomStringConvertible {
+    var description: String {
+        return "\(shape.rawValue)\(number.rawValue)"
     }
 }
