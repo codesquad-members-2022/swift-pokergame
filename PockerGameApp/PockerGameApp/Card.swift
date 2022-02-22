@@ -7,7 +7,7 @@
 
 import Foundation
 
-// Named type을 선언할 때, 빠르고 불변성을 가진 Struct를 먼저 고려했습니다.
+// Named type을 선언할 때, Stack을 사용하기 때문에 빠르고 불변성을 가진 Struct를 먼저 고려했습니다.
 // Class를 꼭 써야할 이유가 없으면 Struct를 쓰라고 배웠습니다.
 // Card 객체는 고유성이 필요한 객체가 아니고 (하트 6는 모두 똑같은 하트 6임)
 // 꼭 변경 가능한 상태를 공유해야 하는 상황도 아니기 때문에 Struct를 선택했습니다.
@@ -43,8 +43,9 @@ enum CardSuit: CustomStringConvertible {
 
 // 처음에는 CardNumver를 Int로 선언하려고 했습니다.
 // 하지만 유효 범위의 지정과 Description 설정을 위해 Enum 타입으로 선언했습니다.
-// Enum의 case명에는 숫자를 쓸 수 없습니다.
-// 따라서 각 CardNumber가 가지는 숫자값은 RawValue(Int)로 담아주었습니다.
+// YAGNI일 수도 있지만, 카드게임이라면 숫자값을 쓸 일이 분명 있을 거라고 생각했습니다.
+// 하지만 Enum의 case명에는 숫자를 쓸 수 없습니다.
+// 각 CardNumber가 가지는 숫자값은 RawValue(Int)로 담아주었습니다.
 // 이후 RawValue로 enum을 생성하거나, 게임 로직에서 rawValue를 호출하여 사용할 수 있을 거 같습니다.
 
 enum CardNumber: Int, CustomStringConvertible {

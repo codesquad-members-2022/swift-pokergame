@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         
         let spades6 = Card(suit: .spades, number: .six)
         print(spades6)
-        let heartQueen = Card(suit: .hearts, number: .queen)
+        let heartQueen = Card(suit: .hearts, number: CardNumber(rawValue: 12)!)
         print(heartQueen)
         let diamondsAce = Card(suit: .diamonds, number: .ace)
         print(diamondsAce)
