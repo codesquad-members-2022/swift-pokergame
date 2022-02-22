@@ -13,7 +13,7 @@ import Foundation
 ///변형이 일어나는 데이터이기 때문에 클래스로 제작
 class CardDeck: CustomStringConvertible {
     
-    public private(set) var deck: [CardData] = []
+    public private(set) var deck: [Card] = []
     
     var description: String {
         let deckDatas = String(deck.reduce(""){ $0 + "\($1), "}.dropLast(2))
@@ -42,7 +42,7 @@ class CardDeck: CustomStringConvertible {
         }
     }
     
-    func removeOne() -> CardData? {
+    func removeOne() -> Card? {
         if isEmpty {
             return nil
         }
@@ -51,9 +51,9 @@ class CardDeck: CustomStringConvertible {
     }
     
     func reset() {
-        deck = CardData.Pattern.allCases.reduce([]) { resultDeck, pattern in
-            resultDeck + CardData.Number.allCases.map {
-                CardData(pattern: pattern, number: $0)
+        deck = Card.Pattern.allCases.reduce([]) { resultDeck, pattern in
+            resultDeck + Card.Number.allCases.map {
+                Card(pattern: pattern, number: $0)
             }
         }
     }
