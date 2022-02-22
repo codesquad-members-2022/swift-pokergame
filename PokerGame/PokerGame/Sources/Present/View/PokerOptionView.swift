@@ -8,11 +8,6 @@
 import Foundation
 import UIKit
 
-protocol PokerOptionDelegate {
-    func onPokerTypeSelected(pokerType: PokerGame.PokerType)
-    func onPlayerCountSelected(playerCount: Int)
-}
-
 class PokerOptionView: UIStackView {
     
     let typeView = UIStackView()
@@ -21,37 +16,14 @@ class PokerOptionView: UIStackView {
     let playerView = UIStackView()
     let playerButtons = (0..<Environment.maxPlayerCount - 1).map { _ in UIButton()}
     
-    var delegate: PokerOptionDelegate?
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        bind()
         attribute()
         layout()
     }
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func bind() {
-        typeButtons.enumerated().forEach { index, button in
-            button.addAction(UIAction(handler: { sender in
-                (0..<self.typeButtons.count).forEach {
-                    self.typeButtons[$0].isEnabled = index != $0
-                }
-                self.delegate?.onPokerTypeSelected(pokerType: index == 0 ?.sevenCard : .fiveCard)
-            }), for: .touchUpInside)
-        }
-        
-        playerButtons.enumerated().forEach { index, button in
-            button.addAction(UIAction(handler: { sender in
-                (0..<self.playerButtons.count).forEach {
-                    self.playerButtons[$0].isEnabled = index != $0
-                }
-                self.delegate?.onPlayerCountSelected(playerCount: index + 2)
-            }), for: .touchUpInside)
-        }
     }
     
     private func attribute() {

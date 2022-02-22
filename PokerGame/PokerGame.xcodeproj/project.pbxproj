@@ -20,6 +20,7 @@
 		E00879E027C48FBD0044A6EB /* PokerOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00879DF27C48FBD0044A6EB /* PokerOptionView.swift */; };
 		E00879E827C4977A0044A6EB /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00879E727C4977A0044A6EB /* Extension.swift */; };
 		E00879EA27C4BDF50044A6EB /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00879E927C4BDF50044A6EB /* Environment.swift */; };
+		E00879EB27C4BFD40044A6EB /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00879E927C4BDF50044A6EB /* Environment.swift */; };
 		E0CD2C5827C320C50067B01E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD2C5727C320C50067B01E /* AppDelegate.swift */; };
 		E0CD2C5A27C320C50067B01E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD2C5927C320C50067B01E /* SceneDelegate.swift */; };
 		E0CD2C5F27C320C50067B01E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0CD2C5D27C320C50067B01E /* Main.storyboard */; };
@@ -283,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E00879DA27C3AC5C0044A6EB /* PokerGame.swift in Sources */,
+				E00879EB27C4BFD40044A6EB /* Environment.swift in Sources */,
 				E00879D927C3AC580044A6EB /* CardDeck.swift in Sources */,
 				E00879D627C3AC580044A6EB /* CardData.swift in Sources */,
 				E00879D827C3AC580044A6EB /* Player.swift in Sources */,
