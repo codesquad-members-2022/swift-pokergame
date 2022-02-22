@@ -27,25 +27,26 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage:background)
-        makeCards(num: 7)
+        makeCardImage(num: 7)
         drawCards(cards)
+        
+        
+        
     }
     
     
-    func makeCards(num : Int) {
+    func makeCardImage(num : Int) {
         for _ in 0..<num {
             cards.append(UIImageView(image:backDesign))
         }
     }
     
     func drawCards(_ cards:[UIImageView]) {
-        
         for (index,card) in cards.enumerated() {
             card.frame = CGRect(x: startOffsetX + CGFloat(index) * (cardWidth + spaceBetweenCards), y: topsafeArea, width: cardWidth, height: cardHeight)
             view.addSubview(card)
         }
     }
-    
-        
+  
 }
 

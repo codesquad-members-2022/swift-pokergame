@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B740AED927C53F4B0014E5C1 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = B740AED827C53F4B0014E5C1 /* Card.swift */; };
 		B74D6C7827C3249B00E6E735 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74D6C7727C3249B00E6E735 /* AppDelegate.swift */; };
 		B74D6C7A27C3249B00E6E735 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74D6C7927C3249B00E6E735 /* SceneDelegate.swift */; };
 		B74D6C7C27C3249B00E6E735 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74D6C7B27C3249B00E6E735 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B740AED827C53F4B0014E5C1 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		B74D6C7427C3249B00E6E735 /* 포커게임.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "포커게임.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B74D6C7727C3249B00E6E735 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B74D6C7927C3249B00E6E735 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				B74D6C7727C3249B00E6E735 /* AppDelegate.swift */,
 				B74D6C7927C3249B00E6E735 /* SceneDelegate.swift */,
 				B74D6C7B27C3249B00E6E735 /* ViewController.swift */,
+				B740AED827C53F4B0014E5C1 /* Card.swift */,
 				B74D6C7D27C3249B00E6E735 /* Main.storyboard */,
 				B74D6C8027C3249B00E6E735 /* Assets.xcassets */,
 				B74D6C8227C3249B00E6E735 /* LaunchScreen.storyboard */,
@@ -163,6 +166,7 @@
 				B74D6C7C27C3249B00E6E735 /* ViewController.swift in Sources */,
 				B74D6C7827C3249B00E6E735 /* AppDelegate.swift in Sources */,
 				B74D6C7A27C3249B00E6E735 /* SceneDelegate.swift in Sources */,
+				B740AED927C53F4B0014E5C1 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
