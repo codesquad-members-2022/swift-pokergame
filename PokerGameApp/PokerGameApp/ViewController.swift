@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         print(card)
         createHand(numberOfCard: 7)
         let deck = CardDeck()
-        print(deck.count)
+        print(deck.printDeck())
         
     }
     func createHand(numberOfCard: Int){

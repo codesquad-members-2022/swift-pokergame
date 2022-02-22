@@ -11,10 +11,17 @@ struct CardDeck {
     var count : Int {
         return cards.count
     }
+    init() {
+        for i in Card.Shape.allCases {
+            for j in Card.Number.allCases{
+                cards.append(Card(shape: i, number: j))
+            }
+        }
+    }
 }
 struct Card {
     // 카드에는 4개의 모양, 13개의 숫자가 정해져 있어 enum 타입으로 정의
-    enum Shape : String, CustomStringConvertible {
+    enum Shape : String, CustomStringConvertible, CaseIterable {
         var description: String {
             return rawValue
         }
@@ -23,7 +30,7 @@ struct Card {
         case clover = "♣️"
         case diamond = "♦️"
     }
-    enum Number : String, CustomStringConvertible {
+    enum Number : String, CustomStringConvertible, CaseIterable {
         var description: String {
             return rawValue
         }
