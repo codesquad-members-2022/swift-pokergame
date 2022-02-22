@@ -10,9 +10,9 @@
 
 ## 📱 실행 화면
 
-![스크린샷 2022-02-22 오후 4 40 31](https://user-images.githubusercontent.com/95578975/155086263-70eace93-80b8-47c6-a77f-b149c794fa9d.png)
+![스크린샷 2022-02-22 오후 7 13 51](https://user-images.githubusercontent.com/95578975/155111167-6239d71c-6475-4464-a4ff-5ec0f49e5d5e.png)
 
-![스크린샷 2022-02-22 오후 4 48 05](https://user-images.githubusercontent.com/95578975/155086196-15487cb5-adc1-471f-b7dc-cd78eb391be5.png)
+![스크린샷 2022-02-22 오후 7 14 27](https://user-images.githubusercontent.com/95578975/155111271-6786f267-eae1-4b85-b3f2-350a8b3933cf.png)
 
 ## 🤔 고민과 해결
 
