@@ -44,6 +44,8 @@ class ViewController: UIViewController {
         
         showCardImages()
         
-        let card = Card(shape: Card.CardShape.diamond, number: Card.CardNumber.eight)
+        let card1 = Card(shape: Card.CardShape.diamond, number: Card.CardNumber.eight)
+        let card2 = Card(shape: Card.CardShape.heart, number: Card.CardNumber.five)
+        
     }
 }
