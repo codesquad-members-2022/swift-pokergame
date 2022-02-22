@@ -11,22 +11,25 @@ struct PockerCard{ // class를 상속받지 않기에 메모리 효율이 좋은
     enum Shape: Character, CaseIterable{ // 이를 채택하는 곳은 PockerCard 외에 없기에 중첩된 타입을 사용하였습니다.
         case spades = "♠️", hearts = "♥️", diamonds = "♦️", clubs = "♣️"
     }
+    enum Number: Int{
+        case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
+    }
     let shape: Shape
-    let number: Int
+    let number: Number
     
-    init(shape: Shape, number: Int){
+    init(shape: Shape, number: Number){ // 14이상의 숫자가 입력되는 것을 방지하기 위해 number의 타입을 enum으로 변경하였습니다.
         self.shape = shape
         self.number = number
     }
     
     private func numberToString() -> String{ // 1,11,12,13 은 숫자가 아닌 String값으로 표현해야 하기에 이를 변환하는 함수를 구현하였습니다.
         switch number{
-        case 1: return "A"
-        case 11: return "J"
-        case 12: return "Q"
-        case 13: return "K"
+        case .ace: return "A"
+        case .jack: return "J"
+        case .queen: return "Q"
+        case .king: return "K"
         default:
-            return String(number)
+            return String(number.rawValue)
         }
     }
 }
