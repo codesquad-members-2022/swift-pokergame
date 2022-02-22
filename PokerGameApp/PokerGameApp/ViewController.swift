@@ -6,6 +6,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setBackgroundColor()
         setInitialImageView(7)
+        testCardPrinting()
     }
     
     func setBackgroundColor(){
@@ -31,6 +32,17 @@ class ViewController: UIViewController {
             cardXPosition += cardMargin+cardWidth
         }
         
+    }
+    
+    func testCardPrinting(){
+        for cardNumber in 1...13{
+            let randomIndex = Int.random(in: 0...3)
+            printCard(Card(randomIndex, cardNumber))
+        }
+    }
+    
+    func printCard(_ card: Card){
+        print(card)
     }
 }
 
