@@ -8,19 +8,25 @@
 import UIKit
 
 class ViewController: UIViewController {
+    private let topMargin = 50
+    private let letfMargin = 7
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern.png")!)
-        var index = 0
+        // if let 과 guard let 의 차이를 이용해서 상수 처럼 사용
+        guard let background = UIImage(named: "bg_pattern.png") else { return }
+        self.view.backgroundColor = UIColor(patternImage: background)
+        var offset = 0
+        // UIImageView를 7개 선언
         for _ in 0..<7 {
-            createCard(point_x: 7 + index)
-            index += 54
+            createCard(XCoordinate: letfMargin + offset)
+            // 사이 간격 카드 하나보다 약간 넓게 조정
+            offset += SizeOfCard.width + 3
         }
-
     }
-    func createCard(point_x: Int) {
-        let card = UIImageView(frame: CGRect(x: point_x, y: 50, width: 51, height: 65))
+    
+    func createCard(XCoordinate: Int) {
+        let card = UIImageView(frame: CGRect(x: XCoordinate, y: topMargin, width: SizeOfCard.width, height: SizeOfCard.height))
         card.image = UIImage(named: "card-back.png")
         self.view.addSubview(card)
     }
