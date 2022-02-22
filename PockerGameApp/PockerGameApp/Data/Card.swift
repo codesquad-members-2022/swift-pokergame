@@ -18,43 +18,28 @@ class Card: CustomStringConvertible{
     }
     
     // 랜덤 문양, 숫자의 카드 인스턴스 초기화
-    init(){
-        guard let shapeRandomNum = Shape.allCases.randomElement() else{
-            print("적절한 Case 값을 찾지 못하였습니다.")
-            fatalError()
-        }
-        
-        let cardRandomNum = Int.random(in: 1...13)
-        
-        self.number = CardNumber(num: cardRandomNum)
-        self.shape = shapeRandomNum
+    init(number: Card.CardNumber, shape: Card.Shape){
+        self.number = number
+        self.shape = shape
     }
     
-    // 변경해줘야 하는 값의 종류가 다소 많은 편이며, 카드의 값을 오로지 숫자로만 사용하는 놀이 등도 존재하므로 숫자와 문자열 모두 보관할 수 있는 형태를 생각함. 고유한 값으로 존재하거나 꼭 참조될 필요가 없으므로 Struct로 표현
-    struct CardNumber: CustomStringConvertible{
-        private let number: Int
+    
+    // 한정된 범위에 맞춰 enum 타입으로 수정
+    enum CardNumber: CustomStringConvertible{
+        case one, eleven, twelve, thirteen, others(Int)
         var description: String{
-            switch number{
-            case 1:
+            switch self {
+            case .one:
                 return "A"
-            case 11:
+            case .eleven:
                 return "J"
-            case 12:
+            case .twelve:
                 return "Q"
-            case 13:
+            case .thirteen:
                 return "K"
-            default:
-                return number.description
+            case .others(let int):
+                return "\(int)"
             }
-        }
-        
-        init(num: Int){
-            guard num <= 13 || num != 0 else{
-                print("적절하지 못한 값이 발견되었습니다 : \(num)")
-                fatalError()
-            }
-            
-            number = num
         }
     }
 

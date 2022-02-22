@@ -214,7 +214,7 @@
     
 <img src = "https://user-images.githubusercontent.com/44107696/155056906-3b59e657-5364-4444-8a31-51cdc8f0c61e.png" width="800" height="800">
 
-### 수정사항
+### 수정사항 - (1)
 ```swift
 // 하나의 카드가 가지게 될 Card 인스턴스는 항상 고유한 값이 되어야 하므로 class로 설계
 class Card: CustomStringConvertible{
@@ -291,3 +291,133 @@ class Card: CustomStringConvertible{
 - CardNumber는 인자로 Int를 받으니 Int.random 사용. Shape은 가지고 있는 속성들을 random으로 선택하는 로직을 구현하기 위해 caseIterable 프로토콜 채택 (케이스들을 순회할 수 있도록 만들어주며, allCases라는 모든 케이스를 배열로 담은 프로퍼티를 호출할 수 있음)
 - guard 구문을 활용하여 예외사항에 대한 alert를 콘솔창에 띄워주며 더이상 작업이 진행되지 못하도록 fatalError 호출
 - VC 내에서는 Card 인스턴스를 인자 없이 생성 가능하게 되었고, 출력 함수또한 description을 호출하는 형태로 변경
+
+
+### 수정사항 - (2)
+```swift
+// 하나의 카드가 가지게 될 Card 인스턴스는 항상 고유한 값이 되어야 하므로 class로 설계
+class Card: CustomStringConvertible{
+    private let number: Card.CardNumber
+    private let shape: Card.Shape
+    
+    var description: String{
+        let cardValue = shape.description + number.description
+        return cardValue
+    }
+    
+    // 랜덤 문양, 숫자의 카드 인스턴스 초기화
+    init(number: Card.CardNumber, shape: Card.Shape){
+        self.number = number
+        self.shape = shape
+    }
+    
+    
+    // 한정된 범위에 맞춰 enum 타입으로 수정
+    enum CardNumber: CustomStringConvertible{
+        case one, eleven, twelve, thirteen, others(Int)
+        var description: String{
+            switch self {
+            case .one:
+                return "A"
+            case .eleven:
+                return "J"
+            case .twelve:
+                return "Q"
+            case .thirteen:
+                return "K"
+            case .others(let int):
+                return "\(int)"
+            }
+        }
+    }
+
+    // 4가지 문양밖에 없는 간단한 변환 처리이므로 enum으로 간소하게 표현
+    enum Shape: CaseIterable, CustomStringConvertible{
+        case heart, dia, spade, clover
+        var description: String{
+            switch self {
+            case .heart:
+                return "♥️"
+            case .dia:
+                return "♦️"
+            case .spade:
+                return "♠️"
+            case .clover:
+                return "♣️"
+            }
+        }
+    }
+}
+``` 
+
+```swift
+class ViewController: UIViewController {
+    private let cardImage = UIImage(named: "card-back")
+    
+    @IBOutlet weak var horizonStack: UIStackView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        horizonStack.frame.size.height = horizonStack.frame.width / 7 * 1.27
+        horizonStack.distribution = .fillEqually
+        horizonStack.spacing = 3
+        
+        if let pattern = UIImage(named: "bg_pattern"){
+            self.view.backgroundColor = UIColor(patternImage: pattern)
+        }
+        
+        for _ in 0...6{
+            makeImageView()
+            
+            if let cardInfo = makeRandomCardInfo(){
+                showCardInfo(card: cardInfo)
+            } else{
+                let alert = UIAlertController(title: "잘못된 호출", message: "모양이나 숫자 입력이 잘못되었습니다. 다시 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
+                self.present(alert, animated: true)
+            }
+        }
+    }
+
+    func makeImageView(){
+        let imageView = UIImageView(image: self.cardImage)
+
+        self.horizonStack.addArrangedSubview(imageView)
+    }
+    
+    func makeRandomCardInfo() -> Card?{
+        guard let cardRandomShape = Card.Shape.allCases.randomElement() else{
+            return nil
+        }
+        
+        let randomNum = Int.random(in: 1...13)
+        var cardRandomNum: Card.CardNumber{
+            switch randomNum{
+            case 1: return Card.CardNumber.one
+            case 11: return Card.CardNumber.eleven
+            case 12: return Card.CardNumber.twelve
+            case 13: return Card.CardNumber.thirteen
+            default : return Card.CardNumber.others(randomNum)
+            }
+        }
+        
+        let cardInfo = Card(number: cardRandomNum, shape: cardRandomShape)
+        
+        return cardInfo
+    }
+    
+    func showCardInfo(card: Card){
+        // description 생략 시에도 description을 가져와서 출력
+        print(card)
+    }
+}
+``` 
+
+- CardNumber 또한 한정된 범위를 지니고 있으므로 enum 타입으로 수정했으며, 특수한 문자 변환 없는 숫자들은 연관값을 사용하여 문자열화
+- 범용성이 떨어졌던 이전 수정의 이니셜라이저는 상위의 값을 전달받아 할당해주는 형태로 수정. (차후에는 Int, String 등을 받은 걸 변환시켜 할당하는 요소도 추가 고려 중)
+- makeCardInfo 함수는 makeRandomInfo 함수로 이름을 변경, 이에 맞춰 적절한 범위 내의 랜덤 값을 변환하여 Card에 값을 전달하도록 수정. 잘못된 값이 들어갈 경우 nil로 전달하도록 리턴 타입은 Card?
+- Card 인스턴스 생성 시, nil이 들어갈 경우 alert를 통해서 재입력 부탁 메세지 출력
+
+
+## 카드덱 구현하고 테스트하기
+### 프로그래밍 요구사항
