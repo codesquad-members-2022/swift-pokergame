@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct CardDeck {
+struct CardDeck: Equatable {
     
-    private var deck: [Card]
+    private var deck = [Card]()
     private let originDeck: [Card]
     public var count: Int {
         return self.deck.count
@@ -18,19 +18,16 @@ struct CardDeck {
     init() {
         let allNumberCases = Card.Number.allCases
         let allSymbolCases = Card.Symbol.allCases
-        var deck = [Card]()
-        
+        self.deck = [Card]()
         for numberCase in allNumberCases {
             for symbolCase in allSymbolCases {
-                deck.append(Card(number: numberCase, symbol: symbolCase))
+                self.deck.append(Card(number: numberCase, symbol: symbolCase))
             }
         }
-        
-        self.deck = deck
-        self.originDeck = deck
+        self.originDeck = self.deck
     }
     
-    init(_ cardArray: [Card]) {
+    init(with cardArray: [Card]) {
         self.deck = cardArray
         self.originDeck = cardArray
     }
@@ -47,16 +44,14 @@ struct CardDeck {
     }
     
     public mutating func removeOne() -> Card? {
-        if self.deck.isEmpty { return nil }
-        else {
-            return self.deck.removeLast()
-        }
+        return self.deck.isEmpty ? nil : self.deck.removeLast()
     }
     
     public mutating func reset() {
         self.deck = self.originDeck
     }
-}
-
-extension CardDeck: Equatable {
+    
+    public func last() -> Card? {
+        return self.deck.last
+    }
 }

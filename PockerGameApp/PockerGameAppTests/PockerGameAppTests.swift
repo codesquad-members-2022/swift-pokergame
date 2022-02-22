@@ -10,11 +10,7 @@ import XCTest
 
 class PockerGameAppTests: XCTestCase {
 
-    func testScenario() throws {
-        
-    }
-
-    func initializeCardDeckTest() {
+    func testInitializeOfCardDeck() {
         var cardArrayMustBeEqual = [Card]()
         
         for numberCase in Card.Number.allCases {
@@ -23,10 +19,10 @@ class PockerGameAppTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(CardDeck.init(), CardDeck.init(cardArrayMustBeEqual), "초기화된 값이 일치하지 않습니다.")
+        XCTAssertEqual(CardDeck.init(), CardDeck.init(with: cardArrayMustBeEqual), "초기화된 값이 일치하지 않습니다.")
     }
     
-    func shuffleCardDeckTest() {
+    func testShuffleOfCardDeck() {
         let testCardDeck1 = CardDeck()
         var testCardDeck2 = CardDeck()
         
@@ -35,11 +31,12 @@ class PockerGameAppTests: XCTestCase {
         XCTAssertNotEqual(testCardDeck1, testCardDeck2, "셔플되지 않았습니다.")
     }
     
-    func removeCardDeckTest() {
+    func testRemoveOneOfCardDeck() {
         var testCardDeck = CardDeck()
         let previousCardsCount = testCardDeck.count
-        print(testCardDeck.removeOne()!)
+        let tempCardBeforeRemoved = testCardDeck.last()
         
+        XCTAssertEqual(tempCardBeforeRemoved, testCardDeck.removeOne(), "올바른 카드가 제거되지 않았습니다.")
         XCTAssertEqual(testCardDeck.count, previousCardsCount - 1, "한 장이 뽑혀 제거되지 않았습니다.")
     }
 }
