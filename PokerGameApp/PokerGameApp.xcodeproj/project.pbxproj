@@ -14,6 +14,7 @@
 		B56CA14B27C3234F001DC373 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56CA14A27C3234F001DC373 /* Assets.xcassets */; };
 		B56CA14E27C3234F001DC373 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B56CA14C27C3234F001DC373 /* LaunchScreen.storyboard */; };
 		B56CA15827C486FA001DC373 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CA15727C486FA001DC373 /* Card.swift */; };
+		B56CA15A27C4B688001DC373 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CA15927C4B688001DC373 /* CardDeck.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		B56CA14D27C3234F001DC373 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B56CA14F27C3234F001DC373 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B56CA15727C486FA001DC373 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		B56CA15927C4B688001DC373 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				B56CA15727C486FA001DC373 /* Card.swift */,
+				B56CA15927C4B688001DC373 /* CardDeck.swift */,
 				B56CA14127C3234D001DC373 /* AppDelegate.swift */,
 				B56CA14327C3234D001DC373 /* SceneDelegate.swift */,
 				B56CA14527C3234D001DC373 /* ViewController.swift */,
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B56CA15827C486FA001DC373 /* Card.swift in Sources */,
+				B56CA15A27C4B688001DC373 /* CardDeck.swift in Sources */,
 				B56CA14627C3234D001DC373 /* ViewController.swift in Sources */,
 				B56CA14227C3234D001DC373 /* AppDelegate.swift in Sources */,
 				B56CA14427C3234D001DC373 /* SceneDelegate.swift in Sources */,
