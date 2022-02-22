@@ -17,7 +17,7 @@ struct Card: CustomStringConvertible {
     let number: CardNumber
     
     var description: String {
-        return suit.description + number.description
+        return "\(suit.description)\(number.description)"
     }
 }
 
