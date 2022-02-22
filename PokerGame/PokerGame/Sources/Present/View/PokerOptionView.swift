@@ -19,7 +19,7 @@ class PokerOptionView: UIStackView {
     let typeButtons = (0..<PokerGame.PokerType.allCases.count).map { _ in UIButton()}
     
     let playerView = UIStackView()
-    let playerButtons = (0..<Environment.maxPlayer - 1).map { _ in UIButton()}
+    let playerButtons = (0..<Environment.maxPlayerCount - 1).map { _ in UIButton()}
     
     var delegate: PokerOptionDelegate?
     
