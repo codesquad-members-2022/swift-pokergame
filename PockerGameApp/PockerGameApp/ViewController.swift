@@ -50,7 +50,8 @@ class ViewController: UIViewController {
     }
     
     private func choiceCard(){
-        let card = PockerCard(shape: .hearts, number: .Q)
+        let card = PockerCard(shape: .hearts, number: .queen)
         let card2 = PockerCard(shape: .clubs, number: .seven)
+        print(card2)
     }
 }
