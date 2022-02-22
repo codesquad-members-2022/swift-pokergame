@@ -13,8 +13,8 @@ import Foundation
 // 꼭 변경 가능한 상태를 공유해야 하는 상황도 아니기 때문에 Struct를 선택했습니다.
 
 struct Card: CustomStringConvertible {
-    var suit: CardSuit
-    var number: CardNumber
+    let suit: CardSuit
+    let number: CardNumber
     
     var description: String {
         return suit.description + number.description
