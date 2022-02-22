@@ -30,6 +30,7 @@ extension CardData {
         case clover
     }
 }
+
 extension CardData.CardPattern: CustomStringConvertible {
     var description: String {
         switch self {
