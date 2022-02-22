@@ -39,8 +39,8 @@ class Card {
         }
     }
     
-    var number: Number
-    var symbol: Symbol
+    let number: Number
+    let symbol: Symbol
     
     init(number: Number, symbol: Symbol) {
         self.number = number
@@ -51,6 +51,6 @@ class Card {
 
 extension Card: CustomStringConvertible {
     var description: String {
-        return symbol.description + number.description
+        return "\(symbol)\(number)"
     }
 }

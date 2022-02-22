@@ -36,7 +36,7 @@ class ViewController: UIViewController {
     }
     
     func printDescription(of target: CustomStringConvertible) {
-        print(target.description)
+        print(target)
     }
 
 }
