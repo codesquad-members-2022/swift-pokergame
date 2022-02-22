@@ -25,30 +25,33 @@
   - [x] 전체 카드를 뽑았을때 중복없이 잘 뽑히는지
   - [x] 카드 배분 후 포커플레이 타입에 따라 카드가 맞게 배분 되었는지
 - [x] 포커게임 화면 만들기
-  - [ ] 한명의 플레이어의 카드를 보여줄 view 제작
-  - [ ] 위에서 만든 view를 5개 출력
-  - [ ] 카드 이미지 설정
+  - [x] 한명의 플레이어의 카드를 보여줄 view 제작
+  - [x] 위에서 만든 view를 5개 출력
+  - [x] 카드 이미지 설정
   
+- [x] 포커게임 상단 옵션 View 만들기
+- [x] 옵션 View 버튼 연결
 
 ### 핵심기능
 
-* 플레이어와 딜러 객체를 인스턴스하고, 카드덱에서 한장씩 뽑아 플레이어들에게 카드를 배분한다
+* 플레이어와 딜러 객체를 인스턴스하고, 카드덱에서 한장씩 뽑아 플레이어들에게 카드를 배분하고, 화면에 보여준다
 
 ### 결과화면
-
-* **전체 카드를 뽑았을때 중복없이 잘 뽑히는지**
-
-  ```
-  
-  ```
 
 * 카드 배분 후 포커플레이 타입에 따라 카드가 맞게 배분 되었는지
 
   ```
-  
+  //PokerType.sevenCard
+  //pokerPlayerCount = 3
+  Name: pigbag, cards: [d10, d6, d3, d9, s4, sQ, c7]
+  Name: bibi, cards: [s5, c2, h8, d5, c6, cQ, hJ]
+  Name: shingha, cards: [s10, dJ, sA, d2, sK, d8, h4]
+  Name: Dealer, cards: [cJ, c5, s6, h5, c8, dQ, s2]
   ```
 
-  
+* 아이폰, 아이패드 결과 화면
+
+  ![스크린샷 2022-02-22 오후 3 49 10](https://user-images.githubusercontent.com/5019378/155078016-eb35fa59-69f6-4027-9897-25e042187de7.png)
 
 ------
 
@@ -99,25 +102,15 @@
 * CardDeck 인스턴스 확인
 
   ```
-  [PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.spade, number: 1), 
-  ...
-  PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.spade, number: 13), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.diamond, number: 1), 
-  ...
-  PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.diamond, number: 13), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.heart, number: 1), 
-  ...
-  PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.heart, number: 13), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.clover, number: 1),
-  ...
-  PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.clover, number: 13)]
-  남은 카드 갯수: 52
+  [sA, s2, s3, s4, s5, s6, s7, s8, s9, s10, sJ, sQ, sK, dA, d2, d3, d4, d5, d6, d7, d8, d9, d10, dJ, dQ, dK, hA, h2, h3, h4, h5, h6, h7, h8, h9, h10, hJ, hQ, hK, cA, c2, c3, c4, c5, c6, c7, c8, c9, c10, cJ, cQ, cK]
+  count: 52
   ```
   
 * CardDeck Shuffle() 테스트
 
   ```
-  [PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.diamond, number: 7), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.clover, number: 3), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.heart, number: 2), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.spade, number: 7), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.diamond, number: 5), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.heart, number: 11), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.diamond, number: 3), 
-  ...
-  PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.heart, number: 6), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.spade, number: 8), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.clover, number: 1), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.clover, number: 12), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.spade, number: 12), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.clover, number: 11), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.diamond, number: 12), PokerGameTests.CardData(pattern: PokerGameTests.CardData.CardPattern.clover, number: 9)]
-  남은 카드 갯수: 52
+  [hQ, sA, d7, d3, dK, dJ, s5, h2, s10, c4, h5, sQ, h8, c3, sJ, s6, s7, d9, dA, cA, sK, d4, hK, h7, hJ, hA, dQ, h4, d8, c6, d6, cK, s3, s9, d10, d5, c2, cJ, cQ, c5, h10, s4, h6, h9, c7, h3, s2, c9, c10, c8, d2, s8]
+  count: 52
   ```
   
 * CardDeck RemoveOne() 테스트
@@ -130,12 +123,24 @@
 * CardDeck Reset() 테스트
 
   ```
-  뽑은카드: ♠7
-  뽑은카드: ♣5
-  뽑은카드: ♥A
-  남은 카드 갯수: 49
-  카드 덱 리셋
-  남은 카드 갯수: 52
+  [sA, s2, s3, s4, s5, s6, s7, s8, s9, s10, sJ, sQ, sK, dA, d2, d3, d4, d5, d6, d7, d8, d9, d10, dJ, dQ, dK, hA, h2, h3, h4, h5, h6, h7, h8, h9, h10, hJ, hQ, hK, cA, c2, c3, c4, c5, c6, c7, c8, c9, c10, cJ, cQ, cK]
+  count: 52
+  
+  뽑은카드: h5
+  [sA, s2, s3, s4, s5, s6, s7, s8, s9, s10, sJ, sQ, sK, dA, d2, d3, d4, d5, d6, d7, d8, d9, d10, dJ, dQ, dK, hA, h2, h3, h4, h6, h7, h8, h9, h10, hJ, hQ, hK, cA, c2, c3, c4, c5, c6, c7, c8, c9, c10, cJ, cQ, cK]
+  count: 51
+  
+  뽑은카드: h7
+  [sA, s2, s3, s4, s5, s6, s7, s8, s9, s10, sJ, sQ, sK, dA, d2, d3, d4, d5, d6, d7, d8, d9, d10, dJ, dQ, dK, hA, h2, h3, h4, h6, h8, h9, h10, hJ, hQ, hK, cA, c2, c3, c4, c5, c6, c7, c8, c9, c10, cJ, cQ, cK]
+  count: 50
+  
+  뽑은카드: d10
+  [sA, s2, s3, s4, s5, s6, s7, s8, s9, s10, sJ, sQ, sK, dA, d2, d3, d4, d5, d6, d7, d8, d9, dJ, dQ, dK, hA, h2, h3, h4, h6, h8, h9, h10, hJ, hQ, hK, cA, c2, c3, c4, c5, c6, c7, c8, c9, c10, cJ, cQ, cK]
+  count: 49
+  
+  Deck Reset!
+  [sA, s2, s3, s4, s5, s6, s7, s8, s9, s10, sJ, sQ, sK, dA, d2, d3, d4, d5, d6, d7, d8, d9, d10, dJ, dQ, dK, hA, h2, h3, h4, h5, h6, h7, h8, h9, h10, hJ, hQ, hK, cA, c2, c3, c4, c5, c6, c7, c8, c9, c10, cJ, cQ, cK]
+  count: 52
   ```
 
 
