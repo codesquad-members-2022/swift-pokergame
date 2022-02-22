@@ -31,7 +31,7 @@ class PokerBoardViewController: UIViewController {
         layout()
         
         pokerGame.delegate = self
-        pokerGame.action.playGame(pokerType, 4)
+        pokerGame.action.startGame(pokerType, 4)
     }
     
     private func attribute() {

@@ -17,20 +17,9 @@ class PokerGameTests: XCTestCase {
     
     func testPokerCardDistribution() {
         let pokerType = PokerType.sevenCard
-        let pokerGame = PokerGame(playType: pokerType, playerCount: 3)
-        pokerGame.play()
-        
-        let player = pokerGame.players
-        player.forEach {
-            print(getPrint(player: $0))
-        }
-        
-        print(getPrint(player: pokerGame.dealer))
-        
-        player.forEach {
-            XCTAssertEqual($0.cards.count, pokerType.rawValue)
-        }
-        XCTAssertEqual(pokerGame.dealer.cards.count, pokerType.rawValue)
+        let pokerGame = PokerGame()
+        pokerGame.delegate = self
+        pokerGame.action.startGame(pokerType, 3)
     }
     
     func getPrint(player: Player) -> String {
@@ -58,19 +47,15 @@ class PokerGameTests: XCTestCase {
             guard let card = cardDeck.removeOne() else {
                 return
             }
- 
-            let stringCard = card.toString()
-            print(stringCard)
             
-            XCTAssertFalse(removeCards.contains(stringCard), "중복된 카드가 뽑혔습니다")
-            removeCards.append(stringCard)
+            XCTAssertFalse(removeCards.contains(card.description), "중복된 카드가 뽑혔습니다")
+            removeCards.append(card.description)
         }
     }
     
     func testCardDeckShuffle() {
         let cardDeck = CardDeck()
         cardDeck.shuffle()
-        print(cardDeck.deck)
         XCTAssertEqual(cardDeck.count, 52)
     }
     
@@ -88,5 +73,15 @@ class PokerGameTests: XCTestCase {
             return CardData(pattern: .clover, number: number)
         }
         XCTAssertEqual(cards.count, 13)
+    }
+}
+
+extension PokerGameTests: PokerGameDelegate {
+    func player(index: Int, player: Player) {
+        
+    }
+    
+    func dealer(dealer: Player) {
+        
     }
 }

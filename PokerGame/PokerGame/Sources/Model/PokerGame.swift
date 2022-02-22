@@ -15,20 +15,14 @@ protocol PokerGameDelegate {
 class PokerGame {
     
     struct Action {
-        var playGame: (PokerType, Int) -> Void = { _, _ in }
+        var startGame: (PokerType, Int) -> Void = { _, _ in }
     }
     
     var action = Action()
     var delegate: PokerGameDelegate?
     
     init() {
-        action.playGame = playGame
-    }
-    
-    func playGame(pokerType: PokerType, playerCount: Int) {
-        let players = createPlayer(count: playerCount)
-        let dealer = Player(name: "Dealer")
-        play(pokerType: pokerType, players: players, dealer: dealer)
+        action.startGame = startGame
     }
     
     func createPlayer(count: Int) -> [Player] {
@@ -43,7 +37,10 @@ class PokerGame {
         }
     }
     
-    func play(pokerType: PokerType, players: [Player], dealer: Player) {
+    func startGame(pokerType: PokerType, playerCount: Int) {
+        let players = createPlayer(count: playerCount)
+        let dealer = Player(name: "Dealer")
+        
         let cardDeck = CardDeck()
         let distributionCount = pokerType.rawValue
         (0..<distributionCount).forEach() { _ in
