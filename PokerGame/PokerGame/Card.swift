@@ -10,4 +10,6 @@ import Foundation
 //카드를 만들 클래스
 class Card {
     
+    var info = CardInfo()
+    
 }
