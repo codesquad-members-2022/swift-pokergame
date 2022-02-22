@@ -9,7 +9,6 @@ enum CardSuit: String, CaseIterable{
     case diamond = "♦︎"
     case club = "♠︎"
     case heart = "♥︎"
-    case invalid = "Invalid Suit Index"
 }
 
 /*
@@ -21,8 +20,6 @@ struct CardNumber: CustomStringConvertible{
     var number: Int
     var description: String{
         switch number{
-        case 1...10:
-            return String(number)
         case 11:
             return "A"
         case 12:
@@ -30,7 +27,7 @@ struct CardNumber: CustomStringConvertible{
         case 13:
             return "K"
         default:
-            return "Invalid Number(\(number))"
+            return String(number)
         }
     }
     
@@ -48,7 +45,7 @@ class Card: CustomStringConvertible{
     }
     
     init(_ cardSuitindex: Int, _ cardNumber: Int){
-        self.suit = cardSuitindex >= CardSuit.allCases.count-1 ? CardSuit.invalid : CardSuit.allCases[cardSuitindex]
+        self.suit = CardSuit.allCases[cardSuitindex]
         self.number = CardNumber(cardNumber)
     }
 }
