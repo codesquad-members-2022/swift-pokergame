@@ -14,6 +14,9 @@ class ViewController: UIViewController {
         
         setUpBackgroundImage()
         addCardImageViewIntoCardStackView(repeat: 7)
+        
+        let myCard = Card(faceData: CardData.FaceData.spade, numericData: CardData.NumericData.jack)
+        print(myCard.description)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
