@@ -5,16 +5,15 @@
 //  Created by 박진섭 on 2022/02/22.
 //
 
-import Foundation
-
 //Card의 정보를 한번에 담아서 출력하고자 Struct를 선언하고 그안에 Suit와 Rank Enum을 넣었다.
 struct CardInfo:CustomStringConvertible {
     var description: String {
         return "\(suit)\(rank)"
     }
     
-    var suit:String = Suit.randomSuit
-    var rank:String = Rank.randomRank
+    //랜덤한 값으로 뽑힌 suit와 rank는 private으로 설정하여 밖에서 수정하거나 확인하지 못하게 하였다.
+    private var suit:String = Suit.randomSuit
+    private var rank:String = Rank.randomRank
     
     
     //카드의 모양(suit)를 나타내줄 Enum
