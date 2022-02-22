@@ -11,9 +11,14 @@ import Foundation
 ///덱은 초기화 시 CardData를 52장을 가지고 있으며,
 ///덱의 카드의 수가 줄거나, 셔플, 한장빼기등 CardData를 관리함
 ///변형이 일어나는 데이터이기 때문에 클래스로 제작
-class CardDeck {
+class CardDeck: CustomStringConvertible {
     
     public private(set) var deck: [CardData] = []
+    
+    var description: String {
+        let deckDatas = String(deck.reduce(""){ $0 + "\($1), "}.dropLast(2))
+        return "[\(deckDatas)]\ncount: \(deck.count)"
+    }
     
     var count: Int {
         deck.count
@@ -46,17 +51,10 @@ class CardDeck {
     }
     
     func reset() {
-        deck = CardData.CardPattern.allCases.reduce([]) { resultDeck, pattern in
-            resultDeck + CardData.CardNumber.allCases.map {
+        deck = CardData.Pattern.allCases.reduce([]) { resultDeck, pattern in
+            resultDeck + CardData.Number.allCases.map {
                 CardData(pattern: pattern, number: $0)
             }
         }
-    }
-}
-
-extension CardDeck: CustomStringConvertible {
-    var description: String {
-        let deckDatas = String(deck.reduce(""){ $0 + "\($1), "}.dropLast(2))
-        return "[\(deckDatas)]\ncount: \(deck.count)"
     }
 }

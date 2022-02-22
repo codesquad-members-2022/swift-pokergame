@@ -7,9 +7,13 @@
 
 import Foundation
 
-class Player {
+class Player: CustomStringConvertible {
     let name: String
     public private(set) var cards: [CardData] = []
+    
+    var description: String {
+        "Name: \(name), cards: \(cards)"
+    }
     
     init(name: String) {
         self.name = name
@@ -17,11 +21,5 @@ class Player {
     
     func add(card: CardData) {
         cards.append(card)
-    }
-}
-
-extension Player: CustomStringConvertible {
-    var description: String {
-        "Name: \(name), cards: \(cards)"
     }
 }
