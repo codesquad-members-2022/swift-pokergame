@@ -9,13 +9,13 @@ import Foundation
 
 struct Card {
     // 카드에는 4개의 모양, 13개의 숫자가 정해져 있어 enum 타입으로 정의
-    enum CardShape : String {
+    enum Shape : String {
         case heart = "❤️"
         case spade = "♠️"
         case clover = "♣️"
         case diamond = "♦️"
     }
-    enum CardNumber : String {
+    enum Number : String {
         case A
         case two = "2"
         case three = "3"
@@ -30,9 +30,9 @@ struct Card {
         case Q
         case K
     }
-    let shape : CardShape
-    let number : CardNumber
-    init(shape : CardShape, number: CardNumber) {
+    let shape : Shape
+    let number : Number
+    init(shape : Shape, number: Number) {
         self.shape = shape
         self.number = number
     }
