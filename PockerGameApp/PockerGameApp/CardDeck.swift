@@ -41,6 +41,11 @@ struct CardDeck: Equatable {
             self.deck[indexToSwap1] = self.deck[indexToSwap2]
             self.deck[indexToSwap2] = tempCard
         }
+        if self.deck[count-1] == self.originDeck[count-1] {
+            let tempCard = self.deck[count-1]
+            self.deck[count-1] = self.deck[count-2]
+            self.deck[count-2] = tempCard
+        }
     }
     
     public mutating func removeOne() -> Card? {
