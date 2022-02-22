@@ -8,7 +8,7 @@
 import Foundation
 
 struct CardDeck {
-    var cards: [Card]
+    private var cards: [Card]
     
     init() {
         var cards = [Card]()
@@ -37,7 +37,22 @@ struct CardDeck {
         return cards.removeLast()
     }
     
-    func reset() {
-        
+    mutating func reset() {
+        var cards = [Card]()
+        for suit in CardSuit.allCases {
+            for number in CardNumber.allCases {
+                cards.append(Card(suit: suit, number: number))
+            }
+        }
+        self.cards = cards
+        shuffle()
+    }
+}
+
+extension CardDeck: CustomStringConvertible {
+    var description: String {
+        return cards.reduce("") { partialResult, card in
+            "\(partialResult) \(card)"
+        }
     }
 }
