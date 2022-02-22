@@ -16,8 +16,8 @@ class CardDeck: CustomStringConvertible {
     public private(set) var deck: [Card] = []
     
     var description: String {
-        let deckDatas = String(deck.reduce(""){ $0 + "\($1), "}.dropLast(2))
-        return "[\(deckDatas)]\ncount: \(deck.count)"
+        let deckData = String(deck.reduce(""){ $0 + "\($1), "}.dropLast(2))
+        return "[\(deckData)]\ncount: \(deck.count)"
     }
     
     var count: Int {
