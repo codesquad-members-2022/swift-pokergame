@@ -7,17 +7,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.view.backgroundColor = UIColor(patternImage: Image.backgroundPatternImage) //ViewBackground Pattern
-
         putCardsOnView(originX: 0, y: 40, count: 7,inset: 10) //여러개의 카드 View에 올리기
 
+        //카드 만들기
         let card = Card()
-        
         print(card.info.description)
         
     }
