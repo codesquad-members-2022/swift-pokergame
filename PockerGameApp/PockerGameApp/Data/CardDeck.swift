@@ -18,10 +18,22 @@ struct CardDeck{
     }
     
     mutating func shuffle(){
-        var countNumbers = Array(1..<deck.count)
+        var shuffledDeck: [Card] = []
+        
+        while !deck.isEmpty{
+            let index = Int.random(in: 0..<deck.count)
+            shuffledDeck.append(deck[index])
+            deck.remove(at: index)
+        }
+        
+        deck = shuffledDeck
     }
     
     mutating func reset(){
+        guard !removedDeck.isEmpty else{
+            return
+        }
+        
         deck.append(contentsOf: removedDeck)
         deck.sort(by: { card1, card2 in
             card1.description > card2.description
@@ -29,7 +41,11 @@ struct CardDeck{
         removedDeck.removeAll()
     }
     
-    mutating func removeOne() -> Card{
+    mutating func removeOne() -> Card?{
+        guard !deck.isEmpty else{
+            return nil
+        }
+        
         let index = Int.random(in: 0..<deck.count)
         let removeCard = deck[index]
         
@@ -50,7 +66,7 @@ struct CardDeck{
             let card = Card(number: cardNumbers[numberIndex], shape: cardShapes[cardShapeIndex])
             deck.append(card)
             
-            if numberIndex % 12 == 0 && deck.count < 52{
+            if numberIndex == 12 && deck.count < 52{
                 cardShapeIndex += 1
                 numberIndex -= 12
             } else{
