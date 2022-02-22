@@ -6,7 +6,7 @@
 ## 0. 진행 상황
 
 - [x] 게임 보드 만들기(2021.02.21 19:26)
-- [ ] 카드 클래스 구현하기
+- [x] 카드 클래스 구현하기
 - [ ] 카드덱 구현하고 테스트하기
 - [ ] 게임로직 구현하기
 - [ ] 포커게임 화면 만들기
@@ -55,3 +55,45 @@ func setInitialImageView(_ cardsCount: CGFloat){
 }
 ```
 
+​    
+
+## 2. 카드 클래스 구현하기
+
+- 카드의 모양은 CardSuit이라는 열거형으로 아래와 같은 구조로 구현
+
+```swift
+enum CardSuit: String, CaseIterable{
+  case clover 
+  case diamond 
+  case club 
+  case heart 
+  case invalid 
+}
+```
+
+- 카드 숫자는 내부에 숫자값과 출력을 위한 문자열을 각각 프로퍼티로 가진 구조체로 구현
+  - 각 숫자에 따라 description값이 달라지게 됨
+
+```swift
+struct CardNumber: CustomStringConvertible{
+  var number: Int
+  var description: String
+
+  init(_ number: Int){}
+}
+```
+
+- 마지막으로 CardSuit 타입과 CardNumber 타입의 변수를 각각 프로퍼티로 가지는 Card 클래스를 구현
+
+```swift
+class Card: CustomStringConvertible{
+
+  var suit: CardSuit
+  var number: CardNumber
+  var description: String
+
+  init(_ cardSuitindex: Int, _ cardNumber: Int){}
+}
+```
+
+​    
