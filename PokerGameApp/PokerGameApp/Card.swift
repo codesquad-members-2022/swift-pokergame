@@ -4,11 +4,24 @@ import Foundation
  카드 모양은 4가지만 존재하기 때문에 열거형으로 각 케이스를 선언했습니다.
  굳이 클래스나 구조체로 만들 필요 없이 각 케이스별로 일정한 문자열값을 보여주면 된다고 생각했습니다.
  */
-enum CardSuit: String, CaseIterable{
-    case clover = "♣︎"
-    case diamond = "♦︎"
-    case club = "♠︎"
-    case heart = "♥︎"
+enum CardSuit: CustomStringConvertible, CaseIterable{
+    case clover
+    case diamond
+    case club
+    case heart
+    
+    var description: String{
+        switch self {
+        case .clover:
+            return "♣︎"
+        case .diamond:
+            return "♦︎"
+        case .club:
+            return "♠︎"
+        case .heart:
+            return "♥︎"
+        }
+    }
 }
 
 /*
@@ -41,7 +54,7 @@ class Card: CustomStringConvertible{
     var suit: CardSuit
     var number: CardNumber
     var description: String{
-        return "\(suit.rawValue)\(number)"
+        return "\(suit)\(number)"
     }
     
     init(_ cardSuitindex: Int, _ cardNumber: Int){
