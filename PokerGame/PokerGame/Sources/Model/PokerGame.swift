@@ -27,6 +27,16 @@ class PokerGame {
         }
     }
     
+    func inputPokerType(pokerType: PokerType) {
+        self.pokerType = pokerType
+        start()
+    }
+    
+    func inputPlayerCount(playerCount: Int) {
+        self.playerCount = playerCount
+        start()
+    }
+    
     func start() {
         self.delegate?.startPoker()
         
@@ -51,19 +61,6 @@ class PokerGame {
         self.delegate?.dealer(dealer: players[0])
     }
 }
-
-extension PokerGame: PokerOptionDelegate {
-    func onPokerTypeSelected(pokerType: PokerGame.PokerType) {
-        self.pokerType = pokerType
-        start()
-    }
-    
-    func onPlayerCountSelected(playerCount: Int) {
-        self.playerCount = playerCount
-        start()
-    }
-}
-
 
 extension PokerGame {
     enum PokerType: CaseIterable {

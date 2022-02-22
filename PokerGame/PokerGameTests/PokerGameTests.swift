@@ -9,18 +9,26 @@ import XCTest
 
 class PokerGameTests: XCTestCase {
 
+    enum Constants {
+        static let testPokerType = PokerGame.PokerType.fiveCard
+        static let testPlayerCount = 4
+    }
+    
+    var testPlayerCount: Int = 0
+    
     override func setUpWithError() throws {
     }
 
     override func tearDownWithError() throws {
     }
     
-    func testPokerCardDistribution() {
-        let pokerType = PokerType.sevenCard
-        let pokerPlayerCount = 3
+    func testPokerStart() {
         let pokerGame = PokerGame()
+        pokerGame.inputPokerType(pokerType: Constants.testPokerType)
+        pokerGame.inputPlayerCount(playerCount: Constants.testPlayerCount)
+        
         pokerGame.delegate = self
-        pokerGame.startGame(pokerType: pokerType, playerCount: pokerPlayerCount)
+        pokerGame.start()
     }
     
     func testCardDeckReset() {
@@ -69,15 +77,17 @@ class PokerGameTests: XCTestCase {
 }
 
 extension PokerGameTests: PokerGameDelegate {
-    func emptyCardDeck() {
+    func startPoker() {
         
     }
     
     func player(index: Int, player: Player) {
-        print("\(player)")
+        XCTAssertEqual(player.cards.count, Constants.testPokerType.cardCount)
+        XCTAssertEqual(index, testPlayerCount)
+        testPlayerCount += 1
     }
     
     func dealer(dealer: Player) {
-        print("\(dealer)")
+        XCTAssertEqual(dealer.cards.count, Constants.testPokerType.cardCount)
     }
 }

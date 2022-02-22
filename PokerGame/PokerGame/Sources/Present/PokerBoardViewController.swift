@@ -25,8 +25,11 @@ class PokerBoardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
+        attribute()
+        layout()
+        
         pokerGame.delegate = self
-        pokerOptionView.delegate = pokerGame
         
         let defaultTypeIndex = Environment.defaultPokerType == .sevenCard ? 0 : 1
         pokerOptionView.typeButtons[defaultTypeIndex].isEnabled = false
@@ -36,13 +39,31 @@ class PokerBoardViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        attribute()
-        layout()
         
         pokerGame.start()
     }
     
     //MARK: - Method
+    
+    private func bind() {
+        pokerOptionView.typeButtons.enumerated().forEach { index, button in
+            button.addAction(UIAction(handler: { sender in
+                (0..<self.pokerOptionView.typeButtons.count).forEach {
+                    self.pokerOptionView.typeButtons[$0].isEnabled = index != $0
+                }
+                self.pokerGame.inputPokerType(pokerType: index == 0 ?.sevenCard : .fiveCard)
+            }), for: .touchUpInside)
+        }
+        
+        pokerOptionView.playerButtons.enumerated().forEach { index, button in
+            button.addAction(UIAction(handler: { sender in
+                (0..<self.pokerOptionView.playerButtons.count).forEach {
+                    self.pokerOptionView.playerButtons[$0].isEnabled = index != $0
+                }
+                self.pokerGame.inputPlayerCount(playerCount: index + 2)
+            }), for: .touchUpInside)
+        }
+    }
     
     private func attribute() {
         if let backImage = UIImage(named: "bg_pattern") {
