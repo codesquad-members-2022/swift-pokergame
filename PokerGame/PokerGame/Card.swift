@@ -19,6 +19,21 @@ internal class Card {
     enum Number: Int {
         case one = 1, two = 2, three = 3, four = 4, five = 5, six = 6, seven = 7,
              eight = 8, nine = 9, ten = 10, eleven = 11, twelve = 12, thirteen = 13
+        
+        var descriptionInNumber: String {
+            switch self {
+            case .one:
+                return "A"
+            case .eleven:
+                return "J"
+            case .twelve:
+                return "Q"
+            case .thirteen:
+                return "K"
+            default:
+                return "\(self.rawValue)"
+            }
+        }
     }
     
     init(shape: Shape, number: Number) {
@@ -30,22 +45,6 @@ internal class Card {
 
 extension Card: CustomStringConvertible {
     var description: String {
-        return "\(shape.rawValue)\(numberConvert())"
-    }
-    
-    private func numberConvert() -> String {
-        switch number {
-        case .one:
-            return "A"
-        case .eleven:
-            return "J"
-        case .twelve:
-            return "Q"
-        case .thirteen:
-            return "K"
-        default:
-            return "\(self.number.rawValue)"
-        }
-
+        return "\(shape.rawValue)\(number.descriptionInNumber)"
     }
 }
