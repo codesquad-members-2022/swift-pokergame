@@ -41,15 +41,15 @@ struct Card {
     // 하지만 enum의 case 이름을 숫자로 선언할 수 없기 때문에 영어로 선언하고, rawValue를 String 타입으로 선언하고, 숫자 1, 11, 12, 13은 다른 rawValue를 가지도록 했습니다.
     enum CardNumber: String {
         case one = "A"
-        case two
-        case three
-        case four
-        case five
-        case six
-        case seven
-        case eight
-        case nine
-        case ten
+        case two = "2"
+        case three = "3"
+        case four = "4"
+        case five = "5"
+        case six = "6"
+        case seven = "7"
+        case eight = "8"
+        case nine = "9"
+        case ten = "10"
         case eleven = "J"
         case twelve = "Q"
         case thirteen = "K"
