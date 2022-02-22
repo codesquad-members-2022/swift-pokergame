@@ -9,14 +9,21 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var  headerView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern.png")!)
-        
-        headerView = UIView()
-        headerView.backgroundColor = .red
-        self.view.addSubview(headerView)
+        var index = 0
+        for _ in 0..<7 {
+            createCard(point_x: 7 + index)
+            index += 54
+        }
+
+    }
+    func createCard(point_x: Int) {
+        let card = UIImageView(frame: CGRect(x: point_x, y: 50, width: 51, height: 65))
+        card.image = UIImage(named: "card-back.png")
+        self.view.addSubview(card)
     }
 }
+
 
