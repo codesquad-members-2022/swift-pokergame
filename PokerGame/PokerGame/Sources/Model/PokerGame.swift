@@ -14,16 +14,7 @@ protocol PokerGameDelegate {
 
 class PokerGame {
     
-    struct Action {
-        var startGame: (PokerType, Int) -> Void = { _, _ in }
-    }
-    
-    var action = Action()
     var delegate: PokerGameDelegate?
-    
-    init() {
-        action.startGame = startGame
-    }
     
     func createPlayer(count: Int) -> [Player] {
         var playerNames = ["shingha", "bibi", "alex", "rosa", "chez", "ocean", "pigbag"]

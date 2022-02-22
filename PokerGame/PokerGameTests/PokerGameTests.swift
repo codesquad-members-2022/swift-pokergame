@@ -19,12 +19,7 @@ class PokerGameTests: XCTestCase {
         let pokerType = PokerType.sevenCard
         let pokerGame = PokerGame()
         pokerGame.delegate = self
-        pokerGame.action.startGame(pokerType, 3)
-    }
-    
-    func getPrint(player: Player) -> String {
-        let cards = player.cards.reduce(""){$0 + "\($1), "}.dropLast(2)
-        return "\(player.name)\t [\(cards)] "
+        pokerGame.startGame(pokerType: pokerType, playerCount: 3)
     }
     
     func testCardDeckReset() {
