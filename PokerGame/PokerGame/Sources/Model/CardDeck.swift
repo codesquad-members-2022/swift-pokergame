@@ -44,14 +44,16 @@ class CardDeck {
     
     func reset() {
         deck = CardData.CardPattern.allCases.reduce([]) { resultDeck, pattern in
-            var newCards = [CardData]()
-            (1...13).forEach {
-                guard let card = CardData(pattern: pattern, number: $0) else {
-                    return
-                }
-                newCards.append(card)
+            resultDeck + CardData.CardNumber.allCases.map {
+                CardData(pattern: pattern, number: $0)
             }
-            return resultDeck + newCards
         }
+    }
+}
+
+extension CardDeck: CustomStringConvertible {
+    var description: String {
+        let deckDatas = String(deck.reduce(""){ $0 + "\($1), "}.dropLast(2))
+        return "[\(deckDatas)]\ncount: \(deck.count)"
     }
 }
