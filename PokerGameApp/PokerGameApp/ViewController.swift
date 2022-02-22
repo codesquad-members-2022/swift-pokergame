@@ -15,13 +15,13 @@ class ViewController: UIViewController {
         }
         let card = Card(shape: .heart, number: .Q)
         print(card.string)
-        createCardSet(numberOfCard: 7)
+        createHand(numberOfCard: 7)
     }
-    func createCardSet(numberOfCard: CGFloat){
+    func createHand(numberOfCard: Int){
         let screenSize = UIScreen.main.bounds
         let blank : CGFloat = 4
-        let totalBlank : CGFloat = (numberOfCard + 1) * blank
-        let cardWidth = (screenSize.width - totalBlank) / numberOfCard
+        let totalBlank : CGFloat = CGFloat(numberOfCard + 1) * blank
+        let cardWidth = (screenSize.width - totalBlank) / CGFloat(numberOfCard)
         let cardHeight = cardWidth * 1.27
         let cardBackSide = UIImage(named: "card-back.png")
         let margin : CGFloat = cardWidth + blank
