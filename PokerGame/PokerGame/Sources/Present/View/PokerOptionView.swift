@@ -38,8 +38,7 @@ class PokerOptionView: UIStackView {
         typeView.layer.borderColor = UIColor.white.cgColor
         
         typeButtons.enumerated().forEach {
-            $1.setBackgroundImage(UIColor.white.image(), for: .disabled)
-            $1.setBackgroundImage(UIColor.clear.image(), for: .normal)
+            $1.setBackgroundImage(UIImage(named: "buttonBg"), for: .disabled)
             $1.setTitleColor(.black, for: .disabled)
             $1.setTitleColor(.white, for: .normal)
             let pokerType: PokerGame.PokerType = $0 == 0 ? .sevenCard : .fiveCard
@@ -54,8 +53,7 @@ class PokerOptionView: UIStackView {
         playerView.layer.borderColor = UIColor.white.cgColor
         
         playerButtons.enumerated().forEach {
-            $1.setBackgroundImage(UIColor.white.image(), for: .disabled)
-            $1.setBackgroundImage(UIColor.clear.image(), for: .normal)
+            $1.setBackgroundImage(UIImage(named: "buttonBg"), for: .disabled)
             $1.setTitleColor(.black, for: .disabled)
             $1.setTitleColor(.white, for: .normal )
             $1.layer.borderWidth = 0.5
