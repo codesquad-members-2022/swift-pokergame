@@ -13,13 +13,19 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupBackgroundPattern()
         setupCards()
+        testCardDeck()
+    }
+    
+    func testCardDeck() {
+        var deck = CardDeck()
+        print("---counts---")
+        print(deck.count)
+        print("---initial card---")
+        print(deck.cards)
         
-        let spades6 = Card(suit: .spades, number: .six)
-        print(spades6)
-        let heartQueen = Card(suit: .hearts, number: CardNumber(rawValue: 12)!)
-        print(heartQueen)
-        let diamondsAce = Card(suit: .diamonds, number: .ace)
-        print(diamondsAce)
+        print("---shuffled---")
+        deck.shuffle()
+        print(deck.cards)
     }
     
     func setupBackgroundPattern() {
