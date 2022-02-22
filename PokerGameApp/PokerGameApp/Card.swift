@@ -51,17 +51,14 @@ class Card: CustomStringConvertible{
         }
     }
     
-    var suit: Suit
-    var number: Number
+    let suit: Suit
+    let number: Number
     var description: String{
         return "\(suit)\(number)"
     }
     
-    init?(suitIndex: Int, number: Int){
-        if(suitIndex>=Suit.allCases.count || number<=0 || number > 13){
-            return nil
-        }
-        self.suit = Suit.allCases[suitIndex]
-        self.number = Number(number)
+    init?(suit: Suit, number: Number){
+        self.suit = suit
+        self.number = number
     }
 }
