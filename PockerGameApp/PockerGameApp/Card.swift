@@ -25,7 +25,7 @@ struct Card: CustomStringConvertible {
 // Card 객체보다, CardSuit & CardNumber 객체와 관련성이 더 높다고 판단해 해당 객체에 추가했습니다.
 // Enum과 CustomStringCovertible를 사용했습니다.
 
-enum CardSuit: CustomStringConvertible {
+enum CardSuit: CustomStringConvertible, CaseIterable {
     case spades
     case clubs
     case hearts
@@ -48,7 +48,7 @@ enum CardSuit: CustomStringConvertible {
 // 각 CardNumber가 가지는 숫자값은 RawValue(Int)로 담아주었습니다.
 // 이후 RawValue로 enum을 생성하거나, 게임 로직에서 rawValue를 호출하여 사용할 수 있을 거 같습니다.
 
-enum CardNumber: Int, CustomStringConvertible {
+enum CardNumber: Int, CustomStringConvertible, CaseIterable {
     case ace = 1
     case two = 2
     case three = 3
