@@ -14,6 +14,12 @@ class ViewController: UIViewController {
         
         addPattern(to: self.view, pattern: #imageLiteral(resourceName: "bg_pattern"))
         addCardImageContainerView(superView: self.view, cardCount: 7)
+        
+        let heat12 = Card(suit: .heart, number: 12)
+        print(heat12.convertedString())
+        
+        let spade7 = Card(suit: .spade, number: 7)
+        print(spade7.convertedString())
     }
     
     private func addPattern(to view: UIView, pattern: UIImage) {
@@ -44,4 +50,3 @@ class ViewController: UIViewController {
                                 size: backgroundSize))
     }
 }
-
