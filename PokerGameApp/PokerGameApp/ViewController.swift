@@ -15,8 +15,8 @@ class ViewController: UIViewController {
         setUpBackgroundImage()
         addCardImageViewIntoCardStackView(repeat: 7)
         
-        let myCard = Card(faceData: Card.CardData.FaceData.spade //짧게 '.spade'도 가능
-                          , numericData: Card.CardData.NumericData.jack) //짧게 '.jack'도 가능
+        let myCard = Card(faceData: Card.FaceData.spade //짧게 '.spade'도 가능
+                          , numericData: Card.NumericData.jack) //짧게 '.jack'도 가능
 
         print(myCard.description)
     }
