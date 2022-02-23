@@ -16,7 +16,7 @@ final class ViewController: UIViewController {
 
         //카드 만들기
        let deck = Deck()
-        
+        deck.shuffle()
     }
     
     //putCardOnView함수를 몇번 실행할지 정하는 함수

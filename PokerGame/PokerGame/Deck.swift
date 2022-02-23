@@ -19,4 +19,13 @@ class Deck {
         self.cards = Card.makeDeck()
     }
     
+    //Knuth Shuffle방법은 각 반복마다 남은 element를 셀 필요가 없으므로 Fisher-Yates shuffle보다 시간복잡도 면에서 더 좋을것 같아 택했다.
+    func shuffle() {
+        for cardIndex in 0..<self.count {
+            let randomIndex = Int.random(in: cardIndex..<self.count)   //card의 index범위 내에서 랜덤한 index를 뽑고
+            cards.swapAt(cardIndex, randomIndex)                      //Array의 기능중 하나인 Swap을 이용 교체한다.
+        }
+    }
+    
+    
 }
