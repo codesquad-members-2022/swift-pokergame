@@ -17,6 +17,7 @@ final class ViewController: UIViewController {
         //카드 만들기
         let card = Card()
         printCardInfo(card: card)
+        
     }
     
     //putCardOnView함수를 몇번 실행할지 정하는 함수
@@ -49,7 +50,7 @@ final class ViewController: UIViewController {
     
     //데이터 처리가 완료된 Card를 print하는 함수
     func printCardInfo(card:Card) {
-        print(card.info.description)
+        print(card)
     }
 
 }

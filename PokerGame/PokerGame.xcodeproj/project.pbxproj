@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8DB01A6327C4E3C000B705E3 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB01A6227C4E3C000B705E3 /* Card.swift */; };
-		8DB01A6927C4F29100B705E3 /* CardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB01A6827C4F29100B705E3 /* CardInfo.swift */; };
+		8DB01A6927C4F29100B705E3 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB01A6827C4F29100B705E3 /* Card.swift */; };
 		8DB8078427C3275100085063 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB8078327C3275100085063 /* AppDelegate.swift */; };
 		8DB8078627C3275100085063 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB8078527C3275100085063 /* SceneDelegate.swift */; };
 		8DB8078827C3275100085063 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB8078727C3275100085063 /* ViewController.swift */; };
@@ -19,8 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8DB01A6227C4E3C000B705E3 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		8DB01A6827C4F29100B705E3 /* CardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfo.swift; sourceTree = "<group>"; };
+		8DB01A6827C4F29100B705E3 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		8DB8078027C3275100085063 /* PokerGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB8078327C3275100085063 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DB8078527C3275100085063 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,8 +62,7 @@
 			children = (
 				8DB8078727C3275100085063 /* ViewController.swift */,
 				8DB8079827C32ED600085063 /* Image.swift */,
-				8DB01A6227C4E3C000B705E3 /* Card.swift */,
-				8DB01A6827C4F29100B705E3 /* CardInfo.swift */,
+				8DB01A6827C4F29100B705E3 /* Card.swift */,
 				8DB8078927C3275100085063 /* Main.storyboard */,
 				8DB8079127C3275300085063 /* Info.plist */,
 				8DB8079727C3276100085063 /* Supporting Files */,
@@ -157,10 +154,9 @@
 			files = (
 				8DB8078827C3275100085063 /* ViewController.swift in Sources */,
 				8DB8079927C32ED600085063 /* Image.swift in Sources */,
-				8DB01A6327C4E3C000B705E3 /* Card.swift in Sources */,
 				8DB8078427C3275100085063 /* AppDelegate.swift in Sources */,
 				8DB8078627C3275100085063 /* SceneDelegate.swift in Sources */,
-				8DB01A6927C4F29100B705E3 /* CardInfo.swift in Sources */,
+				8DB01A6927C4F29100B705E3 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
