@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B34A801E27C4B19A00FA97C9 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34A801D27C4B19A00FA97C9 /* Card.swift */; };
+		B36002E027C6023B00FF8AE5 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36002DF27C6023B00FF8AE5 /* CardDeck.swift */; };
 		B3B4906227C323EA005CE0B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B4906127C323EA005CE0B3 /* AppDelegate.swift */; };
 		B3B4906427C323EA005CE0B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B4906327C323EA005CE0B3 /* SceneDelegate.swift */; };
 		B3B4906627C323EA005CE0B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B4906527C323EA005CE0B3 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		B34A801D27C4B19A00FA97C9 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		B36002DF27C6023B00FF8AE5 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 		B3B4905E27C323EA005CE0B3 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3B4906127C323EA005CE0B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3B4906327C323EA005CE0B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				B3B4906127C323EA005CE0B3 /* AppDelegate.swift */,
 				B3B4906327C323EA005CE0B3 /* SceneDelegate.swift */,
 				B3B4906527C323EA005CE0B3 /* ViewController.swift */,
+				B36002DF27C6023B00FF8AE5 /* CardDeck.swift */,
 				B34A801D27C4B19A00FA97C9 /* Card.swift */,
 				B3B4906727C323EA005CE0B3 /* Main.storyboard */,
 				B3B4906D27C323EE005CE0B3 /* Assets.xcassets */,
@@ -144,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B36002E027C6023B00FF8AE5 /* CardDeck.swift in Sources */,
 				B3B4906627C323EA005CE0B3 /* ViewController.swift in Sources */,
 				B3B4906C27C323EA005CE0B3 /* PokerGameApp.xcdatamodeld in Sources */,
 				B34A801E27C4B19A00FA97C9 /* Card.swift in Sources */,

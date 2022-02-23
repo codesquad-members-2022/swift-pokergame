@@ -6,3 +6,18 @@
 //
 
 import Foundation
+
+struct CardDeck {
+    
+    private let deck: [Card] = Array()
+    
+    func count() -> Int {
+        return deck.count
+    }
+    
+    
+    
+    
+    
+    
+}
