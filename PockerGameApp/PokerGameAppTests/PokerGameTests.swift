@@ -9,24 +9,21 @@ import XCTest
 @testable import PokerGameApp
 
 class PokerGameTests: XCTestCase {
-    var testPlayers: [Player]!
-    var deck: CardDeck!
-    var dealer: Dealer!
-    
-    override func setUp() {
-        self.testPlayers = [
-            Player(name: "Eddy"),
-            Player(name: "Jason"),
-            Player(name: "Chez"),
-            Player(name: "Gucci"),
-            Player(name: "Ebony")
-        ]
-        self.deck = CardDeck()
-        self.dealer = Dealer(deck: deck, players: testPlayers)
-    }
     
     func testExample() throws {
         XCTAssertEqual(1+1, 2)
+    }
+    
+    func testDeal() {
+        let testPlayers = (0..<5).map { _ in Player() }
+        let testNumber = 5
+        let dealer = Dealer(deck: CardDeck(), players: testPlayers)
+        
+        try? dealer.deal(numOfcards: testNumber)
+        
+        for players in testPlayers {
+            XCTAssertEqual(players.cards.count, testNumber)
+        }
     }
     
     func testReceive() throws {
@@ -43,25 +40,15 @@ class PokerGameTests: XCTestCase {
     }
     
     func testSevenStudGame() throws {
-        let pokerGame = PokerGame(type: .sevenStud, dealer: dealer)
+        let pokerGame = PokerGame(type: .sevenStud, numberOfPlayers: 5)
         
-        try? pokerGame.start()
-        
-        let allPlayers: [Playable] = dealer.players + [dealer]
-        for player in allPlayers {
-            XCTAssertEqual(player.cards.count, 7)
-        }
+        try pokerGame.start()
     }
     
     func testFiveStudGame() throws {
-        let pokerGame = PokerGame(type: .fiveStud, dealer: dealer)
+        let pokerGame = PokerGame(type: .fiveStud, numberOfPlayers: 5)
         
-        try? pokerGame.start()
-        
-        let allPlayers: [Playable] = dealer.players + [dealer]
-        for player in allPlayers {
-            XCTAssertEqual(player.cards.count, 5)
-        }
+        try pokerGame.start()
     }
     
     
