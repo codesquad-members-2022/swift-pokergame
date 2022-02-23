@@ -16,12 +16,21 @@ struct PokerGame {
         players + [dealer]
     }
     
-    func start() {
+    func start() throws {
         for player in allPlayers {
-            let dealt = dealer.deal(numOfcards: type.rawValue)
-            player.receive(cards: dealt)
+            do {
+                let dealt = try dealer.deal(numOfcards: type.rawValue)
+                player.receive(cards: dealt)
+            } catch {
+                print(error)
+            }
         }
     }
+}
+
+enum PokerType: Int {
+    case fiveStud = 5
+    case sevenStud = 7
 }
 
 protocol Playable {
@@ -54,10 +63,10 @@ class Dealer: Playable {
         self.deck.shuffle()
     }
     
-    func deal(numOfcards: Int) -> [Card] {
+    func deal(numOfcards: Int) throws -> [Card] {
         var cards = [Card]()
         for _ in 0..<numOfcards {
-            guard let drawn = deck.draw() else { return cards }
+            guard let drawn = deck.draw() else { throw PokerGameError.tooManyPlayer }
             cards.append(drawn)
         }
         return cards
@@ -68,7 +77,6 @@ class Dealer: Playable {
     }
 }
 
-enum PokerType: Int {
-    case fiveStud = 5
-    case sevenStud = 7
+enum PokerGameError: Error {
+    case tooManyPlayer
 }

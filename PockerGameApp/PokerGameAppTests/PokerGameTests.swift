@@ -56,7 +56,7 @@ class PokerGameTests: XCTestCase {
         
         let pokerGame = PokerGame(type: .sevenStud, dealer: dealer, players: testPlayers)
         
-        pokerGame.start()
+        try? pokerGame.start()
         for player in pokerGame.allPlayers {
             XCTAssertEqual(player.cards.count, 7)
         }
@@ -76,7 +76,7 @@ class PokerGameTests: XCTestCase {
         
         let pokerGame = PokerGame(type: .fiveStud, dealer: dealer, players: testPlayers)
         
-        pokerGame.start()
+        try? pokerGame.start()
         for player in pokerGame.allPlayers {
             XCTAssertEqual(player.cards.count, 5)
         }
