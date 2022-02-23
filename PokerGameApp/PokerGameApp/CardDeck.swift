@@ -30,6 +30,17 @@ class CardDeck {
     }
     
     func shuffle() {
-        self.cards.shuffle()
+        self.cards = shuffleFisherYates(self.cards)
+    }
+    
+    private func shuffleFisherYates<T>(_ array: [T]) -> [T] {
+        var origin = array
+        var result = [T]()
+        while(!origin.isEmpty) {
+            let randomIndex = Int.random(in: 0..<origin.count)
+            let removedElement = origin.remove(at: randomIndex)
+            result.append(removedElement)
+        }
+        return result
     }
 }
