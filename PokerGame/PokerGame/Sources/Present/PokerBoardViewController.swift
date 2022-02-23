@@ -94,7 +94,6 @@ class PokerBoardViewController: UIViewController {
         }
         
         playerCardStackView.axis = .vertical
-        playerCardStackView.backgroundColor = .red
         playerCardStackView.distribution = .fillProportionally
     }
     
@@ -103,21 +102,20 @@ class PokerBoardViewController: UIViewController {
         let topOffset = safeAreaFrame.minY
         let leftOffset = 15.0
         let rightOffset = 15.0
+        let safeWidth = safeAreaFrame.width - leftOffset - rightOffset
         
         //포커 옵션 레이아웃
-        let optionViewWidth = 150.0
         let optionViewHeight = 80.0
-        let pokerOptionPositionX = (safeAreaFrame.width / 2) - (optionViewWidth / 2)
         self.view.addSubview(pokerOptionView)
-        pokerOptionView.frame = CGRect(x: pokerOptionPositionX, y: topOffset, width: optionViewWidth, height: optionViewHeight)
+        pokerOptionView.frame = CGRect(x: leftOffset, y: topOffset, width: safeWidth, height: optionViewHeight)
+        pokerOptionView.layout()
         
         //플레이어 카드뷰 레이아웃
         let optionViewOffset = 10.0
         let cardStackViewTopOffset = topOffset + optionViewHeight + optionViewOffset
-        let cardStackViewWidth = safeAreaFrame.width - leftOffset - rightOffset
         let cardStackViewHeight = safeAreaFrame.height - cardStackViewTopOffset
         self.view.addSubview(playerCardStackView)
-        playerCardStackView.frame = CGRect(x: leftOffset, y: cardStackViewTopOffset, width: cardStackViewWidth, height: cardStackViewHeight)
+        playerCardStackView.frame = CGRect(x: leftOffset, y: cardStackViewTopOffset, width: safeWidth, height: cardStackViewHeight)
         
         playerCardViews.enumerated().forEach {
             playerCardStackView.addArrangedSubview($1)

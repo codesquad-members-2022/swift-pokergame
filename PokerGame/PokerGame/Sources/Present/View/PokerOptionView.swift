@@ -8,7 +8,9 @@
 import Foundation
 import UIKit
 
-class PokerOptionView: UIStackView {
+class PokerOptionView: UIView {
+    
+    let menuStackView = UIStackView()
     
     let typeView = UIStackView()
     let typeButtons = (0..<PokerGame.PokerType.allCases.count).map { _ in UIButton()}
@@ -21,7 +23,6 @@ class PokerOptionView: UIStackView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         attribute()
-        layout()
         
         let defaultTypeIndex = PokerGame.Constants.defaultType == .sevenCard ? 0 : 1
         typeButtons[defaultTypeIndex].isEnabled = false
@@ -33,9 +34,9 @@ class PokerOptionView: UIStackView {
     }
     
     private func attribute() {
-        self.axis = .vertical
-        self.distribution = .fillEqually
-        self.spacing = 5
+        menuStackView.axis = .vertical
+        menuStackView.distribution = .fillEqually
+        menuStackView.spacing = 5
         
         typeView.distribution = .fillEqually
         typeView.clipsToBounds = true
@@ -70,13 +71,18 @@ class PokerOptionView: UIStackView {
     }
     
     func layout() {
-        typeView.frame = CGRect(origin: CGPoint(x: 100, y: 0), size: CGSize(width: 100, height: 50))
-        self.addArrangedSubview(typeView)
+        self.addSubview(menuStackView)
+        let menuStackViewWidth = 150.0
+        let menuStackViewHeight = 80.0
+        let menuStackViewPostionX = (self.frame.width / 2.0) - (menuStackViewWidth / 2)
+        menuStackView.frame = CGRect(x: menuStackViewPostionX, y: 0, width: menuStackViewWidth, height: menuStackViewHeight)
+        
+        menuStackView.addArrangedSubview(typeView)
         typeButtons.forEach {
             typeView.addArrangedSubview($0)
         }
         
-        self.addArrangedSubview(playerView)
+        menuStackView.addArrangedSubview(playerView)
         playerButtons.sorted(by: { $0.key < $1.key}).forEach {
             playerView.addArrangedSubview($0.value)
         }

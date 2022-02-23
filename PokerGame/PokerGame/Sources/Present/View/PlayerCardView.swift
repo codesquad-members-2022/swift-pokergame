@@ -17,7 +17,6 @@ class PlayerCardView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         attribute()
-//        layout()
     }
     
     required init(coder: NSCoder) {
