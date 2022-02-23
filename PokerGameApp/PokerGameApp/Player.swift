@@ -10,12 +10,12 @@ import UIKit
 
 struct Player {
     var name : String
-    private var cardDeck : [Card] = []
+    private var hand : [Card] = []
     
     init(name: String) {
         self.name = name
     }
     mutating func getCard(card : Card) {
-        self.cardDeck.append(card)
+        self.hand.append(card)
     }
 }

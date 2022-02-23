@@ -6,3 +6,16 @@
 //
 
 import Foundation
+
+struct Dealer {
+    var name = "Dealer"
+    private var hand : [Card] = []
+    
+    mutating func getCard(card: Card) {
+        self.hand.append(card)
+    }
+    
+    func draw() {
+        
+    }
+}
