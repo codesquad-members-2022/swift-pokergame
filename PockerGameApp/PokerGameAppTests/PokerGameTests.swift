@@ -14,7 +14,7 @@ class PokerGameTests: XCTestCase {
         XCTAssertEqual(1+1, 2)
     }
     
-    func testDeal() {
+    func testDealerDeal() {
         let testPlayers = (0..<5).map { _ in Player() }
         let testNumber = 5
         let dealer = Dealer(deck: CardDeck(), players: testPlayers)
@@ -26,7 +26,7 @@ class PokerGameTests: XCTestCase {
         }
     }
     
-    func testReceive() throws {
+    func testPlayerReceive() throws {
         let john = Player(name: "John")
         
         XCTAssertEqual(john.cards, [])
@@ -52,24 +52,11 @@ class PokerGameTests: XCTestCase {
     }
     
     
-    func testDealwithTooManyPlayer() throws {
-        let testPlayers = [
-            Player(name: "Eddy"),
-            Player(name: "Jason"),
-            Player(name: "Chez"),
-            Player(name: "Gucci"),
-            Player(name: "Dale"),
-            Player(name: "Seilna"),
-            Player(name: "Jed"),
-            Player(name: "Jee"),
-            Player(name: "Ebony")
-        ]
-        
-        let deck = CardDeck()
-        let dealer = Dealer(deck: deck, players: testPlayers)
+    func testWithTooManyPlayer() throws {
+        let pokerGame = PokerGame(type: .sevenStud, numberOfPlayers: 8)
         
         var thrownError: Error!
-        XCTAssertThrowsError(try dealer.deal(numOfcards: PokerType.sevenStud.numberOfCards)) {
+        XCTAssertThrowsError(try pokerGame.start()) {
             thrownError = $0
         }
         XCTAssertTrue(thrownError as? PokerGameError == .tooManyPlayer)

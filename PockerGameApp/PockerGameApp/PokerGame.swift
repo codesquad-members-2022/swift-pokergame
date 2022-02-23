@@ -44,15 +44,14 @@ protocol Playable {
 
 class Player: Playable {
     let name: String
-    var cards: [Card]
+    var cards: [Card] = []
     
     static var candidates = [
         "Eddy", "Jason", "Chez", "Dale", "Selina", "Jed", "Jee", "Ebony", "Sol", "Gucci"
     ]
     
-    init(name: String, cards: [Card] = []) {
+    init(name: String) {
         self.name = name
-        self.cards = cards
     }
     
     init() {
