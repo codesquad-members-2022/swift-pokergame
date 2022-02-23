@@ -1,6 +1,18 @@
 import Foundation
 
 class PockerGame: CustomStringConvertible{
+    
+    internal enum Count: Int{
+        case one = 1
+        case two = 2
+        case three = 3
+        case four = 4
+    }
+    
+    internal enum Stud: Int{
+        case five = 5
+        case seven = 7
+    }
 
     internal class Player: CustomStringConvertible{
         var name: String
@@ -35,7 +47,7 @@ class PockerGame: CustomStringConvertible{
     }
     
     private var randomNames = ["dale","eddy","jee","foucault","sol"]
-    private (set) var stud: Int
+    private (set) var stud: Stud
     private (set) var deck: CardDeck
     var dealer: Dealer
     var players: [Player] = []
@@ -44,12 +56,12 @@ class PockerGame: CustomStringConvertible{
         return "\(value)\(dealer)"
     }
     
-    init(numberOfPlayers: Int, stud: Int){
+    init(numberOfPlayers: Count, stud: Stud){
         self.stud = stud
         self.dealer = Dealer()
         self.deck = CardDeck()
     
-        for _ in 0..<numberOfPlayers{
+        for _ in 0..<numberOfPlayers.rawValue{
             guard let playerName = randomNames.popLast() else { continue }
             players.append(Player(playerName))
         }
@@ -61,8 +73,8 @@ class PockerGame: CustomStringConvertible{
     }
     
     private func run(){
-        if(deck.count >= (players.count + 1) * stud){
-            for _ in 0..<(players.count + 1) * stud{
+        if(deck.count >= (players.count + 1) * stud.rawValue){
+            for _ in 0..<(players.count + 1) * stud.rawValue{
                 guard let card = deck.removeOne() else { continue }
                 dealer.getCard(card)
             }
@@ -71,9 +83,9 @@ class PockerGame: CustomStringConvertible{
     }
     
     private func distributeCards(){
-        for _ in 0..<stud{
+        for _ in 0..<stud.rawValue{
             for index in 0..<players.count{
-                guard let card = dealer.handOutCard(stud: stud) else { continue }
+                guard let card = dealer.handOutCard(stud: stud.rawValue) else { continue }
                 players[index].getCard(card)
             }
         }
