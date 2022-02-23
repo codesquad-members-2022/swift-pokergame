@@ -47,5 +47,8 @@ class ViewController: UIViewController {
         let card1 = Card(shape: Card.Shape.diamond, number: Card.Number.eight)
         let card2 = Card(shape: Card.Shape.heart, number: Card.Number.five)
         
+        
+        let cardDeck = CardDeck()
+        
     }
 }
