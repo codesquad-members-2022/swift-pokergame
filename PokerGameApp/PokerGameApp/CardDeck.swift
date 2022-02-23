@@ -39,7 +39,7 @@ struct CardDeck {
         }
     }
     
-    mutating func removeOne() -> Card {
+    mutating func draw() -> Card {
         return self.cards.remove(at: Int.random(in: (0..<count)))
     }
     
