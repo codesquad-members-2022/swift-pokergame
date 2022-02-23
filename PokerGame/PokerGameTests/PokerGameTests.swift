@@ -22,6 +22,18 @@ class PokerGameTests: XCTestCase {
     override func tearDownWithError() throws {
     }
     
+    func testPlayerScoreStraight() {
+        let player = Player(name: "tester")
+        player.add(card: Card(pattern: .spade, number: .ace))
+        player.add(card: Card(pattern: .diamond, number: .two))
+        player.add(card: Card(pattern: .clover, number: .four))
+        player.add(card: Card(pattern: .spade, number: .five))
+        player.add(card: Card(pattern: .spade, number: .six))
+        player.add(card: Card(pattern: .spade, number: .seven))
+        player.add(card: Card(pattern: .spade, number: .eight))
+        XCTAssertEqual(Score.calculation(player: player), .straight)
+    }
+    
     func testPlayerScoreFourCard() {
         let player = Player(name: "tester")
         player.add(card: Card(pattern: .spade, number: .ace))
