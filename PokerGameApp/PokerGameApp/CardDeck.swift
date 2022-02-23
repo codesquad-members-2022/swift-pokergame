@@ -50,3 +50,10 @@ struct CardDeck {
         self.cards = initialCards
     }
 }
+
+
+extension CardDeck: CustomStringConvertible {
+    var description: String {
+        return "\(cards)"
+    }
+}
