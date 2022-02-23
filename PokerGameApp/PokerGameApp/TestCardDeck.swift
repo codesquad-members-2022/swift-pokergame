@@ -18,30 +18,33 @@ class TestCardDeck {
         let count = cardDeck.count()
         let expect = 52
         if count != expect {
-            print("TestCardDeck::countWhenInit() Fail-초기화했을때 카드 갯수가 예상값(\(expect)가 아닙니다")
+            printWithFormat("Fail-초기화했을때 카드 갯수가 예상값(\(expect)가 아닙니다")
             return
         }
-        print("TestCardDeck::countWhenInit() Success-\(expect)개로 초기화 완료")
+        printWithFormat("\(expect)개로 초기화 완료")
     }
     
     func count(expect: Int) {
         let count = cardDeck.count()
         if count != expect {
-            print("TestCardDeck::count() Fail-카드 갯수가 예상값(\(expect)가 아닙니다")
+            printWithFormat("Fail-카드 갯수가 예상값(\(expect)가 아닙니다")
             return
         }
-        print("TestCardDeck::count() Success")
+        printWithFormat("예상값\(expect)과 일치")
     }
     
     func removeOne() {
         let removedCard = cardDeck.removeOne()
         let currentCardCount = cardDeck.count()
-        
         guard let card = removedCard else {
-            print("TestCardDeck::removeOne()-카드를 삭제하지 못했습니다. 현재 카드갯수 \(currentCardCount)개.")
+            printWithFormat("카드를 삭제하지 못했습니다. 현재 카드갯수 \(currentCardCount)개.")
             return
         }
-        print("TestCardDeck::removeOne()", card, "\(currentCardCount)개의 카드가 남았습니다.")
-        
+        printWithFormat("\(card) \(currentCardCount)개의 카드가 남았습니다.")
+    }
+    
+    private func printWithFormat(_ description: String, line: Int = #line, function: String = #function) {
+        let debugString = "▫️line\(line):\(function):: \(description)"
+        print(debugString)
     }
 }
