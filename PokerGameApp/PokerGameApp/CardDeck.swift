@@ -10,7 +10,7 @@ import Foundation
 struct CardDeck {
     private let initialCards: [Card]
     private var cards: [Card]
-    private var count: Int {
+    var count: Int {
         return cards.count
     }
     
@@ -26,7 +26,6 @@ struct CardDeck {
         
         self.initialCards = cards
         self.cards = cards
-        print("카드 전체를 초기화했습니다.\n총 \(count)장의 카드가 있습니다.")
     }
     
     
@@ -37,7 +36,6 @@ struct CardDeck {
             cards[index] = cards[randomIndex]
             cards[randomIndex] = temp
         }
-        print("전체 \(count)장의 카드를 섞었습니다.")
     }
     
     
