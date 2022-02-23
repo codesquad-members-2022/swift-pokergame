@@ -6,7 +6,7 @@ class PockerGameTest: XCTestCase {
     private var pockerGame: PockerGame!
     
     override func setUp(){
-        pockerGame = PockerGame(numberOfPlayers: 4, stud: 5)
+        pockerGame = PockerGame(numberOfPlayers: PockerGame.Count.four, stud: PockerGame.Stud.five)
         super.setUp()
     }
     
@@ -19,9 +19,9 @@ class PockerGameTest: XCTestCase {
     func testCardDistribution(){
         pockerGame.start()
         for player in pockerGame.players{
-            XCTAssertEqual(player.cards.count, pockerGame.stud)
+            XCTAssertEqual(player.cards.count, pockerGame.stud.rawValue)
         }
-        XCTAssertEqual(pockerGame.dealer.cards.count, pockerGame.stud)
+        XCTAssertEqual(pockerGame.dealer.cards.count, pockerGame.stud.rawValue)
     }
 
 }
