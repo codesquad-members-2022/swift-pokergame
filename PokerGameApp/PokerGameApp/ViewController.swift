@@ -12,8 +12,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setBackground()
+        addCardToView()
+    }
+    
+    func setBackground() {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern.png")!)
-        
+    }
+    
+    func addCardToView() {
         let screenWidth = UIScreen.main.bounds.width
         let cardWidth = screenWidth / 7
         let image = UIImage(named: "card-back.png")!
@@ -27,7 +34,6 @@ class ViewController: UIViewController {
             
             self.view.addSubview(imageView)
         }
-        
     }
 
 
