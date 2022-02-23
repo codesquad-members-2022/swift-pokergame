@@ -8,26 +8,24 @@
 import Foundation
 
 struct CardDeck {
-    private let originCards : [Card]
+    private var originCards : [Card] = []
     private var cards : [Card]
     var count : Int {
         return cards.count
     }
     init() {
-        var tempCardArr : [Card] = []
-        for i in Card.Shape.allCases {
-            for j in Card.Number.allCases{
-                tempCardArr.append(Card(shape: i, number: j))
+        for shape in Card.Shape.allCases {
+            for number in Card.Number.allCases{
+                self.originCards.append(Card(shape: shape, number: number))
             }
         }
-        originCards = tempCardArr
         cards = originCards
     }
     mutating func shuffle() {
-        for i in 0..<self.count {
-            guard let randomIndex = (i..<self.count).randomElement() else {continue}
-            let tempCard = cards[i]
-            cards[i] = cards[randomIndex]
+        for cardIndex in 0..<self.count {
+            guard let randomIndex = (cardIndex..<self.count).randomElement() else {continue}
+            let tempCard = cards[cardIndex]
+            cards[cardIndex] = cards[randomIndex]
             cards[randomIndex] = tempCard
         }
     }
