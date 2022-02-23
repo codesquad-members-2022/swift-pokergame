@@ -55,6 +55,17 @@ class PlayerCardView: UIView {
         }
     }
     
+    func resetPokerBoard(pokerType: PokerGame.PokerType, name: String?) {
+        self.alpha = name != nil ? 1 : 0
+        self.name.text = name
+        self.name.sizeToFit()
+        
+        cards.enumerated().forEach {
+            $1.alpha = $0 < pokerType.cardCount ? 1 : 0
+            $1.image = UIImage(named: "card-back")
+        }
+    }
+    
     func setCard(at index: Int, card: Card) {
         cards[index].image = UIImage(named: "\(card)")
     }

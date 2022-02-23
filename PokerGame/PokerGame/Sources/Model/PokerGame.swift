@@ -21,7 +21,7 @@ class PokerGame {
     }
     
     struct State {
-        var updateUi: ([String]) -> Void = { _ in }
+        var resetPokerBoard: (PokerType, [String]) -> Void = { _, _ in }
         var givePlayerCard: (Int, Int, Card) -> Void = { _, _, _ in }
         var giveDealerCard: (Int, Card) -> Void = { _, _ in }
         var finishPoker: () -> Void = { }
@@ -42,17 +42,20 @@ class PokerGame {
         
         action.inputPokerType = { pokerType in
             self.pokerType = pokerType
+            self.state.resetPokerBoard(self.pokerType, self.pokerPlayers.names)
         }
         
         action.inputPlayerCount = { playerCount in
             self.playerCount = playerCount
+            self.pokerPlayers.set(players: self.createPlayers(count: playerCount))
+            self.state.resetPokerBoard(self.pokerType, self.pokerPlayers.names)
         }
     }
     
     func resetGame() {
         dealer.cardReset()
         pokerPlayers.set(players: createPlayers(count: playerCount))
-        state.updateUi(pokerPlayers.playerNames)
+        state.resetPokerBoard(pokerType, pokerPlayers.names)
     }
     
     private func play() {

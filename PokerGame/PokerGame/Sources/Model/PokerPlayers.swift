@@ -20,7 +20,7 @@ class PokerPlayers {
         players.count
     }
     
-    var playerNames: [String] {
+    var names: [String] {
         players.map{ $0.name }
     }
 
