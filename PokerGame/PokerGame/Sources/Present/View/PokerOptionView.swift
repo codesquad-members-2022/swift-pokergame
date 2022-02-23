@@ -13,10 +13,20 @@ class PokerOptionView: UIView {
     let menuStackView = UIStackView()
     
     let typeView = UIStackView()
-    let typeButtons = (0..<PokerGame.PokerType.allCases.count).map { _ in UIButton()}
+    let typeButtons = PokerGame.PokerType.allCases
+        .map { pokerType -> PokerTypeButton in
+            let button = PokerTypeButton()
+            button.setButtonValue(pokerType: pokerType)
+            return button
+        }
     
     let playerView = UIStackView()
-    var playerButtons = (2...PokerPlayers.Constants.limitCount).map { _ in UIButton()}
+    var playerButtons = (0..<PokerPlayers.Constants.limitCount)
+        .map { index -> PlayerButton in
+            let button = PlayerButton()
+            button.setButtonValue(playerCount: index + 1)
+            return button
+        }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,17 +41,20 @@ class PokerOptionView: UIView {
     private func initialize() {
         attribute()
         
-        let defaultTypeIndex = PokerGame.Constants.defaultType == .sevenCard ? 0 : 1
-        typeButtons[defaultTypeIndex].isEnabled = false
-        //TODO: - 상수에 연산을 하는 과정을 생략하도록 해보자
-        playerButtons[PokerPlayers.Constants.defaultCount - 2].isEnabled = false
+        typeButtons
+            .filter{ $0.pokerType == PokerGame.Constants.defaultType }
+            .first?.isEnabled = false
+        
+        playerButtons
+            .filter{ $0.playerCount == PokerPlayers.Constants.defaultCount}
+            .first?.isEnabled = false
     }
     
     func bind(pokerGame: PokerGame) {
         typeButtons.enumerated().forEach { index, button in
             let action = UIAction(handler: { sender in
                 self.switchToggleButton(buttons: self.typeButtons, at: index)
-                pokerGame.action.inputPokerType(index == 0 ?.sevenCard : .fiveCard)
+                pokerGame.action.inputPokerType(button.pokerType)
             })
             button.addAction(action, for: .touchUpInside)
         }
@@ -49,7 +62,7 @@ class PokerOptionView: UIView {
         playerButtons.enumerated().forEach { index, button in
             let action = UIAction(handler: { sender in
                 self.switchToggleButton(buttons: self.playerButtons, at: index)
-                pokerGame.action.inputPlayerCount(index + 2)
+                pokerGame.action.inputPlayerCount(button.playerCount)
             })
             button.addAction(action, for: .touchUpInside)
         }
@@ -70,8 +83,7 @@ class PokerOptionView: UIView {
             $1.setBackgroundImage(UIImage(named: "buttonBg"), for: .disabled)
             $1.setTitleColor(.black, for: .disabled)
             $1.setTitleColor(.white, for: .normal)
-            let pokerType: PokerGame.PokerType = $0 == 0 ? .sevenCard : .fiveCard
-            $1.setTitle("\(pokerType.cardCount) Cards", for: .normal)
+            $1.setTitle("\($1.pokerType.cardCount) Cards", for: .normal)
             $1.titleLabel?.font = .systemFont(ofSize: 15)
         }
         
@@ -87,7 +99,7 @@ class PokerOptionView: UIView {
             $1.setTitleColor(.white, for: .normal )
             $1.layer.borderWidth = 0.5
             $1.layer.borderColor = UIColor.white.cgColor
-            $1.setTitle("\($0 + 2)명", for: .normal)
+            $1.setTitle("\($0 + 1)명", for: .normal)
             $1.titleLabel?.font = .systemFont(ofSize: 15)
         }
     }
