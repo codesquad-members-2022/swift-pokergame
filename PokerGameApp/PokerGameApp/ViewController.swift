@@ -8,6 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var cards = [Card]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,8 +16,19 @@ class ViewController: UIViewController {
         setBackground()
         addCardToView()
         
-        let c1 = Card(1, Card.Shape.heart)
-        print(c1.getCardInfo())
+        createCard()
+        printCard()
+    }
+    
+    func createCard() {
+        cards.append(Card(12, Card.Shape.heart))
+        cards.append(Card(7, Card.Shape.spade))
+    }
+    
+    func printCard() {
+        for card in cards {
+            print(card.getCardInfo())
+        }
     }
     
     func setBackground() {
