@@ -16,7 +16,7 @@ class PokerOptionView: UIView {
     let typeButtons = (0..<PokerGame.PokerType.allCases.count).map { _ in UIButton()}
     
     let playerView = UIStackView()
-    var playerButtons = (2...Player.Constants.limitCount).reduce(into: [Int:UIButton]()) {
+    var playerButtons = (2...PokerPlayers.Constants.limitCount).reduce(into: [Int:UIButton]()) {
         $0[$1] = UIButton()
     }
     
@@ -26,11 +26,31 @@ class PokerOptionView: UIView {
         
         let defaultTypeIndex = PokerGame.Constants.defaultType == .sevenCard ? 0 : 1
         typeButtons[defaultTypeIndex].isEnabled = false
-        playerButtons[Player.Constants.defaultCount]?.isEnabled = false
+        playerButtons[PokerPlayers.Constants.defaultCount]?.isEnabled = false
     }
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func bind(pokerGame: PokerGame) {
+        typeButtons.enumerated().forEach { index, button in
+            button.addAction(UIAction(handler: { sender in
+                (0..<self.typeButtons.count).forEach {
+                    self.typeButtons[$0].isEnabled = index != $0
+                }
+                pokerGame.action.inputPokerType(index == 0 ?.sevenCard : .fiveCard)
+            }), for: .touchUpInside)
+        }
+        
+        playerButtons.forEach { index, button in
+            button.addAction(UIAction(handler: { sender in
+                self.playerButtons.forEach {
+                    $1.isEnabled = index != $0
+                }
+                pokerGame.action.inputPlayerCount(index)
+            }), for: .touchUpInside)
+        }
     }
     
     private func attribute() {
@@ -49,7 +69,7 @@ class PokerOptionView: UIView {
             $1.setTitleColor(.black, for: .disabled)
             $1.setTitleColor(.white, for: .normal)
             let pokerType: PokerGame.PokerType = $0 == 0 ? .sevenCard : .fiveCard
-            $1.setTitle("\(pokerType.rawValue) Cards", for: .normal)
+            $1.setTitle("\(pokerType.cardCount) Cards", for: .normal)
             $1.titleLabel?.font = .systemFont(ofSize: 15)
         }
         
