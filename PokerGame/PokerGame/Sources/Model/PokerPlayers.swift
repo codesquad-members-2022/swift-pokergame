@@ -34,7 +34,7 @@ class PokerPlayers {
         players[index].add(card: card)
     }
 
-    func createPlayers(count: Int) {
-        players = (0..<count).map { _ in PokerPlayer()}
+    func createPlayers(names: [String]) {
+        players = names.map { PokerPlayer(name: $0)}
     }
 }
