@@ -20,6 +20,8 @@ class ViewController: UIViewController {
         let sampleCard2 = Card(symbol: .spade, rank: .seven)
         printCardInfo(card: sampleCard1)
         printCardInfo(card: sampleCard2)
+        
+        cardDeckTestScenario()
                                             
     }
     
@@ -48,6 +50,34 @@ class ViewController: UIViewController {
     
     func printCardInfo(card: Card) {
         print(card)
+    }
+    
+    
+    func cardDeckTestScenario() {
+        print("카드 초기화 >")
+        var cardDeck = CardDeck()
+        print("카드 전체를 초기화했습니다.")
+        print("총 \(cardDeck.count())장의 카드가 있습니다.")
+        
+        print()
+        
+        print("카드 섞기 >")
+        cardDeck.shuffle()
+        print("전체 \(cardDeck.count())장의 카드를 섞었습니다.")
+        
+        print()
+        
+        print("카드 하나뽑기 >")
+        print(cardDeck.removeOne())
+        print("총 \(cardDeck.count())장의 카드가 남았습니다.")
+        
+        print()
+        
+        print("카드 리셋 >")
+        cardDeck.reset()
+        print("총 \(cardDeck.count())장의 카드가 있습니다.")
+        
+        
     }
 
 
