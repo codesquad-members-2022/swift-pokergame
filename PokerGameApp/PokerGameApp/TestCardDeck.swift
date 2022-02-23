@@ -32,4 +32,10 @@ class TestCardDeck {
         }
         print("TestCardDeck::count() Success")
     }
+    
+    func removeOne() {
+//        let removedCard = cardDeck.removeCard()
+//        let currentCardCount = cardDeck.count()
+//        print(removedCard, "\(currentCardCount)개의 카드가 남았습니다.")
+    }
 }
