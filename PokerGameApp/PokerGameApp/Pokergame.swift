@@ -25,17 +25,18 @@ struct PokerGame {
         }
     }
     mutating func play() {
-        
+        drawCard(each: self.stud.hashValue)
+        while cardDeck.count != 0 {
+            drawCard(each: 1)
+        }
     }
     
-    func playSevenCard() {
-        
-    }
-    
-    func playFiveCard() {
-        for player in players {
-            guard let drawedCard = dealer.draw() else {break}
-            player.getCard(card: drawedCard )
+    func drawCard(each : Int) {
+        for _ in 0..<each {
+            for player in players {
+                guard let drawedCard = dealer.draw() else {break}
+                player.getCard(card: drawedCard )
+            }
         }
     }
 
