@@ -43,19 +43,16 @@ class TestCardDeck {
         printWithFormat("\(card) \(currentCardCount)개의 카드가 남았습니다.")
     }
     
-    func reset() {
-        // when
-        // cardDeck.reset()
-//        let expectCount = Card.all().count
-        
-        // then
-//        if cardDeck.count() != expectCount {
-//            printWithFormat("Fail-카드 갯수가 예상값(\(expectCount)가 아닙니다")
-//            return
-//        }
-//        printWithFormat("예상값\(expectCount)과 일치")
+    func resetWhenRemoveOne() {
+        cardDeck.removeOne()
+        cardDeck.reset()
+        let expectCount = Card.all().count
+        if cardDeck.count() != expectCount {
+            printWithFormat("Fail-카드 갯수가 예상값(\(expectCount)가 아닙니다")
+            return
+        }
+        printWithFormat("예상값\(expectCount)과 일치")
     }
-    
     
     private func printWithFormat(_ description: String, line: Int = #line, function: String = #function) {
         let debugString = "▫️line\(line):\(function):: \(description)"
