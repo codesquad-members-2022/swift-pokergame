@@ -14,7 +14,7 @@ class PokerGame {
     let gameRule: GameRule
     
     init(numberOfGamblers: Int) {
-        var nameArray = ["Sol", "Jee", "Eddy", "Foucault", "Selina", "Jed", "Dale"]
+        var nameArray = ["Sol", "Jee", "Eddy", "Jed", "Dale"]
         var gamblers = [Gambler]()
         for _ in 0..<numberOfGamblers{
             let newGambler = Gambler(name: nameArray.remove(at: (0..<nameArray.count).randomElement() ?? 0))
