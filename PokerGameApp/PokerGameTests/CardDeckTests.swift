@@ -46,7 +46,7 @@ class PokerGameTests: XCTestCase {
     func testReset() {
         var cardDeckBeforeReset = CardDeck()
         cardDeckBeforeReset.shuffle()
-        XCTAssertNotEqual(cardDeckBeforeReset, cardDeck, "Wrong Card Deck After Shffle")
+        XCTAssertNotEqual(cardDeckBeforeReset, cardDeck, "Wrong Card Deck After Shuffle")
         
         cardDeckBeforeReset.reset()
         XCTAssertEqual(cardDeckBeforeReset, cardDeck, "Wrong Card Deck Count After Reset")
