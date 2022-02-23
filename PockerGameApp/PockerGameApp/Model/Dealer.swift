@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Dealer: Gamer {
+struct Dealer {
     
     var wholeDeck = CardDeck()
     var cardDeck = CardDeck.init(with: [])
