@@ -12,7 +12,7 @@ class PockerGameTest: XCTestCase {
     
     
     func testInitialization(){
-        XCTAssertEqual(pockerGame.dealer.name, "딜러", "Dealer Successfully Created")
+        XCTAssertEqual(pockerGame.dealer.name, "딜러")
         XCTAssertEqual(pockerGame.players.count, 4)
     }
     
