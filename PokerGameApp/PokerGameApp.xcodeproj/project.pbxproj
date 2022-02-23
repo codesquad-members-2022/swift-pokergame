@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B52EC60927C5DB4E00C73E54 /* PockerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EC60827C5DB4E00C73E54 /* PockerGame.swift */; };
 		B56CA14227C3234D001DC373 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CA14127C3234D001DC373 /* AppDelegate.swift */; };
 		B56CA14427C3234D001DC373 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CA14327C3234D001DC373 /* SceneDelegate.swift */; };
 		B56CA14627C3234D001DC373 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CA14527C3234D001DC373 /* ViewController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B52EC60827C5DB4E00C73E54 /* PockerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockerGame.swift; sourceTree = "<group>"; };
 		B56CA13E27C3234D001DC373 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B56CA14127C3234D001DC373 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B56CA14327C3234D001DC373 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 			children = (
 				B56CA15727C486FA001DC373 /* Card.swift */,
 				B56CA15927C4B688001DC373 /* CardDeck.swift */,
+				B52EC60827C5DB4E00C73E54 /* PockerGame.swift */,
 				B56CA14127C3234D001DC373 /* AppDelegate.swift */,
 				B56CA14327C3234D001DC373 /* SceneDelegate.swift */,
 				B56CA14527C3234D001DC373 /* ViewController.swift */,
@@ -145,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B56CA15827C486FA001DC373 /* Card.swift in Sources */,
+				B52EC60927C5DB4E00C73E54 /* PockerGame.swift in Sources */,
 				B56CA15A27C4B688001DC373 /* CardDeck.swift in Sources */,
 				B56CA14627C3234D001DC373 /* ViewController.swift in Sources */,
 				B56CA14227C3234D001DC373 /* AppDelegate.swift in Sources */,
@@ -297,6 +301,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BK8ZJ2X5AW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PokerGameApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -324,6 +329,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BK8ZJ2X5AW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PokerGameApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
