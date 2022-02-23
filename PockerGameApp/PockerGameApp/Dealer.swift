@@ -24,3 +24,9 @@ struct Dealer: Gamer {
         self.cardDeck.add(card)
     }
 }
+
+extension Dealer: CustomStringConvertible {
+    var description: String {
+        return "딜러 \(self.cardDeck)"
+    }
+}
