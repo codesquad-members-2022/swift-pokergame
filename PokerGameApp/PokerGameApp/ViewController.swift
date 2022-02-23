@@ -48,9 +48,14 @@ class ViewController: UIViewController {
         let card2 = Card(shape: Card.Shape.heart, number: Card.Number.five)
         
         var cardDeck = CardDeck()
+        
+        
         cardDeck.shuffle()
         
         var removedCard = cardDeck.removeOne()
+        
+        
+        var resetCard = cardDeck.reset()
         
     }
 }
