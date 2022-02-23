@@ -49,7 +49,7 @@ class PokerOptionView: UIView {
         playerButtons.enumerated().forEach { index, button in
             let action = UIAction(handler: { sender in
                 self.switchToggleButton(buttons: self.playerButtons, at: index)
-                pokerGame.action.inputPlayerCount(index)
+                pokerGame.action.inputPlayerCount(index + 2)
             })
             button.addAction(action, for: .touchUpInside)
         }

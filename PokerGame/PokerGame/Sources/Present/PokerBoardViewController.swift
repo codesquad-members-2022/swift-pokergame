@@ -35,7 +35,6 @@ class PokerBoardViewController: UIViewController {
         layout()
         
         pokerGame.action.pokerReset()
-        pokerGame.action.pokerPlay()
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
@@ -49,18 +48,14 @@ class PokerBoardViewController: UIViewController {
     private func bind() {
         pokerOptionView.bind(pokerGame: pokerGame)
         
-        pokerGame.state.updateUi = { playerNames in
+        pokerGame.state.resetPokerBoard = { pokerType, playerNames in
             (0..<self.playerCardViews.count).forEach {
                 let cardView = self.playerCardViews[$0]
-                let isEnable = $0 < playerNames.count
-                cardView.alpha = isEnable ? 1 : 0
-                if isEnable {
-                    cardView.name.text = playerNames[$0]
-                    cardView.name.sizeToFit()
-                }
+                let name = $0 < playerNames.count ? playerNames[$0] : nil
+                cardView.resetPokerBoard(pokerType: pokerType, name: name)
             }
-            self.dealerCardView.name.text = "Dealer"
-            self.dealerCardView.name.sizeToFit()
+            
+            self.dealerCardView.resetPokerBoard(pokerType: pokerType, name: "Dealer")
         }
         
         pokerGame.state.givePlayerCard = { index, cardIndex, card in
