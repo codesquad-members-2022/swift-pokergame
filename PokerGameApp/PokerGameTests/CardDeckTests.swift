@@ -49,6 +49,6 @@ class PokerGameTests: XCTestCase {
         XCTAssertNotEqual(originalCardDeck, cardDeck, "Wrong Card Deck After Shuffle")
         
         cardDeck.reset()
-        XCTAssertEqual(originalCardDeck, cardDeck, "Wrong Card Deck Count After Reset")
+        XCTAssertEqual(originalCardDeck, cardDeck, "Wrong Card Deck After Reset")
     }
 }
