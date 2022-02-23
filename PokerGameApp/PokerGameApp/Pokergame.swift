@@ -9,21 +9,34 @@ import Foundation
 struct PokerGame {
     var cardDeck = CardDeck()
     var dealer : Dealer
-    var player : [Player] = []
+    var players : [Player] = []
     let stud : Stud
-    let playerCount : PlayerCount
+    let playerCount : Int
     init(stud: Stud, playerCount: PlayerCount) {
         self.stud = stud
-        self.playerCount = playerCount
+        self.dealer = Dealer(cardDeck: cardDeck)
+        //playerCount에 딜러 인원 추가
+        self.players.append(dealer)
+        self.playerCount = playerCount.rawValue + 1
         var playerName = PlayerName()
         for _ in 0..<playerCount.rawValue {
             let name = playerName.popName()
-            self.player.append(Player(name: name))
+            self.players.append(Player(name: name))
         }
-        self.dealer = Dealer(cardDeck: cardDeck)
     }
     mutating func play() {
         
+    }
+    
+    func playSevenCard() {
+        
+    }
+    
+    func playFiveCard() {
+        for player in players {
+            guard let drawedCard = dealer.draw() else {break}
+            player.getCard(card: drawedCard )
+        }
     }
 
     enum PlayerCount : Int{

@@ -7,19 +7,13 @@
 
 import Foundation
 
-struct Dealer {
-    var name = "Dealer"
+class Dealer : Player {
     private var cardDeck : CardDeck
-    private var hand : [Card] = []
-    
     init(cardDeck : CardDeck) {
         self.cardDeck = cardDeck
+        super.init(name: "dealer")
     }
-    mutating func getCard(card: Card) {
-        self.hand.append(card)
-    }
-    
-    mutating func draw() -> Card?{
+    func draw() -> Card?{
         return self.cardDeck.removeOne()
     }
 }
