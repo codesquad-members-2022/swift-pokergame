@@ -28,4 +28,13 @@ class CardDeckTest: XCTestCase {
         
         XCTAssertEqual(cardDeck.count, 51, "한장이 제거되지 않았습니다.")
     }
+    
+    func testResetCardDeck() {
+        let originCardDeck = CardDeck()
+        var cardDeck = CardDeck()
+        cardDeck.shuffle()
+        XCTAssertNotEqual(originCardDeck, cardDeck, "카드가 섞이지 않았습니다.")
+        cardDeck.reset()
+        XCTAssertEqual(originCardDeck, cardDeck, "카드가 복구되지 않았습니다.")
+    }
 }
