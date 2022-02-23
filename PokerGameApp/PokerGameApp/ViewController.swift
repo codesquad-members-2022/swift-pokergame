@@ -23,6 +23,7 @@ class ViewController: UIViewController {
         
         let testCardDeck = TestCardDeck()
         testCardDeck.countWhenInit()
+        testCardDeck.removeOne()
     }
     
     private func addPattern(to view: UIView, pattern: UIImage) {
