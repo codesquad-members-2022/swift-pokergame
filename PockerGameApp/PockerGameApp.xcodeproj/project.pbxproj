@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D260D7A527C5CF9B00855862 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D260D7A427C5CF9B00855862 /* Player.swift */; };
+		D260D7A727C5D19500855862 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D260D7A627C5D19500855862 /* Dealer.swift */; };
 		D267E90527C31E90009A2EA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D267E90427C31E90009A2EA3 /* AppDelegate.swift */; };
 		D267E90727C31E90009A2EA3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D267E90627C31E90009A2EA3 /* SceneDelegate.swift */; };
 		D267E90927C31E90009A2EA3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D267E90827C31E90009A2EA3 /* ViewController.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D260D7A427C5CF9B00855862 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		D260D7A627C5D19500855862 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		D267E90127C31E90009A2EA3 /* PockerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PockerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D267E90427C31E90009A2EA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D267E90627C31E90009A2EA3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +81,8 @@
 			children = (
 				D26BD12B27C47169001D0AD4 /* Card.swift */,
 				D26BD12F27C4B334001D0AD4 /* CardDeck.swift */,
+				D260D7A627C5D19500855862 /* Dealer.swift */,
+				D260D7A427C5CF9B00855862 /* Player.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -155,6 +161,8 @@
 				D267E90927C31E90009A2EA3 /* ViewController.swift in Sources */,
 				D26BD13027C4B334001D0AD4 /* CardDeck.swift in Sources */,
 				D267E90527C31E90009A2EA3 /* AppDelegate.swift in Sources */,
+				D260D7A727C5D19500855862 /* Dealer.swift in Sources */,
+				D260D7A527C5CF9B00855862 /* Player.swift in Sources */,
 				D267E90727C31E90009A2EA3 /* SceneDelegate.swift in Sources */,
 				D26BD12C27C47169001D0AD4 /* Card.swift in Sources */,
 			);

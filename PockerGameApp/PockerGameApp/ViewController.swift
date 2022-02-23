@@ -26,8 +26,8 @@ class ViewController: UIViewController {
         for _ in 0...6{
             makeImageView()
             
-            if let cardInfo = makeRandomCardInfo(){
-                showCardInfo(card: cardInfo)
+            if let card = makeRandomCard(){
+
             } else{
                 let alert = UIAlertController(title: "잘못된 호출", message: "모양이나 숫자 입력이 잘못되었습니다. 다시 확인해주세요.", preferredStyle: UIAlertController.Style.alert)
                 self.present(alert, animated: true)
@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         self.horizonStack.addArrangedSubview(imageView)
     }
     
-    func makeRandomCardInfo() -> Card?{
+    func makeRandomCard() -> Card?{
         guard let cardRandomShape = Card.Shape.allCases.randomElement(), let cardRandomNum = Card.CardNumber.allCases.randomElement() else{
             return nil
         }
@@ -51,11 +51,6 @@ class ViewController: UIViewController {
         let cardInfo = Card(number: cardRandomNum, shape: cardRandomShape)
         
         return cardInfo
-    }
-    
-    func showCardInfo(card: Card){
-        // description 생략 시에도 description을 가져와서 출력
-        print(card)
     }
     
     func testCardDeck(){
@@ -66,8 +61,6 @@ class ViewController: UIViewController {
         
         // 카드 셔플
         deck.shuffle()
-        
-        deck.reset()
         
         // 카드 뽑기
         let card1 = deck.removeOne()

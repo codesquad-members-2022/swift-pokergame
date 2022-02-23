@@ -510,3 +510,97 @@ class ViewController: UIViewController {
 
 <img src = "https://user-images.githubusercontent.com/44107696/155133976-84732446-1b2b-4fbf-8ec3-169ef4477fbc.png" width="800" height="800">
 
+### 수정 사항
+- CardDeck init 코드 단순화를 위해 forEach 구문을 활용한 형태로 수정
+- VC 내 Card 생성 구문의 변수명 cardInfo -> card로 변경 (카드 자체를 생성하는 로직이므로 혼선 없도록 변수명 변경)
+
+```swift
+init(){
+    let cardShapes = Card.Shape.allCases
+    let cardNumbers = Card.CardNumber.allCases
+        
+    cardShapes.forEach{ shape in
+        cardNumbers.forEach{ number in
+            let card = Card(number: number, shape: shape)
+            deck.append(card)
+        }
+    }
+    
+    deck.sort(by: { card1, card2 in
+        card1.description > card2.description
+    })
+}
+``` 
+
+
+## 게임로직 구현하기
+### 프로그래밍 요구사항
+- 포커 딜러가 나눠줄 수 있는 게임 방식을 선택할 수 있다
+    + 게임은 7카드-스터드 방식과 5카드-스터드를 지원한다
+- 참가자는 딜러를 제외하고 1명에서 4명까지 참여할 수 있다
+- 딜러는 이름이 없고, 참가자는 영문 2~5글자 이내 이름을 가진다 (crong, honux, jk 등)
+    + 인원이 결정되면 랜덤하게 이름을 생성한다
+- 카드게임 종류와 참가자수에 따라 적절하게 동작을 해야한다
+- 딜러가 딜러 자신을 포함해서 참여자에게 카드를 나눠주고도, 전체 카드가 남은 경우는 계속해서 게임을 진행한다
+- 한 번 나눠준 카드는 다시 덱에 넣지 않고 카드가 부족할 경우 종료한다
+- 카드 개수나 참가자 인원에 대한 입력을 구현할 필요없다
+- XCTest를 위한 테스트 타깃을 추가한다
+- 테스트 코드에서 PokerGame 메소드를 호출해서 동작을 확인한다
+
+### 딜러 / 플레이어 구현
+- 딜러의 role / 플레이어의 name은 표시되어야 하므로 internal로 접근 설정을 하되, 상수로 선언하여 차후 수정이 불가하도록 함
+- 딜러는 카드덱을 소유 (보통 카지노에서 딜러가 카드덱을 소유하고 관리하는 것을 차용)
+- 딜러가 giveCard를 통해 card를 넘기면 플레이어는 receiveCard를 통해 해당 card를 자신의 카드더미에 넣는다
+- 이후 패 확인은 checkingCards를 통해서 공개
+
+```swift
+struct Player{
+    let name: String
+    private var cards: [Card] = []
+    
+    // 딜러가 주는 카드를 받을 때 사용되는 함수
+    mutating func receiveCard(card: Card){
+        cards.append(card)
+    }
+    
+    // 결과 확인을 위해 패를 깔 때 사용되는 함수
+    func checkingCards() -> [String]{
+        var cardsDescription: [String] = []
+        
+        cards.forEach{ card in
+            cardsDescription.append(card.description)
+        }
+        
+        return cardsDescription
+    }
+
+    init(randomName: String){
+        name = randomName
+    }
+}
+``` 
+
+```swift
+struct Dealer{
+    let role = "Dealer"
+    private var cards: [Card] = []
+    private var cardDeck: CardDeck = CardDeck()
+    
+    mutating func giveCard() -> Card?{
+        guard let card = cardDeck.removeOne() else{
+            return nil
+        }
+        return card
+    }
+    
+    func checkingCards() -> [String]{
+        var cardsDescription: [String] = []
+        
+        cards.forEach{ card in
+            cardsDescription.append(card.description)
+        }
+        
+        return cardsDescription
+    }
+}
+```

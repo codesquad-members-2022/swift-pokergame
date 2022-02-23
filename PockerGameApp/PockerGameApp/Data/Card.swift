@@ -23,7 +23,6 @@ class Card: CustomStringConvertible{
         self.shape = shape
     }
     
-    
     // 한정된 범위에 맞춰 enum 타입으로 수정
     enum CardNumber: CaseIterable ,CustomStringConvertible{
         case one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen
