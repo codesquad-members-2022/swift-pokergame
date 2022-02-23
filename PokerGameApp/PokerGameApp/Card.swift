@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Card {
+struct Card: Equatable {
     enum FaceData: String, CustomStringConvertible, CaseIterable {
         case spade
         case club
