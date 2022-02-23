@@ -27,8 +27,11 @@ class PokerGameTests: XCTestCase {
         for _ in 0..<7 {
             let _ = try dealer.deal(numOfcards: 7)
         }
-        let dealtToFail = try dealer.deal(numOfcards: 7)
-        XCTAssertFalse(dealtToFail.count == 7)
+        do {
+            let dealtToFail = try dealer.deal(numOfcards: 7)
+        } catch {
+            XCTAssertEqual(error as! PokerGameError, PokerGameError.tooManyPlayer)
+        }
     }
     
     func testReceive() throws {
