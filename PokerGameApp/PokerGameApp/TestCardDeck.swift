@@ -34,8 +34,14 @@ class TestCardDeck {
     }
     
     func removeOne() {
-//        let removedCard = cardDeck.removeCard()
-//        let currentCardCount = cardDeck.count()
-//        print(removedCard, "\(currentCardCount)개의 카드가 남았습니다.")
+        let removedCard = cardDeck.removeOne()
+        let currentCardCount = cardDeck.count()
+        
+        guard let card = removedCard else {
+            print("TestCardDeck::removeOne()-카드를 삭제하지 못했습니다. 현재 카드갯수 \(currentCardCount)개.")
+            return
+        }
+        print("TestCardDeck::removeOne()", card, "\(currentCardCount)개의 카드가 남았습니다.")
+        
     }
 }

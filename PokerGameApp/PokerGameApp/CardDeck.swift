@@ -17,4 +17,11 @@ class CardDeck {
     func count() -> Int {
         return self.cards.count
     }
+    
+    func removeOne() -> Card? {
+        if self.cards.isEmpty {
+            return nil
+        }
+        return self.cards.removeLast()
+    }
 }
