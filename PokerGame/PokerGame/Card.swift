@@ -14,7 +14,8 @@
  */
 
 //Card의 정보를 한번에 담아서 출력하고자 Struct를 선언하고 그안에 Suit와 Rank Enum을 넣었다.
-struct Card:CustomStringConvertible {
+//Test에서 비교를 하기 위해 Equatable 프로토콜을 사용했다.
+struct Card:CustomStringConvertible, Equatable{
     
     var description: String {
         return "\(suit)\(rank)"

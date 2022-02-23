@@ -15,13 +15,12 @@ final class ViewController: UIViewController {
         putCardsOnView(originX: 0, y: 40, count: 7,inset: 10) //여러개의 카드 View에 올리기
 
         //카드 만들기
-       let deck = Deck()
-        deck.count
-        deck.shuffle()
-        deck.removeOne()
-        deck.removeOne()
-        deck.reset()
+        let deck = Deck()
+        let resultTest = ResultTest(deck: deck)
         
+        resultTest.removeOne()
+        resultTest.shuffle()
+        resultTest.reset()
         
     }
     
