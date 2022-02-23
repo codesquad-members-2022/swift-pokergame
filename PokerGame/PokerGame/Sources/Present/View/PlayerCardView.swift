@@ -22,7 +22,7 @@ class PlayerCardView: UIView {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-        
+    
     private func attribute() {
         cardStackView.spacing = 0
         cardStackView.axis = .horizontal
@@ -39,7 +39,7 @@ class PlayerCardView: UIView {
     
     func layout() {
         self.addSubview(name)
-        name.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
+        name.frame = CGRect(x: 0, y: 0, width: 10, height: 30)
         
         self.addSubview(cardStackView)
         let cardWidth = (self.frame.width) / 8.0
@@ -50,18 +50,7 @@ class PlayerCardView: UIView {
         }
     }
     
-    func setCardImage(player: Player) {
-        self.isHidden = false
-        name.text = " \(player.name) "
-        name.sizeToFit()
-        
-        cards.enumerated().forEach { index, cardView in
-            let isEnable = index < player.cards.count
-            cardView.alpha = isEnable ? 1 : 0
-            if isEnable {
-                let card = player.cards[index]
-                cardView.image = UIImage(named: "\(card)")
-            }
-        }
+    func setCard(at index: Int, card: Card) {
+        cards[index].image = UIImage(named: "\(card)")
     }
 }

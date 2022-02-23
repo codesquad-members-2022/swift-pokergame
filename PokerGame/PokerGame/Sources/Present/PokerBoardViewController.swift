@@ -28,59 +28,47 @@ class PokerBoardViewController: UIViewController {
         super.viewDidLoad()
         bind()
         attribute()
-        layout()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        layout()
         
-        pokerGame.action.pokerStart()
+        pokerGame.action.pokerReset()
+        pokerGame.action.pokerPlay()
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if event?.subtype == .motionShake {
-            pokerGame.action.pokerStart()
+            pokerGame.action.pokerPlay()
         }
     }
     
     //MARK: - Method
     
     private func bind() {
-        pokerGame.state.updateLayout = { pokerType in
-            self.layout(pokerType: pokerType)
-        }
+        pokerOptionView.bind(pokerGame: pokerGame)
         
-        pokerGame.state.didCreatePlayers = { players in
-            players.enumerated().forEach {
-                self.playerCardViews[$0].setCardImage(player: $1)
+        pokerGame.state.updateUi = { playerNames in
+            (0..<self.playerCardViews.count).forEach {
+                let cardView = self.playerCardViews[$0]
+                let isEnable = $0 < playerNames.count
+                cardView.alpha = isEnable ? 1 : 0
+                if isEnable {
+                    cardView.name.text = playerNames[$0]
+                    cardView.name.sizeToFit()
+                }
             }
+            self.dealerCardView.name.text = "Dealer"
+            self.dealerCardView.name.sizeToFit()
         }
         
-        pokerGame.state.didCreateDealer = { dealer in
-            self.dealerCardView.setCardImage(player: dealer)
+        pokerGame.state.givePlayerCard = { index, cardIndex, card in
+            self.playerCardViews[index].setCard(at: cardIndex, card: card)
         }
         
-        pokerOptionView.typeButtons.enumerated().forEach { index, button in
-            button.addAction(UIAction(handler: { sender in
-                (0..<self.pokerOptionView.typeButtons.count).forEach {
-                    self.pokerOptionView.typeButtons[$0].isEnabled = index != $0
-                }
-                self.pokerGame.action.inputPokerType(index == 0 ?.sevenCard : .fiveCard)
-            }), for: .touchUpInside)
-        }
-        
-        pokerOptionView.playerButtons.forEach { index, button in
-            button.addAction(UIAction(handler: { sender in
-                self.pokerOptionView.playerButtons.forEach {
-                    $1.isEnabled = index != $0
-                }
-                
-                (0..<self.playerCardViews.count).forEach {
-                    self.playerCardViews[$0].alpha = $0 < index ? 1 : 0
-                }
-                
-                self.pokerGame.action.inputPlayerCount(index)
-            }), for: .touchUpInside)
+        pokerGame.state.giveDealerCard = { cardIndex, card in
+            self.dealerCardView.setCard(at: cardIndex, card: card)
         }
     }
     
@@ -89,15 +77,11 @@ class PokerBoardViewController: UIViewController {
             self.view.backgroundColor = UIColor(patternImage: backImage)
         }
         
-        playerCardViews.forEach {
-            $0.isHidden = true
-        }
-        
         playerCardStackView.axis = .vertical
         playerCardStackView.distribution = .fillProportionally
     }
     
-    private func layout(pokerType: PokerGame.PokerType = .sevenCard) {
+    private func layout() {
         let safeAreaFrame = self.view.safeAreaLayoutGuide.layoutFrame
         let topOffset = safeAreaFrame.minY
         let leftOffset = 15.0
@@ -108,7 +92,6 @@ class PokerBoardViewController: UIViewController {
         let optionViewHeight = 80.0
         self.view.addSubview(pokerOptionView)
         pokerOptionView.frame = CGRect(x: leftOffset, y: topOffset, width: safeWidth, height: optionViewHeight)
-        pokerOptionView.layout()
         
         //플레이어 카드뷰 레이아웃
         let optionViewOffset = 10.0
@@ -119,9 +102,16 @@ class PokerBoardViewController: UIViewController {
         
         playerCardViews.enumerated().forEach {
             playerCardStackView.addArrangedSubview($1)
+        }
+        
+        playerCardStackView.addArrangedSubview(dealerCardView)
+        
+        self.view.layoutIfNeeded()
+        
+        pokerOptionView.layout()
+        playerCardViews.enumerated().forEach {
             $1.layout()
         }
-        playerCardStackView.addArrangedSubview(dealerCardView)
         dealerCardView.layout()
     }
 }
