@@ -31,7 +31,7 @@ class PokerGameTests: XCTestCase {
         player.add(card: Card(pattern: .spade, number: .six))
         player.add(card: Card(pattern: .spade, number: .seven))
         player.add(card: Card(pattern: .spade, number: .eight))
-        XCTAssertEqual(Score.calculation(player: player), .straight)
+        XCTAssertEqual(Score.calculation(player: player).0, .straight)
     }
     
     func testPlayerScoreFourCard() {
@@ -41,7 +41,7 @@ class PokerGameTests: XCTestCase {
         player.add(card: Card(pattern: .diamond, number: .ace))
         player.add(card: Card(pattern: .clover, number: .ace))
         player.add(card: Card(pattern: .spade, number: .two))
-        XCTAssertEqual(Score.calculation(player: player), .fourCard)
+        XCTAssertEqual(Score.calculation(player: player).0, .fourCard)
     }
     
     func testPlayerScoreTriple() {
@@ -51,7 +51,7 @@ class PokerGameTests: XCTestCase {
         player.add(card: Card(pattern: .diamond, number: .ace))
         player.add(card: Card(pattern: .heart, number: .two))
         player.add(card: Card(pattern: .diamond, number: .six))
-        XCTAssertEqual(Score.calculation(player: player), .triple)
+        XCTAssertEqual(Score.calculation(player: player).0, .triple)
     }
     
     func testPlayerScoreTwoPair() {
@@ -61,7 +61,7 @@ class PokerGameTests: XCTestCase {
         player.add(card: Card(pattern: .diamond, number: .two))
         player.add(card: Card(pattern: .heart, number: .two))
         player.add(card: Card(pattern: .diamond, number: .six))
-        XCTAssertEqual(Score.calculation(player: player), .twoPair)
+        XCTAssertEqual(Score.calculation(player: player).0, .twoPair)
     }
     
     func testPlayerScoreOnePair() {
@@ -71,12 +71,31 @@ class PokerGameTests: XCTestCase {
         player.add(card: Card(pattern: .diamond, number: .two))
         player.add(card: Card(pattern: .diamond, number: .four))
         player.add(card: Card(pattern: .diamond, number: .six))
-        XCTAssertEqual(Score.calculation(player: player), .onePair)
+        XCTAssertEqual(Score.calculation(player: player).0, .onePair)
     }
 
     
     func testPokerStart() {
-//        let pokerGame = PokerGame()
+        let pokerGame = PokerGame()
+        
+        let players = (0..<4).map { index -> Player in
+            Player(name: "tester\(index)")
+        }
+        
+        pokerGame.state.givePlayerCard = { index, _, card in
+            players[index].add(card: card)
+        }
+        
+        pokerGame.action.inputPokerType(.sevenCard)
+        pokerGame.action.inputPlayerCount(players.count)
+        pokerGame.action.pokerPlay()
+        
+        players.forEach {
+            $0.sort()
+            let score = Score.calculation(player: $0)
+            print("\($0) -- \(score.1)")
+        }
+        
 //        
 //        pokerGame.state.didCreatePlayers = { players in
 //            XCTAssertEqual(players.count, Constants.testPlayerCount)
