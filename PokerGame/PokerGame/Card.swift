@@ -7,16 +7,16 @@
 
 import Foundation
 
-internal class Card {
+class Card {
     
     let shape: Shape
     let number: Number
     
     // 입력받은 타입에 맞는 유니코드를 출력하기 위해 열거형 사용
-    enum Shape: String {
+    enum Shape: String, CaseIterable {
         case spade = "\u{2660}", heart = "\u{1F5A4}", diamond = "\u{25C6}", clover = "\u{1F340}"
     }
-    enum Number: Int {
+    enum Number: Int, CaseIterable {
         case one = 1, two = 2, three = 3, four = 4, five = 5, six = 6, seven = 7,
              eight = 8, nine = 9, ten = 10, eleven = 11, twelve = 12, thirteen = 13
         
@@ -31,7 +31,7 @@ internal class Card {
             case .thirteen:
                 return "K"
             default:
-                return "\(self.rawValue)"
+                return String(describing: self.rawValue)
             }
         }
     }
