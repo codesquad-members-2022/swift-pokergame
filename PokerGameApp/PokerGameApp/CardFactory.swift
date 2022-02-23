@@ -16,16 +16,17 @@ class CardFactory {
     
     // 각 타입의 랜덤 값을 가진 info로 Card를 만듭니다.
     static func randomCard() -> Card {
-        let info = CardInfo(as: CardSymbol.randomElement, with: CardNumber.random)
+        let info = CardInfo(as: Card.Symbol.randomElement, with: Card.Number.random)!
         return Card(using: info)
     }
     
     // 총 52장의 서로 다른 카드를 만듭니다.
     static func deckOfCard() -> [Card] {
         var result = [Card]()
-        for symbol in CardSymbol.allCases {
+        for symbol in Card.Symbol.allCases {
             // 고차함수를 쓴 이유는 for in for loop가 가독성이 떨어진다고 생각하기 때문이었습니다.
-            let cards = CardNumber.allRange.compactMap({ cardNumber in Card(using: CardInfo(as: symbol, with: cardNumber)) })
+            // ! 를 사용한 이유는 이미 정의된 CardNumber.allRange를 사용하고 있기 때문입니다.
+            let cards = Card.Number.allRange.compactMap({ cardNumber in Card(using: CardInfo(as: symbol, with: cardNumber)!) })
             result.append(contentsOf: cards)
         }
         

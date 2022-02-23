@@ -61,19 +61,19 @@ class ViewController: UIViewController {
     }
     
     @IBAction func makeAndPrintRandomCardTouchUpInside(_ sender: UIButton) {
-        print(CardFactory.randomCard().read)
+        print(CardFactory.randomCard())
     }
     
     @IBAction func makeAndPrintCardDeckTouchUpInside(_ sender: UIButton) {
-        print(CardFactory.deckOfCard().readAll)
+        print(CardFactory.deckOfCard())
     }
     
     @IBAction func makeAndReadRandomCardTouchUpInside(_ sender: UIButton) {
-        alert(with: CardFactory.randomCard().read)
+        alert(with: String(describing: CardFactory.randomCard()))
     }
     
     @IBAction func makeAndReadCardDeckTouchUpInside(_ sender: UIButton) {
-        alert(with: CardFactory.deckOfCard().readAll)
+        alert(with: String(describing: CardFactory.deckOfCard()))
     }
     
     private func alert(with message: String) {
