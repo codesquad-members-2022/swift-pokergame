@@ -19,6 +19,9 @@ class PockerGameTest: XCTestCase {
 
     func testExample() throws {
         let game = PockerGame(variant: PockerGame.Variants.sevenCardStud, entries: PockerGame.Entries.four)
+        
+        game.playPockerGame()
+        
     }
 
     func testPerformanceExample() throws {

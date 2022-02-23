@@ -29,30 +29,13 @@ class PockerGame{
                 divideCards()
             }
             
-            players.forEach{ player in
-                inHandCards = [player.name : player.checkingCards()]
-            }
-            inHandCards = [dealer.role : dealer.checkingCards()]
-            
-            sleep(10)
+            overOneGame()
+            let show = showAllCardInHand()
             
             nowPlay += 1
-            inHandCards.removeAll()
+            clearGame()
+            
         }
-    }
-    
-    func showAllCardInHand() -> String{
-        var showAll = [String]()
-        
-        inHandCards.forEach{ playerAndDealer in
-            let name = playerAndDealer.key
-            let cards = playerAndDealer.value.joined(separator: ",")
-            showAll.append("\(name) : \(cards)")
-        }
-        
-        showAll.sort(by: < )
-        
-        return showAll.joined(separator: "\n")
     }
     
     func divideCards(){
@@ -70,6 +53,38 @@ class PockerGame{
         } else{
             self.canPlayGame = false
         }
+    }
+    
+    func overOneGame(){
+        // 한게임 마무리 시, 현재 참여자들의 카드를 inHandCards에 할당
+        players.forEach{ player in
+            inHandCards[player.name] = player.checkingCards()
+        }
+        inHandCards[dealer.role] = dealer.checkingCards()
+    }
+    
+    func showAllCardInHand() -> String{
+        var showAll = [String]()
+        
+        inHandCards.forEach{ playerAndDealer in
+            let name = playerAndDealer.key
+            let cards = playerAndDealer.value.joined(separator: ",")
+            showAll.append("\(name) : \(cards)")
+        }
+        
+        showAll.sort(by: < )
+        
+        return showAll.joined(separator: " | ")
+    }
+    
+    func clearGame(){
+        // 이번 판의 카드들 전부 해제
+        inHandCards.removeAll()
+        
+        players.forEach{ player in
+            player.removeCards()
+        }
+        dealer.removeCards()
     }
     
     init(variant: PockerGame.Variants, entries: PockerGame.Entries){
