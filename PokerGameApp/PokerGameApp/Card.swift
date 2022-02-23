@@ -32,12 +32,6 @@ struct Card {
         }
     }
         
-    init (suit: Suit, rank: Rank){
-        self.suit = suit
-        self.rank = rank
-    }
-    
-    
     func showInfo(){
         print(info)
     }
