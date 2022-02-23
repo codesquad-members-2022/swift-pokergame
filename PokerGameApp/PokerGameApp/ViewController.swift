@@ -28,6 +28,15 @@ class ViewController: UIViewController {
             self.view.addSubview(cardBackView)
         }
         
+        let heartQ = Card(shape: .hearts, number: .twelve)
+        let spade7 = Card(shape: .spades, number: .seven)
+        printCard(cards: heartQ, spade7)
+    }
+    
+    func printCard(cards: Card...) {
+        for card in cards {
+            card.printInfo()
+        }
     }
 
 }
