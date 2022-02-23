@@ -8,7 +8,7 @@
 import XCTest
 @testable import PokerGameApp
 
-class PokerGameAppTests: XCTestCase {
+class CardDeckTests: XCTestCase {
 
     func testExample() throws {
         XCTAssertEqual(1+1, 2)
