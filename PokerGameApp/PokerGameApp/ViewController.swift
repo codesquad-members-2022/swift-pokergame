@@ -31,7 +31,8 @@ class ViewController: UIViewController {
         drawCards(cards)
         
         //임의의 카드 정보 보여주기
-        showRandomCards(num: 10)
+        let newCard = Card(suit: .allCases.randomElement()! , rank: .allCases.randomElement()!)
+        newCard.showInfo()
     }
     
     
@@ -47,16 +48,6 @@ class ViewController: UIViewController {
             view.addSubview(card)
         }
     }
-    
-    //임의의 카드 프린트 함수
-    func showRandomCards(num : Int) {
-        for _ in 0..<num {
-            let newCard = Card(suit: .allCases.randomElement()! , rank: .allCases.randomElement()!)
-            print(newCard.info)
-        }
-    }
 
-    
-  
 }
 
