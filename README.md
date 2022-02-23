@@ -534,9 +534,106 @@ VWT는 fix size안에 포함이 되어있기 때문에 Copy가 되더라도 계�
 **추상화 기법의 선택**
 - Struct: Value semantics가 맞는 부분
 - class: Identity가 필용한 부분, 상속등의 OOP, Objective-C
-- Generics: 정적 다형성ㅇ으로 가능한 경우
+- Generics: 정적 다형성으로 가능한 경우
 - Protocol: 동적 다형성이 필요한 경우
 
 **고려 할 수 있는 성능 최적화 기법**
 - Struct에 클래스 타입의 Property가 많으면 값 타입으로 대체해서 Reference Counting을 줄이자
 - Mutable해야 한다면 Copy-on-Write를 구현해보자.
+
+- - -
+
+`Step03`
+
+### 학습목표 
+- 구조체(struct)와 클래스(class) 차이점을 학습하고, 속성이 변화할 때 어떤 변화가 있는지 확인한다
+
+- 참조 접근자를 활용해서 정보를 감추고 메소드 인터페이스를 통해 접근하는 방식을 학습한다
+
+- 클래스 메모리 관리 방식에 대해 학습한다. reset() 할때 이전에 만든 카드 객체는 어떻게 되는지 설명할 수 있다
+
+- 개발 환경에서 제공하는 메모리를 분석하는 디버깅 도구는 무엇이 있는지 학습한다 
+	- Comand Line Tool: `vmmap --summary App.memgraph`
+    (커맨드 라인툴은 뭔가 잘안된다..)
+    - Memory Graph Debugger
+[xcode 메모리 디버깅도구](https://seizze.github.io/2019/12/20/iOS-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%9C%AF%EC%96%B4%EB%B3%B4%EA%B8%B0,-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%9D%B4%EC%8A%88-%EB%94%94%EB%B2%84%EA%B9%85%ED%95%98%EA%B8%B0,-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AD-%EC%B0%BE%EA%B8%B0.html)
+
+- [X] 모든 종류의 카드 객체 인스턴스를 포함하는 카드덱 구조체를 구현한다.
+- [X] 다양항 알고리즘을 알아보고 적절한 것을 택한다.
+	- [다양한 알고리즘](https://daheenallwhite.github.io/programming/algorithm/2019/06/27/Shuffle-Algorithm-Fisher-Yates/)
+    - 시간복잡도에서 성능이 조금더 좋은 Knuth Shuffle를 구현해본다.
+    ~~~swift
+        //Knuth Shuffle방법은 각 반복마다 남은 element를 셀 필요가 없으므로 Fisher-Yates shuffle보다 시간복잡도 면에서 더 좋을것 같아 택했다.
+    func shuffle() {
+        for cardIndex in 0..<cards.count {
+            let randomIndex = Int.random(in: cardIndex..<cards.count)   //card의 index범위 내에서 랜덤한 index를 뽑고
+            cards.swapAt(cardIndex, randomIndex)                        //Array의 기능중 하나인 Swap을 이용 교체한다.
+        }
+    }
+    ~~~
+ - [X] 랜덤한 카드 하나 빼기
+ ~~~swift
+     //랜덤한 카드 하나 빼기
+    func removeOne() -> String{
+        let randomindex = Int.random(in: 0..<self.count)
+        let removedCard = cards.remove(at: randomindex)
+        return "\(removedCard)카드를 하나 뽑았습니다."
+    }
+    ~~~
+    
+  - [X] 카드 리셋시키기
+  ~~~swift
+      //카드를 리셋시키자.
+    func reset() -> String{
+        self.cards = Card.makeDeck()
+        return "카드를 전체를 초기화 했습니다. 현재 카드 수 \(self.count)"
+    }
+  ~~~
+   
+- 카드덱 기능을 확인할 수 있는 테스트 코드를 추가한다.
+	- 밑과같은 클래스를 선언해보았다.
+   ~~~swift
+    //Test케이스를 위한 클래스
+final class ResultTest {
+
+    private var deck:Deck       //굳이 Test case에서의 deck을 접근할 필요를 못느껴서 private로 선언했다.
+    
+    //MARK: -- 검사하고싶은 deck을 가져와서 해당 메서드가 잘 작동하면 true를 반환한다
+    func removeOne() -> Bool {
+        let beforeDeckCount = deck.count                                             //삭제 하고 난 뒤 갯수를 비교하기 위해 선언했다. //한개가 아닌 두개가 삭제됬을때를 대비하여 선언했다.
+        let removedCard = deck.removeOne()
+        if deck.cards.contains(where: { $0 == removedCard }) && beforeDeckCount - 1 == self.deck.count {              //메서드가 사용된 후 deck에서 제거된 카드가 없으면 성공이다.
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    //셔플하기 전과 후의 배열이 같다면 fasle를 다르면 true를 리턴하게 해봤다.
+     func shuffle() -> Bool {
+         let beforeShuffledDeck = deck.cards
+         let shuffledDeck = deck.shuffle()
+         if shuffledDeck == beforeShuffledDeck {
+             return false
+         } else {
+             return true
+         }
+    }
+    
+     func reset() -> Bool {
+         let resetDeck = Card.makeDeck()
+         let currentDeck = deck.reset()
+         
+         if resetDeck == currentDeck {
+             return true
+         } else {
+             return false
+         }
+    }
+    
+    init(deck:Deck) {
+        self.deck = deck
+    }
+    
+}
+    ~~~
