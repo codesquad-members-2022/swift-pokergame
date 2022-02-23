@@ -42,7 +42,7 @@ class PokerGameTests: XCTestCase {
         XCTAssertEqual(john.cards, randomCards)
     }
     
-    func testGameStart() throws {
+    func testSevenStudGame() throws {
         let deck = CardDeck()
         let dealer = Dealer(deck: deck)
         
@@ -59,6 +59,26 @@ class PokerGameTests: XCTestCase {
         pokerGame.start()
         for player in testPlayers {
             XCTAssertEqual(player.cards.count, 7)
+        }
+    }
+    
+    func testFiveStudGame() throws {
+        let deck = CardDeck()
+        let dealer = Dealer(deck: deck)
+        
+        let testPlayers = [
+            Player(name: "Eddy"),
+            Player(name: "Jason"),
+            Player(name: "Chez"),
+            Player(name: "Gucci"),
+            Player(name: "Ebony")
+        ]
+        
+        let pokerGame = PokerGame(type: .fiveStud, dealer: dealer, players: testPlayers)
+        
+        pokerGame.start()
+        for player in testPlayers {
+            XCTAssertEqual(player.cards.count, 5)
         }
     }
 
