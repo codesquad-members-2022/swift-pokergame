@@ -604,3 +604,118 @@ struct Dealer{
     }
 }
 ```
+
+### PockerGame 구현
+- 구현 중, Card 외에는 가지고 있는 데이터를 중점으로 고유성을 띄기보다는 각 인스턴스 간의 교류를 통한 데이터의 변화가 잦은 형태를 띄어 Card를 class -> struct, 나머지 객체들은 class로 수정하거나 구현함
+- variant와 entries는 각각의 enum을 통해 한정된 게임방식과 인원 수를 가지도록 선언. inHandCards는 모든 참가자가 손에 들고있는 카드들을 기록하고자 한 Dic 타입이며, canPlayGame은 카드가 떨어지기 전까지 게임을 진행시키기 위한 Bool 타입.
+- Player의 랜덤 네임 생성은 String 타입을 extension하여 함수 추가
+- divideCards 함수는 모든 player에게 한장씩 카드를 나눠준 후, 마지막에 딜러가 카드를 가지는 로직. showAllCardInHand 함수는 모든 카드를 나눠가진 후, 현재 들고있는 카드들을 오픈하는 로직으로 이를 하나의 문자열로 바꿔서 리턴.
+- playPockerGame 함수는 셔플 -> 카드 떨어질 때까지 게임 진행 -> 게임 중 카드 돌리기 / 모든 카드 나눠주면 서로 패 오픈 로직으로 구현
+
+```swift
+class PockerGame{
+    private var variant: PockerGame.Variants
+    private var entries: PockerGame.Entries
+    private var dealer = Dealer()
+    private var players: [Player] = []
+    
+    private var inHandCards = [String:[String]]()
+    private var canPlayGame = true
+    
+    func playPockerGame(){
+        // 현재 판 수
+        var nowPlay = 1
+        // 시작에 앞서 딜러가 카드를 셔플하고 52장 맞는지 확인
+        let _ = dealer.shuffleCardDeck()
+        
+        // 카드덱이 떨어질 때까지 게임 진행 반복
+        while canPlayGame{
+            // 5장 or 7장 나눠주기
+            for _ in 0..<variant.rawValue{
+                divideCards()
+            }
+            
+            players.forEach{ player in
+                inHandCards = [player.name : player.checkingCards()]
+            }
+            inHandCards = [dealer.role : dealer.checkingCards()]
+            
+            sleep(10)
+            
+            nowPlay += 1
+            inHandCards.removeAll()
+        }
+    }
+    
+    func showAllCardInHand() -> String{
+        var showAll = [String]()
+        
+        inHandCards.forEach{ playerAndDealer in
+            let name = playerAndDealer.key
+            let cards = playerAndDealer.value.joined(separator: ",")
+            showAll.append("\(name) : \(cards)")
+        }
+        
+        showAll.sort(by: < )
+        
+        return showAll.joined(separator: "\n")
+    }
+    
+    func divideCards(){
+        players.forEach{ player in
+            guard let card = dealer.giveCard() else{
+                self.canPlayGame = false
+                return
+            }
+            
+            player.receiveCard(card: card)
+        }
+        
+        if let card = dealer.giveCard(){
+            dealer.receiveCard(card: card)
+        } else{
+            self.canPlayGame = false
+        }
+    }
+    
+    init(variant: PockerGame.Variants, entries: PockerGame.Entries){
+        self.variant = variant
+        self.entries = entries
+        
+        for _ in 0..<self.entries.rawValue{
+            let name = String.makePlayerName()
+            let player = Player(randomName: name)
+            self.players.append(player)
+        }
+    }
+    
+    enum Variants: Int{
+        case fiveCardStud = 5, sevenCardStud = 7
+    }
+    
+    enum Entries: Int{
+        case one = 1, two = 2, three = 3, four = 4
+    }
+}
+
+extension String{
+    static func makePlayerName() -> String{
+        let alphabet: [String] = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+        let nameLength = Int.random(in: 2...5)
+        var name: [String] = []
+        
+        for _ in 0..<nameLength{
+            if name.isEmpty{
+                let upperCase = alphabet.randomElement()?.uppercased()
+                name.append(upperCase ?? "1")
+            } else{
+                name.append(alphabet.randomElement() ?? "1")
+            }
+        }
+        
+        return name.joined()
+    }
+}
+```
+
+### 테스트코드 구현
