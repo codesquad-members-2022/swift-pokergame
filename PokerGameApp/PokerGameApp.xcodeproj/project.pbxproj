@@ -14,6 +14,7 @@
 		1E95A0F927C32768005FE52A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E95A0F827C32768005FE52A /* Assets.xcassets */; };
 		1E95A0FC27C32768005FE52A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E95A0FA27C32768005FE52A /* LaunchScreen.storyboard */; };
 		1E95A15827C4F6E0005FE52A /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E95A15727C4F6E0005FE52A /* Card.swift */; };
+		1E95A15C27C5C315005FE52A /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E95A15B27C5C315005FE52A /* CardDeck.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		1E95A0FB27C32768005FE52A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E95A0FD27C32768005FE52A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E95A15727C4F6E0005FE52A /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		1E95A15B27C5C315005FE52A /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				1E95A0F127C32767005FE52A /* SceneDelegate.swift */,
 				1E95A0F327C32767005FE52A /* ViewController.swift */,
 				1E95A15727C4F6E0005FE52A /* Card.swift */,
+				1E95A15B27C5C315005FE52A /* CardDeck.swift */,
 				1E95A0F527C32767005FE52A /* Main.storyboard */,
 				1E95A0F827C32768005FE52A /* Assets.xcassets */,
 				1E95A0FA27C32768005FE52A /* LaunchScreen.storyboard */,
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E95A0F427C32767005FE52A /* ViewController.swift in Sources */,
+				1E95A15C27C5C315005FE52A /* CardDeck.swift in Sources */,
 				1E95A0F027C32767005FE52A /* AppDelegate.swift in Sources */,
 				1E95A0F227C32767005FE52A /* SceneDelegate.swift in Sources */,
 				1E95A15827C4F6E0005FE52A /* Card.swift in Sources */,
