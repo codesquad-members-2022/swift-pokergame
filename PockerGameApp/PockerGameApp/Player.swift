@@ -8,14 +8,12 @@
 import Foundation
 
 protocol Playable {
-    var cards: [Card] { get }
-    
     func receive(cards: [Card])
 }
 
 class Player: Playable {
     let name: String
-    var cards: [Card] = []
+    private var cards: [Card] = []
     
     static var candidates = ["Eddy", "Jason", "Chez", "Dale", "Sally", "Jed", "Jee", "Ebony", "Sol", "Gucci"]
     

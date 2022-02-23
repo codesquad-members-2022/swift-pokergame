@@ -8,9 +8,9 @@
 import Foundation
 
 class Dealer: Playable {
-    var deck: CardDeck
-    var cards: [Card]
-    var players: [Player]
+    private var deck: CardDeck
+    private var cards: [Card]
+    private var players: [Player]
     
     init(deck: CardDeck, players: [Player], cards: [Card] = []) {
         self.players = players
