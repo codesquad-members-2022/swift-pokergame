@@ -17,7 +17,7 @@ class Player: Playable {
     let name: String
     var cards: [Card] = []
     
-    static var candidates = ["Eddy", "Jason", "Chez", "Dale", "Selina", "Jed", "Jee", "Ebony", "Sol", "Gucci"]
+    static var candidates = ["Eddy", "Jason", "Chez", "Dale", "Sally", "Jed", "Jee", "Ebony", "Sol", "Gucci"]
     
     init(name: String) {
         self.name = name

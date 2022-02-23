@@ -28,9 +28,9 @@ struct CardDeck {
     
     public mutating func shuffle() {
         // Mordern Fisher-Yates Shuffle (in-place)
-        for i in 0..<cards.count-1 {
+        for unshuffledIndex in 0..<cards.count-1 {
             let roll = Int.random(in: 0..<cards.count)
-            cards.swapAt(i, roll)
+            cards.swapAt(unshuffledIndex, roll)
         }
     }
     
