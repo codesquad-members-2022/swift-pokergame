@@ -27,4 +27,8 @@ class Player: CustomStringConvertible {
     func removeAllCard() {
         cards.removeAll()
     }
+    
+    func sort() {
+        cards.sort(by: {$0.number.rawValue < $1.number.rawValue})
+    }
 }
