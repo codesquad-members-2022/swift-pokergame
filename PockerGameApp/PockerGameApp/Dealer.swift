@@ -19,6 +19,7 @@ class Dealer: Playable {
     }
     
     func deal(numOfcards: Int) throws {
+        // Dealer shuffles right before dealing
         deck.shuffle()
         
         let allPlayers: [Playable] = players + [self]

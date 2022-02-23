@@ -20,7 +20,6 @@ class PokerGameTests: XCTestCase {
         let dealer = Dealer(deck: CardDeck(), players: testPlayers)
         
         try? dealer.deal(numOfcards: testNumber)
-        
         for players in testPlayers {
             XCTAssertEqual(players.cards.count, testNumber)
         }
