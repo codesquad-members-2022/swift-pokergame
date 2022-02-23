@@ -51,7 +51,7 @@ class PokerGame {
     
     func resetGame() {
         dealer.cardReset()
-        pokerPlayers.createPlayers(names: getNames(count: playerCount))
+        pokerPlayers.set(players: createPlayers(count: playerCount))
         state.updateUi(pokerPlayers.playerNames)
     }
     
@@ -82,22 +82,22 @@ class PokerGame {
         }
     }
     
-    private func getNames(count: Int) -> [String] {
+    private func createPlayers(count: Int) -> [PokerPlayer] {
         var nameData = ["shingha", "bibi", "alex", "rosa", "chez",
                            "ocean", "Jason", "Alex", "dale", "kai",
                            "jee", "mase", "sol", "ebony", "gucci",
                            "jed", "beck", "eddy", "selina", "pigBag"]
         
-        var playerNames = [String]()
-        while playerNames.count != count {
+        var players = [PokerPlayer]()
+        while players.count != count {
             let randomIndex = Int.random(in: 0..<nameData.count)
             let name = nameData.remove(at: randomIndex)
             if name.count < 2 || name.count > 5 {
                 continue
             }
-            playerNames.append(name)
+            players.append(PokerPlayer(name: name))
         }
-        return playerNames
+        return players
     }
 }
 
