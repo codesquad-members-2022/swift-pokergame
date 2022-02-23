@@ -24,4 +24,8 @@ class CardDeck {
         }
         return self.cards.removeLast()
     }
+    
+    func reset() {
+        cards = Card.all()
+    }
 }
