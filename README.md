@@ -118,14 +118,15 @@ ViewController에 밑과같이 함수를 재정의 하니 성공적으로 실행
 ### 요구사항 
 
 - [X] 객체지향 프로그래밍 방식에 충실하게 카드 클래스(class)를 설계한다.
-  - 숫자를 나타낼 Rank와 모양을 나타낼 Suit를 타입으로 정했고 이를 합해서 Struct로 CarInfo라는 구조체를 만들어서 Card Class에 담아보자
-  ![스크린샷 2022-02-22 오후 8 32 20](https://user-images.githubusercontent.com/80263729/155123901-0965da4e-8886-425d-abce-e40482b27a68.png)
-
 - [X] 속성으로 모양 4개 중에 하나, 숫자 1-13개 중에 하나를 가질 수 있다.
 - [X] 모양이나 숫자도 적당한 데이터 구조로 표현한다. 클래스 혹은 Nested enum 타입으로 표현해도 된다.
 - [X] 어떤 이유로 데이터 구조를 선택했는지 주석(comment)으로 구체적인 설명을 남긴다.
 - [X] 카드 정보를 출력하기 위한 문자열을 반환하는 함수를 구현한다.
 - [X] 문자열에서 1은 A로, 11은 J로, 12는 Q로, 13은 K로 출력한다.
+
+첫번째 방식.
+  - 숫자를 나타낼 Rank와 모양을 나타낼 Suit를 타입으로 정했고 이를 합해서 Struct로 CarInfo라는 구조체를 만들어서 Card Class에 담아보자
+  ![스크린샷 2022-02-22 오후 8 32 20](https://user-images.githubusercontent.com/80263729/155123901-0965da4e-8886-425d-abce-e40482b27a68.png)
 ~~~swift
 struct CardInfo:CustomStringConvertible {
     var description: String {
@@ -191,6 +192,95 @@ struct CardInfo:CustomStringConvertible {
     }
 }
 ~~~
+
+두번쨰 방식
+- 첫번째 방식의 문제점
+  - 자주 호출되는 낮은 수준의 데이터 구조인데 너무 복잡함.
+  - case문을 줄이기 위해 카드를 두가지 케이스로 나누어 보았지만 오히려 rawValue를 주지 못하기 때문에 값을 추가로 바인딩 해주어야하는 번거로움
+  - 위와같은 이유로 CaseIiterable 을 수기로 작성해주어야함
+  - CustomStringConvertible을 사용해서 rawValue를 사용하지 않고 더 가독성있게 만들수 있는 가능성이 있음.
+  - 숫자는 1~13까지가 들어갈 수 있는데 Int로 값을 주어버려서 numberType(1234)와 같은 비정상적인 입력이 들어올 여지가 있음.
+  - 원하는 카드를 뽑기 위해 input을 넣을 수 있는 옵션이 없음.
+
+~~~swift
+//Card의 정보를 한번에 담아서 출력하고자 Struct를 선언하고 그안에 Suit와 Rank Enum을 넣었다.
+struct Card:CustomStringConvertible {
+    
+    var description: String {
+        return "\(suit)\(rank)"
+    }
+    
+    //생성할때 값을 넣지 않으면 초기값으로 랜덤한 값을 가지도록 하기 위해 선언했다.
+    var suit:Suit = Suit.initSuit
+    var rank:Rank = Rank.initRank
+    
+    //카드의 모양(suit)를 나타내줄 Enum
+    //카드의 모양은 총 네가지로 고정되어 있으므로 예외처리를 원활하게 하기 위해서 Enum으로 설정한다.
+    enum Suit:String,CaseIterable,CustomStringConvertible {
+        
+        var description: String {
+            return "\(shape)"
+        }
+        
+        case spade, heart, diamond , clover
+        
+        //suit의 모양을 리턴해줍니다.
+        //suit.rawValue 보다는 suit.shape가 더 직관적이라 생각해서 이름을 지었습니다.
+        var shape:String {
+            switch self {
+            case .spade: return "♠️"
+            case .heart: return "❤️"
+            case .diamond: return "♦️"
+            case .clover: return "♣️"
+            }
+        }
+        
+        //랜덤 값을 뽑아내는 프로퍼티, 생성할때 값을 넣지 않으면 랜덤으로 값을 가지도록 하기 위해 선언했다.
+        static var initSuit:Card.Suit {
+            Suit.allCases.randomElement() ?? .heart
+        }
+    }
+    
+    //카드의 Rank(숫자)를 나타내줄 Enum
+    //카드의 숫자는 1~13으로 일정한 값만이 들어올것이기 때문에 예외처리를 원활하게 하기 위해서 enum으로 만든다.
+    enum Rank:Int,CaseIterable,CustomStringConvertible {
+        var description: String {
+            return "\(rank)"
+        }
+        //.numberType(1234)와 같은 값을 애초에 입력하지 못하도록 case를 만들었다.
+        case ace = 1
+        case two
+        case three
+        case four
+        case five
+        case six
+        case seven
+        case eight
+        case nine
+        case ten
+        case Jack
+        case Queen
+        case king
+        
+        //숫자를 표시할 것들은 default로 묶고 나머지 알파벳 카드들은 case처리를 하여 코드를 줄여보았다.
+        var rank:String {
+            switch self {
+            case .ace: return "A"
+            case .Jack: return "J"
+            case .Queen: return "Q"
+            case .king: return "K"
+            default: return String(self.rawValue)
+            
+            }
+        }
+        static var initRank:Rank {
+            Rank.allCases.randomElement() ?? .king
+        }
+    }
+}
+
+~~~
+
 
 - [X] ViewController에서 특정한 카드 객체 인스턴스를 만들어서 콘솔에 출력한다
 - [X] 데이터를 처리하는 코드와 출력하는 코드를 분리한다
