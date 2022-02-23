@@ -14,13 +14,6 @@ class ViewController: UIViewController {
         
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern") ?? UIImage())
         
-        configureCard(numberOfCards: 7)
-        
-        let sampleCard1 = Card(symbol: .heart, rank: .Q)
-        let sampleCard2 = Card(symbol: .spade, rank: .seven)
-        printCardInfo(card: sampleCard1)
-        printCardInfo(card: sampleCard2)
-        
         cardDeckTestScenario()
                                             
     }
