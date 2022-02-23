@@ -8,45 +8,47 @@
 import Foundation
 import UIKit
 
-class PlayerCardView: UIStackView {
-        
+class PlayerCardView: UIView {
+    
     let name = UILabel()
+    let cardStackView = UIStackView()
     let cards: [UIImageView] = (0..<7).map{ _ in  UIImageView()}
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         attribute()
-        layout()
+//        layout()
     }
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+        
     private func attribute() {
-        self.spacing = -3
-        self.distribution = .fillEqually
-        self.backgroundColor = .clear
+        cardStackView.spacing = 0
+        cardStackView.axis = .horizontal
+        cardStackView.distribution = .fillEqually
         
         name.font = .systemFont(ofSize: 25)
-        name.textColor = .black
-        name.backgroundColor = .gray
-        name.clipsToBounds = true
-        name.layer.cornerRadius = 5
+        name.textColor = .white
         
         cards.forEach {
             $0.clipsToBounds = true
-            $0.layer.cornerRadius = 10
+            $0.layer.cornerRadius = 5
         }
     }
     
     func layout() {
-        cards.enumerated().forEach { index, view in
-            self.addArrangedSubview(view)
-        }
-        
-        name.frame = CGRect(x: 0, y: -35, width: 50, height: 30)
         self.addSubview(name)
+        name.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
+        
+        self.addSubview(cardStackView)
+        let cardWidth = (self.frame.width) / 8.0
+        cardStackView.frame = CGRect(x: 0, y: 30, width: cardWidth * 7.0, height: cardWidth * 1.27)
+        
+        cards.enumerated().forEach { index, view in
+            cardStackView.addArrangedSubview(view)
+        }
     }
     
     func setCardImage(player: Player) {
@@ -56,7 +58,7 @@ class PlayerCardView: UIStackView {
         
         cards.enumerated().forEach { index, cardView in
             let isEnable = index < player.cards.count
-            cardView.isHidden = !isEnable
+            cardView.alpha = isEnable ? 1 : 0
             if isEnable {
                 let card = player.cards[index]
                 cardView.image = UIImage(named: "\(card)")
