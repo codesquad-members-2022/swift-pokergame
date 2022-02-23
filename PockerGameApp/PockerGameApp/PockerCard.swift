@@ -20,7 +20,7 @@ struct PockerCard{ // class를 상속받지 않기에 메모리 효율이 좋은
         }
     }
     
-    enum Number: Int, CustomStringConvertible{
+    enum Number: Int, CaseIterable, CustomStringConvertible{
         case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
         var description: String{
             switch self{
@@ -39,12 +39,5 @@ struct PockerCard{ // class를 상속받지 않기에 메모리 효율이 좋은
     init(shape: Shape, number: Number){ // 14이상의 숫자가 입력되는 것을 방지하기 위해 number의 타입을 enum으로 변경하였습니다.
         self.shape = shape
         self.number = number
-    }
-
-}
-
-extension PockerCard: CustomStringConvertible{
-    var description: String {
-       return "\(shape.rawValue)\(number.rawValue)"
     }
 }

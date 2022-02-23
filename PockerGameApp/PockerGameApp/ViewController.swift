@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         view.backgroundColor = UIColor(patternImage: getPatternImage())
         makeCards()
         addCardToView()
-        choiceCard()
+        cardDeckTest()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -49,9 +49,8 @@ class ViewController: UIViewController {
         }
     }
     
-    private func choiceCard(){
-        let card = PockerCard(shape: .hearts, number: .queen)
-        let card2 = PockerCard(shape: .clubs, number: .seven)
-        print(card2)
+    private func cardDeckTest(){
+        var deck = CardDeck()
+        
     }
 }
