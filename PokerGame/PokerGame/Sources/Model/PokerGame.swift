@@ -10,18 +10,18 @@ import Foundation
 class PokerGame {
     
     enum Constants {
-        static let defaultType = PokerGame.PokerType.fiveCard
+        static let defaultType = PokerGame.Stud.fiveCard
     }
     
     struct Action {
-        var inputPokerType: (PokerType) -> Void = { _ in }
+        var inputPokerType: (Stud) -> Void = { _ in }
         var inputPlayerCount: (Int) -> Void = { _ in }
         var pokerReset: () -> Void = { }
         var pokerPlay: () -> Void = { }
     }
     
     struct State {
-        var resetPokerBoard: (PokerType, [String]) -> Void = { _, _ in }
+        var resetPokerBoard: (Stud, [String]) -> Void = { _, _ in }
         var givePlayerCard: (Int, Int, Card) -> Void = { _, _, _ in }
         var giveDealerCard: (Int, Card) -> Void = { _, _ in }
         var finishPoker: () -> Void = { }
@@ -105,7 +105,7 @@ class PokerGame {
 }
 
 extension PokerGame {
-    enum PokerType: CaseIterable {
+    enum Stud: CaseIterable {
         case sevenCard
         case fiveCard
         
