@@ -9,17 +9,21 @@
 struct Card:CustomStringConvertible {
     
     var description: String {
-        return "\(suit.shape)\(rank)"
+        return "\(suit)\(rank)"
     }
     
     //생성할때 값을 넣지 않으면 초기값으로 랜덤한 값을 가지도록 하기 위해 선언했다.
     var suit:Suit = Suit.initSuit
     var rank:Rank = Rank.initRank
     
-    
     //카드의 모양(suit)를 나타내줄 Enum
     //카드의 모양은 총 네가지로 고정되어 있으므로 예외처리를 원활하게 하기 위해서 Enum으로 설정한다.
-    enum Suit:String,CaseIterable {
+    enum Suit:String,CaseIterable,CustomStringConvertible {
+        
+        var description: String {
+            return "\(shape)"
+        }
+        
         case spade, heart, diamond , clover
         
         //suit의 모양을 리턴해줍니다.
@@ -41,42 +45,38 @@ struct Card:CustomStringConvertible {
     
     //카드의 Rank(숫자)를 나타내줄 Enum
     //카드의 숫자는 1~13으로 일정한 값만이 들어올것이기 때문에 예외처리를 원활하게 하기 위해서 enum으로 만든다.
-    enum Rank {
+    enum Rank:Int,CaseIterable,CustomStringConvertible {
+        var description: String {
+            return "\(rank)"
+        }
+        //.numberType(1234)와 같은 값을 애초에 입력하지 못하도록 case를 만들었다.
+        case ace = 1
+        case two
+        case three
+        case four
+        case five
+        case six
+        case seven
+        case eight
+        case nine
+        case ten
+        case Jack
+        case Queen
+        case king
         
-        //카드의 Rank는 2종류로 나울수있다.
-        case numberType(Int)        //숫자 2,3,4,5,6,7,8,9
-        case alphabetType(Int)      //알파벳 A,J,Q,K
-        
-        //각 숫자 1~13까지 모두 case를 주면 코드가 길어지므로 숫자와 알파벳를 나타내는 두가지 케이스에 조건을 달아서 나타내 보았다.
+        //숫자를 표시할 것들은 default로 묶고 나머지 알파벳 카드들은 case처리를 하여 코드를 줄여보았다.
         var rank:String {
             switch self {
-            case .numberType(let number): return String(number)
-            case .alphabetType(let alphabet) where alphabet == 1: return "A"
-            case .alphabetType(let alphabet) where alphabet == 11: return "J"
-            case .alphabetType(let alphabet) where alphabet == 12: return "Q"
-            case .alphabetType(let alphabet) where alphabet == 13: return "K"
-            default: return "유효하지 않은 숫자입니다 1~13사이의 숫자를 입력해주세요"
+            case .ace: return "A"
+            case .Jack: return "J"
+            case .Queen: return "Q"
+            case .king: return "K"
+            default: return String(self.rawValue)
+            
             }
         }
-        
-        //Rank는 RawValue값을 지정해주지 않아서 CaseLiterable프로토콜을 준수하지 못하기 때문에 allCase를 따로 만들어 준다.
-        private static var allCases:[Card.Rank] {   //Allcase는 이 Enum안에서만 사용이 되고 밖에서는 알필요도 없기 때문에 private선언한다.
-            var ranks = [Card.Rank]()
-            for i in 1...13 {
-                if i > 1 && 10 > i {                    //1보다 크고 10보다 작으면 숫자타입
-                ranks.append(Rank.numberType(i))
-                } else {                                //그외는 알파벳 타입
-                ranks.append(Rank.alphabetType(i))
-                }
-            }
-            return ranks
-        }
-        
-        //만든 allcase를 이용해서 랜덤값을 뽑는 Static프로퍼티를 만들어본다.
         static var initRank:Rank {
-            Rank.allCases.randomElement() ?? .numberType(1)
+            Rank.allCases.randomElement() ?? .king
         }
     }
 }
-
-
