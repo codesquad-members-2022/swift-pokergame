@@ -16,10 +16,6 @@ struct PokerGame {
         players + [dealer]
     }
     
-    var numberOfPlayers: Int {
-        players.count
-    }
-    
     func start() {
         for player in allPlayers {
             let dealt = dealer.deal(numOfcards: type.rawValue)
