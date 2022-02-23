@@ -8,14 +8,14 @@
 import Foundation
 import UIKit
 
-struct Player {
+class Player {
     var name : String
     private var hand : [Card] = []
     
     init(name: String) {
         self.name = name
     }
-    mutating func getCard(card : Card) {
+    func getCard(card : Card) {
         self.hand.append(card)
     }
 }
