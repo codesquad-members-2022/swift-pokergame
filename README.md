@@ -77,7 +77,28 @@ rank를 어떻게 구현해야할지 어려웠다. 처음에는 딕셔너리를 
 
 
 
+---
 
+# Step3 
+
+
+
+![스크린샷 2022-02-23 오후 4.57.12](/Users/choeyeju/Library/Application Support/typora-user-images/스크린샷 2022-02-23 오후 4.57.12.png)
+
+### 🎯진행사항  
+
+- 카드덱 struct 구현 
+  - 카드 배열 선언 
+    - 객체지향 설계 방식에 맞게 외부에서 접근할 수 없도록 private 로 선언 
+  - count() 
+  - shuffle() 
+    - Knuth Shuffle 알고리즘을 이용하여 구현 
+
+- 카드덱을 만들기 위해 Card Class에서 CaseeIterable Protocol을 채택하도록 함. 
+
+#### CaseIterable Protocol & allcases
+
+- CaseItereable Protocol 을 채택하면 해당 enum의 모든 case를 까지는 allcases 속성을 만들어서, 접근할 수 있다. 
 
 
 
