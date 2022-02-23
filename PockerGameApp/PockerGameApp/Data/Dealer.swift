@@ -7,16 +7,20 @@
 
 import Foundation
 
-struct Dealer{
+class Dealer{
     let role = "Dealer"
     private var cards: [Card] = []
     private var cardDeck: CardDeck = CardDeck()
     
-    mutating func giveCard() -> Card?{
+    func giveCard() -> Card?{
         guard let card = cardDeck.removeOne() else{
             return nil
         }
         return card
+    }
+    
+    func receiveCard(card: Card){
+        cards.append(card)
     }
     
     func checkingCards() -> [String]{
@@ -27,5 +31,11 @@ struct Dealer{
         }
         
         return cardsDescription
+    }
+    
+    func shuffleCardDeck() -> Int{
+        self.cardDeck.shuffle()
+        
+        return self.cardDeck.count()
     }
 }

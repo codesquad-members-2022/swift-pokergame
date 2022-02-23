@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		D260D7A527C5CF9B00855862 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D260D7A427C5CF9B00855862 /* Player.swift */; };
 		D260D7A727C5D19500855862 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D260D7A627C5D19500855862 /* Dealer.swift */; };
+		D260D7AB27C600D900855862 /* PockerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = D260D7AA27C600D900855862 /* PockerGame.swift */; };
+		D260D7C027C6125000855862 /* PockerGame_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D260D7BF27C6125000855862 /* PockerGame_Tests.swift */; };
 		D267E90527C31E90009A2EA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D267E90427C31E90009A2EA3 /* AppDelegate.swift */; };
 		D267E90727C31E90009A2EA3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D267E90627C31E90009A2EA3 /* SceneDelegate.swift */; };
 		D267E90927C31E90009A2EA3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D267E90827C31E90009A2EA3 /* ViewController.swift */; };
@@ -19,9 +21,22 @@
 		D26BD13027C4B334001D0AD4 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BD12F27C4B334001D0AD4 /* CardDeck.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D260D7C127C6125000855862 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D267E8F927C31E90009A2EA3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D267E90027C31E90009A2EA3;
+			remoteInfo = PockerGameApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		D260D7A427C5CF9B00855862 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		D260D7A627C5D19500855862 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
+		D260D7AA27C600D900855862 /* PockerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockerGame.swift; sourceTree = "<group>"; };
+		D260D7BD27C6125000855862 /* Yu-Gi-Oh!Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Yu-Gi-Oh!Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D260D7BF27C6125000855862 /* PockerGame_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockerGame_Tests.swift; sourceTree = "<group>"; };
 		D267E90127C31E90009A2EA3 /* PockerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PockerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D267E90427C31E90009A2EA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D267E90627C31E90009A2EA3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +50,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D260D7BA27C6125000855862 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D267E8FE27C31E90009A2EA3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -45,10 +67,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D260D7BE27C6125000855862 /* Yu-Gi-Oh!Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D260D7BF27C6125000855862 /* PockerGame_Tests.swift */,
+			);
+			path = "Yu-Gi-Oh!Tests";
+			sourceTree = "<group>";
+		};
 		D267E8F827C31E90009A2EA3 = {
 			isa = PBXGroup;
 			children = (
 				D267E90327C31E90009A2EA3 /* PockerGameApp */,
+				D260D7BE27C6125000855862 /* Yu-Gi-Oh!Tests */,
 				D267E90227C31E90009A2EA3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				D267E90127C31E90009A2EA3 /* PockerGameApp.app */,
+				D260D7BD27C6125000855862 /* Yu-Gi-Oh!Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -81,6 +113,7 @@
 			children = (
 				D26BD12B27C47169001D0AD4 /* Card.swift */,
 				D26BD12F27C4B334001D0AD4 /* CardDeck.swift */,
+				D260D7AA27C600D900855862 /* PockerGame.swift */,
 				D260D7A627C5D19500855862 /* Dealer.swift */,
 				D260D7A427C5CF9B00855862 /* Player.swift */,
 			);
@@ -90,6 +123,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D260D7BC27C6125000855862 /* Yu-Gi-Oh!Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D260D7C327C6125000855862 /* Build configuration list for PBXNativeTarget "Yu-Gi-Oh!Tests" */;
+			buildPhases = (
+				D260D7B927C6125000855862 /* Sources */,
+				D260D7BA27C6125000855862 /* Frameworks */,
+				D260D7BB27C6125000855862 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D260D7C227C6125000855862 /* PBXTargetDependency */,
+			);
+			name = "Yu-Gi-Oh!Tests";
+			productName = "Yu-Gi-Oh!Tests";
+			productReference = D260D7BD27C6125000855862 /* Yu-Gi-Oh!Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D267E90027C31E90009A2EA3 /* PockerGameApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D267E91527C31E91009A2EA3 /* Build configuration list for PBXNativeTarget "PockerGameApp" */;
@@ -117,6 +168,10 @@
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
+					D260D7BC27C6125000855862 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = D267E90027C31E90009A2EA3;
+					};
 					D267E90027C31E90009A2EA3 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
@@ -136,11 +191,19 @@
 			projectRoot = "";
 			targets = (
 				D267E90027C31E90009A2EA3 /* PockerGameApp */,
+				D260D7BC27C6125000855862 /* Yu-Gi-Oh!Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D260D7BB27C6125000855862 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D267E8FF27C31E90009A2EA3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -154,11 +217,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D260D7B927C6125000855862 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D260D7C027C6125000855862 /* PockerGame_Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D267E8FD27C31E90009A2EA3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D267E90927C31E90009A2EA3 /* ViewController.swift in Sources */,
+				D260D7AB27C600D900855862 /* PockerGame.swift in Sources */,
 				D26BD13027C4B334001D0AD4 /* CardDeck.swift in Sources */,
 				D267E90527C31E90009A2EA3 /* AppDelegate.swift in Sources */,
 				D260D7A727C5D19500855862 /* Dealer.swift in Sources */,
@@ -169,6 +241,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D260D7C227C6125000855862 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D267E90027C31E90009A2EA3 /* PockerGameApp */;
+			targetProxy = D260D7C127C6125000855862 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D267E90A27C31E90009A2EA3 /* Main.storyboard */ = {
@@ -190,6 +270,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D260D7C427C6125000855862 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q646ABLXY6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codesquad.Yu-Gi-Oh-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PockerGameApp.app/PockerGameApp";
+			};
+			name = Debug;
+		};
+		D260D7C527C6125000855862 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q646ABLXY6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codesquad.Yu-Gi-Oh-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PockerGameApp.app/PockerGameApp";
+			};
+			name = Release;
+		};
 		D267E91327C31E91009A2EA3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -365,6 +481,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D260D7C327C6125000855862 /* Build configuration list for PBXNativeTarget "Yu-Gi-Oh!Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D260D7C427C6125000855862 /* Debug */,
+				D260D7C527C6125000855862 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D267E8FC27C31E90009A2EA3 /* Build configuration list for PBXProject "PockerGameApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
