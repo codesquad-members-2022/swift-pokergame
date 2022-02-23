@@ -13,7 +13,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern") ?? UIImage())
         setImageView()
-        gameProgram()
     }
     
     func setImageView() {
