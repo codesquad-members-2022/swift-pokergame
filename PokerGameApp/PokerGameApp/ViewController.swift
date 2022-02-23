@@ -23,6 +23,8 @@ class ViewController: UIViewController {
             // 사이 간격 카드 하나보다 약간 넓게 조정
             offset += SizeOfCard.width + 3
         }
+        let card = Card(shape: .club, rank: .ace)
+        print("\(card.filp())")
     }
     
     func createCard(XCoordinate: Int) {
