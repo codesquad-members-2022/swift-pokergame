@@ -27,10 +27,10 @@ class PokerGame {
     }
     
     func gameScenario() {
-        handOut()
+        distributeCard()
     }
     
-    private func handOut() {
+    private func distributeCard() {
         for _ in 0..<gameRule.numberOfCard {
             for index in 0..<gamblers.count {
                 gamblers[index].getCard(self.dealer.pickCard()!)
