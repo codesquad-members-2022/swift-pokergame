@@ -95,13 +95,8 @@
 				020FBEE727C328C800A794D9 /* AppDelegate.swift */,
 				020FBEE927C328C800A794D9 /* SceneDelegate.swift */,
 				020FBEEB27C328C800A794D9 /* ViewController.swift */,
-				020FBEFD27C38E6C00A794D9 /* Card.swift */,
-				02227AFA27C4AC8B00E7CFC5 /* CardDeck.swift */,
-				02F1382C27C5CB6900CEBA93 /* Dealer.swift */,
-				02F1383027C5D2FC00CEBA93 /* Gambler.swift */,
-				02F1383227C5D87D00CEBA93 /* PockerGame.swift */,
+				02F1383627C5F31C00CEBA93 /* Model */,
 				02F1383427C5DD2D00CEBA93 /* GameProgram.swift */,
-				02F1382E27C5D1EE00CEBA93 /* Gamer.swift */,
 				020FBEED27C328C800A794D9 /* Main.storyboard */,
 				020FBEF027C328CA00A794D9 /* Assets.xcassets */,
 				020FBEF227C328CA00A794D9 /* LaunchScreen.storyboard */,
@@ -116,6 +111,19 @@
 				02227B0227C4ADD300E7CFC5 /* PockerGameAppTests.swift */,
 			);
 			path = PockerGameAppTests;
+			sourceTree = "<group>";
+		};
+		02F1383627C5F31C00CEBA93 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				02F1382E27C5D1EE00CEBA93 /* Gamer.swift */,
+				020FBEFD27C38E6C00A794D9 /* Card.swift */,
+				02227AFA27C4AC8B00E7CFC5 /* CardDeck.swift */,
+				02F1382C27C5CB6900CEBA93 /* Dealer.swift */,
+				02F1383027C5D2FC00CEBA93 /* Gambler.swift */,
+				02F1383227C5D87D00CEBA93 /* PockerGame.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
