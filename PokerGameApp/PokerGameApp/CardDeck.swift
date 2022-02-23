@@ -35,7 +35,12 @@ struct CardDeck {
     mutating func reset() {
         cards = originCards
     }
-    func showCards() -> [Card]{
-        return cards
+}
+
+extension CardDeck : Equatable {
+    static func == (lhs: CardDeck, rhs: CardDeck) -> Bool {
+        return lhs.cards == rhs.cards
     }
+    
+    
 }
