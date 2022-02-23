@@ -45,8 +45,6 @@ struct CardDeck {
 
 extension CardDeck: CustomStringConvertible {
     var description: String {
-        return cards.reduce("") { partialResult, card in
-            "\(partialResult) \(card)"
-        }
+        return "\(cards)"
     }
 }
