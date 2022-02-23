@@ -12,13 +12,20 @@ struct PokerGame {
     let dealer: Dealer
     
     func start() throws {
-        try dealer.deal(numOfcards: type.rawValue)
+        try dealer.deal(numOfcards: type.numberOfCards)
     }
 }
 
-enum PokerType: Int {
-    case fiveStud = 5
-    case sevenStud = 7
+enum PokerType {
+    case fiveStud
+    case sevenStud
+    
+    var numberOfCards: Int {
+        switch self {
+        case .fiveStud: return 5
+        case .sevenStud: return 7
+        }
+    }
 }
 
 protocol Playable {
