@@ -37,5 +37,4 @@ class PockerGameAppTests: XCTestCase {
         let duplicatedCount = duplicated.map{$0.offset}.count
         XCTAssertTrue(deckCards.count > duplicatedCount)
     }
-
 }
