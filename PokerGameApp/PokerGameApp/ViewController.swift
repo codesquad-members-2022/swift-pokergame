@@ -51,5 +51,7 @@ class ViewController: UIViewController {
         var cardDeck = CardDeck()
         cardDeck.shuffle()
         
+        var removedCard = cardDeck.removeOne()
+        
     }
 }

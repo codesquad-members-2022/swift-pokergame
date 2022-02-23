@@ -35,4 +35,11 @@ struct CardDeck {
         }
         print("전체 \(count)장의 카드를 섞었습니다.")
     }
+    
+    mutating func removeOne() -> Card? {
+        if count != 0 {
+            let randomIndex = Int.random(in: 0..<count)
+            return cards.remove(at: randomIndex)
+        } else { return nil }
+    }
 }
