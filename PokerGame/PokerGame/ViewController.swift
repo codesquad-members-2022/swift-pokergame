@@ -14,10 +14,7 @@ class ViewController: UIViewController {
         
         setBackgroundImage()
         addCard(count: 7)
-        
-        let cardClass = Card(shape: .spade, number: .five)
-        print(cardClass)
-        
+
     }
     
     private func setBackgroundImage() {
