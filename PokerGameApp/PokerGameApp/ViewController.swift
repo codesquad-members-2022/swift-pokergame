@@ -14,6 +14,9 @@ class ViewController: UIViewController {
         
         setBackground()
         addCardToView()
+        
+        let c1 = Card(1, Card.Shape.heart)
+        print(c1.getCardInfo())
     }
     
     func setBackground() {
