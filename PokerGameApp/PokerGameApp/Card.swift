@@ -24,7 +24,13 @@ struct Card {
         case club = "♣️"
     }
     
-    private func numberToString() -> String {
+    func convertedString() -> String {
+        return self.suit.rawValue + description
+    }
+}
+
+extension Card: CustomStringConvertible {
+    var description: String {
         switch self.number {
         case 1:
             return "A"
@@ -37,11 +43,7 @@ struct Card {
         case 13:
             return "K"
         default:
-            fatalError("Card:: Fail numberToString()")
+            return ""
         }
-    }
-    
-    func convertedString() -> String {
-        return self.suit.rawValue + self.numberToString()
     }
 }
