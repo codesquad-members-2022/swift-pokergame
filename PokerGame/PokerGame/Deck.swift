@@ -27,5 +27,11 @@ class Deck {
         }
     }
     
+    //랜덤한 카드 하나 빼기
+    func removeOne() -> Card{
+        let randomindex = Int.random(in: 0..<self.count)
+        return cards.remove(at: randomindex)
+    }
+    
     
 }
