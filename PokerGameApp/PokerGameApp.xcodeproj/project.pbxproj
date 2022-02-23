@@ -14,6 +14,7 @@
 		6C32EC8127C32091007D1C21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C32EC8027C32091007D1C21 /* Assets.xcassets */; };
 		6C32EC8427C32091007D1C21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C32EC8227C32091007D1C21 /* LaunchScreen.storyboard */; };
 		6C6514B427C46F8E009E7097 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6514B327C46F8E009E7097 /* Card.swift */; };
+		6C6514EE27C5F456009E7097 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6514ED27C5F456009E7097 /* CardDeck.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		6C32EC8327C32091007D1C21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6C32EC8527C32091007D1C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C6514B327C46F8E009E7097 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		6C6514ED27C5F456009E7097 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				6C32EC7727C32091007D1C21 /* AppDelegate.swift */,
 				6C32EC7927C32091007D1C21 /* SceneDelegate.swift */,
 				6C32EC7B27C32091007D1C21 /* ViewController.swift */,
+				6C6514ED27C5F456009E7097 /* CardDeck.swift */,
 				6C6514B327C46F8E009E7097 /* Card.swift */,
 				6C32EC7D27C32091007D1C21 /* Main.storyboard */,
 				6C32EC8027C32091007D1C21 /* Assets.xcassets */,
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C32EC7C27C32091007D1C21 /* ViewController.swift in Sources */,
+				6C6514EE27C5F456009E7097 /* CardDeck.swift in Sources */,
 				6C32EC7827C32091007D1C21 /* AppDelegate.swift in Sources */,
 				6C32EC7A27C32091007D1C21 /* SceneDelegate.swift in Sources */,
 				6C6514B427C46F8E009E7097 /* Card.swift in Sources */,
