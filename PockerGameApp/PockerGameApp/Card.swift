@@ -12,12 +12,16 @@ import Foundation
 // Card 객체는 고유성이 필요한 객체가 아니고 (하트 6는 모두 똑같은 하트 6임)
 // 꼭 변경 가능한 상태를 공유해야 하는 상황도 아니기 때문에 Struct를 선택했습니다.
 
-struct Card: CustomStringConvertible {
+struct Card: CustomStringConvertible, Equatable {
     let suit: CardSuit
     let number: CardNumber
     
     var description: String {
         return "\(suit.description)\(number.description)"
+    }
+    
+    public static func == (lhs: Card, rhs: Card) -> Bool {
+        return (lhs.suit == rhs.suit) && (lhs.number == rhs.number)
     }
 }
 
