@@ -14,10 +14,24 @@ import Foundation
  - number: 인스턴스 생성의 편의를 위해 초기화할때 숫자값으로 받음. 화면에 출력할때 변환하여 출력.
  */
 struct Card {
+    
     let suit: Suit
     let number: Number
     
-    enum Suit: String, CustomStringConvertible {
+    static func all() -> [Card] {
+        let allSuit = Suit.allCases
+        let allNumber = Number.allCases
+        var cards = [Card]()
+        for suit in allSuit {
+            for number in allNumber {
+                let newCard = Card(suit: suit, number: number)
+                cards.append(newCard)
+            }
+        }
+        return cards
+    }
+    
+    enum Suit: String, CustomStringConvertible, CaseIterable {
         case spade = "♠️"
         case heart = "♥️"
         case diamond = "♦️"
@@ -28,7 +42,7 @@ struct Card {
         }
     }
     
-    enum Number: Int, CustomStringConvertible {
+    enum Number: Int, CustomStringConvertible, CaseIterable {
         case ace = 1
         case two = 2
         case three = 3
