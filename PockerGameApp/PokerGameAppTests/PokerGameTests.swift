@@ -13,5 +13,22 @@ class PokerGameTests: XCTestCase {
     func testExample() throws {
         XCTAssertEqual(1+1, 2)
     }
-
+    
+    func testDeal() throws {
+        let deck = CardDeck()
+        let dealer = Dealer(deck: deck)
+        let dealt = dealer.deal(numOfcards: 7)
+        XCTAssertTrue(dealt.count == 7)
+    }
+    
+    func testDealFail() throws {
+        let deck = CardDeck()
+        let dealer = Dealer(deck: deck)
+        for _ in 0..<7 {
+            let _ = dealer.deal(numOfcards: 7)
+        }
+        let dealtToFail = dealer.deal(numOfcards: 7)
+        XCTAssertFalse(dealtToFail.count == 7)
+    }
+    
 }
