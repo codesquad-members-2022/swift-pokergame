@@ -32,6 +32,7 @@ class ViewController: UIViewController {
         
         //임의의 카드 정보 보여주기
         let Deck = Deck()
+        Deck.count
         
     }
     
