@@ -27,7 +27,7 @@ class CardDeck {
     }
     
     func removeOne() -> Card {
-        cardDeck.removeLast()
+        return cardDeck.removeLast()
     }
     
     func reset() {
@@ -41,7 +41,6 @@ class CardDeck {
             } }
         cardDeck = card
     }
-  
 }
 
 extension CardDeck: CustomStringConvertible {
@@ -49,3 +48,4 @@ extension CardDeck: CustomStringConvertible {
         return "\(card)"
     }
 }
+
