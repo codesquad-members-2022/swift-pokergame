@@ -44,3 +44,82 @@
       
 출력 결과물  
 <img width="379" alt="스크린샷 2022-02-21 오후 11 18 55" src="https://user-images.githubusercontent.com/92635121/154974852-5167d023-a24d-49d0-9e41-d506ceb25387.png">
+
+---
+
+## Step 3 - 카드덱 구현하고 테스트하기
+
+### ✅ class와 struct
+      같은 점
+* 값을 저장하기 위한 프로퍼티 정의
+* 메서드 정의
+* 프로퍼티에 접근 가능한 서브스크립트 정의 (서브스크립트 문법으로)
+* 이니셜라이저 정의
+* Extension으로 확장
+* 특정 프로토콜 준수 가능
+
+      다른 점
+* 상속은 클래스만 가능
+* Type casting(형변환)/ deinit / 참조횟수계산은 클래스 인스턴스만 가능
+* 클래스는 참조 타입, 구조체는 값 타입
+
+---
+
+      값 타입과 참조 타입은 뭐가 다른걸까?
+* 값 타입 : 함수의 전달인자로 보낼 때, 전달될 값이 복사
+```swift
+      struct Test {
+          var height = 0.0
+          var weight = 0.0
+      }
+
+      var me = Test()
+      var you = me
+
+      you.height = 158.0
+      print("\(me.height), \(you.height)") // 0.0, 158.0
+```
+
+* 참조 타입 : 함수 전달인자로 보낼 때, 값의 주소가 전달
+```swift
+      class Test {
+          var height = 0.0
+          var weight = 0.0
+      }
+
+      var me = Test()
+      var you = me
+
+      you.height = 158.0
+      print("\(me.height), \(you.height)") // 158.0, 158.0
+```
+
+      아래 중 하나 이상 해당되면 구조체 사용
+* 연관된 간단한 값의 집합을 캡슐화
+* 캡슐화 한 값을 복사할때 (No 참조)
+* 저장된 프로퍼티가 값타입일때
+* 상속을 받거나, 할 필요가 없을 때
+
+---
+
+### ✅ removeLast(), popLast()
+둘 다 배열의 마지막 요소를 제거하고 리턴
+* removeLast() - 값이 무조건 존재해야함 (아니면 뻑남)
+* popLast() - 값이 없으면 nil을 반환
+
+---
+
+### ✅ Unit Test
+<aside>
+💡 개발자가 의도한 대로 정확하게 작동하는지 확인하는 과정
+즉, 모든 함수나 메소드에 대한 테스트 케이스를 작성하는 과정
+
+</aside>
+| 메서드 | 설명 |
+| --- | --- |
+| • setUpWithError | 가장 먼저 실행되는 메소드로, 어떤 모델이나 시스템을 정의 |
+| • tearDown | 가장 마지막에 실행되는 메소드로, 보통 정의했던 것을 해제시키는 역할 |
+| • testExample | 테스트 할 코드를 작성 |
+| • testPerformanceExample | 성능을 테스트하고, 코드의 실행 속도를 테스트 |
+
+<img width="221" alt="스크린샷 2022-02-23 오후 11 06 51" src="https://user-images.githubusercontent.com/92635121/155342828-125bd418-a5a9-49d2-b478-0b2147386d90.png">
