@@ -11,25 +11,26 @@ import XCTest
 
 class PokerGameTests: XCTestCase {
     
-    func testCardDeck() {
-        let test = CardDeck()
-        XCTAssert(test)
-        
+    private var cardDeck = CardDeck()
+    
+    func testCount() {
+        let result = 1...52 ~= cardDeck.count()
+        XCTAssertTrue(result)
     }
     
-
-    override func setUpWithError() throws {
+    func testShuffle() {
+      
     }
-
-    override func tearDownWithError() throws {
+    
+    func testReset() {
+        XCTAssertEqual(cardDeck.count(), 52)
     }
-
-    func testExample() throws {
+    
+    func testRemoveOne() {
+        cardDeck.removeOne()
+        let result = 1...51 ~= cardDeck.count()
+        XCTAssertTrue(result)
     }
-
-    func testPerformanceExample() throws {
-        measure {
-        }
-    }
+    
 
 }

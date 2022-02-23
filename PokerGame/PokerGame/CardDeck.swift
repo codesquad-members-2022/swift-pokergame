@@ -17,7 +17,7 @@ class CardDeck {
     }
     
     func shuffle() {
-        for shuffle in 0..<cardDeck.count - 2 {
+        for shuffle in 0..<cardDeck.count - 1 {
             let randomIndex = Int.random(in: 0..<cardDeck.count)
             let temp = cardDeck[shuffle]
             
@@ -26,7 +26,7 @@ class CardDeck {
         }
     }
     
-    func removeOne() {
+    func removeOne() -> Card {
         cardDeck.removeLast()
     }
     
@@ -44,3 +44,8 @@ class CardDeck {
   
 }
 
+extension CardDeck: CustomStringConvertible {
+    var description: String {
+        return "\(card)"
+    }
+}
