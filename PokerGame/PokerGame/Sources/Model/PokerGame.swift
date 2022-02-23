@@ -32,9 +32,9 @@ class PokerGame {
     
     private var pokerType = Constants.defaultType
     private var playerCount = PokerPlayers.Constants.defaultCount
-        
-    private var pokerPlayers = PokerPlayers()
-    private let cardDeck = CardDeck()
+    
+    private let pokerPlayers = PokerPlayers()
+    private var dealer = Dealer()
     
     init() {
         action.pokerReset = resetGame
@@ -50,33 +50,35 @@ class PokerGame {
     }
     
     func resetGame() {
-        self.pokerPlayers.createPlayers(count: playerCount)
-        self.state.updateUi(self.pokerPlayers.players.map { $0.name })
-        self.cardDeck.reset()
+        dealer.cardReset()
+        pokerPlayers.createPlayers(count: playerCount)
+        state.updateUi(pokerPlayers.playerNames)
     }
     
     private func play() {
         pokerPlayers.removeAllCard()
-        self.cardDeck.shuffle()
+        dealer.removeAllCard()
+        dealer.cardShuffle()
         
-        if cardDeck.count < pokerPlayers.count * pokerType.cardCount {
+        if dealer.cardCount < (pokerPlayers.count + 1) * pokerType.cardCount {
             self.state.finishPoker()
             return
         }
         
         (0..<pokerType.cardCount).forEach { cardIndex in
             (0..<pokerPlayers.count).forEach { index in
-                guard let card = cardDeck.removeOne() else {
+                guard let card = dealer.removeOne() else {
                     return
                 }
-                if index < pokerPlayers.players.count {
-                    pokerPlayers.players[index].add(card: card)
-                    self.state.givePlayerCard(index, cardIndex, card)
-                } else {
-                    pokerPlayers.dealer.add(card: card)
-                    self.state.giveDealerCard(cardIndex, card)
-                }
+                pokerPlayers.addCard(at: index, card: card)
+                state.givePlayerCard(index, cardIndex, card)
             }
+            
+            guard let card = dealer.removeOne() else {
+                return
+            }
+            dealer.add(card: card)
+            state.giveDealerCard(cardIndex, card)
         }
     }
 }
