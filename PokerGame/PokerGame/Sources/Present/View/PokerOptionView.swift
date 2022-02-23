@@ -13,20 +13,10 @@ class PokerOptionView: UIView {
     let menuStackView = UIStackView()
     
     let typeView = UIStackView()
-    let typeButtons = PokerGame.PokerType.allCases
-        .map { pokerType -> PokerTypeButton in
-            let button = PokerTypeButton()
-            button.setButtonValue(pokerType: pokerType)
-            return button
-        }
+    let typeButtons = PokerGame.PokerType.allCases.map { PokerTypeButton(pokerType: $0) }
     
     let playerView = UIStackView()
-    var playerButtons = (0..<PokerPlayers.Constants.limitCount)
-        .map { index -> PlayerButton in
-            let button = PlayerButton()
-            button.setButtonValue(playerCount: index + 1)
-            return button
-        }
+    var playerButtons = (0..<PokerPlayers.Constants.limitCount).map { PlayerButton(playerCount: $0 + 1) }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
