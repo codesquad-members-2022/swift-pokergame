@@ -17,14 +17,12 @@ class ViewController: UIViewController {
         let cardWidth = displayWidth / 7
         let cardHeight = cardWidth * 1.27
         for i in 0..<7 {
-            let cardBackView: UIImageView! = UIImageView(frame: CGRect(x: CGFloat( Int(cardWidth) * i), y: 50, width: cardWidth, height: cardHeight))
-            cardBackView.image = UIImage(named: "card-back")
-            cardBackView.frame(forAlignmentRect: CGRect(x: 100, y: 100, width: cardWidth, height: cardHeight))
+            let cardBackView: UIImageView! = UIImageView(image: UIImage(named: "card-back"))
+            cardBackView.frame = CGRect(x: CGFloat( Int(cardWidth) * i), y: 50, width: cardWidth, height: cardHeight)
             self.view.addSubview(cardBackView)
         }
         
     }
-
 
 }
 
