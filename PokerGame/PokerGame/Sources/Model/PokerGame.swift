@@ -106,8 +106,8 @@ class PokerGame {
 
 extension PokerGame {
     enum PokerType: CaseIterable {
-        case fiveCard
         case sevenCard
+        case fiveCard
         
         var cardCount: Int {
             switch self{
