@@ -26,6 +26,34 @@ class Card {
         }
         self.shape = shape
     }
+    
+    func getCardInfo() -> String {
+        var info: String = ""
+        switch shape {
+        case Shape.spade:
+            info.append("♠")
+        case Shape.clover:
+            info.append("♣︎")
+        case Shape.diamond:
+            info.append("♦︎")
+        case Shape.heart:
+            info.append("♥︎")
+        }
+        
+        if num == 1 {
+            info.append("1")
+        } else if num == 11 {
+            info.append("J")
+        } else if num == 12 {
+            info.append("Q")
+        } else if num == 13 {
+            info.append("K")
+        } else {
+            info.append("\(num)")
+        }
+        
+        return info
+    }
 }
 
 // let c = Card(1, Card.Shape.clover)
