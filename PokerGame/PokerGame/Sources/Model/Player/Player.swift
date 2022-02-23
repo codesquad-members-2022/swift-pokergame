@@ -9,11 +9,6 @@ import Foundation
 
 class Player: CustomStringConvertible {
     
-    enum Constants {
-        static let limitCount = 4
-        static let defaultCount = 2
-    }
-    
     let name: String
     public private(set) var cards: [Card] = []
     
@@ -27,5 +22,9 @@ class Player: CustomStringConvertible {
     
     func add(card: Card) {
         cards.append(card)
+    }
+    
+    func removeAllCard() {
+        cards.removeAll()
     }
 }

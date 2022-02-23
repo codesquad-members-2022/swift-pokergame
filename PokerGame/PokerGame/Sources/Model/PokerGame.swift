@@ -16,13 +16,14 @@ class PokerGame {
     struct Action {
         var inputPokerType: (PokerType) -> Void = { _ in }
         var inputPlayerCount: (Int) -> Void = { _ in }
-        var pokerStart: () -> Void = { }
+        var pokerReset: () -> Void = { }
+        var pokerPlay: () -> Void = { }
     }
     
     struct State {
-        var updateLayout: (PokerGame.PokerType) -> Void = { _ in }
-        var didCreatePlayers: ([Player]) -> Void = { _ in }
-        var didCreateDealer: (Player) -> Void = { _ in }
+        var updateUi: ([String]) -> Void = { _ in }
+        var givePlayerCard: (Int, Int, Card) -> Void = { _, _, _ in }
+        var giveDealerCard: (Int, Card) -> Void = { _, _ in }
         var finishPoker: () -> Void = { }
     }
     
@@ -30,14 +31,14 @@ class PokerGame {
     var state = State()
     
     private var pokerType = Constants.defaultType
-    private var playerCount = Player.Constants.defaultCount
+    private var playerCount = PokerPlayers.Constants.defaultCount
         
-    private var players = [Player]()
-    private var dealer = Player(name: "Dealer")
+    private var pokerPlayers = PokerPlayers()
     private let cardDeck = CardDeck()
     
     init() {
-        action.pokerStart = start
+        action.pokerReset = resetGame
+        action.pokerPlay = play
         
         action.inputPokerType = { pokerType in
             self.pokerType = pokerType
@@ -48,47 +49,48 @@ class PokerGame {
         }
     }
     
-    private func createPlayers(count: Int) -> [Player] {
-        var playerNames = ["shingha", "bibi", "alex", "rosa", "chez",
-                           "ocean", "Jason", "Alex", "dale", "kai",
-                           "jee", "mase", "sol", "ebony", "gucci",
-                           "jed", "beck", "eddy", "selina", "pigBag"].filter { $0.count <= 5}
-
-        return (0..<count).map { _ in
-            let randomIndex = Int.random(in: 0..<playerNames.count)
-            let playerName = playerNames.remove(at: randomIndex)
-            return Player(name: playerName)
-        }
+    func resetGame() {
+        self.pokerPlayers.createPlayers(count: playerCount)
+        self.state.updateUi(self.pokerPlayers.players.map { $0.name })
+        self.cardDeck.reset()
     }
     
-    private func start() {
-        self.state.updateLayout(pokerType)
-        
-        self.players = createPlayers(count: playerCount)
+    private func play() {
+        pokerPlayers.removeAllCard()
         self.cardDeck.shuffle()
-
-        for _ in 0..<pokerType.rawValue {
-            for player in players {
+        
+        if cardDeck.count < pokerPlayers.count * pokerType.cardCount {
+            self.state.finishPoker()
+            return
+        }
+        
+        (0..<pokerType.cardCount).forEach { cardIndex in
+            (0..<pokerPlayers.count).forEach { index in
                 guard let card = cardDeck.removeOne() else {
-                    self.state.finishPoker()
                     return
                 }
-                player.add(card: card)
+                if index < pokerPlayers.players.count {
+                    pokerPlayers.players[index].add(card: card)
+                    self.state.givePlayerCard(index, cardIndex, card)
+                } else {
+                    pokerPlayers.dealer.add(card: card)
+                    self.state.giveDealerCard(cardIndex, card)
+                }
             }
-            guard let card = cardDeck.removeOne() else {
-                self.state.finishPoker()
-                return
-            }
-            self.dealer.add(card: card)
         }
-        self.state.didCreatePlayers(players)
-        self.state.didCreateDealer(dealer)
     }
 }
 
 extension PokerGame {
-    enum PokerType: Int, CaseIterable {
-        case fiveCard = 5
-        case sevenCard = 7
+    enum PokerType: CaseIterable {
+        case fiveCard
+        case sevenCard
+        
+        var cardCount: Int {
+            switch self{
+            case .sevenCard: return 7
+            case .fiveCard: return 5
+            }
+        }
     }
 }
