@@ -8,7 +8,8 @@
 import Foundation
 
 struct CardDeck {
-    private var cards: [Card] = [] //private?
+    
+    private var cards: [Card] = []
     
     var count: Int {
         return cards.count
@@ -39,8 +40,8 @@ struct CardDeck {
         }
     }
     
-    mutating func draw() -> Card {
-        return self.cards.remove(at: Int.random(in: (0..<count)))
+    mutating func draw() -> Card? {
+        return count > 0 ? self.cards.remove(at: Int.random(in: (0..<count))) : nil
     }
     
     mutating func reset() {
