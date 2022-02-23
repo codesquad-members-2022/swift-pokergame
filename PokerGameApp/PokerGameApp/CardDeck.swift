@@ -30,8 +30,34 @@ class Deck {
         }
     }
     
-   
+    //Optimized Fisher-Yates algorithm by Durstenfeld
+    //해당 덱에있는 카드들의 순서를 무작위로 바꾼다.
+    func shuffle() {
+        var scratch  = self.cards
+        var range = self.count
+        while range != 1 {
+            let roll = Int.random(in: 0..<range)
+            let temp = scratch[range-1]
+            scratch[range-1] = scratch[roll]
+            scratch[roll] = temp
+            range -= 1
+        }
+        //랜덤 순열을 reversed 해서 self.cards 에 할당.
+        self.cards = scratch.reversed()
+    }
   
+    //removeOne 기능은 카드 인스턴스 중에 하나를 반환하고 목록에서 삭제한다.
+    //카드 뭉치 중에 무작위로 하나를 반환하고 삭제하는지, 카드 뭉치 들중 가장위에 있는 카드를 뽑아서 반환하고 삭제하건지 명확히 명시되어 있지않아
+    //카드뭉치의 맨 위에 있는카드를 뽑아 반환하고 삭제하는것으로 가정하고 함수 구현. 이 가정이 틀릴시 수정 필요.
+    func removeOne() -> Card {
+        return self.cards.removeLast()
+    }
+    
+    //현재 남아 있는 카드뭉치를 전부 제거한뒤, 새로운 카드뭉치 생성.
+    func reset() {
+        self.cards.removeAll()
+        generateCards()
+    }
     
     
 }
