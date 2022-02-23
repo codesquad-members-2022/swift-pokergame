@@ -72,7 +72,7 @@ class PokerBoardViewController: UIViewController {
         }
     }
     
-    private func attribute() {
+    private func attribute() {        
         if let backImage = UIImage(named: "bg_pattern") {
             self.view.backgroundColor = UIColor(patternImage: backImage)
         }

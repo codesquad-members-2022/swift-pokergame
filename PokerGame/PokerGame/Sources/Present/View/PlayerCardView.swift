@@ -16,11 +16,16 @@ class PlayerCardView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        attribute()
+        initialize()
     }
     
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        initialize()
+    }
+    
+    private func initialize() {
+        attribute()
     }
     
     private func attribute() {

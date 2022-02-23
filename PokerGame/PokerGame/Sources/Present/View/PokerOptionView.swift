@@ -20,16 +20,21 @@ class PokerOptionView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        initialize()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        initialize()
+    }
+    
+    private func initialize() {
         attribute()
         
         let defaultTypeIndex = PokerGame.Constants.defaultType == .sevenCard ? 0 : 1
         typeButtons[defaultTypeIndex].isEnabled = false
         //TODO: - 상수에 연산을 하는 과정을 생략하도록 해보자
         playerButtons[PokerPlayers.Constants.defaultCount - 2].isEnabled = false
-    }
-    
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     func bind(pokerGame: PokerGame) {
