@@ -9,25 +9,33 @@
 struct Card:CustomStringConvertible {
     
     var description: String {
-        return "\(suit)\(rank)"
+        return "\(suit.shape)\(rank)"
     }
     
-    //랜덤한 값으로 뽑힌 suit와 rank는 private으로 설정하여 밖에서 수정하거나 확인하지 못하게 하였다.
-     var suit:String = Suit.randomSuit
-     var rank:String = Rank.randomRank
+    //생성할때 값을 넣지 않으면 초기값으로 랜덤한 값을 가지도록 하기 위해 선언했다.
+    var suit:Suit = Suit.initSuit
+    var rank:Rank = Rank.initRank
     
     
     //카드의 모양(suit)를 나타내줄 Enum
     //카드의 모양은 총 네가지로 고정되어 있으므로 예외처리를 원활하게 하기 위해서 Enum으로 설정한다.
     enum Suit:String,CaseIterable {
-        case spade = "♠️"
-        case heart = "❤️"
-        case diamond = "♦️"
-        case clover = "♣️"
+        case spade, heart, diamond , clover
         
-        //랜덤 값을 뽑아내는 프로퍼티, 값을 넣지않고 타입 자체에서 값을 뽑아내기 위해 Static을 사용했다.
-        static var randomSuit:String {
-            Suit.allCases.randomElement()?.rawValue ?? "유효한 Suit가 없습니다."
+        //suit의 모양을 리턴해줍니다.
+        //suit.rawValue 보다는 suit.shape가 더 직관적이라 생각해서 만들었습니다.
+        var shape:String {
+            switch self {
+            case .spade: return "♠️"
+            case .heart: return "❤️"
+            case .diamond: return "♦️"
+            case .clover: return "♣️"
+            }
+        }
+        
+        //랜덤 값을 뽑아내는 프로퍼티, 생성할때 값을 넣지 않으면 랜덤으로 값을 가지도록 하기 위해 선언했다.
+        static var initSuit:Card.Suit {
+            Suit.allCases.randomElement() ?? .heart
         }
     }
     
@@ -37,7 +45,7 @@ struct Card:CustomStringConvertible {
         
         //카드의 Rank는 2종류로 나울수있다.
         case numberType(Int)        //숫자 2,3,4,5,6,7,8,9
-        case alphabetType(Int)   //알파벳 A,J,Q,K
+        case alphabetType(Int)      //알파벳 A,J,Q,K
         
         //각 숫자 1~13까지 모두 case를 주면 코드가 길어지므로 숫자와 알파벳를 나타내는 두가지 케이스에 조건을 달아서 나타내 보았다.
         var rank:String {
@@ -65,9 +73,10 @@ struct Card:CustomStringConvertible {
         }
         
         //만든 allcase를 이용해서 랜덤값을 뽑는 Static프로퍼티를 만들어본다.
-        static var randomRank:String {
-            Rank.allCases.randomElement()?.rank ?? "유효한 Rank가 없습니다."
+        static var initRank:Rank {
+            Rank.allCases.randomElement() ?? .numberType(1)
         }
     }
 }
+
 
