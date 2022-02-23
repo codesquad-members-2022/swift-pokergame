@@ -8,7 +8,7 @@
 - [x] 게임 보드 만들기(2021.02.21 19:26)
 - [x] 카드 클래스 구현하기
 - [x] 카드덱 구현하고 테스트하기
-- [ ] 게임로직 구현하기
+- [x] 게임로직 구현하기
 - [ ] 포커게임 화면 만들기
 - [ ] 승자 표시하기
 - [ ] 마무리하기
@@ -170,6 +170,43 @@ mutating func removeOne()-> Card{
   }
 }
 ```
+
+​    
+
+## 4. 게임 로직 만들기
+
+- PockerGame 클래스 내부에 Player, Dealer 내부 클래스 타입 선언
+- PockerGame 클래스 생성자에서 Player 배열과 Dealer 인스턴스를 각각 생성해서 프로퍼티에 할당한 후 게임 실행 준비 마침
+- 게임 실행은 start() 함수를 호출하며, 카드 덱을 섞은 후 run() 메소드 호출
+- run() 메소드는 딜러에게 플레이어에게 배분할 모든 카드를 일단 부여한 후, distributeCards() 메소드를 호출하여 딜러가 다시 플레이어들에게 카드를 1장씩 배분하는 식으로 동작
+
+```swift
+func start(){
+  deck.shuffle()
+  run()
+}
+
+private func run(){
+  if(deck.count >= (players.count + 1) * stud.rawValue){
+    for _ in 0..<(players.count + 1) * stud.rawValue{
+      guard let card = deck.removeOne() else { continue }
+      dealer.getCard(card)
+    }
+    distributeCards()
+  }
+}
+
+private func distributeCards(){
+  for _ in 0..<stud.rawValue{
+    for index in 0..<players.count{
+      guard let card = dealer.handOutCard(stud: stud.rawValue) else { continue }
+      players[index].getCard(card)
+    }
+  }
+}
+```
+
+- PockerGame, CardDeck 각각의 클래스에 대한 단위 테스트 메소드 작성
 
 
 
