@@ -552,14 +552,15 @@ init(){
 - 딜러는 카드덱을 소유 (보통 카지노에서 딜러가 카드덱을 소유하고 관리하는 것을 차용)
 - 딜러가 giveCard를 통해 card를 넘기면 플레이어는 receiveCard를 통해 해당 card를 자신의 카드더미에 넣는다
 - 이후 패 확인은 checkingCards를 통해서 공개
+- (수정) 가지고 있는 패를 전부 버리는 removeCards 함수 추가
 
 ```swift
-struct Player{
+class Player{
     let name: String
     private var cards: [Card] = []
     
     // 딜러가 주는 카드를 받을 때 사용되는 함수
-    mutating func receiveCard(card: Card){
+    func receiveCard(card: Card){
         cards.append(card)
     }
     
@@ -573,24 +574,36 @@ struct Player{
         
         return cardsDescription
     }
+    
+    // 게임 완료 후, 현재 패 버리기
+    func removeCards(){
+        self.cards.removeAll()
+    }
 
     init(randomName: String){
         name = randomName
     }
 }
+
 ``` 
 
 ```swift
-struct Dealer{
+class Dealer{
     let role = "Dealer"
     private var cards: [Card] = []
     private var cardDeck: CardDeck = CardDeck()
     
-    mutating func giveCard() -> Card?{
+    func giveCard() -> Card?{
         guard let card = cardDeck.removeOne() else{
             return nil
         }
         return card
+    }
+    
+    func shuffleCardDeck() -> Int{
+        self.cardDeck.shuffle()
+        
+        return self.cardDeck.count()
     }
     
     func checkingCards() -> [String]{
@@ -602,7 +615,16 @@ struct Dealer{
         
         return cardsDescription
     }
+    
+    func receiveCard(card: Card){
+        cards.append(card)
+    }
+    
+    func removeCards(){
+        self.cards.removeAll()
+    }
 }
+
 ```
 
 ### PockerGame 구현
@@ -611,6 +633,7 @@ struct Dealer{
 - Player의 랜덤 네임 생성은 String 타입을 extension하여 함수 추가
 - divideCards 함수는 모든 player에게 한장씩 카드를 나눠준 후, 마지막에 딜러가 카드를 가지는 로직. showAllCardInHand 함수는 모든 카드를 나눠가진 후, 현재 들고있는 카드들을 오픈하는 로직으로 이를 하나의 문자열로 바꿔서 리턴.
 - playPockerGame 함수는 셔플 -> 카드 떨어질 때까지 게임 진행 -> 게임 중 카드 돌리기 / 모든 카드 나눠주면 서로 패 오픈 로직으로 구현
+- (추가) 한 게임이 끝나면 참여자들의 카드를 inHandCards에 할당하는 overOneGame 함수, inHandCards의 값을 String 한 줄로 표현해주는 showAllCardInHand 함수, 한 게임이 끝나면 모두가 들고있는 카드를 버리는 clearGame 함수 추가
 
 ```swift
 class PockerGame{
@@ -635,30 +658,13 @@ class PockerGame{
                 divideCards()
             }
             
-            players.forEach{ player in
-                inHandCards = [player.name : player.checkingCards()]
-            }
-            inHandCards = [dealer.role : dealer.checkingCards()]
-            
-            sleep(10)
+            overOneGame()
+            let show = showAllCardInHand()
             
             nowPlay += 1
-            inHandCards.removeAll()
+            clearGame()
+            
         }
-    }
-    
-    func showAllCardInHand() -> String{
-        var showAll = [String]()
-        
-        inHandCards.forEach{ playerAndDealer in
-            let name = playerAndDealer.key
-            let cards = playerAndDealer.value.joined(separator: ",")
-            showAll.append("\(name) : \(cards)")
-        }
-        
-        showAll.sort(by: < )
-        
-        return showAll.joined(separator: "\n")
     }
     
     func divideCards(){
@@ -676,6 +682,38 @@ class PockerGame{
         } else{
             self.canPlayGame = false
         }
+    }
+    
+    func overOneGame(){
+        // 한게임 마무리 시, 현재 참여자들의 카드를 inHandCards에 할당
+        players.forEach{ player in
+            inHandCards[player.name] = player.checkingCards()
+        }
+        inHandCards[dealer.role] = dealer.checkingCards()
+    }
+    
+    func showAllCardInHand() -> String{
+        var showAll = [String]()
+        
+        inHandCards.forEach{ playerAndDealer in
+            let name = playerAndDealer.key
+            let cards = playerAndDealer.value.joined(separator: ",")
+            showAll.append("\(name) : \(cards)")
+        }
+        
+        showAll.sort(by: < )
+        
+        return showAll.joined(separator: " | ")
+    }
+    
+    func clearGame(){
+        // 이번 판의 카드들 전부 해제
+        inHandCards.removeAll()
+        
+        players.forEach{ player in
+            player.removeCards()
+        }
+        dealer.removeCards()
     }
     
     init(variant: PockerGame.Variants, entries: PockerGame.Entries){
@@ -719,3 +757,14 @@ extension String{
 ```
 
 ### 테스트코드 구현
+- divide 함수 확인
+<img src = "https://user-images.githubusercontent.com/44107696/155286517-225b7626-ea74-42ae-a8ba-a3730eefd1cf.png" width="800" height="1300">
+
+- overOneGame, showAllCardHand 함수 확인
+<img src = "https://user-images.githubusercontent.com/44107696/155286525-f968426c-3c10-4281-9285-db4ba7951da0.png" width="800" height="1300">
+
+- clearGame 함수 확인
+<img src = "https://user-images.githubusercontent.com/44107696/155286531-326fd4c8-ae7f-402f-9e8a-a67d064a6574.png" width="800" height="1300">
+
+- playPockerGame 함수 확인
+<img src = "https://user-images.githubusercontent.com/44107696/155286533-38a16172-d6b5-4c73-9471-2b3fd2c329e5.png" width="800" height="1300">

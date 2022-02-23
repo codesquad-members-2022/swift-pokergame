@@ -19,8 +19,10 @@ class Dealer{
         return card
     }
     
-    func receiveCard(card: Card){
-        cards.append(card)
+    func shuffleCardDeck() -> Int{
+        self.cardDeck.shuffle()
+        
+        return self.cardDeck.count()
     }
     
     func checkingCards() -> [String]{
@@ -33,9 +35,11 @@ class Dealer{
         return cardsDescription
     }
     
-    func shuffleCardDeck() -> Int{
-        self.cardDeck.shuffle()
-        
-        return self.cardDeck.count()
+    func receiveCard(card: Card){
+        cards.append(card)
+    }
+    
+    func removeCards(){
+        self.cards.removeAll()
     }
 }

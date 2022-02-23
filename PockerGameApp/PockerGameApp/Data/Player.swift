@@ -26,6 +26,11 @@ class Player{
         
         return cardsDescription
     }
+    
+    // 게임 완료 후, 현재 패 버리기
+    func removeCards(){
+        self.cards.removeAll()
+    }
 
     init(randomName: String){
         name = randomName
