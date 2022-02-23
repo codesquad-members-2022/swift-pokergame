@@ -34,7 +34,7 @@ class PockerGame: CustomStringConvertible{
         }
     }
     
-    private let randomNames = ["dale","eddy","jee","foucault","sol"]
+    private var randomNames = ["dale","eddy","jee","foucault","sol"]
     private (set) var stud: Int
     private (set) var deck: CardDeck
     var dealer: Dealer
