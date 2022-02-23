@@ -11,8 +11,12 @@ struct PokerGame {
     var type: PokerType
     let dealer: Dealer
     
-    init(type: PokerType, numberOfPlayers: Int) {
+    init(type: PokerType, numberOfPlayers: Int) throws {
         self.type = type
+        guard (0...4).contains(numberOfPlayers) else {
+            throw PokerGameError.tooManyPlayer
+        }
+        
         let players = (0..<numberOfPlayers).map { _ in Player()
         }
         let dealer = Dealer(deck: CardDeck(), players: players)
@@ -38,4 +42,5 @@ enum PokerType {
 
 enum PokerGameError: Error {
     case tooManyPlayer
+    case outOfCards
 }

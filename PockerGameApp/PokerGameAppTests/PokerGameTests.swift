@@ -25,6 +25,19 @@ class PokerGameTests: XCTestCase {
         }
     }
     
+    func testWithTooManyCards() {
+        let testPlayers = (0..<5).map { _ in Player() }
+        let tooManyNumber = 10
+        let dealer = Dealer(deck: CardDeck(), players: testPlayers)
+        
+        
+        var thrownError: Error!
+        XCTAssertThrowsError(try dealer.deal(numOfcards: tooManyNumber)) {
+            thrownError = $0
+        }
+        XCTAssertTrue(thrownError as? PokerGameError == .outOfCards)
+    }
+    
     func testPlayerReceive() throws {
         let john = Player(name: "John")
         
@@ -39,27 +52,24 @@ class PokerGameTests: XCTestCase {
     }
     
     func testSevenStudGame() throws {
-        let pokerGame = PokerGame(type: .sevenStud, numberOfPlayers: 5)
+        let pokerGame = try PokerGame(type: .sevenStud, numberOfPlayers: 3)
         
         try pokerGame.start()
     }
     
     func testFiveStudGame() throws {
-        let pokerGame = PokerGame(type: .fiveStud, numberOfPlayers: 5)
+        let pokerGame = try PokerGame(type: .fiveStud, numberOfPlayers: 4)
         
         try pokerGame.start()
     }
     
     
     func testWithTooManyPlayer() throws {
-        let pokerGame = PokerGame(type: .sevenStud, numberOfPlayers: 8)
-        
         var thrownError: Error!
-        XCTAssertThrowsError(try pokerGame.start()) {
+        XCTAssertThrowsError(try PokerGame(type: .sevenStud, numberOfPlayers: 8)) {
             thrownError = $0
         }
         XCTAssertTrue(thrownError as? PokerGameError == .tooManyPlayer)
     }
-    
     
 }

@@ -24,10 +24,12 @@ class Dealer: Playable {
         
         let allPlayers: [Playable] = players + [self]
         for player in allPlayers {
-            var drawns = [Card]()
-            for _ in 0..<numOfcards {
-                guard let drawn = deck.draw() else { throw PokerGameError.tooManyPlayer }
-                drawns.append(drawn)
+            let drawns = try (0..<numOfcards).map { _ -> Card in
+                if let drawn = deck.draw() {
+                    return drawn
+                } else {
+                    throw PokerGameError.outOfCards
+                }
             }
             player.receive(cards: drawns)
         }
