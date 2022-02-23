@@ -35,4 +35,7 @@ struct CardDeck {
     mutating func reset() {
         cards = originCards
     }
+    func showCards() -> [Card]{
+        return cards
+    }
 }
