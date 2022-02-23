@@ -31,22 +31,16 @@ struct Card:CustomStringConvertible {
     //카드의 모양은 총 네가지로 고정되어 있으므로 예외처리를 원활하게 하기 위해서 Enum으로 설정한다.
     enum Suit:String,CaseIterable,CustomStringConvertible {
         
+        //description을 이용해서 값을 리턴해보자.
         var description: String {
-            return "\(shape)"
+            return "\(self.rawValue)"
         }
         
-        case spade, heart, diamond , clover
+        case spade = "♠️"
+        case heart = "❤️"
+        case diamond = "♦️"
+        case clover = "♣️"
         
-        //suit의 모양을 리턴해줍니다.
-        //suit.rawValue 보다는 suit.shape가 더 직관적이라 생각해서 이름을 지었습니다.
-        var shape:String {
-            switch self {
-            case .spade: return "♠️"
-            case .heart: return "❤️"
-            case .diamond: return "♦️"
-            case .clover: return "♣️"
-            }
-        }
         
         //랜덤 값을 뽑아내는 프로퍼티, 생성할때 값을 넣지 않으면 랜덤으로 값을 가지도록 하기 위해 선언했다.
         static var initSuit:Card.Suit {
