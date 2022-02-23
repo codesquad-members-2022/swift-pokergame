@@ -38,6 +38,16 @@
                ReferencedContainer = "container:PokerGameApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6C6514F227C5F58F009E7097"
+               BuildableName = "CardDeckTest.xctest"
+               BlueprintName = "CardDeckTest"
+               ReferencedContainer = "container:PokerGameApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
