@@ -10,8 +10,10 @@ import Foundation
 
 class Card: CustomStringConvertible{
     
+    
+    
     // 카드 모양은 한정되어 있으므로 enum으로 구현
-    enum Symbol: String, CustomStringConvertible {
+    enum Symbol: String, CustomStringConvertible, CaseIterable {
         case heart
         case diamond
         case club
@@ -33,7 +35,7 @@ class Card: CustomStringConvertible{
     
     // Card의 rank는 한정되어있고, 후에 카드 랭크를 비교할때는 rawValue로 처리를 해주면
     // 편할것 같아 enum으로 구현.
-    enum Rank: Int, CustomStringConvertible {
+    enum Rank: Int, CustomStringConvertible, CaseIterable {
         case A = 1
         case two
         case three
