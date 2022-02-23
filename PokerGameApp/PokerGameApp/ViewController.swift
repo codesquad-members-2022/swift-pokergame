@@ -6,8 +6,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setBackgroundColor()
         setInitialImageView(7)
-        testCardPrinting()
-        testCardDeckCreation()
     }
     
     func setBackgroundColor(){
@@ -33,40 +31,6 @@ class ViewController: UIViewController {
             cardXPosition += cardMargin+cardWidth
         }
         
-    }
-    
-    func testCardPrinting(){
-        for _ in 0..<7{
-            guard let suit = Card.Suit.allCases.randomElement(), let number = Card.Number.allCases.randomElement() else { return }
-            let card = Card(suit: suit, number: number)
-            printCard(card)
-        }
-    }
-    
-    func printCard(_ card: Card){
-        print(card)
-    }
-    
-    func testCardDeckCreation(){
-        var deck: CardDeck = CardDeck()
-        let commands: [String] = ["reset","shuffle","remove","remove","shuffle","reset","remove","shuffle","remove","exit"]
-        for command in commands{
-            print(command)
-            switch command{
-            case "reset":
-                deck.reset()
-                print("카드 전체를 초기화했습니다.\n총 \(deck.count)장의 카드가 있습니다.")
-            case "shuffle":
-                deck.shuffle()
-                print("전체 \(deck.count)장의 카드를 섞었습니다.")
-            case "remove":
-                guard let removedCard = deck.removeOne() else { continue }
-                print("\(removedCard)\n총 \(deck.count)장의 카드가 남아있습니다.")
-            default:
-                print("테스트 종료")
-                break
-            }
-        }
     }
 }
 
