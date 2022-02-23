@@ -54,4 +54,8 @@ struct CardDeck: Equatable {
     public func last() -> Card? { // Test시 사용하기 위한 메서드
         return self.deck.last
     }
+    
+    public mutating func add(_ card: Card) {
+        self.deck.append(card)
+    }
 }
