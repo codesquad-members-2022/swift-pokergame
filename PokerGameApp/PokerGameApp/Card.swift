@@ -15,35 +15,55 @@ import Foundation
  */
 struct Card {
     let suit: Suit
-    let number: Int
+    let number: Number
     
-    enum Suit: String {
+    enum Suit: String, CustomStringConvertible {
         case spade = "♠️"
         case heart = "♥️"
         case diamond = "♦️"
         case club = "♣️"
+        
+        var description: String {
+            return self.rawValue
+        }
     }
     
-    func convertedString() -> String {
-        return self.suit.rawValue + description
+    enum Number: Int, CustomStringConvertible {
+        case ace = 1
+        case two = 2
+        case three = 3
+        case four = 4
+        case five = 5
+        case six = 6
+        case seven = 7
+        case eight = 8
+        case nine = 9
+        case ten = 10
+        case jack = 11
+        case queen = 12
+        case king = 13
+        
+        var description: String {
+            switch self.rawValue {
+            case 1:
+                return "A"
+            case 2...10:
+                return "\(self.rawValue)"
+            case 11:
+                return "J"
+            case 12:
+                return "Q"
+            case 13:
+                return "K"
+            default:
+                return ""
+            }
+        }
     }
 }
 
 extension Card: CustomStringConvertible {
     var description: String {
-        switch self.number {
-        case 1:
-            return "A"
-        case 2...10:
-            return String(number)
-        case 11:
-            return "J"
-        case 12:
-            return "Q"
-        case 13:
-            return "K"
-        default:
-            return ""
-        }
+        return "\(self.suit)" + "\(self.number)"
     }
 }
