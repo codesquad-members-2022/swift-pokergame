@@ -53,20 +53,12 @@ struct CardDeck{
     
     init(){
         let cardShapes = Card.Shape.allCases
-        var cardShapeIndex = 0
-        
         let cardNumbers = Card.CardNumber.allCases
-        var numberIndex = 0
         
-        while numberIndex < 13{
-            let card = Card(number: cardNumbers[numberIndex], shape: cardShapes[cardShapeIndex])
-            deck.append(card)
-            
-            if numberIndex == 12 && deck.count < 52{
-                cardShapeIndex += 1
-                numberIndex -= 12
-            } else{
-                numberIndex += 1
+        cardShapes.forEach{ shape in
+            cardNumbers.forEach{ number in
+                let card = Card(number: number, shape: shape)
+                deck.append(card)
             }
         }
         
