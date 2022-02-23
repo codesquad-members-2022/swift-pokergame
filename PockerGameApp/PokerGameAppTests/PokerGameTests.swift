@@ -31,4 +31,14 @@ class PokerGameTests: XCTestCase {
         XCTAssertFalse(dealtToFail.count == 7)
     }
     
+    func testReceive() throws {
+        let john = Player(name: "John")
+        XCTAssertEqual(john.cards, [])
+        let randomCards = (0..<7).map {
+            Card(suit: .hearts, number: CardNumber(rawValue: $0))
+        }
+        john.receive(cards: [Card(suit: <#T##CardSuit#>, number: <#T##CardNumber#>)])
+        XCTAssertEqual(john.cards, [])
+    }
+
 }
