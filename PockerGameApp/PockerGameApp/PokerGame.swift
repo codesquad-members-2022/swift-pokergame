@@ -56,14 +56,12 @@ class Dealer: Playable {
     func deal(numOfcards: Int) throws {
         let allPlayers: [Playable] = players + [self]
         for player in allPlayers {
-            
-            let dealt = [Card]()
+            var drawns = [Card]()
             for _ in 0..<numOfcards {
                 guard let drawn = deck.draw() else { throw PokerGameError.tooManyPlayer }
-                cards.append(drawn)
+                drawns.append(drawn)
             }
-            
-            player.receive(cards: dealt)
+            player.receive(cards: drawns)
         }
     }
     
