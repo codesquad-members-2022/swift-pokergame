@@ -12,21 +12,27 @@ struct PokerGame {
     let dealer: Dealer
     var players: [Player]
     
+    var allPlayers: [Playable] {
+        players + [dealer]
+    }
+    
     var numberOfPlayers: Int {
         players.count
     }
     
     func start() {
-        for player in players {
+        for player in allPlayers {
             let dealt = dealer.deal(numOfcards: type.rawValue)
             player.receive(cards: dealt)
         }
-        let dealt = dealer.deal(numOfcards: type.rawValue)
-        dealer.receive(cards: dealt)
     }
 }
 
-class Player {
+protocol Playable {
+    func receive(cards: [Card])
+}
+
+class Player: Playable {
     let name: String
     var cards: [Card]
     
@@ -40,7 +46,7 @@ class Player {
     }
 }
 
-class Dealer {
+class Dealer: Playable {
     var deck: CardDeck
     var cards: [Card]
     
