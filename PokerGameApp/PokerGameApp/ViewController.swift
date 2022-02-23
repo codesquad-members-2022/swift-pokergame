@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         print(spade7)
         
         let testCardDeck = TestCardDeck()
-        testCardDeck.count()
+        testCardDeck.countWhenInit()
     }
     
     private func addPattern(to view: UIView, pattern: UIImage) {

@@ -14,6 +14,16 @@ class TestCardDeck {
         self.cardDeck = CardDeck()
     }
     
+    func countWhenInit() {
+        let count = cardDeck.count()
+        let expect = 52
+        if count != expect {
+            print("TestCardDeck::countWhenInit() Fail-초기화했을때 카드 갯수가 예상값(\(expect)가 아닙니다")
+            return
+        }
+        print("TestCardDeck::countWhenInit() Success-\(expect)개로 초기화 완료")
+    }
+    
     func count() {
         let count = cardDeck.count()
         
