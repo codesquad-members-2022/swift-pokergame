@@ -11,7 +11,8 @@ import Foundation
 class Deck {
     //덱의 카드 내용을 private 으로 지정함으로써 은닉화.
     //인덱스를 이용한 shuffle 과 마지막에 있는 카드를 삭제해주는 과정을 쉽게해주기 위해 배열 타입으로 정의.
-    private var cards = [Card]()
+    //fileprivate --> 밑에 테스트 클래스에서 사용하려고 해당 파일안에서만 공유가능하게 사용함.
+    fileprivate var cards = [Card]()
     
     //현재 카드 갯수 정보
     var count : Int {cards.count}
@@ -60,4 +61,105 @@ class Deck {
     }
     
     
+}
+
+
+class DeckTest {
+    
+    func conductTest()  {
+        do {
+            print("----덱 생성----")
+            let deck = try testCardGeneration()
+            print("총 \(deck.count) 개의 카드가 있습니다")
+            
+            
+            print("----카드 하나 뽑기----")
+            let lastCard = try testRemoveOne(deck: deck)
+            print(lastCard)
+            print("총 \(deck.count) 개의 카드가 있습니다")
+
+            print("----카드 섞기----")
+            try testShuffle(deck: deck)
+            print("총 \(deck.count) 개의 카드가 섞였습니다")
+            
+            print("----덱 초기화----")
+            try testReset(deck: deck)
+            print("총 \(deck.count) 개의 카드가 있습니다")
+            
+            
+            print("---- 테스트 완료 ----")
+        }
+        catch TestError.deckGenerationError {
+            print(TestError.deckGenerationError)
+        }catch TestError.deckRemoveError{
+            print(TestError.deckRemoveError)
+        }catch TestError.deckShuffleError{
+            print(TestError.deckShuffleError)
+        }catch TestError.deckResetError{
+            print(TestError.deckResetError)
+        }catch{
+            print("Unknown error occurred")
+        }
+        
+    }
+    
+    
+    func testCardGeneration() throws -> Deck {
+        print("> 덱을 생성 하였습니다.")
+        let deck = Deck()
+        guard deck.count == 52 else {
+            throw TestError.deckGenerationError
+        }
+        return deck
+    }
+    
+    
+    func testRemoveOne(deck: Deck) throws -> Card{
+        let cardCount = deck.count
+        let lastCard = deck.removeOne()
+        if cardCount == deck.count {
+            throw TestError.deckRemoveError
+        }
+        return lastCard
+    }
+    
+    func testShuffle(deck : Deck) throws {
+        let firstTenCards = deck.cards[..<10]
+        print("> 카드 섞는중")
+        deck.shuffle()
+        print("섞이기전 앞에서 10장: \(firstTenCards[..<10])")
+        print("섞인후 앞에서 10장: \(deck.cards[..<10])")
+        if firstTenCards[..<10] == deck.cards[..<10] {
+            throw TestError.deckShuffleError
+        }
+    }
+    
+    func testReset(deck: Deck) throws {
+        print("> 덱 리셋하는중")
+        deck.reset()
+        if deck.count != 52 {
+            throw TestError.deckResetError
+        }
+    }
+    
+    enum TestError : Error, CustomStringConvertible {
+        
+        case deckGenerationError
+        case deckRemoveError
+        case deckShuffleError
+        case deckResetError
+        
+        var description: String {
+            switch self {
+            case .deckGenerationError :
+                return "Failed to generate Deck"
+            case .deckRemoveError :
+                return "Failed to remove Card From Deck"
+            case .deckShuffleError :
+                return "Failed to shuffle Deck"
+            case .deckResetError :
+                return "Failed to reset Deck"
+            }
+        }
+    }
 }

@@ -30,10 +30,10 @@ class ViewController: UIViewController {
         makeCardImage(num: 7)
         drawCards(cards)
         
-        //임의의 카드 정보 보여주기
-        var deck = Deck()
-        deck.shuffle()
-        print(deck.removeOne())
+        //덱 테스트 하기
+        var deckTest = DeckTest()
+        deckTest.conductTest()
+        
     }
     
     
