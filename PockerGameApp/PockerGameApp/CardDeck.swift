@@ -20,7 +20,6 @@ struct CardDeck {
         }
         self.defaultCards = cards
         self.cards = defaultCards
-        shuffle()
     }
     
     public var count: Int {
@@ -41,7 +40,6 @@ struct CardDeck {
     
     public mutating func reset() {
         self.cards = defaultCards
-        shuffle()
     }
 }
 
