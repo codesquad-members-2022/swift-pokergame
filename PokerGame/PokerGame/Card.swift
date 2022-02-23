@@ -5,6 +5,17 @@
 //  Created by 박진섭 on 2022/02/22.
 //
 
+/*
+ Card Class와 CardInfo Struct를 하나로 합쳤습니다.
+ Card Class를 따로 만든이유는 후에 카드의 뒤집힘 유무와 같은 게임적 요소를 추가하게 하기 위해서였으나,
+ 생각해보니 추가하더라도 CardInfo내용과 겹치는 부분이 상당수 생길 것같고, Card라는 Struct안에
+ 변수명을 지정해서 만들어도 이상하지 않을 것 같아 두 데이터구조를 합쳤습니다.
+
+ Card안에 suit와 rank 프로퍼티를 이용해 카드의 값을 명시하여 생성하는 경우 원하는 값의 카드를 만들도록 설정해보았습니다.
+ 또한, CasLiterable을 이용해 Card를 생성시 아무런 값을 주지 않을 경우 랜덤으로 값을 설정하게 하여 생성되는 옵션을 만들어 보았습니다.
+
+ */
+
 //Card의 정보를 한번에 담아서 출력하고자 Struct를 선언하고 그안에 Suit와 Rank Enum을 넣었다.
 struct Card:CustomStringConvertible {
     
@@ -27,7 +38,7 @@ struct Card:CustomStringConvertible {
         case spade, heart, diamond , clover
         
         //suit의 모양을 리턴해줍니다.
-        //suit.rawValue 보다는 suit.shape가 더 직관적이라 생각해서 만들었습니다.
+        //suit.rawValue 보다는 suit.shape가 더 직관적이라 생각해서 이름을 지었습니다.
         var shape:String {
             switch self {
             case .spade: return "♠️"
