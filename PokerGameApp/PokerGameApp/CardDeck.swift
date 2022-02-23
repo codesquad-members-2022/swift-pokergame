@@ -9,6 +9,9 @@ import Foundation
 
 struct CardDeck {
     private var cards: [Card]
+    private var count: Int {
+        return cards.count
+    }
     
     init() {
         var cards = [Card]()
@@ -20,6 +23,6 @@ struct CardDeck {
         }
         
         self.cards = cards
-        print("카드 전체를 초기화했습니다.")
+        print("카드 전체를 초기화했습니다.\n총 \(count)장의 카드가 있습니다.")
     }
 }
