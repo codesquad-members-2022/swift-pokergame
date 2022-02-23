@@ -10,7 +10,7 @@ class CardDeckTest: XCTestCase {
     }
     
     func testInitialization(){
-        XCTAssertEqual(deck.count, 52,"number of cards not matches")
+        XCTAssertEqual(deck.count, 52)
     }
     
     func testShuffle(){
