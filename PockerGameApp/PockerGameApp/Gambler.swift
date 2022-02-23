@@ -16,3 +16,10 @@ struct Gambler {
         self.cardDeck.add(card)
     }
 }
+
+extension Gambler: CustomStringConvertible {
+    
+    var description: String {
+        return "\(self.name) \(self.cardDeck)"
+    }
+}

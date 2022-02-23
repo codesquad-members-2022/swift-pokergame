@@ -59,3 +59,10 @@ struct CardDeck: Equatable {
         self.deck.append(card)
     }
 }
+
+extension CardDeck: CustomStringConvertible {
+    
+    var description: String {
+        return "\(self.deck)"
+    }
+}
