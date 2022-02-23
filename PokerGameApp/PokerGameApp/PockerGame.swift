@@ -34,11 +34,11 @@ class PockerGame: CustomStringConvertible{
         }
     }
     
-    private var randomNames = ["dale","eddy","jee","foucault","sol"]
-    private var stud: Int
-    private var deck: CardDeck
-    private var dealer: Dealer
-    private var players: [Player] = []
+    private let randomNames = ["dale","eddy","jee","foucault","sol"]
+    private (set) var stud: Int
+    private (set) var deck: CardDeck
+    var dealer: Dealer
+    var players: [Player] = []
     var description: String{
         let value: String = players.reduce(into: "", { $0 += $1.description+"\n"})
         return "\(value)\(dealer)"
