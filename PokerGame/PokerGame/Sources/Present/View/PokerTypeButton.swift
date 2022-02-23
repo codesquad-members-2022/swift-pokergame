@@ -12,7 +12,12 @@ class PokerTypeButton: UIButton {
     
     public private(set) var pokerType = PokerGame.PokerType.sevenCard
     
-    func setButtonValue(pokerType: PokerGame.PokerType) {
+    init(pokerType: PokerGame.PokerType) {
+        super.init(frame: CGRect.zero)
         self.pokerType = pokerType
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
 }

@@ -12,7 +12,12 @@ class PlayerButton: UIButton {
     
     public private(set) var playerCount = 0
     
-    func setButtonValue(playerCount: Int) {
+    init(playerCount: Int) {
+        super.init(frame: CGRect.zero)
         self.playerCount = playerCount
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
 }
