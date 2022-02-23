@@ -54,6 +54,27 @@ class TestCardDeck {
         printWithFormat("예상값\(expectCount)과 일치")
     }
     
+    func shuffle() {
+        //1. 카드 섞기 전, 현재 카드 배열을 들고온다
+        //2. 카드 섞고나서의 카드 배열을 들고온다
+        //3. 1,2 카드 순서가 같은지 비교한다
+//        let beforeCards = cardDeck.cards()
+//        cardDeck.shuffle()
+//        let afterCards = cardDeck.cards()
+//        var isEqualSequence = true
+//
+//        for beforeCard in 0..<beforeCards.count {
+//            for afterCard in 0..<afterCards.count {
+//                if beforeCard != afterCard {
+//                    isEqualSequence = false
+//                }
+//            }
+//        }
+//        isEqualSequence
+//            ?printWithFormat("카드가 잘 섞였습니다")
+//            :printWithFormat("Fail-섞지 못함. 카드 순서가 같습니다.")
+    }
+    
     private func printWithFormat(_ description: String, line: Int = #line, function: String = #function) {
         let debugString = "▫️line\(line):\(function):: \(description)"
         print(debugString)
