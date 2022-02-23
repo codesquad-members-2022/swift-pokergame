@@ -39,4 +39,17 @@ class PockerGameAppTests: XCTestCase {
         XCTAssertEqual(tempCardBeforeRemoved, testCardDeck.removeOne(), "올바른 카드가 제거되지 않았습니다.")
         XCTAssertEqual(testCardDeck.count, previousCardsCount - 1, "한 장이 뽑혀 제거되지 않았습니다.")
     }
+    
+    func testDistributeCardInPokerGame() {
+        let testPokerGame = PokerGame(numberOfGamblers: 3)
+        testPokerGame.distributeCard()
+        
+        var countCards: Int {
+            return testPokerGame.gamblers.reduce(0) { previousSum, nextGambler in
+                return previousSum + nextGambler.cardDeck.count
+            } + testPokerGame.dealer.cardDeck.count
+        }
+        
+        XCTAssertTrue(countCards == testPokerGame.gameRule.numberOfCard * (testPokerGame.gamblers.count + 1), "제대로 카드가 나눠지지 않았습니다.")
+    }
 }
