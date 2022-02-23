@@ -31,7 +31,6 @@ class PokerGameTests: XCTestCase {
         let cardDeckBeforeShuffle = cardDeck
         cardDeck.shuffle()
         
-        //shuffle하고난 전과 후가 동일한 경우도 존재하는데 이는 어떻게 처리?
         XCTAssertNotEqual(cardDeckBeforeShuffle, cardDeck, "Wrong Card Deck After Shuffle")
     }
     
@@ -46,11 +45,10 @@ class PokerGameTests: XCTestCase {
     
     func testReset() {
         var cardDeckBeforeReset = CardDeck()
-        cardDeckBeforeReset.shuffle() //testShuffle 과정이 중복됨
-        XCTAssertNotEqual(cardDeckBeforeReset, cardDeck, "Wrong Card Deck Shffle")
+        cardDeckBeforeReset.shuffle()
+        XCTAssertNotEqual(cardDeckBeforeReset, cardDeck, "Wrong Card Deck After Shffle")
         
         cardDeckBeforeReset.reset()
         XCTAssertEqual(cardDeckBeforeReset, cardDeck, "Wrong Card Deck Count After Reset")
     }
-    
 }
