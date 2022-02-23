@@ -49,3 +49,9 @@ struct CardDeck {
         setUpCards()
     }
 }
+
+extension CardDeck: Equatable {
+    static func == (lhs: CardDeck, rhs: CardDeck) -> Bool {
+        return lhs.cards == rhs.cards
+    }
+}
