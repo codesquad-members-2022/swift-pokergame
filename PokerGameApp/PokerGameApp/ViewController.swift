@@ -20,6 +20,9 @@ class ViewController: UIViewController {
         
         let spade7 = Card(suit: .spade, number: .seven)
         print(spade7)
+        
+        let testCardDeck = TestCardDeck()
+        testCardDeck.count()
     }
     
     private func addPattern(to view: UIView, pattern: UIImage) {
