@@ -13,32 +13,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupBackgroundPattern()
         setupCards()
-        testCardDeck()
-    }
-    
-    func testCardDeck() {
-        var deck = CardDeck()
-        print("---counts---")
-        print(deck.count)
-        print("---initial card---")
-        print(deck)
-        
-        print("---shuffled---")
-        deck.shuffle()
-        print(deck)
-        
-        print("---draw---")
-        print(deck.draw())
-        print(deck.count)
-        print(deck)
-        print(deck.draw())
-        print(deck.count)
-        print(deck)
-        
-        print("---Reset---")
-        deck.reset()
-        print(deck.count)
-        print(deck)
     }
     
     func setupBackgroundPattern() {
