@@ -13,6 +13,7 @@
 		737D42EB27C64DC4004CBB46 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73ADCB9927C32E76009C0499 /* ViewController.swift */; };
 		737D42EC27C64DC7004CBB46 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73ADCBB927C3C990009C0499 /* Card.swift */; };
 		737D42EE27C66ECE004CBB46 /* TestCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737D42ED27C66ECE004CBB46 /* TestCardDeck.swift */; };
+		737D42EF27C6773D004CBB46 /* TestCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737D42ED27C66ECE004CBB46 /* TestCardDeck.swift */; };
 		73ADCB9627C32E76009C0499 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73ADCB9527C32E76009C0499 /* AppDelegate.swift */; };
 		73ADCB9827C32E76009C0499 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73ADCB9727C32E76009C0499 /* SceneDelegate.swift */; };
 		73ADCB9A27C32E76009C0499 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73ADCB9927C32E76009C0499 /* ViewController.swift */; };
@@ -221,6 +222,7 @@
 				737D42EB27C64DC4004CBB46 /* ViewController.swift in Sources */,
 				7347132E27C64B6900468516 /* CardDeck.swift in Sources */,
 				7347132827C64B0A00468516 /* PokerGameTests.swift in Sources */,
+				737D42EF27C6773D004CBB46 /* TestCardDeck.swift in Sources */,
 				737D42EC27C64DC7004CBB46 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
