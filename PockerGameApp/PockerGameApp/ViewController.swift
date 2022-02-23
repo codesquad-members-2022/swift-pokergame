@@ -13,8 +13,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern") ?? UIImage())
         setImageView()
-        let newCard = Card(number: .ace, symbol: .spade)
-        printDescription(of: newCard)
+        gameProgram()
     }
     
     func setImageView() {
