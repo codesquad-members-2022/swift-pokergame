@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D01892127C615F100FB57C1 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D01892027C615F100FB57C1 /* Deck.swift */; };
 		8DB01A6927C4F29100B705E3 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB01A6827C4F29100B705E3 /* Card.swift */; };
 		8DB8078427C3275100085063 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB8078327C3275100085063 /* AppDelegate.swift */; };
 		8DB8078627C3275100085063 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB8078527C3275100085063 /* SceneDelegate.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8D01892027C615F100FB57C1 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		8DB01A6827C4F29100B705E3 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		8DB8078027C3275100085063 /* PokerGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB8078327C3275100085063 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -61,8 +63,9 @@
 			isa = PBXGroup;
 			children = (
 				8DB8078727C3275100085063 /* ViewController.swift */,
-				8DB8079827C32ED600085063 /* Image.swift */,
+				8D01892027C615F100FB57C1 /* Deck.swift */,
 				8DB01A6827C4F29100B705E3 /* Card.swift */,
+				8DB8079827C32ED600085063 /* Image.swift */,
 				8DB8078927C3275100085063 /* Main.storyboard */,
 				8DB8079127C3275300085063 /* Info.plist */,
 				8DB8079727C3276100085063 /* Supporting Files */,
@@ -152,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D01892127C615F100FB57C1 /* Deck.swift in Sources */,
 				8DB8078827C3275100085063 /* ViewController.swift in Sources */,
 				8DB8079927C32ED600085063 /* Image.swift in Sources */,
 				8DB8078427C3275100085063 /* AppDelegate.swift in Sources */,

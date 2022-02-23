@@ -6,14 +6,11 @@
 //
 
 /*
- Card Class와 CardInfo Struct를 하나로 합쳤습니다.
- Card Class를 따로 만든이유는 후에 카드의 뒤집힘 유무와 같은 게임적 요소를 추가하게 하기 위해서였으나,
- 생각해보니 추가하더라도 CardInfo내용과 겹치는 부분이 상당수 생길 것같고, Card라는 Struct안에
- 변수명을 지정해서 만들어도 이상하지 않을 것 같아 두 데이터구조를 합쳤습니다.
-
- Card안에 suit와 rank 프로퍼티를 이용해 카드의 값을 명시하여 생성하는 경우 원하는 값의 카드를 만들도록 설정해보았습니다.
- 또한, CasLiterable을 이용해 Card를 생성시 아무런 값을 주지 않을 경우 랜덤으로 값을 설정하게 하여 생성되는 옵션을 만들어 보았습니다.
-
+ 
+ 1. 자주 호출되는 하위 구조에서는 최대한 단순하게 만들자. (복잡하면 이해하기도 힘들고 컴퓨터가 일하기도 힘들다.)
+ 2. CustomStringConvertible를 이용해서 출력할때 효율적으로 코드를 짜보자
+ 3. 타입 생성과 출력을 명확히 구분해보자.
+ 
  */
 
 //Card의 정보를 한번에 담아서 출력하고자 Struct를 선언하고 그안에 Suit와 Rank Enum을 넣었다.
@@ -22,6 +19,18 @@ struct Card:CustomStringConvertible {
     var description: String {
         return "\(suit)\(rank)"
     }
+    
+    //Deck을 만드는 메서드.
+    //Deck클래스의 init에서 선언하기에 코드가 길어져서 하나의 함수로 묶어보았다.
+    static func makeDeck() -> [Card] {
+        var deck:[Card] = [Card]()
+        for suit in Card.Suit.allCases {                                                    //문양 별로 1...13까지 숫자를 넣습니다.
+            let suitForAllRank = Card.Rank.allCases.map { Card(suit: suit, rank: $0) }      //문양이 가질수 있는 모든 Rank를 포함하고 있기 때문에 suitForAllRank라고 지었습니다.
+            deck.append(contentsOf: suitForAllRank)
+        }
+        return deck
+    }
+    
     
     //생성할때 값을 넣지 않으면 초기값으로 랜덤한 값을 가지도록 하기 위해 선언했다.
     var suit:Suit = Suit.initSuit
@@ -54,6 +63,7 @@ struct Card:CustomStringConvertible {
         var description: String {
             return "\(rank)"
         }
+        
         //.numberType(1234)와 같은 값을 애초에 입력하지 못하도록 case를 만들었다.
         case ace = 1
         case two
@@ -77,9 +87,9 @@ struct Card:CustomStringConvertible {
             case .Queen: return "Q"
             case .king: return "K"
             default: return String(self.rawValue)
-            
             }
         }
+        
         static var initRank:Rank {
             Rank.allCases.randomElement() ?? .king
         }
