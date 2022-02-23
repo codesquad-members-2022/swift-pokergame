@@ -12,12 +12,12 @@ class Player: CustomStringConvertible {
     let name: String
     public private(set) var cards: [Card] = []
     
-    var description: String {
-        "Name: \(name), cards: \(cards)"
-    }
-    
     init(name: String) {
         self.name = name
+    }
+    
+    var description: String {
+        "Name: \(name), cards: \(cards)"
     }
     
     func add(card: Card) {
