@@ -11,6 +11,14 @@ struct PokerGame {
     var type: PokerType
     let dealer: Dealer
     
+    init(type: PokerType, numberOfPlayers: Int) {
+        self.type = type
+        let players = (0..<numberOfPlayers).map { _ in Player()
+        }
+        let dealer = Dealer(deck: CardDeck(), players: players)
+        self.dealer = dealer
+    }
+    
     func start() throws {
         try dealer.deal(numOfcards: type.numberOfCards)
     }
@@ -38,9 +46,18 @@ class Player: Playable {
     let name: String
     var cards: [Card]
     
+    static var candidates = [
+        "Eddy", "Jason", "Chez", "Dale", "Selina", "Jed", "Jee", "Ebony", "Sol", "Gucci"
+    ]
+    
     init(name: String, cards: [Card] = []) {
         self.name = name
         self.cards = cards
+    }
+    
+    init() {
+        self.name = Player.candidates.randomElement()!
+        self.cards = []
     }
     
     func receive(cards: [Card]) {
@@ -57,10 +74,11 @@ class Dealer: Playable {
         self.players = players
         self.deck = deck
         self.cards = cards
-        self.deck.shuffle()
     }
     
     func deal(numOfcards: Int) throws {
+        deck.shuffle()
+        
         let allPlayers: [Playable] = players + [self]
         for player in allPlayers {
             var drawns = [Card]()
