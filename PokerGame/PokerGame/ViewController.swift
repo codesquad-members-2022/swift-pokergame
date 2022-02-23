@@ -15,7 +15,7 @@ final class ViewController: UIViewController {
         putCardsOnView(originX: 0, y: 40, count: 7,inset: 10) //여러개의 카드 View에 올리기
 
         //카드 만들기
-        let card = Card(suit: .diamond, rank: .numberType(1))
+        let card = Card(suit: .diamond, rank: .king)
         printCardInfo(card: card)
         
     }
