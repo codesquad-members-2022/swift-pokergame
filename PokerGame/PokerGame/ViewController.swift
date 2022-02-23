@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         
         setBackgroundImage()
         addCard(count: 7)
-
+        
     }
     
     private func setBackgroundImage() {
@@ -41,6 +41,4 @@ class ViewController: UIViewController {
         }
         
     }
-    
 }
-
