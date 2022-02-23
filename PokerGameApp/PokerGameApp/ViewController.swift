@@ -13,9 +13,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // if let 과 guard let 의 차이를 이용해서 상수 처럼 사용
-        guard let background = UIImage(named: "bg_pattern.png") else { return }
-        self.view.backgroundColor = UIColor(patternImage: background)
+        //MARK: 이미지를 옵셔널 언래핑을 하지 않고 쓸 수 있는 방법
+        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
         var offset = 0
         // UIImageView를 7개 선언
         for _ in 0..<7 {
@@ -23,6 +22,7 @@ class ViewController: UIViewController {
             // 사이 간격 카드 하나보다 약간 넓게 조정
             offset += SizeOfCard.width + 3
         }
+        //TODO: 클래스의 인스턴스를 let으로 선언했을 때와 var로 선언했을 때의 차이
         let card = Card(shape: .club, rank: .ace)
         print("\(card.filp())")
     }
