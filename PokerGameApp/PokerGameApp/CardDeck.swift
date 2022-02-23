@@ -8,7 +8,7 @@
 import Foundation
 
 class CardDeck {
-    private var cards = [Card]()
+    private(set) var cards = [Card]()
     
     init() {
         self.cards = Card.all()
@@ -27,5 +27,9 @@ class CardDeck {
     
     func reset() {
         cards = Card.all()
+    }
+    
+    func shuffle() {
+        self.cards.shuffle()
     }
 }

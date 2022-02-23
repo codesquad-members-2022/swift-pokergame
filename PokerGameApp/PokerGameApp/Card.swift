@@ -81,3 +81,9 @@ extension Card: CustomStringConvertible {
         return "\(self.suit)" + "\(self.number)"
     }
 }
+
+extension Card: Equatable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return (lhs.suit == rhs.suit) && (lhs.number == rhs.number)
+    }
+}

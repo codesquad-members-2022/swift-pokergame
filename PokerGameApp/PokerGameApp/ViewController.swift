@@ -22,9 +22,9 @@ class ViewController: UIViewController {
         print(spade7)
         
         let testCardDeck = TestCardDeck()
-        testCardDeck.countWhenInit()
-        testCardDeck.removeOne()
-        testCardDeck.resetWhenRemoveOne()
+//        testCardDeck.countWhenInit()
+//        testCardDeck.removeOne()
+//        testCardDeck.resetWhenRemoveOne()
         testCardDeck.shuffle()
     }
     
