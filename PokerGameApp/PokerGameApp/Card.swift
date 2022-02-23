@@ -8,8 +8,7 @@
 import Foundation
 
 struct Card {
-    
-    enum FaceData: String, CustomStringConvertible {
+    enum FaceData: String, CustomStringConvertible, CaseIterable {
         case spade
         case club
         case heart
@@ -29,7 +28,7 @@ struct Card {
         }
     }
     
-    enum NumericData: Int, CustomStringConvertible {
+    enum NumericData: Int, CustomStringConvertible, CaseIterable {
         case ace = 1
         case two
         case three
@@ -58,7 +57,6 @@ struct Card {
                 return "K"
             }
         }
-        
     }
     
     private let faceData: FaceData
