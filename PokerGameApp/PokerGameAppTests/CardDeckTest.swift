@@ -14,9 +14,9 @@ class CardDeckTest: XCTestCase {
     }
     
     func testShuffle(){
-//        deck.shuffle()
-//        let originalDeck = CardDeck()
-//        XCTAssertNotEqual(originalDeck, deck)
+        deck.shuffle()
+        let originalDeck = CardDeck()
+        XCTAssertNotEqual(originalDeck, deck)
     }
     
     func testRemoveOne(){
