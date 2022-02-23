@@ -29,6 +29,8 @@ struct PokerGame {
 }
 
 protocol Playable {
+    var cards: [Card] { get }
+
     func receive(cards: [Card])
 }
 
