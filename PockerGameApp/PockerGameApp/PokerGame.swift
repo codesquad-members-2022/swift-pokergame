@@ -21,6 +21,8 @@ struct PokerGame {
             let dealt = dealer.deal(numOfcards: type.rawValue)
             player.receive(cards: dealt)
         }
+        let dealt = dealer.deal(numOfcards: type.rawValue)
+        dealer.receive(cards: dealt)
     }
 }
 
@@ -55,6 +57,10 @@ class Dealer {
             cards.append(drawn)
         }
         return cards
+    }
+    
+    func receive(cards: [Card]) {
+        self.cards += cards
     }
 }
 
