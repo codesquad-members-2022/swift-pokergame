@@ -55,7 +55,7 @@ class PlayerCardView: UIView {
         }
     }
     
-    func resetPokerBoard(pokerType: PokerGame.PokerType, name: String?) {
+    func resetPokerBoard(pokerType: PokerGame.Stud, name: String?) {
         self.alpha = name != nil ? 1 : 0
         self.name.text = name
         self.name.sizeToFit()

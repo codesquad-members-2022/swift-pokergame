@@ -10,9 +10,9 @@ import UIKit
 
 class PokerTypeButton: UIButton {
     
-    public private(set) var pokerType = PokerGame.PokerType.sevenCard
+    public private(set) var pokerType = PokerGame.Stud.sevenCard
     
-    init(pokerType: PokerGame.PokerType) {
+    init(pokerType: PokerGame.Stud) {
         super.init(frame: CGRect.zero)
         self.pokerType = pokerType
     }
