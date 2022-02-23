@@ -11,6 +11,7 @@ import UIKit
 class PokerBoardViewController: UIViewController {
         
     let pokerOptionView = PokerOptionView()
+    let playerCardStackView = UIStackView()
     let playerCardViews = [PlayerCardView(), PlayerCardView(),
                            PlayerCardView(), PlayerCardView()]
     let dealerCardView = PlayerCardView()
@@ -46,9 +47,6 @@ class PokerBoardViewController: UIViewController {
     
     private func bind() {
         pokerGame.state.updateLayout = { pokerType in
-            self.playerCardViews.forEach {
-                $0.isHidden = true
-            }
             self.layout(pokerType: pokerType)
         }
         
@@ -76,7 +74,12 @@ class PokerBoardViewController: UIViewController {
                 self.pokerOptionView.playerButtons.forEach {
                     $1.isEnabled = index != $0
                 }
-                self.pokerGame.action.inputPlayerCount(index + 2)
+                
+                (0..<self.playerCardViews.count).forEach {
+                    self.playerCardViews[$0].alpha = $0 < index ? 1 : 0
+                }
+                
+                self.pokerGame.action.inputPlayerCount(index)
             }), for: .touchUpInside)
         }
     }
@@ -89,45 +92,38 @@ class PokerBoardViewController: UIViewController {
         playerCardViews.forEach {
             $0.isHidden = true
         }
+        
+        playerCardStackView.axis = .vertical
+        playerCardStackView.backgroundColor = .red
+        playerCardStackView.distribution = .fillProportionally
     }
     
     private func layout(pokerType: PokerGame.PokerType = .sevenCard) {
         let safeAreaFrame = self.view.safeAreaLayoutGuide.layoutFrame
         let topOffset = safeAreaFrame.minY
         let leftOffset = 15.0
-        let bottomOffset = self.view.frame.height - safeAreaFrame.height - safeAreaFrame.minY + 20
-        let cardSpacing = 3.0
-        let cardSizeRatio = 1.27
-        let maxCardCount = 7
+        let rightOffset = 15.0
         
         //포커 옵션 레이아웃
         let optionViewWidth = 150.0
         let optionViewHeight = 80.0
         let pokerOptionPositionX = (safeAreaFrame.width / 2) - (optionViewWidth / 2)
-        let pokerOptionPositionY = topOffset
         self.view.addSubview(pokerOptionView)
-        pokerOptionView.frame = CGRect(x: pokerOptionPositionX, y: pokerOptionPositionY, width: optionViewWidth, height: optionViewHeight)
+        pokerOptionView.frame = CGRect(x: pokerOptionPositionX, y: topOffset, width: optionViewWidth, height: optionViewHeight)
         
         //플레이어 카드뷰 레이아웃
-        let optionViewOffset = 50.0
-        let cardViewsSpacing = 50.0
-        let cardWidth = safeAreaFrame.width / CGFloat(maxCardCount + 1)
-        let cardTotalSpacing = CGFloat(maxCardCount - 1) * cardSpacing
-        let cardCount = CGFloat(pokerType.rawValue)
-        let playerCardViewWidth = cardWidth * cardCount - cardTotalSpacing
-        let playerCardViewHeight = cardWidth * cardSizeRatio
+        let optionViewOffset = 10.0
+        let cardStackViewTopOffset = topOffset + optionViewHeight + optionViewOffset
+        let cardStackViewWidth = safeAreaFrame.width - leftOffset - rightOffset
+        let cardStackViewHeight = safeAreaFrame.height - cardStackViewTopOffset
+        self.view.addSubview(playerCardStackView)
+        playerCardStackView.frame = CGRect(x: leftOffset, y: cardStackViewTopOffset, width: cardStackViewWidth, height: cardStackViewHeight)
         
         playerCardViews.enumerated().forEach {
-            self.view.addSubview($1)
-            let yOffset = topOffset + optionViewHeight + optionViewOffset
-            let xPosition = leftOffset
-            let yPosition = CGFloat($0) * (playerCardViewHeight + cardViewsSpacing) + yOffset
-            $1.frame = CGRect(x: xPosition, y: yPosition, width: playerCardViewWidth, height: playerCardViewHeight)
+            playerCardStackView.addArrangedSubview($1)
+            $1.layout()
         }
-        
-        //딜러 카드뷰 레이아웃
-        self.view.addSubview(dealerCardView)
-        let yPosition = self.view.frame.height - playerCardViewHeight - bottomOffset
-        dealerCardView.frame = CGRect(x: leftOffset, y: yPosition, width: playerCardViewWidth, height: playerCardViewHeight)
+        playerCardStackView.addArrangedSubview(dealerCardView)
+        dealerCardView.layout()
     }
 }
