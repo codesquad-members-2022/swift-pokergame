@@ -9,8 +9,8 @@ import Foundation
 
 class PokerGame {
     
-    var dealer: Dealer
-    var gamblers: [Gambler]
+    let dealer: Dealer
+    let gamblers: [Gambler]
     let gameRule: GameRule
     
     init(numberOfGamblers: Int) {

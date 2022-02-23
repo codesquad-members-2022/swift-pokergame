@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Dealer {
+class Dealer {
     
     var wholeDeck = CardDeck()
     var cardDeck = CardDeck.init(with: [])
@@ -15,12 +15,12 @@ struct Dealer {
         return wholeDeck.count
     }
     
-    public mutating func pickCard() -> Card? {
+    public func pickCard() -> Card? {
         wholeDeck.shuffle()
         return wholeDeck.removeOne()
     }
     
-    public mutating func getCard(_ card: Card) {
+    public func getCard(_ card: Card) {
         self.cardDeck.add(card)
     }
 }

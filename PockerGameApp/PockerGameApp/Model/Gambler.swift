@@ -7,12 +7,16 @@
 
 import Foundation
 
-struct Gambler {
+class Gambler {
     
     let name: String
     var cardDeck = CardDeck.init(with: [])
     
-    public mutating func getCard(_ card: Card) {
+    init(name: String) {
+        self.name = name
+    }
+    
+    public func getCard(_ card: Card) {
         self.cardDeck.add(card)
     }
 }
