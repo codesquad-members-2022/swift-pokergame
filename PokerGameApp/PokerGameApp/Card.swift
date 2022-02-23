@@ -7,7 +7,7 @@
 
 import Foundation
 //카드 객체는 참조 하지 않는 값형식으로 선언.
-struct Card {
+struct Card :Equatable {
     //카드모양 에 관련된 이모지 를 열거형으로 선언 하여 관련된 값들을 Suit 를 통해 쉽게 얻을수 있음.
     //각 카드 는 4개의 다른 모양의 suit 가 있으므로 Card 클래스 안에 선언.
     //CustomStringConvertible 를 사용하면 description 프로퍼티에 열거형 의 RawValue 를 할당할수 있게되어 print(Suit) 일때 그 rawValue 를 바로 볼수있다.

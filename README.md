@@ -59,6 +59,9 @@ reset 처음처럼 모든 카드를 다시 채워넣는다.
     
     - 시간 복잡도에 의거하여 Mordern algorithm 으로 채택. 
     - 해당 덱에있는 카드들의 순서를 무작위로 바꾼뒤, 해당 덱의 카드뭉치 로 다시 할당. 
+   <p align="center">
+   <img src="https://user-images.githubusercontent.com/36659877/155402019-be323da1-ada6-444a-ab27-1b481eadd5e7.png" width="550" height="350"> 
+   </p>
 
 - removeOne : 카드뭉치의 맨 위에 있는카드를 뽑아 반환하고 삭제하는것으로 가정하고 함수 구현.
     - 마지막 배열의 요소를 지우고 리턴함. 
