@@ -23,11 +23,11 @@ struct CardDeck: Equatable {
                 self.deck.append(Card(number: numberCase, symbol: symbolCase))
             }
         }
-        self.originDeck = self.deck
+        self.originDeck = deck
     }
     
     init(with cardArray: [Card]) {
-        self.deck = cardArray
+        self.deck.append(contentsOf: cardArray)
         self.originDeck = cardArray
     }
     
@@ -38,13 +38,13 @@ struct CardDeck: Equatable {
             let indexToSwap2 = Int.random(in: indexToSwap1..<count)
             self.deck.swapAt(indexToSwap1, indexToSwap2)
         }
-        if self.deck[count-1] == self.originDeck[count-1] {
+        if self.deck[count-1] == self.originDeck[count-1] && count > 1 {
             self.deck.swapAt(count-1, count-2)
         }
     }
     
     public mutating func removeOne() -> Card? {
-        return self.deck.isEmpty ? nil : self.deck.removeLast()
+        return self.deck.popLast()
     }
     
     public mutating func reset() {
@@ -57,12 +57,5 @@ struct CardDeck: Equatable {
     
     public mutating func add(_ card: Card) {
         self.deck.append(card)
-    }
-}
-
-extension CardDeck: CustomStringConvertible {
-    
-    var description: String {
-        return "\(self.deck)"
     }
 }

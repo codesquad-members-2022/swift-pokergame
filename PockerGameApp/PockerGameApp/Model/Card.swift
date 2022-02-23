@@ -57,7 +57,7 @@ extension Card: CustomStringConvertible {
 
 extension Card: Equatable {
     static func == (lhs: Card, rhs: Card) -> Bool {
-        return lhs.number == rhs.number && lhs.symbol == rhs.symbol ? true : false
+        return lhs.number == rhs.number && lhs.symbol == rhs.symbol
     }
     
     

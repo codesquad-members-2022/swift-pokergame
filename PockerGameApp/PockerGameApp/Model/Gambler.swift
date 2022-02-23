@@ -10,20 +10,31 @@ import Foundation
 class Gambler {
     
     let name: String
-    var cardDeck = CardDeck.init(with: [])
+    private var cardDeck: [Card]
     
     init(name: String) {
-        self.name = name
+        let alphabetSet = CharacterSet.letters
+        var newName = ""
+        if name.count > 5 {
+            newName = String(Array(name)[0...4])
+        } else if name.count < 2 {
+            newName = name
+            while newName.count < 2 {
+                newName += name
+            }
+        } else {
+            newName = name
+        }
+        if CharacterSet(charactersIn: newName).isSubset(of: alphabetSet) {
+            self.name = newName
+        } else {
+            self.name = "JK"
+        }
+    
+        self.cardDeck = [Card]()
     }
     
     public func getCard(_ card: Card) {
-        self.cardDeck.add(card)
-    }
-}
-
-extension Gambler: CustomStringConvertible {
-    
-    var description: String {
-        return "\(self.name) \(self.cardDeck)"
+        self.cardDeck.append(card)
     }
 }

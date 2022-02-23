@@ -13,29 +13,31 @@ class PokerGame {
     let gamblers: [Gambler]
     let gameRule: GameRule
     
-    init(numberOfGamblers: Int) {
+    init(numberOfGamblers: Int, gameRule: GameRule) {
         var nameArray = ["Sol", "Jee", "Eddy", "Jed", "Dale"]
         var gamblers = [Gambler]()
         for _ in 0..<numberOfGamblers{
-            let newGambler = Gambler(name: nameArray.remove(at: (0..<nameArray.count).randomElement() ?? 0))
+            let pickedIndex = (0..<nameArray.count).randomElement() ?? 0
+            let pickedName = nameArray.remove(at: pickedIndex)
+            let newGambler = Gambler(name: pickedName)
             gamblers.append(newGambler)
         }
         
         self.dealer = Dealer()
         self.gamblers = gamblers
-        self.gameRule = .sevenCardStud
+        self.gameRule = gameRule
     }
     
-    func gameScenario() {
-        distributeCard()
-    }
-    
-    public func distributeCard() {
+    private func distributeCard() {
+        guard dealer.countRemainingCards >= gameRule.numberOfCard * (gamblers.count + 1) else { return }
+        dealer.shuffleWholeDeck()
         for _ in 0..<gameRule.numberOfCard {
             for index in 0..<gamblers.count {
-                gamblers[index].getCard(self.dealer.pickCard()!)
+                guard let newCard = self.dealer.pickCard() else { return }
+                gamblers[index].getCard(newCard)
             }
-            dealer.getCard(self.dealer.pickCard()!)
+            guard let newCard = self.dealer.pickCard() else { return }
+            dealer.getCard(newCard)
         }
     }
 }
