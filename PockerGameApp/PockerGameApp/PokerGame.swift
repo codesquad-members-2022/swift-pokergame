@@ -10,21 +10,9 @@ import Foundation
 struct PokerGame {
     var type: PokerType
     let dealer: Dealer
-    var players: [Player]
-    
-    var allPlayers: [Playable] {
-        players + [dealer]
-    }
     
     func start() throws {
-        for player in allPlayers {
-            do {
-                let dealt = try dealer.deal(numOfcards: type.rawValue)
-                player.receive(cards: dealt)
-            } catch {
-                print(error)
-            }
-        }
+        try dealer.deal(numOfcards: type.rawValue)
     }
 }
 
@@ -35,7 +23,7 @@ enum PokerType: Int {
 
 protocol Playable {
     var cards: [Card] { get }
-
+    
     func receive(cards: [Card])
 }
 
@@ -56,20 +44,27 @@ class Player: Playable {
 class Dealer: Playable {
     var deck: CardDeck
     var cards: [Card]
+    var players: [Player]
     
-    init(deck: CardDeck, cards: [Card] = []) {
+    init(deck: CardDeck, players: [Player], cards: [Card] = []) {
+        self.players = players
         self.deck = deck
         self.cards = cards
         self.deck.shuffle()
     }
     
-    func deal(numOfcards: Int) throws -> [Card] {
-        var cards = [Card]()
-        for _ in 0..<numOfcards {
-            guard let drawn = deck.draw() else { throw PokerGameError.tooManyPlayer }
-            cards.append(drawn)
+    func deal(numOfcards: Int) throws {
+        let allPlayers: [Playable] = players + [self]
+        for player in allPlayers {
+            
+            let dealt = [Card]()
+            for _ in 0..<numOfcards {
+                guard let drawn = deck.draw() else { throw PokerGameError.tooManyPlayer }
+                cards.append(drawn)
+            }
+            
+            player.receive(cards: dealt)
         }
-        return cards
     }
     
     func receive(cards: [Card]) {
