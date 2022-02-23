@@ -17,7 +17,10 @@ struct PokerGame {
     }
     
     func start() {
-        
+        for player in players {
+            let dealt = dealer.deal(numOfcards: type.rawValue)
+            player.receive(cards: dealt)
+        }
     }
 }
 
@@ -28,6 +31,10 @@ class Player {
     init(name: String, cards: [Card] = []) {
         self.name = name
         self.cards = cards
+    }
+    
+    func receive(cards: [Card]) {
+        self.cards += cards
     }
 }
 
