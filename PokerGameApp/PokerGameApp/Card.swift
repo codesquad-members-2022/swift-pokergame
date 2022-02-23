@@ -54,3 +54,9 @@ class Card: CustomStringConvertible{
         self.number = number
     }
 }
+
+extension Card: Equatable{
+    static func == (lhs: Card, rhs: Card)->Bool{
+        return lhs.suit == rhs.suit && lhs.number == rhs.number
+    }
+}
