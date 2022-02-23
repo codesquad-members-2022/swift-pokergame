@@ -9,66 +9,50 @@ import XCTest
 @testable import PokerGameApp
 
 class PokerGameTests: XCTestCase {
+    var testPlayers: [Player]!
+    var deck: CardDeck!
+    var dealer: Dealer!
+    
+    override func setUp() {
+        self.testPlayers = [
+            Player(name: "Eddy"),
+            Player(name: "Jason"),
+            Player(name: "Chez"),
+            Player(name: "Gucci"),
+            Player(name: "Ebony")
+        ]
+        self.deck = CardDeck()
+        self.dealer = Dealer(deck: deck, players: testPlayers)
+    }
     
     func testExample() throws {
         XCTAssertEqual(1+1, 2)
     }
     
-    func testDeal() throws {
-        let deck = CardDeck()
-        let dealer = Dealer(deck: deck)
-        let dealt = try? dealer.deal(numOfcards: 7)
-        XCTAssertTrue(dealt?.count == 7)
-    }
-    
-    func testDealFail() throws {
-        let deck = CardDeck()
-        let dealer = Dealer(deck: deck)
-        for _ in 0..<7 {
-            let _ = try dealer.deal(numOfcards: 7)
-        }
-        do {
-            let dealtToFail = try dealer.deal(numOfcards: 7)
-        } catch {
-            XCTAssertEqual(error as! PokerGameError, PokerGameError.tooManyPlayer)
-        }
-    }
-    
     func testReceive() throws {
         let john = Player(name: "John")
+        
         XCTAssertEqual(john.cards, [])
         
         let randomCards = (1...7).map {
             Card(suit: .hearts, number: CardNumber(rawValue: $0)!)
         }
         john.receive(cards: randomCards)
+        
         XCTAssertEqual(john.cards, randomCards)
     }
     
     func testSevenStudGame() throws {
-        let deck = CardDeck()
-        let dealer = Dealer(deck: deck)
-        
-        let testPlayers = [
-            Player(name: "Eddy"),
-            Player(name: "Jason"),
-            Player(name: "Chez"),
-            Player(name: "Gucci"),
-            Player(name: "Ebony")
-        ]
-        
-        let pokerGame = PokerGame(type: .sevenStud, dealer: dealer, players: testPlayers)
+        let pokerGame = PokerGame(type: .sevenStud, dealer: dealer)
         
         try? pokerGame.start()
-        for player in pokerGame.allPlayers {
+        let allPlayers: [Playable] = dealer.players + [dealer]
+        for player in allPlayers {
             XCTAssertEqual(player.cards.count, 7)
         }
     }
     
     func testFiveStudGame() throws {
-        let deck = CardDeck()
-        let dealer = Dealer(deck: deck)
-        
         let testPlayers = [
             Player(name: "Eddy"),
             Player(name: "Jason"),
@@ -77,12 +61,43 @@ class PokerGameTests: XCTestCase {
             Player(name: "Ebony")
         ]
         
-        let pokerGame = PokerGame(type: .fiveStud, dealer: dealer, players: testPlayers)
+        let deck = CardDeck()
+        let dealer = Dealer(deck: deck, players: testPlayers)
+        
+        let pokerGame = PokerGame(type: .fiveStud, dealer: dealer)
         
         try? pokerGame.start()
-        for player in pokerGame.allPlayers {
+        let allPlayers: [Playable] = dealer.players + [dealer]
+        for player in allPlayers {
             XCTAssertEqual(player.cards.count, 5)
         }
     }
+    
+    
+    func testDealFail() throws {
+        let testPlayers = [
+            Player(name: "Eddy"),
+            Player(name: "Jason"),
+            Player(name: "Chez"),
+            Player(name: "Gucci"),
+            Player(name: "Dale"),
+            Player(name: "Seilna"),
+            Player(name: "Jed"),
+            Player(name: "Jee"),
+            Player(name: "Ebony")
+        ]
+        
+        let deck = CardDeck()
+        let dealer = Dealer(deck: deck, players: testPlayers)
+        
+        var thrownError: Error!
+        XCTAssertThrowsError(try dealer.deal(numOfcards: PokerType.sevenStud.rawValue)) {
+                    thrownError = $0
+                }
+        XCTAssertTrue(
+            thrownError as? PokerGameError == .tooManyPlayer)
+        
+    }
+    
     
 }
