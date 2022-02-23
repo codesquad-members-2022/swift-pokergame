@@ -10,6 +10,7 @@ import Foundation
 struct Card {
     //카드모양 에 관련된 이모지 를 열거형으로 선언 하여 관련된 값들을 Suit 를 통해 쉽게 얻을수 있음.
     //각 카드 는 4개의 다른 모양의 suit 가 있으므로 Card 클래스 안에 선언.
+    //CustomStringConvertible 를 사용하면 description 프로퍼티에 열거형 의 RawValue 를 할당할수 있게되어 print(Suit) 일때 그 rawValue 를 바로 볼수있다.
     enum Suit : Character, CaseIterable, CustomStringConvertible {
         case spade = "♠️", club = "♣️", heart = "♥️", diamond = "♦️"
         var description: String {
@@ -19,16 +20,16 @@ struct Card {
     
     //각 카드의 값들을 열거형으로 선언 하여 관련된 값들을 Rank 를 통해 쉽게 얻을수 있음.
     enum Rank : Int, CaseIterable, CustomStringConvertible {
-        case A = 1, two, three, four, five, six, seven, eight, nine, ten, J, K, Q
+        case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, king, queen
         var description: String {
             switch self {
-            case .A :
+            case .ace :
                 return "A"
-            case .J :
+            case .jack :
                 return "J"
-            case .K :
+            case .king :
                 return "K"
-            case .Q :
+            case .queen :
                 return "Q"
             default :
                 return "\(self.rawValue)"

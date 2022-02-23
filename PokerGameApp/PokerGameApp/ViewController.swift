@@ -31,9 +31,9 @@ class ViewController: UIViewController {
         drawCards(cards)
         
         //임의의 카드 정보 보여주기
-        let card = Card(suit: .heart, rank: .allCases.randomElement()!)
-        print(card)
-        
+        var deck = Deck()
+        deck.shuffle()
+        print(deck.removeOne())
     }
     
     
