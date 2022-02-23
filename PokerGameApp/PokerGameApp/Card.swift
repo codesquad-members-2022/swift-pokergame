@@ -9,13 +9,14 @@ import Foundation
 
 class Card {
     let num: Int
-    let shape: Shape // Card에서만 사용할 가능성이 높으므로, Nested enum타입으로 표현
-    
+    let shape: Shape // Card에서만 사용할 가능성이 높으므로, Nested enum타입으로
+
+    // Shape를 원시 타입으로 만든 이유: 특수 문자를 입력받을 경우, 착오가 발생할 수 있기 때문
     enum Shape {
         case spade
-        case heart
-        case diamond
         case clover
+        case diamond
+        case heart
     }
     
     init(_ num: Int, _ shape: Shape){
@@ -55,5 +56,3 @@ class Card {
         return info
     }
 }
-
-// let c = Card(1, Card.Shape.clover)
