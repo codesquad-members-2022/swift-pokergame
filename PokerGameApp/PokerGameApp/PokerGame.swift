@@ -11,13 +11,15 @@ class PokerGame {
     private let stud: Stud
     private let personCount: Int
     
-//    private let gameDealer: GameDealer
-//    private let players: [Player]
+    private let gameDealer: Dealer
+    private let players: [Player]
     
     /// personCount: 딜러제외 1~4
     init(stud: Stud, personCount: Int) {
         self.stud = stud
         self.personCount = personCount
+        self.gameDealer = Dealer(stud: stud)
+        self.players = []
     }
 }
 
