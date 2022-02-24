@@ -11,13 +11,13 @@ class Card: CustomStringConvertible{
         var description: String{
             switch self {
             case .clover:
-                return "♣︎"
+                return "c"
             case .diamond:
-                return "♦︎"
+                return "d"
             case .club:
-                return "♠︎"
+                return "s"
             case .heart:
-                return "♥︎"
+                return "h"
             }
         }
     }
