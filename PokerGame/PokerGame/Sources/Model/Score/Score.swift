@@ -23,9 +23,7 @@ class Score: CustomStringConvertible {
 
 extension Score {
     private static func findNumberByCount(_ numberCounting: [Card.Number:Int], count: Int) -> [Card.Number] {
-        numberCounting.filter{ $0.value == count }
-        .sorted(by: {$0.key > $1.key})
-        .map { $0.key }
+        numberCounting.filter{ $0.value == count }.sorted(by: {$0.key > $1.key}).map { $0.key }
     }
     
     static func calculation(player: Player) -> Score? {
@@ -77,7 +75,11 @@ extension Score {
 }
 
 extension Score {
-    enum Rule {
+    enum Rule: Int, Equatable {
         case none, onePair, twoPair, triple, straight, fourCard
+        
+        static func > (lhs: Self, rhs: Self) -> Bool {
+            lhs.rawValue > rhs.rawValue
+        }
     }
 }

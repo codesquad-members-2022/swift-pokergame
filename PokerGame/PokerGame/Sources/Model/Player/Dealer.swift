@@ -15,7 +15,7 @@ class Dealer: Player {
     }
     
     init() {
-        super.init(name: "dealer")
+        super.init(name: "Dealer")
     }
     
     func cardShuffle() {
@@ -31,7 +31,7 @@ class Dealer: Player {
     }
     
     func hasRemainCardCount(stud: PokerGame.Stud, playerCount: Int) -> Bool {
-        if cardCount < (playerCount + 1) * stud.cardCount {
+        if cardCount < playerCount * stud.cardCount {
             return false
         }
         return true
