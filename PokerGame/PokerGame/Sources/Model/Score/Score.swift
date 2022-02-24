@@ -22,24 +22,21 @@ class Score: CustomStringConvertible {
 }
 
 extension Score {
-    private static func findRuleNumber(cardByNumber: [Card.Number:Int], findValue: Int) -> Card.Number? {
-        cardByNumber.filter{ $0.value == findValue }
+    private static func findNumberByCount(_ numberCounting: [Card.Number:Int], count: Int) -> [Card.Number] {
+        numberCounting.filter{ $0.value == count }
         .sorted(by: {$0.key > $1.key})
-        .first?.key
+        .map { $0.key }
     }
     
     static func calculation(player: Player) -> Score? {
         //숫자 별로 갯수를 정리
-        var cardByNumber: [Card.Number:Int] = [:]
-        player.cards.forEach {
-            let count = cardByNumber[$0.number] ?? 0
-            cardByNumber[$0.number] = count + 1
+        let numberCounting = player.cards.reduce(into: [Card.Number:Int]()) {
+            $0[$1.number] = ($0[$1.number] ?? 0) + 1
         }
         
         //포카드 체크
-        if cardByNumber.values.contains(4),
-           let ruleNumber = findRuleNumber(cardByNumber: cardByNumber, findValue: 4){
-            return Score(rule: .fourCard, highNumber: ruleNumber)
+        if let cardNumber = findNumberByCount(numberCounting, count: 4).first {
+            return Score(rule: .fourCard, highNumber: cardNumber)
         }
         
         //스트레이트 체크
@@ -64,16 +61,13 @@ extension Score {
         }
         
         //트리플, 투페어, 원페어 체크
-        if cardByNumber.values.contains(3),
-           let ruleNumber = findRuleNumber(cardByNumber: cardByNumber, findValue: 3){
-            return Score(rule: .triple, highNumber: ruleNumber)
-        } else if cardByNumber.values.contains(2),
-                    let ruleNumber = findRuleNumber(cardByNumber: cardByNumber, findValue: 2) {
-            let pairCount = cardByNumber.values.filter{ $0 == 2 }.count
-            if pairCount >= 2 {
-                return Score(rule: .twoPair, highNumber: ruleNumber)
-            } else {
-                return Score(rule: .onePair, highNumber: ruleNumber)
+        if let cardNumber = findNumberByCount(numberCounting, count: 3).first{
+            return Score(rule: .triple, highNumber: cardNumber)
+        } else {
+            let ruleNumber = findNumberByCount(numberCounting, count: 2)
+            if ruleNumber.count > 0,
+               let highNumber = ruleNumber.first{
+                return Score(rule: ruleNumber.count >= 2 ? .twoPair : .onePair, highNumber: highNumber)
             }
         }
         

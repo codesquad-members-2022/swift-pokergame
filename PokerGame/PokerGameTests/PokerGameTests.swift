@@ -21,6 +21,31 @@ class PokerGameTests: XCTestCase {
 
     override func tearDownWithError() throws {
     }
+        
+    func testPokerStart() {
+        let pokerGame = PokerGame()
+        
+        let players = (0..<4).map { index -> Player in
+            Player(name: "tester\(index)")
+        }
+        
+        pokerGame.state.givePlayerCard = { index, _, card in
+            players[index].add(card: card)
+        }
+        
+        pokerGame.action.inputPokerStud(.sevenCard)
+        pokerGame.action.inputPlayerCount(players.count)
+        pokerGame.action.pokerPlay()
+        
+        players.forEach {
+            $0.sort()
+            if let score = Score.calculation(player: $0) {
+                print("\($0) -- \(score)")
+            } else {
+                print("\($0) -- 점수없음")
+            }
+        }
+    }
     
     func testPlayerScoreStraight() {
         let player = Player(name: "tester")
@@ -77,32 +102,6 @@ class PokerGameTests: XCTestCase {
         player.add(card: Card(pattern: .diamond, number: .six))
         let result = Score.calculation(player: player)
         XCTAssertEqual(result?.rule, .onePair)
-    }
-
-    
-    func testPokerStart() {
-        let pokerGame = PokerGame()
-        
-        let players = (0..<4).map { index -> Player in
-            Player(name: "tester\(index)")
-        }
-        
-        pokerGame.state.givePlayerCard = { index, _, card in
-            players[index].add(card: card)
-        }
-        
-        pokerGame.action.inputPokerStud(.sevenCard)
-        pokerGame.action.inputPlayerCount(players.count)
-        pokerGame.action.pokerPlay()
-        
-        players.forEach {
-            $0.sort()
-            if let score = Score.calculation(player: $0) {
-                print("\($0) -- \(score)")
-            } else {
-                print("\($0) -- 점수없음")
-            }
-        }
     }
     
     func testCardDeckReset() {
