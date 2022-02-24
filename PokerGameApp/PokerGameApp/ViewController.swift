@@ -24,6 +24,10 @@ class ViewController: UIViewController {
         setPlayerCountSelectionControl()
     }
     
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        setPokerGame()
+    }
+    
     func setBackgroundColor(){
         if let patternImage = UIImage(named: "bg_pattern"){
             self.view.backgroundColor = UIColor.init(patternImage: patternImage)
