@@ -41,7 +41,8 @@ struct PokerGame {
         self.players.seat(player: dealer)
         for _ in 0..<playerCount.rawValue {
             let name = playerName.popName()
-            self.players.seat(player: Player(name: name))
+            let newPlayer = Player(name: name)
+            self.players.seat(player: newPlayer)
         }
     }
 
