@@ -21,11 +21,6 @@ class Player: Playable {
         self.name = name
     }
     
-    init() {
-        self.name = Player.candidates.randomElement()!
-        self.cards = []
-    }
-    
     func receive(cards: [Card]) {
         self.cards += cards
     }
