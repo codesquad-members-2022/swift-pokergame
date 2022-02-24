@@ -40,11 +40,11 @@ struct CardDeck{
     
     mutating func removeOne() -> Result<PockerCard, CardDeckError>{
         if count > 0{
-            guard let card = cards.last else { return .failure(.nonCardInDeck) }
+            guard let card = cards.last else { return .failure(.cardDeckEmpty) }
             cards.removeLast()
             return .success(card)
         }
-        return .failure(.nonCardInDeck)
+        return .failure(.cardDeckEmpty)
     }
     
     mutating func reset(){
