@@ -51,6 +51,16 @@ struct CardDeck{
         initCardDeckArray()
         shuffle()
     }
+    
+    mutating func testShuffle() -> Bool{
+        let deckCards = cards
+        shuffle()
+        let duplicated = zip(cards, deckCards).enumerated().filter() {
+            $1.0.number == $1.1.number && $1.0.shape == $1.1.shape
+        }
+        let duplicatedCount = duplicated.map{$0.offset}.count
+        return deckCards.count > duplicatedCount
+    }
 }
 
 enum CardDeckError: Error{
