@@ -27,10 +27,21 @@ class ViewController: UIViewController {
 //        testCardDeck.resetWhenRemoveOne()
         testCardDeck.shuffle()
         
-        
         // TODO: XCTest 적용
 //        let game = PokerGame(stud: .seven, personCount: 4)
 //        game.allPlayers()
+        
+        let players: [Player] = [
+            Player(),
+            Player(),
+            Player(),
+            Player()
+        ]
+        var dealer = Dealer(stud: .five)
+        let distributedPlayers = dealer.distributeCard(to: players)
+        distributedPlayers.forEach{
+            print($0.cards)
+        }
     }
     
     private func addPattern(to view: UIView, pattern: UIImage) {
