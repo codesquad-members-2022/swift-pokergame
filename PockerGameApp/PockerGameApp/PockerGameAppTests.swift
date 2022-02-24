@@ -24,9 +24,9 @@ class PockerGameAppTests: XCTestCase {
     }
     
     func testShuffle() throws{
-        let deckCards = cardDeck.cardDeckArray
+        let deckCards = cardDeck.cards
         cardDeck.shuffle()
-        let duplicated = zip(cardDeck.cardDeckArray, deckCards).enumerated().filter() {
+        let duplicated = zip(cardDeck.cards, deckCards).enumerated().filter() {
             $1.0.number == $1.1.number && $1.0.shape == $1.1.shape
         }
         let duplicatedCount = duplicated.map{$0.offset}.count

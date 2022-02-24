@@ -28,22 +28,31 @@ struct CardDeck{
     }
     
     mutating func shuffle(){
-        for i in 0 ..< cards.count - 1 { // 0 ~ n-2
-            let randomIndex = Int.random(in: i ..< cards.count)
-            let temp = cards[i]
-            cards[i] = cards[randomIndex]
-            cards[randomIndex] = temp
+        if count > 1{
+            for i in 0 ..< cards.count - 1 { // 0 ~ n-2
+                let randomIndex = Int.random(in: i ..< cards.count)
+                let temp = cards[i]
+                cards[i] = cards[randomIndex]
+                cards[randomIndex] = temp
+            }
         }
     }
     
-    mutating func removeOne() -> PockerCard{
-        guard let card = cards.last else { return PockerCard(shape: .diamonds, number: .queen) }
-        cards.removeLast()
-        return card
+    mutating func removeOne() -> Result<PockerCard, CardDeckError>{
+        if count > 0{
+            guard let card = cards.last else { return .failure(.nonCardInDeck) }
+            cards.removeLast()
+            return .success(card)
+        }
+        return .failure(.nonCardInDeck)
     }
     
     mutating func reset(){
         initCardDeckArray()
         shuffle()
     }
+}
+
+enum CardDeckError: Error{
+    case nonCardInDeck
 }
