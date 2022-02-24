@@ -25,7 +25,7 @@ class PockerGame: CustomStringConvertible{
             self.name = name
         }
         
-        func getCard(_ card: Card){
+        func addCard(_ card: Card){
             self.cards.append(card)
         }
     }
@@ -77,7 +77,7 @@ class PockerGame: CustomStringConvertible{
         if(isNumberOfCardsEnough()){
             for _ in 0..<(players.count + 1) * stud.rawValue{
                 guard let card = deck.removeOne() else { continue }
-                dealer.getCard(card)
+                dealer.addCard(card)
             }
             distributeCards()
         }
