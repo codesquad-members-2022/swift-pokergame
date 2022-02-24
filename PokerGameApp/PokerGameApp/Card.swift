@@ -7,6 +7,12 @@
 
 import Foundation
 
+struct OutputView {
+    static func printCard(card: Card) {
+        print("\(card.suit) \(card.rank)")
+    }
+}
+
 class Card {
     
     /** Enum 을 선택해 Suit, Rank 를 선언한 이유는 다음과 같습니다.
@@ -27,8 +33,8 @@ class Card {
         
     }
     
-    private let suit: Suit
-    private let rank: Rank
+    private(set) var suit: Suit
+    private(set) var rank: Rank
 
     init(rank: Rank, suit: Suit) {
         self.rank = rank
