@@ -9,7 +9,7 @@ import XCTest
 import UIKit
 @testable import PockerGameApp
 
-class PockerGameAppTests: XCTestCase {
+class CardDeckTest: XCTestCase {
     private var cardDeck = CardDeck()
     
     func testReset() throws{

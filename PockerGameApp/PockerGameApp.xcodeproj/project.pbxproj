@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		726173CB27C752FF000EBC1B /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726173CA27C752FF000EBC1B /* Dealer.swift */; };
 		726173CD27C75306000EBC1B /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726173CC27C75306000EBC1B /* Player.swift */; };
+		726173D327C75B4D000EBC1B /* PockerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726173D227C75B4D000EBC1B /* PockerGame.swift */; };
 		7277664927C4CD730005ECF1 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7277664827C4CD730005ECF1 /* CardDeck.swift */; };
 		72A82E5127C343920044C900 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A82E5027C343920044C900 /* AppDelegate.swift */; };
 		72A82E5327C343920044C900 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A82E5227C343920044C900 /* SceneDelegate.swift */; };
@@ -17,7 +18,7 @@
 		72A82E5A27C343930044C900 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72A82E5927C343930044C900 /* Assets.xcassets */; };
 		72A82E5D27C343930044C900 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72A82E5B27C343930044C900 /* LaunchScreen.storyboard */; };
 		72A82E6527C355120044C900 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 72A82E6427C355110044C900 /* README.md */; };
-		72BB508227C6081E00D93383 /* PockerGameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BB508127C6081E00D93383 /* PockerGameAppTests.swift */; };
+		72BB508227C6081E00D93383 /* CardDeckTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BB508127C6081E00D93383 /* CardDeckTest.swift */; };
 		72F3982527C3836A001FDF3E /* PockerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F3982427C3836A001FDF3E /* PockerCard.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		726173CA27C752FF000EBC1B /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		726173CC27C75306000EBC1B /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		726173D227C75B4D000EBC1B /* PockerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockerGame.swift; sourceTree = "<group>"; };
 		7277664827C4CD730005ECF1 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 		72A82E4D27C343920044C900 /* PockerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PockerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72A82E5027C343920044C900 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,7 +47,7 @@
 		72A82E5E27C343930044C900 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		72A82E6427C355110044C900 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		72BB507827C607A500D93383 /* PockerGameAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PockerGameAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		72BB508127C6081E00D93383 /* PockerGameAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PockerGameAppTests.swift; path = PockerGameAppTests/PockerGameAppTests.swift; sourceTree = SOURCE_ROOT; };
+		72BB508127C6081E00D93383 /* CardDeckTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardDeckTest.swift; path = PockerGameAppTests/CardDeckTest.swift; sourceTree = SOURCE_ROOT; };
 		72F3982427C3836A001FDF3E /* PockerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockerCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,7 +72,7 @@
 		726173D127C75609000EBC1B /* PockerGameAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				72BB508127C6081E00D93383 /* PockerGameAppTests.swift */,
+				72BB508127C6081E00D93383 /* CardDeckTest.swift */,
 			);
 			path = PockerGameAppTests;
 			sourceTree = "<group>";
@@ -102,6 +104,7 @@
 				7277664827C4CD730005ECF1 /* CardDeck.swift */,
 				726173CA27C752FF000EBC1B /* Dealer.swift */,
 				726173CC27C75306000EBC1B /* Player.swift */,
+				726173D227C75B4D000EBC1B /* PockerGame.swift */,
 				72A82E5027C343920044C900 /* AppDelegate.swift */,
 				72A82E5227C343920044C900 /* SceneDelegate.swift */,
 				72A82E5627C343920044C900 /* Main.storyboard */,
@@ -215,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72A82E5527C343920044C900 /* ViewController.swift in Sources */,
+				726173D327C75B4D000EBC1B /* PockerGame.swift in Sources */,
 				7277664927C4CD730005ECF1 /* CardDeck.swift in Sources */,
 				726173CB27C752FF000EBC1B /* Dealer.swift in Sources */,
 				72A82E5127C343920044C900 /* AppDelegate.swift in Sources */,
@@ -228,7 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72BB508227C6081E00D93383 /* PockerGameAppTests.swift in Sources */,
+				72BB508227C6081E00D93383 /* CardDeckTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
