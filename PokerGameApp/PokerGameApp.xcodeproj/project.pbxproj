@@ -14,6 +14,7 @@
 		6C32EC8127C32091007D1C21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C32EC8027C32091007D1C21 /* Assets.xcassets */; };
 		6C32EC8427C32091007D1C21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C32EC8227C32091007D1C21 /* LaunchScreen.storyboard */; };
 		6C4E5C3427C75D0200BBADA9 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4E5C3327C75D0200BBADA9 /* Players.swift */; };
+		6C4E5C3827C7AE7D00BBADA9 /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4E5C3727C7AE7C00BBADA9 /* Cards.swift */; };
 		6C6514B427C46F8E009E7097 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6514B327C46F8E009E7097 /* Card.swift */; };
 		6C6514EE27C5F456009E7097 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6514ED27C5F456009E7097 /* CardDeck.swift */; };
 		6C6514F627C5F58F009E7097 /* CardDeckTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6514F527C5F58F009E7097 /* CardDeckTest.swift */; };
@@ -51,6 +52,7 @@
 		6C32EC8327C32091007D1C21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6C32EC8527C32091007D1C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C4E5C3327C75D0200BBADA9 /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
+		6C4E5C3727C7AE7C00BBADA9 /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 		6C6514B327C46F8E009E7097 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		6C6514ED27C5F456009E7097 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 		6C6514F327C5F58F009E7097 /* CardDeckTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardDeckTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +119,7 @@
 				6C6514ED27C5F456009E7097 /* CardDeck.swift */,
 				6C6514FC27C60549009E7097 /* Dealer.swift */,
 				6C6514FE27C60623009E7097 /* Player.swift */,
+				6C4E5C3727C7AE7C00BBADA9 /* Cards.swift */,
 				6C65150027C6063C009E7097 /* Pokergame.swift */,
 				6C4E5C3327C75D0200BBADA9 /* Players.swift */,
 				6C65150227C60DB9009E7097 /* PlayerName.swift */,
@@ -281,6 +284,7 @@
 				6C6514EE27C5F456009E7097 /* CardDeck.swift in Sources */,
 				6C6514FD27C60549009E7097 /* Dealer.swift in Sources */,
 				6C32EC7827C32091007D1C21 /* AppDelegate.swift in Sources */,
+				6C4E5C3827C7AE7D00BBADA9 /* Cards.swift in Sources */,
 				6C6514FF27C60623009E7097 /* Player.swift in Sources */,
 				6C4E5C3427C75D0200BBADA9 /* Players.swift in Sources */,
 				6C65150127C6063C009E7097 /* Pokergame.swift in Sources */,

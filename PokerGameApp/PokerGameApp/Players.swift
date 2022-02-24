@@ -24,10 +24,11 @@ struct Players {
         self.players.append(player)
     }
     
-    func eachReceive(cards: [Card]) {
+    func eachReceive(cards: Cards) {
         var cards = cards
         for player in players {
-            player.receiveCard(card: cards.removeFirst() )
+            guard let popedCard = cards.pop() else {break}
+            player.receiveCard(card: popedCard)
         }
     }
     
