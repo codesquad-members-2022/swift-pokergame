@@ -68,7 +68,9 @@ class PokerPlayers {
                 addEventHandler(index, cardIndex, card)
             }
         }
-        
+    }
+    
+    func scoreCalculation() {
         players.forEach {
             $0.scoreCalculation()
         }
