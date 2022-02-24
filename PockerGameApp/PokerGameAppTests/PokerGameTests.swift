@@ -23,7 +23,7 @@ class PokerGameTests: XCTestCase {
         try dealer.deal(numOfcards: testNumber)
     }
     
-    func testWithTooManyCards() throws {
+    func testWithTooManyCards() {
         let testNames = Player.getRandomPlayerNames(pick: 5)
         let testPlayers = testNames.map { name in Player(name: name) }
         let tooManyNumber = 10
