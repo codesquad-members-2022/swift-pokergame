@@ -9,41 +9,19 @@ import XCTest
 @testable import PokerGameApp
 
 class PokerGameAppTests: XCTestCase {
-
-    override func setUpWithError() throws {
     }
-
-    override func tearDownWithError() throws {
-    }
-
+    
+    
     func testDistributeCard_isCorrectCardCount() throws {
-        let players: [Player] = [
-            Player(name: "rosa"),
-            Player(name: "rosa"),
-            Player(name: "rosa"),
-            Player(name: "rosa")
-        ]
-        var dealer = Dealer(stud: .five)
-        let distributedPlayers = dealer.distributeCard(to: players)
-        XCTAssertEqual(distributedPlayers[0].cards.count, 5)
+        let player = Player(name: "rosa")
+        var dealer = Dealer(name: "dealer", stud: .five)
+        let distributedPlayers = dealer.distributeCard(to: [player])
+//        XCTAssertEqual(distributedPlayers[0], 5)
     }
-    
-    
-//    func testDistributeCard_isCorrectCardCount() throws {
-//        let players: [Player] = [
-//            Player(name: "rosa"),
-//            Player(name: "rosa"),
-//            Player(name: "rosa"),
-//            Player(name: "rosa")
-//        ]
-//        var dealer = Dealer(stud: .five)
-//        let distributedPlayers = dealer.distributeCard(to: players)
-//        XCTAssertEqual(distributedPlayers[0].card.count, 5)
-//    }
     
     func testParticipantFactory_isCorrectGenerateCount() throws {
-        let parcipants = ParticipantFactory.generateParcipants(count: .four)
+        let guests = ParticipantFactory.generateGuests(count: .four)
         let expectCount = 4
-        XCTAssertEqual(parcipants.count, expectCount)
+        XCTAssertEqual(guests.count, expectCount)
     }
 }
