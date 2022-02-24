@@ -2,14 +2,14 @@ import Foundation
 
 class PokerGame: CustomStringConvertible{
     
-    internal enum Count: Int{
+    internal enum Count: Int, CaseIterable{
         case one = 1
         case two = 2
         case three = 3
         case four = 4
     }
     
-    internal enum Stud: Int{
+    internal enum Stud: Int, CaseIterable{
         case five = 5
         case seven = 7
     }
