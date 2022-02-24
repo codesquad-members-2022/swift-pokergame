@@ -15,12 +15,6 @@ class ViewController: UIViewController {
         setBackgroundImage()
         addCard(count: 7)
         
-        var testCasdDeck = TestCasdDeck()
-        testCasdDeck.testCount()
-        testCasdDeck.testShuffle()
-        testCasdDeck.testRemoveOne()
-        testCasdDeck.testRemoveOne()
-        
     }
     
     private func setBackgroundImage() {
