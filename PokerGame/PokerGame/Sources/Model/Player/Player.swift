@@ -7,21 +7,21 @@
 
 import Foundation
 
-class Player: CustomStringConvertible {
-    
+class Player: CustomStringConvertible, Comparable {
     let name: String
-    public private(set) var cards: [Card] = []
+    private var cards: [Card] = []
+    var score: Score?
     
-    var score: Score? {
-        Score.calculation(player: self)
+    var description: String {
+        "Name: \(name), cards: \(cards)"
+    }
+    
+    var hasScore: Bool {
+        score != nil
     }
     
     init(name: String) {
         self.name = name
-    }
-    
-    var description: String {
-        "Name: \(name), cards: \(cards)"
     }
     
     func add(card: Card) {
@@ -32,7 +32,33 @@ class Player: CustomStringConvertible {
         cards.removeAll()
     }
     
-    func sort() {
-        cards.sort(by: {$0.number.rawValue < $1.number.rawValue})
+    func cardSorted() -> [Card] {
+        cards.sorted()
+    }
+    
+    func cardNumberCounting() -> [Card.Number:Int]{
+        cards.reduce(into: [Card.Number:Int]()) {
+            $0[$1.number] = ($0[$1.number] ?? 0) + 1
+        }
+    }
+    
+    func scoreCalculation() {
+        score = Score.calculation(player: self)
+    }
+    
+    static func < (lhs: Player, rhs: Player) -> Bool {
+        guard let lhsScore = lhs.score else {
+            return false
+        }
+        
+        guard let rhsScore = rhs.score else {
+            return false
+        }
+    
+        return lhsScore < rhsScore
+    }
+    
+    static func == (lhs: Player, rhs: Player) -> Bool {
+        lhs.score == rhs.score
     }
 }

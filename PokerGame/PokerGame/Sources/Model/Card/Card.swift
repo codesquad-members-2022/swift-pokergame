@@ -11,12 +11,16 @@ import Foundation
 /// struct 만든 이유는 카드데이터의 경우 패턴과 숫자의 값만 가지고 있고,
 /// 이 값들은 외부에서 변환하거나, 수정이 이루어질 필요가 없는 데이터
 /// 초기화 시 설정된 값만 사용한다
-struct Card: CustomStringConvertible, Equatable {
+struct Card: CustomStringConvertible, Comparable {
     let pattern: Pattern
     let number: Number
     
     var description: String {
         "\(pattern)\(number)"
+    }
+    
+    static func < (lhs: Card, rhs: Card) -> Bool {
+        lhs.number < rhs.number
     }
 }
 
@@ -47,7 +51,7 @@ extension Card {
 // MARK: - CardNumber
 
 extension Card {
-    enum Number: Int, CaseIterable, CustomStringConvertible, Equatable {
+    enum Number: Int, CaseIterable, CustomStringConvertible, Comparable {
         case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
         
         var description: String {
@@ -69,8 +73,8 @@ extension Card {
             self.rawValue
         }
         
-        static func > (lhs: Self, rhs: Self) -> Bool {
-            lhs.rawValue > rhs.rawValue
+        static func < (lhs: Card.Number, rhs: Card.Number) -> Bool {
+            lhs.rawValue < rhs.rawValue
         }
     }
 }

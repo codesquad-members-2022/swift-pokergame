@@ -23,7 +23,7 @@ class PokerGame {
     struct State {
         var resetPokerBoard: (Stud, [String]) -> Void = { _, _ in }
         var givePlayerCard: (Int, Int, Card) -> Void = { _, _, _ in }
-        var pokerWinner: ((Int, Score)) -> Void = { _ in }
+        var pokerWinner: (Player) -> Void = { _ in }
         var finishPoker: () -> Void = { }
     }
     
@@ -41,7 +41,6 @@ class PokerGame {
         
         action.pokerReset = {
             self.resetGame()
-            self.dealer.cardReset()
         }
         
         action.inputPlayerCount = { playerCount in
@@ -71,17 +70,11 @@ class PokerGame {
             return
         }
         
-        (0..<pokerStud.cardCount).forEach { cardIndex in
-            (0..<pokerPlayers.count).forEach { index in
-                guard let card = dealer.removeOne() else {
-                    return
-                }
-                pokerPlayers.addCard(at: index, card: card)
-                state.givePlayerCard(index, cardIndex, card)
-            }
+        pokerPlayers.cardDistribution(dealer: dealer, pokerStud: pokerStud) { index, cardIndex, card in
+            self.state.givePlayerCard(index, cardIndex, card)
         }
         
-        if let winner = pokerPlayers.getHighScore() {
+        if let winner = pokerPlayers.getWinner() {
             self.state.pokerWinner(winner)
         }
     }
