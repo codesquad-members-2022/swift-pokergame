@@ -13,7 +13,7 @@ class PokerOptionView: UIView {
     let menuStackView = UIStackView()
     
     let typeView = UIStackView()
-    let typeButtons = PokerGame.Stud.allCases.map { PokerStudButton(pokerStud: $0) }
+    let typeButtons = PokerGame.Stud.allCases.map { PokerStudButton(pokerStud: $0) } 
     
     let playerView = UIStackView()
     var playerButtons = (0..<PokerPlayers.Constants.limitCount).map { PlayerButton(playerCount: $0 + 1) }
