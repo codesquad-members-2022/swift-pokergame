@@ -11,19 +11,25 @@ class Dealer {
     
     private var wholeDeck = CardDeck()
     private var cardDeck = [Card]()
-    var countRemainingCards: Int {
-        return wholeDeck.count
+    
+    public func distributeCard(to gamblers: [Gambler], in rule: GameRule) {
+        guard wholeDeck.count >= rule.numberOfCard * (gamblers.count + 1) else { return }
+        shuffleWholeDeck()
+        for _ in 0..<rule.numberOfCard {
+            for index in 0..<gamblers.count {
+                guard let newCard = pickCard() else { return }
+                gamblers[index].receiveCard(newCard)
+            }
+            guard let newCard = pickCard() else { return }
+            cardDeck.append(newCard)
+        }
     }
     
-    public func pickCard() -> Card? {
+    private func pickCard() -> Card? {
         return wholeDeck.removeOne()
     }
     
-    public func receiveCard(_ card: Card) {
-        self.cardDeck.append(card)
-    }
-    
-    public func shuffleWholeDeck() {
+    private func shuffleWholeDeck() {
         self.wholeDeck.shuffle()
     }
 }

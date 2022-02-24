@@ -28,17 +28,8 @@ class PokerGame {
         self.gameRule = gameRule
     }
     
-    private func distributeCard() {
-        guard dealer.countRemainingCards >= gameRule.numberOfCard * (gamblers.count + 1) else { return }
-        dealer.shuffleWholeDeck()
-        for _ in 0..<gameRule.numberOfCard {
-            for index in 0..<gamblers.count {
-                guard let newCard = self.dealer.pickCard() else { return }
-                gamblers[index].receiveCard(newCard)
-            }
-            guard let newCard = self.dealer.pickCard() else { return }
-            dealer.receiveCard(newCard)
-        }
+    public func distributeCard() {
+        dealer.distributeCard(to: gamblers, in: gameRule)
     }
 }
 
