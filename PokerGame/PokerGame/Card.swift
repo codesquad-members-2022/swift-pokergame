@@ -9,14 +9,14 @@ import Foundation
 
 class Card {
     
-    let shape: Shape
-    let number: Number
+    let suit: Suit
+    let rank: Rank
     
     // 입력받은 타입에 맞는 유니코드를 출력하기 위해 열거형 사용
-    enum Shape: String, CaseIterable {
+    enum Suit: String, CaseIterable {
         case spade = "\u{2660}", heart = "\u{1F5A4}", diamond = "\u{25C6}", clover = "\u{1F340}"
     }
-    enum Number: Int, CaseIterable {
+    enum Rank: Int, CaseIterable {
         case one = 1, two = 2, three = 3, four = 4, five = 5, six = 6, seven = 7,
              eight = 8, nine = 9, ten = 10, eleven = 11, twelve = 12, thirteen = 13
         
@@ -36,21 +36,21 @@ class Card {
         }
     }
     
-    init(shape: Shape, number: Number) {
-        self.shape = shape
-        self.number = number
+    init(suit: Suit, rank: Rank) {
+        self.suit = suit
+        self.rank = rank
     }
 
 }
 
 extension Card: CustomStringConvertible {
     var description: String {
-        return "\(shape.rawValue)\(number.descriptionInNumber)"
+        return "\(suit.rawValue)\(rank.descriptionInNumber)"
     }
 }
 
 extension Card: Equatable {
     static func == (lhs: Card, rhs: Card) -> Bool {
-        return lhs.shape == rhs.shape && lhs.number == rhs.number
+        return lhs.suit == rhs.suit && lhs.rank == rhs.rank
     }
 }

@@ -35,9 +35,9 @@ class CardDeck {
     }
     
     init() {
-        for shapes in Card.Shape.allCases {
-            for numbers in Card.Number.allCases {
-                card.append(Card(shape: shapes, number: numbers))
+        for suits in Card.Suit.allCases {
+            for ranks in Card.Rank.allCases {
+                card.append(Card(suit: suits, rank: ranks))
             } }
         cardDeck = card
     }
