@@ -3,7 +3,6 @@ import Foundation
 class PokerGame: CustomStringConvertible{
     
     internal enum Count: Int, CaseIterable{
-        case one = 1
         case two = 2
         case three = 3
         case four = 4
