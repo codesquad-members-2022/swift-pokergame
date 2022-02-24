@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Dealer {
+class Dealer {
     private let cardDeck = CardDeck()
     private let stud: Stud
     
@@ -18,7 +18,7 @@ struct Dealer {
         self.stud = stud
     }
     
-    mutating func distributeCard(to players: [Player]) -> [Player] {
+    func distributeCard(to players: [Player]) -> [Player] {
         cardDeck.shuffle()
         
         //1. 게임딜러도 카드를 가진다
