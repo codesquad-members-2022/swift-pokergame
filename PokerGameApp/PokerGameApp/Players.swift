@@ -12,6 +12,13 @@ struct Players {
     var count : Int {
         return players.count
     }
+    var playersCardCount : [Int] {
+        var cardCount : [Int] = []
+        for player in players {
+            cardCount.append(player.handCount)
+        }
+        return cardCount
+    }
     
     mutating func seat(player: Player) {
         self.players.append(player)
