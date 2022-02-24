@@ -39,19 +39,15 @@ struct CardDeck{
         }
     }
     
-    mutating func removeOne() -> Result<PockerCard, CardDeckError>{
+    mutating func removeOne() -> PockerCard?{
         guard count > 0 else {
-            return .failure(.cardDeckEmpty)
+            return nil
         }
-        return .success(cards.removeLast())
+        return cards.removeLast()
     }
     
     mutating func reset(){
         initCardDeckArray()
         shuffle()
     }
-}
-
-enum CardDeckError: Error{
-    case cardDeckEmpty
 }
