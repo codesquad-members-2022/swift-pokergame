@@ -26,8 +26,11 @@ class CardDeck {
         }
     }
     
-    func removeOne() -> Card {
-        return cardDeck.removeLast()
+    func removeOne() -> Card? {
+        if self.cardDeck.isEmpty { return nil }
+        else {
+            return cardDeck.popLast()
+        }
     }
     
     func reset() {

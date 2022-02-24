@@ -13,13 +13,20 @@ class Card {
     let rank: Rank
     
     // 입력받은 타입에 맞는 유니코드를 출력하기 위해 열거형 사용
-    enum Suit: String, CaseIterable {
+    enum Suit: String, CaseIterable, CustomStringConvertible {
+       
         case spade = "\u{2660}", heart = "\u{1F5A4}", diamond = "\u{25C6}", clover = "\u{1F340}"
+        
+        var description: String {
+            return self.rawValue
+        }
+
     }
-    enum Rank: Int, CaseIterable {
+    enum Rank: Int, CaseIterable, CustomStringConvertible {
+    
         case one = 1, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen
         
-        var descriptionInNumber: String {
+        var description: String {
             switch self {
             case .one:
                 return "A"
@@ -39,12 +46,11 @@ class Card {
         self.suit = suit
         self.rank = rank
     }
-
 }
 
 extension Card: CustomStringConvertible {
     var description: String {
-        return "\(suit.rawValue)\(rank.descriptionInNumber)"
+        return "\(suit.description)\(rank.description)"
     }
 }
 
