@@ -16,10 +16,14 @@ class PokerGameTests: XCTestCase {
     
     enum TestCase {
         
-        case one, two, triple, four, straight
+        case noScore, one, two, triple, four, straight
         
         func getCard(pattern: [Card.Pattern], numbers: [Card.Number]) -> [Card] {
             switch self {
+            case .noScore:
+                return [
+                    Card(pattern: .heart, number: .king)
+                ]
             case .one:
                 if pattern.count < 2 || numbers.count < 1 {
                     return []
@@ -78,29 +82,41 @@ class PokerGameTests: XCTestCase {
     }
     
     func testDummyPokerStart() {
-        let pokerStud = PokerGame.Stud.sevenCard
-        let players = [ "테스터1", "테스터2", "테스터3", "테스터4", "딜러"].map {
-            Player(name: $0)
-        }
-        
+        //플레이어에 카드 넣어주는 함수
         let addCard: (Player, [Card]) -> Void = { player, cards in
             cards.forEach {
                 player.add(card: $0)
             }
         }
         
+        //테스트 카드 샘플
+        let noScoreCards = TestCase.noScore.getCard(pattern: [], numbers: [])
         let onePairCards = TestCase.one.getCard(pattern: [.spade, .heart], numbers: [.four])
         let twoPairCards = TestCase.two.getCard(pattern: [.spade, .heart], numbers: [.four, .eight])
         let triplePairCards = TestCase.triple.getCard(pattern: [.spade], numbers: [.four])
         let fourPairCards = TestCase.four.getCard(pattern: [.heart], numbers: [.king])
         let straightPairCards = TestCase.straight.getCard(pattern: [], numbers: [.four])
         
-        addCard(players[0], straightPairCards)
-        addCard(players[1], fourPairCards)
-        addCard(players[2], triplePairCards)
-        addCard(players[3], twoPairCards)
-        addCard(players[4], onePairCards)
+        //플레이어에 테스트 카드 설정
+        //딕셔너리를 사용하므로 이름순으로 정렬해줌
+        let players = [
+            "0.테스터":noScoreCards,
+            "1.테스터":triplePairCards,
+            "2.테스터":onePairCards,
+            "3.테스터":straightPairCards,
+            "4.딜러":noScoreCards
+        ].map { pair -> Player in
+                let player = Player(name: pair.key)
+                addCard(player, pair.value)
+                return player
+        }.sorted{
+            $0.name < $1.name
+        }
         
+        //위의 테스트 데이터를 넣고 누가 이기는지 인덱스를 여기에 입력함
+        let checkWinnerIndex = 3
+        
+        //비지니스 로직 실행
         let pokerPlayers = PokerPlayers()
         pokerPlayers.addPlayer(players: players)
         pokerPlayers.scoreCalculation()
@@ -110,10 +126,14 @@ class PokerGameTests: XCTestCase {
         players.forEach {
             print($0)
         }
-        print("winner: \(winner)")
+        if let winner = winner {
+            print("winner: \(winner)")
+        } else {
+            print("승자가 없습니다")
+        }
         print("-------------------------------")
         
-        XCTAssertEqual(players[1], winner)
+        XCTAssertEqual(players[checkWinnerIndex], winner)
     }
     
     func testPokerStart() {
