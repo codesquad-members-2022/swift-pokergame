@@ -30,8 +30,12 @@ struct PokerGame {
     
     private func drawCard(each : Int) {
         for _ in 0..<each {
-            guard let drawedCard = dealer.draw() else {break}
-            players.eachReceive(card: drawedCard)
+            var oneCycleDraw : [Card] = []
+            for _ in 0..<playerCount {
+                guard let drawedCard = dealer.draw() else {break}
+                oneCycleDraw.append(drawedCard)
+            }
+            players.eachReceive(cards: oneCycleDraw)
         }
     }
     
