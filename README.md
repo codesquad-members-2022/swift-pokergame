@@ -26,6 +26,37 @@
 - [ ] 추가요구사항 구현
   - [ ] 일정시간 간격을 두고 카드를 나눠주는 것 처럼 반복해서 업데이트
 
+### 결과화면
+
+```
+Name: 테스터1, cards: [hJ, c2, d9, s5, s7, sQ, h10] -- 점수없음
+Name: 테스터2, cards: [c3, c9, sA, c7, s8, cK, c10] -- 점수없음
+Name: 테스터3, cards: [c6, c4, d5, hK, hQ, s9, s4] -- onePair(4)
+Name: 테스터4, cards: [s3, h3, cJ, sJ, h8, d7, d10] -- twoPair(J)
+Name: 딜러, cards: [d3, d8, dK, sK, c5, c8, d4] -- twoPair(K)
+승자는 딜러 입니다!! (twoPair(K))
+```
+
+```
+Name: 테스터1, cards: [h6, c9, d8, c7, c4, cA, s9] -- onePair(9)
+Name: 테스터2, cards: [d6, s8, h8, hA, d4, sA, d2] -- twoPair(8)
+Name: 테스터3, cards: [d7, hK, s7, dJ, c8, s4, h4] -- twoPair(7)
+Name: 테스터4, cards: [dK, hJ, d5, h3, h2, d3, hQ] -- onePair(3)
+Name: 딜러, cards: [c5, cQ, sJ, h9, cJ, s2, sQ] -- twoPair(Q)
+승자는 딜러 입니다!! (twoPair(Q))
+```
+
+```
+Name: 테스터1, cards: [cA, h2, d6, d5, hK, c3, h4] -- straight(2)
+Name: 테스터2, cards: [c2, dA, s9, hQ, sK, d7, hA] -- onePair(A)
+Name: 테스터3, cards: [h5, d10, dK, s2, cK, c5, sA] -- twoPair(K)
+Name: 테스터4, cards: [h9, d8, s6, hJ, dJ, s5, d4] -- onePair(J)
+Name: 딜러, cards: [h3, c8, sJ, d2, d3, s10, c10] -- twoPair(10)
+승자는 테스터1 입니다!! (straight(2))
+```
+
+
+
 ------
 
 ## [Step_3] 게임로직 구현하기 & 포커게임 화면만들기

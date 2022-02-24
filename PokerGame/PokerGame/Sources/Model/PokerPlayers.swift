@@ -52,7 +52,7 @@ class PokerPlayers {
         self.players.removeAll()
     }
     
-    func getHighScore(){
+    func getHighScore() -> (index: Int, score: Score)?{
         let score = players.enumerated().compactMap { index, player -> (Int, Score)? in
             guard let score = player.score else {
                 return nil
@@ -65,6 +65,6 @@ class PokerPlayers {
             return lhs.1.rule > rhs.1.rule
         })
         
-        print(score)
+        return score.first
     }
 }
