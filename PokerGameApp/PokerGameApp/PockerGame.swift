@@ -28,10 +28,6 @@ class PockerGame: CustomStringConvertible{
         func getCard(_ card: Card){
             self.cards.append(card)
         }
-        
-        func getCards(_ cards: [Card]){
-            self.cards.append(contentsOf: cards)
-        }
     }
 
     internal class Dealer: Player{
