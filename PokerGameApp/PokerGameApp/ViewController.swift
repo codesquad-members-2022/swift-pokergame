@@ -1,12 +1,16 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var studSelectionControl: UISegmentedControl!
     @IBOutlet weak var playerCountSelectionControl: UISegmentedControl!
     private var pokerGame: PokerGame?
     private var cardImageViews: [UIImageView] = []
     private var labels: [UILabel] = []
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return .lightContent
+    }
     
     @IBAction func studOptionSelected(_ sender: UISegmentedControl) {
         setPokerGame()
