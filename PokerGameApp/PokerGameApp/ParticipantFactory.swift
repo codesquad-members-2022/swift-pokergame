@@ -20,6 +20,10 @@ struct ParticipantFactory {
         return guests
     }
     
+    static func generateDealer(stud: Stud) -> Dealer {
+        return Dealer(name: "딜러", stud: stud)
+    }
+    
     enum PersonName: String,CaseIterable {
         case shingha = "shingha"
         case chez = "chex"

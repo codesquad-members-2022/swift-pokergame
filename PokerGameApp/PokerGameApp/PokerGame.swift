@@ -16,7 +16,7 @@ class PokerGame {
     init(stud: Stud, guestCount: GuestCount) {
         self.stud = stud
         self.guestCount = guestCount
-        let dealer = Dealer(name: "딜러", stud: stud)
+        let dealer = ParticipantFactory.generateDealer(stud: stud)
         self.gameDealer = dealer
         self.team = Team(guestCount: guestCount, dealer: dealer)
     }
