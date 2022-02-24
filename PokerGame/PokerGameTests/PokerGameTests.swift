@@ -89,20 +89,17 @@ class PokerGameTests: XCTestCase {
             }
         }
         
-        let cards1 = TestCase.one.getCard(pattern: [.spade, .heart], numbers: [.four])
-        addCard(players[0], cards1)
+        let onePairCards = TestCase.one.getCard(pattern: [.spade, .heart], numbers: [.four])
+        let twoPairCards = TestCase.two.getCard(pattern: [.spade, .heart], numbers: [.four, .eight])
+        let triplePairCards = TestCase.triple.getCard(pattern: [.spade], numbers: [.four])
+        let fourPairCards = TestCase.four.getCard(pattern: [.heart], numbers: [.king])
+        let straightPairCards = TestCase.straight.getCard(pattern: [], numbers: [.four])
         
-        let cards2 = TestCase.two.getCard(pattern: [.spade, .heart], numbers: [.four, .eight])
-        addCard(players[1], cards2)
-        
-        let cards3 = TestCase.triple.getCard(pattern: [.spade], numbers: [.four])
-        addCard(players[2], cards3)
-        
-        let cards4 = TestCase.four.getCard(pattern: [.heart], numbers: [.king])
-        addCard(players[3], cards4)
-        
-        let cards5 = TestCase.straight.getCard(pattern: [], numbers: [.four])
-        addCard(players[4], cards5)
+        addCard(players[0], straightPairCards)
+        addCard(players[1], fourPairCards)
+        addCard(players[2], triplePairCards)
+        addCard(players[3], twoPairCards)
+        addCard(players[4], onePairCards)
         
         let pokerPlayers = PokerPlayers()
         pokerPlayers.addPlayer(players: players)
@@ -116,7 +113,7 @@ class PokerGameTests: XCTestCase {
         print("winner: \(winner)")
         print("-------------------------------")
         
-        XCTAssertEqual(players[3], winner)
+        XCTAssertEqual(players[1], winner)
     }
     
     func testPokerStart() {
