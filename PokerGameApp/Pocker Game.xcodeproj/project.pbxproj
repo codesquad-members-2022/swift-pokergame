@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E414C88527C74ADD00E88F9E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414C88427C74ADD00E88F9E /* Card.swift */; };
+		E414C88727C74EC300E88F9E /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414C88627C74EC300E88F9E /* Factory.swift */; };
 		E45634F927C46F0E0008D897 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45634F827C46F0E0008D897 /* AppDelegate.swift */; };
 		E45634FB27C46F0E0008D897 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45634FA27C46F0E0008D897 /* SceneDelegate.swift */; };
 		E45634FD27C46F0E0008D897 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45634FC27C46F0E0008D897 /* ViewController.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E414C88427C74ADD00E88F9E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		E414C88627C74EC300E88F9E /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
 		E45634F527C46F0E0008D897 /* Pocker Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocker Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E45634F827C46F0E0008D897 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E45634FA27C46F0E0008D897 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +63,8 @@
 				E45634F827C46F0E0008D897 /* AppDelegate.swift */,
 				E45634FA27C46F0E0008D897 /* SceneDelegate.swift */,
 				E45634FC27C46F0E0008D897 /* ViewController.swift */,
+				E414C88427C74ADD00E88F9E /* Card.swift */,
+				E414C88627C74EC300E88F9E /* Factory.swift */,
 				E45634FE27C46F0E0008D897 /* Main.storyboard */,
 				E456350127C46F0F0008D897 /* Assets.xcassets */,
 				E456350327C46F0F0008D897 /* LaunchScreen.storyboard */,
@@ -141,6 +147,8 @@
 				E45634FD27C46F0E0008D897 /* ViewController.swift in Sources */,
 				E45634F927C46F0E0008D897 /* AppDelegate.swift in Sources */,
 				E45634FB27C46F0E0008D897 /* SceneDelegate.swift in Sources */,
+				E414C88727C74EC300E88F9E /* Factory.swift in Sources */,
+				E414C88527C74ADD00E88F9E /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

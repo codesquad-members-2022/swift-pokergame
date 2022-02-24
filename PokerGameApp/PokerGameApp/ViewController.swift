@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
+        OutputView.printCard(card: Card(rank: .ace, suit: .spade))
     }
     
     // MARK: - Methods
@@ -28,8 +29,6 @@ class ViewController: UIViewController {
         self.setBackgroundImage()
         self.view.setBounds(x: 0, y: -44)
         self.setCardViews(count: 7)
-        
-        print(Card(suit: .heart, rank: .two))
     }
     
     func setBackgroundImage() {
@@ -59,12 +58,13 @@ class ViewController: UIViewController {
         self.view.addSubview(stackView)
     }
     
-    
 }
 
 extension UIView {
+    
     func setBounds(x: Int, y: Int) {
         self.bounds.origin.x = CGFloat(x)
         self.bounds.origin.y = CGFloat(y)
     }
+    
 }
