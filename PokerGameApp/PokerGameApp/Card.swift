@@ -14,7 +14,6 @@ struct OutputView {
 }
 
 class Card {
-    
     /** Enum 을 선택해 Suit, Rank 를 선언한 이유는 다음과 같습니다.
      Class 를 사용해 Suite, Rank 를 정의한다면 Card 인스턴스 생성 시, Heap 영역에 Card, Suite, Rank 인스턴스가 각각 저장되어 공간을 차지하게 됩니다.
      반면, Enum 을 사용한다면 Card 인스턴스만 Heap 영역에 저장되고 해당 인스턴스는 Suit, Rank 정보가 값타입으로 저장됩니다.
@@ -61,7 +60,6 @@ class Card {
     func getRank() -> Rank {
         return self.rank
     }
-    
 }
 
 extension Card: Comparable {
