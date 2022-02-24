@@ -7,7 +7,6 @@
 
 import Foundation
 struct PokerGame {
-    private var cardDeck : CardDeck = CardDeck()
     private let dealer : Dealer
     private var players : Players
     private let stud : Stud
@@ -18,13 +17,13 @@ struct PokerGame {
     init(stud: Stud, playerCount: PlayerCount) {
         self.stud = stud
         self.players = Players()
-        self.dealer = Dealer(cardDeck: cardDeck)
+        self.dealer = Dealer()
         seatPlayer(playerCount: playerCount)
     }
     
     mutating func play() {
         drawCard(each: self.stud.rawValue)
-        while cardDeck.count != 0 {
+        while dealer.cardDeckCount-playerCount >= 0 {
             drawCard(each: 1)
         }
     }
