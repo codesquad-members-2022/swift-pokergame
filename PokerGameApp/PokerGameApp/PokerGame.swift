@@ -32,6 +32,7 @@ class PokerGame: CustomStringConvertible{
     
     private func createPlayers(numberOfPlayers: Count)-> [Player]{
         var players: [Player] = []
+        self.randomNames.shuffle()
         for _ in 0..<numberOfPlayers.rawValue{
             guard let playerName = randomNames.popLast() else { continue }
             players.append(Player(name: playerName))
