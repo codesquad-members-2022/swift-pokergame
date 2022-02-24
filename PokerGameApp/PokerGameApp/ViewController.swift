@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     
     func printCard() {
         for card in cards {
-            print(card.getCardInfo())
+            print(card)
         }
     }
     
