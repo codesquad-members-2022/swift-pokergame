@@ -18,13 +18,13 @@ class Player{
         self.name = name
     }
     
-    func takeCard(card: PockerCard){
+    func receiveCard(card: PockerCard){
         self.cards.append(card)
     }
 }
 
 extension Player: CustomStringConvertible{
     var description: String {
-        return "\(name) \(cards.map{"\($0.shape.description)\($0.number.description)"})"
+        return "\(name) \(cards)"
     }
 }

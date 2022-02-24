@@ -14,39 +14,39 @@ class PockerGameTest: XCTestCase {
     
     func testPlayerTakeCard() throws {
         let player = Player(name: Players.playerNames[0])
-        guard let card = dealer.takeCardFromDealer() else{
+        guard let card = dealer.giveCardToPlayer() else{
             return
         }
-        player.takeCard(card: card)
+        player.receiveCard(card: card)
         XCTAssertEqual(player.playerCardCount, 1)
     }
     
     func testPlayersNumbers() throws{
-        let playerNumber: PockerGame.PlayerNumber = .four
-        let players = Players(numbers: playerNumber)
-        XCTAssertEqual(playerNumber.playerNumber, 4)
+        let playerNumber: PockerGame.PlayerCount = .four
+        let players = Players(playerCount: playerNumber)
+        XCTAssertEqual(players.count, 4)
     }
     
     func testPlayersTakeCard() throws{
-        let playerNumber: PockerGame.PlayerNumber = .four
-        let players = Players(numbers: playerNumber)
-        for i in 0 ..< playerNumber.playerNumber{
-            guard let card = dealer.takeCardFromDealer() else {
+        let playerNumber: PockerGame.PlayerCount = .four
+        let players = Players(playerCount: playerNumber)
+        for index in 0 ..< playerNumber.getNumberOfPlayer(){
+            guard let card = dealer.giveCardToPlayer() else {
                 return
             }
-            players.takeCard(index: i, card: card)
+            players.takeCard(index: index, card: card)
         }
-        XCTAssertEqual(players.playersCardCountSum, 4)
+        XCTAssertEqual(players.allCardCount, 4)
     }
     
     func testStudCardNumber() throws{
-        let pockerGame = PockerGame(stud: .five, playerNumber: .four)
+        let pockerGame = PockerGame(stud: .five, playerCount: .four)
         pockerGame.play()
-        XCTAssertEqual(pockerGame.players.playersCardCountSum, 20)
+        XCTAssertEqual(pockerGame.players.allCardCount, 20)
         
-        let pockerGame2 = PockerGame(stud: .seven, playerNumber: .three)
+        let pockerGame2 = PockerGame(stud: .seven, playerCount: .three)
         pockerGame2.play()
-        XCTAssertEqual(pockerGame2.players.playersCardCountSum, 21)
+        XCTAssertEqual(pockerGame2.players.allCardCount, 21)
     }
     
 }
