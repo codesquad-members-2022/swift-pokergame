@@ -9,16 +9,21 @@ import Foundation
 
 class PokerGame {
     private let stud: Stud
-    private let personCount: Int
-    
+    private let participantCount: ParticipantCount
     private let gameDealer: Dealer
     private let players: [Player]
     
-    /// personCount: 딜러제외 1~4
-    init(stud: Stud, personCount: Int) {
+    init(stud: Stud, participantCount: ParticipantCount) {
         self.stud = stud
-        self.personCount = personCount
+        self.participantCount = participantCount
         self.gameDealer = Dealer(stud: stud)
         self.players = []
+    }
+    
+    enum ParticipantCount: Int {
+        case one = 1
+        case two = 2
+        case three = 3
+        case four = 4
     }
 }
