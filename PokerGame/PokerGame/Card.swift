@@ -5,14 +5,6 @@
 //  Created by 박진섭 on 2022/02/22.
 //
 
-/*
- 
- 1. 자주 호출되는 하위 구조에서는 최대한 단순하게 만들자. (복잡하면 이해하기도 힘들고 컴퓨터가 일하기도 힘들다.)
- 2. CustomStringConvertible를 이용해서 출력할때 효율적으로 코드를 짜보자
- 3. 타입 생성과 출력을 명확히 구분해보자.
- 
- */
-
 //Card의 정보를 한번에 담아서 출력하고자 Struct를 선언하고 그안에 Suit와 Rank Enum을 넣었다.
 //Test에서 비교를 하기 위해 Equatable 프로토콜을 사용했다.
 struct Card:CustomStringConvertible, Equatable{

@@ -19,7 +19,7 @@ class Deck {
     var cards:[Card]                        //현제 전체 카드들의 정보는 private로 숨기려고 했으나 테스트 케이스를 위해 internal로 주었다.
     var count:Int  { self.cards.count }    //Deck안에 있는 Card들은 함수의 호출에 따라 값이 달라지므로 computedproperty로 정의했다.
     
-    //init시 덱을 만들도록 설정봤다.
+    
     init() {
         self.cards = Card.makeDeck()
     }
@@ -35,10 +35,9 @@ class Deck {
         return self.cards                                             //[1,2,3]배열과 [1,3,2]의 배열은 다른것을 이용해서 비교할 생각이다.
     }
     
-    //랜덤한 카드 하나 빼기
+    //카드 하나 빼기
     func removeOne() -> Card{
-        let randomindex = Int.random(in: 0..<self.count)
-        let removedCard = cards.remove(at: randomindex)
+        let removedCard = cards.removeLast()
         return removedCard
     }
     

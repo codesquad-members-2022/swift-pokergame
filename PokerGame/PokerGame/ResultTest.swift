@@ -16,6 +16,7 @@ final class ResultTest {
     func removeOne() -> Bool {
         let beforeDeckCount = deck.count                                             //삭제 하고 난 뒤 갯수를 비교하기 위해 선언했다. //한개가 아닌 두개가 삭제됬을때를 대비하여 선언했다.
         let removedCard = deck.removeOne()
+        
         //함수가 호출된 뒤 Deck에 아직 삭제된 카드가 있거나, 현재 deck의 카운트가 이전 deck의 카운트 - 1과 같지 않으면 잘못 실행된 것.
         if deck.cards.contains(where: { $0 == removedCard }) || beforeDeckCount - 1 != self.deck.count {
             return false
