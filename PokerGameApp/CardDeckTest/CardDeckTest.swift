@@ -15,6 +15,8 @@ class CardDeckTest: XCTestCase {
         XCTAssertEqual(cardDeckCount, 52, "값이 일치하지 않습니다.")
     }
     
+
+    
     func testShuffleCardDeck() {
         var cardDeck1 = CardDeck()
         var cardDeck2 = CardDeck()

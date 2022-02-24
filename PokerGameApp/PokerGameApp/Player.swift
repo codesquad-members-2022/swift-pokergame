@@ -10,17 +10,18 @@ import UIKit
 
 class Player {
     private var name : String
-    private var hand : [Card] = []
+    private var hand : Cards
     var handCount : Int {
         return hand.count
     }
     
     init(name: String) {
         self.name = name
+        self.hand = Cards()
     }
     
     func receiveCard(card : Card) {
-        self.hand.append(card)
+        self.hand.add(card: card)
     }
     
 }

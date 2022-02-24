@@ -8,19 +8,12 @@
 import Foundation
 
 struct CardDeck {
-    private var originCards : [Card] = []
-    private var cards : [Card] = []
+    private var originCards : Cards = Cards()
+    private var cards : Cards = Cards()
     var count : Int {
         return cards.count
     }
-    var showCards : [String] {
-        var tempCards : [String] = []
-        for card in cards {
-            tempCards.append("\(card)")
-        }
-        return tempCards
-    }
-    
+
     init() {
         setNewDeck()
         cards = originCards
@@ -29,14 +22,14 @@ struct CardDeck {
     mutating func shuffle() {
         for cardIndex in 0..<self.count {
             guard let randomIndex = (cardIndex..<self.count).randomElement() else {continue}
-            let tempCard = cards[cardIndex]
-            cards[cardIndex] = cards[randomIndex]
-            cards[randomIndex] = tempCard
+            let tempCard = cards.lookUP(index: cardIndex)
+            cards.swapCard(at: cardIndex, with: cards.lookUP(index: randomIndex))
+            cards.swapCard(at: randomIndex, with: tempCard)
         }
     }
     
     mutating func removeOne() -> Card? {
-        return self.cards.popLast()
+        return self.cards.pop()
     }
     
     mutating func reset() {
@@ -46,7 +39,7 @@ struct CardDeck {
     mutating private func setNewDeck() {
         for shape in Card.Shape.allCases {
             for number in Card.Number.allCases{
-                self.originCards.append(Card(shape: shape, number: number))
+                self.originCards.add(card:Card(shape: shape, number: number))
             }
         }
     }
