@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     
     func setPlayerCountSelectionControl(){
         studSelectionControl.center.x = self.view.center.x
-        studSelectionControl.center.y = self.view.center.y * CGFloat(0.35)
+        studSelectionControl.center.y = self.view.center.y * CGFloat(0.3)
         for index in 0..<PokerGame.Stud.allCases.count{
             studSelectionControl.setTitle("\(PokerGame.Stud.allCases[index].rawValue) Cards", forSegmentAt: index)
         }
@@ -65,11 +65,11 @@ class ViewController: UIViewController {
         removePreviousCardImageViewsAndLabels()
         
         let cardsCount = CGFloat(game.stud.rawValue)
-        let cardMargin = CGFloat(20)
-        let cardWidth = (self.view.bounds.width)/(cardsCount+1)
+        let initialXPosition = CGFloat(30)
+        let cardWidth = (self.view.bounds.width)/(cardsCount+0.6)
         let cardHeight = cardWidth*CGFloat(1.27)
-        var cardXPosition = cardMargin
-        var cardYPosition = CGFloat(studSelectionControl.center.y * 1.3)
+        var cardXPosition = initialXPosition
+        var cardYPosition = CGFloat(studSelectionControl.center.y * 1.2)
         
         var users: [Player] = game.players
         users.append(game.dealer)
@@ -77,7 +77,7 @@ class ViewController: UIViewController {
         for user in users{
             
             let label: UILabel = UILabel()
-            label.frame = CGRect(x: cardMargin, y: cardYPosition, width: 200, height: 30)
+            label.frame = CGRect(x: initialXPosition, y: cardYPosition, width: 200, height: 30)
             label.font = UIFont.systemFont(ofSize: 20)
             label.textColor = UIColor.white
             label.text = user.name
@@ -94,7 +94,7 @@ class ViewController: UIViewController {
                 self.cardImageViews.append(imageView)
                 cardXPosition += cardWidth - CGFloat(10)
             }
-            cardXPosition = cardMargin
+            cardXPosition = initialXPosition
             cardYPosition += cardHeight + CGFloat(10)
         }
     }
