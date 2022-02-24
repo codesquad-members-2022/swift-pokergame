@@ -39,6 +39,7 @@ struct PockerGame{
 
     private func getCard(player: Player){
         guard let card = dealer.shareCard() else {
+            print("덱의 카드가 소진되었으므로 게임을 종료합니다.")
             return
         }
         player.addCard(card: card)
