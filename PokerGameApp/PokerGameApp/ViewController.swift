@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var logTextView: UITextView!
+    
     let CARD_INSET: CGFloat = 3
     let CARD_COUNT = 5
     var cards: [UIImageView]!
@@ -17,6 +19,8 @@ class ViewController: UIViewController {
     let cardImageName = "card-back"
     
     var readableFrame: CGRect!
+    
+    var deck = CardDeck()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,32 +64,36 @@ class ViewController: UIViewController {
         stackView.frame.size.height = cardWidth * 1.27
     }
     
-    @IBAction func makeAndPrintRandomCardTouchUpInside(_ sender: UIButton) {
-        print(CardFactory.randomCard())
+    @IBAction func countButtonTouchUpInside(_ sender: UIButton) {
+        let result = deck.count()
     }
     
-    @IBAction func makeAndPrintCardDeckTouchUpInside(_ sender: UIButton) {
-        print(CardFactory.deckOfCard())
+    @IBAction func shuffleButtonTouchUpInside(_ sender: UIButton) {
+        deck.shuffle()
     }
     
-    @IBAction func makeAndReadRandomCardTouchUpInside(_ sender: UIButton) {
-        alert(with: String(describing: CardFactory.randomCard()))
+    @IBAction func removeOneButtonTouchUpInside(_ sender: UIButton) {
+        deck.removeOne() // mutating 함수를 호출하니 deck 구조체가 let 이면 안된다고 해서 var 로 바꿈
     }
     
-    @IBAction func makeAndReadCardDeckTouchUpInside(_ sender: UIButton) {
-        alert(with: String(describing: CardFactory.deckOfCard()))
+    @IBAction func resetButtonTouchUpInside(_ sender: UIButton) {
+        deck.reset()
     }
     
     private func alert(with message: String) {
-        
-        let alert = UIAlertController.init(title: "값은 아래와 같습니다", message: message, preferredStyle: .alert)
-        let action = UIAlertAction.init(title: "닫기", style: .destructive) { _ in
+        UIAlertController.alert(with: "값은 아래와 같습니다", at: self)
+    }
+}
+
+extension UIAlertController {
+    static func alert(with title: String, at viewController: UIViewController, cancelMessage: String? = nil) {
+        let alert = UIAlertController.init(title: title, message: "", preferredStyle: .alert)
+        let action = UIAlertAction.init(title: cancelMessage ?? "닫기", style: .destructive) { _ in
             alert.dismiss(animated: true, completion: nil)
         }
         
         alert.addAction(action)
         
-        self.show(alert, sender: nil)
+        viewController.show(alert, sender: nil)
     }
 }
-

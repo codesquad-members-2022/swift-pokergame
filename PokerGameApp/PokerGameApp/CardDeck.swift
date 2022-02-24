@@ -11,19 +11,25 @@ struct CardDeck {
     
     private var deck: [Card]
     
+    init() {
+        deck = CardFactory.deckOfCard()
+    }
+    
     func count() -> Int {
-        return 0
+        return deck.count
     }
     
     func shuffle() {
         
     }
     
-    func removeOne() -> Card? {
-        return nil
+    mutating func removeOne() -> Card? {
+        guard let card = deck.last else { return nil }
+        deck.removeLast()
+        return card
     }
     
-    func reset() {
-        
+    mutating func reset() {
+        deck = CardFactory.deckOfCard()
     }
 }
