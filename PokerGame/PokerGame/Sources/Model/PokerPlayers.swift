@@ -14,6 +14,12 @@ class PokerPlayers {
         static let defaultCount = 4
     }
     
+    struct State {
+        var givePlayerCard: (Int, Int, Card) -> Void = { _, _, _ in }
+    }
+    
+    var state = State()
+    
     private var players = [Player]()
     
     var count: Int {
@@ -26,7 +32,7 @@ class PokerPlayers {
     
     //MARK: - Card
     
-    func addCard(at index: Int, card: Card) {
+    private func addCard(at index: Int, card: Card) {
         players[index].add(card: card)
     }
     
@@ -52,19 +58,23 @@ class PokerPlayers {
         self.players.removeAll()
     }
     
-    func getHighScore() -> (index: Int, score: Score)?{
-        let score = players.enumerated().compactMap { index, player -> (Int, Score)? in
-            guard let score = player.score else {
-                return nil
+    func cardDistribution(dealer: Dealer, pokerStud: PokerGame.Stud, addEventHandler: @escaping (Int, Int, Card) -> Void ) {
+        (0..<pokerStud.cardCount).forEach { cardIndex in
+            (0..<count).forEach { index in
+                guard let card = dealer.removeOne() else {
+                    return
+                }
+                addCard(at: index, card: card)
+                addEventHandler(index, cardIndex, card)
             }
-            return (index, score)
-        }.sorted(by: { lhs, rhs in
-            if lhs.1.rule == rhs.1.rule {
-                return lhs.1.highNumber > rhs.1.highNumber
-            }
-            return lhs.1.rule > rhs.1.rule
-        })
+        }
         
-        return score.first
+        players.forEach {
+            $0.scoreCalculation()
+        }
+    }
+    
+    func getWinner() -> Player? {
+        players.filter{ $0.hasScore }.sorted().last
     }
 }

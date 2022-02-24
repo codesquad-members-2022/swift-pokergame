@@ -7,7 +7,8 @@
 
 import Foundation
 
-class Score: CustomStringConvertible {
+class Score: CustomStringConvertible, Comparable {
+    
     let rule: Rule
     let highNumber: Card.Number
     
@@ -19,6 +20,17 @@ class Score: CustomStringConvertible {
         self.rule = rule
         self.highNumber = highNumber
     }
+    
+    static func == (lhs: Score, rhs: Score) -> Bool {
+        lhs.rule == rhs.rule
+    }
+    
+    static func < (lhs: Score, rhs: Score) -> Bool {
+        if lhs.rule == rhs.rule {
+            return lhs.highNumber < rhs.highNumber
+        }
+        return lhs.rule < rhs.rule
+    }
 }
 
 extension Score {
@@ -28,9 +40,7 @@ extension Score {
     
     static func calculation(player: Player) -> Score? {
         //숫자 별로 갯수를 정리
-        let numberCounting = player.cards.reduce(into: [Card.Number:Int]()) {
-            $0[$1.number] = ($0[$1.number] ?? 0) + 1
-        }
+        let numberCounting = player.cardNumberCounting()
         
         //포카드 체크
         if let cardNumber = findNumberByCount(numberCounting, count: 4).first {
@@ -38,7 +48,7 @@ extension Score {
         }
         
         //스트레이트 체크
-        let sortCard = player.cards.sorted(by: {return $0.number > $1.number })
+        let sortCard = player.cardSorted()
         let loopCount = sortCard.count - 5
         for index in 0...loopCount {
             var findNumber = sortCard[index].number.value
@@ -75,11 +85,12 @@ extension Score {
 }
 
 extension Score {
-    enum Rule: Int, Equatable {
+    enum Rule: Int, Comparable {
+        
         case none, onePair, twoPair, triple, straight, fourCard
         
-        static func > (lhs: Self, rhs: Self) -> Bool {
-            lhs.rawValue > rhs.rawValue
+        static func < (lhs: Score.Rule, rhs: Score.Rule) -> Bool {
+            lhs.rawValue < rhs.rawValue
         }
     }
 }

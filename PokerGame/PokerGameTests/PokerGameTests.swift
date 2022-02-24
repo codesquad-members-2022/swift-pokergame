@@ -23,14 +23,21 @@ class PokerGameTests: XCTestCase {
     }
     
     func testPokerStart() {
-        let names = ["테스터1", "테스터2", "테스터3", "테스터4", "딜러"]
-        let players = names.map { Player(name: $0) }
-
+        let pokerStud = PokerGame.Stud.sevenCard
+        let playerCount = 4
+        var players: [Player] = []
+        
         let pokerGame = PokerGame()
-        pokerGame.state.givePlayerCard = { index, _, card in
-            if index < names.count {
-                players[index].add(card: card)
+        
+        pokerGame.state.resetPokerBoard = { stud, names in
+            print("\(pokerStud.cardCount)카드 / 참가자 \(names.count - 1)명 일 때")
+            players = names.map {
+                Player(name: $0)
             }
+        }
+        
+        pokerGame.state.givePlayerCard = { index, _, card in
+            players[index].add(card: card)
         }
         
         pokerGame.state.pokerWinner = { winner in
@@ -42,11 +49,11 @@ class PokerGameTests: XCTestCase {
                 }
             }
             
-            print("승자는 \(names[winner.0]) 입니다!! (\(winner.1))")
+            print("승자는 \(winner.name) 입니다!!")
         }
         
-        pokerGame.action.inputPokerStud(.sevenCard)
-        pokerGame.action.inputPlayerCount(players.count - 1)
+        pokerGame.action.inputPokerStud(PokerGame.Stud.sevenCard)
+        pokerGame.action.inputPlayerCount(playerCount)
         pokerGame.action.pokerPlay()
     }
     
