@@ -39,6 +39,8 @@ class ViewController: UIViewController {
     }
     
     func setStudSelectionControl(){
+        playerCountSelectionControl.setTitleTextAttributes([.foregroundColor: UIColor.white], for: UIControl.State.normal)
+        playerCountSelectionControl.selectedSegmentTintColor = UIColor.lightText
         playerCountSelectionControl.center.x = self.view.center.x
         playerCountSelectionControl.center.y = self.view.center.y * CGFloat(0.2)
         for index in 0..<PokerGame.Count.allCases.count{
@@ -47,6 +49,8 @@ class ViewController: UIViewController {
     }
     
     func setPlayerCountSelectionControl(){
+        studSelectionControl.setTitleTextAttributes([.foregroundColor: UIColor.white], for: UIControl.State.normal)
+        studSelectionControl.selectedSegmentTintColor = UIColor.lightText
         studSelectionControl.center.x = self.view.center.x
         studSelectionControl.center.y = self.view.center.y * CGFloat(0.3)
         for index in 0..<PokerGame.Stud.allCases.count{
