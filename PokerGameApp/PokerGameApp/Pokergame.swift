@@ -7,11 +7,14 @@
 
 import Foundation
 struct PokerGame {
-    let dealer : Dealer
-    var players : Players
+    private let dealer : Dealer
+    private var players : Players
     private let stud : Stud
     private var playerCount : Int {
         return self.players.count
+    }
+    var remainCardCount : Int {
+        return dealer.cardDeckCount
     }
     
     init(stud: Stud, playerCount: PlayerCount) {

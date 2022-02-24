@@ -18,15 +18,13 @@ class CardDeckTest: XCTestCase {
     func testShuffleCardDeck() {
         var cardDeck1 = CardDeck()
         var cardDeck2 = CardDeck()
-        cardDeck1.shuffle()
         cardDeck2.shuffle()
-        XCTAssertNotEqual(cardDeck1, cardDeck2, "일치하지 않습니다.")
+        XCTAssertNotEqual(cardDeck1, cardDeck2, "섞이지 않았습니다.")
     }
     
     func testRemoveOneCardDeck() {
         var cardDeck = CardDeck()
         cardDeck.removeOne()
-        
         XCTAssertEqual(cardDeck.count, 51, "한장이 제거되지 않았습니다.")
     }
     
