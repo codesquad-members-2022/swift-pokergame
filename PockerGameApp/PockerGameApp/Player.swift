@@ -10,21 +10,21 @@ import Foundation
 class Player{
     private let name: String
     private var cards: [PockerCard] = []
+    var playerCardCount: Int{
+        return cards.count
+    }
     
     init(name: String){
         self.name = name
     }
     
-    func addCard(card: PockerCard){
+    func takeCard(card: PockerCard){
         self.cards.append(card)
     }
-    
-    func printName(){
-        print("\(name) \(cards.map{"\($0.shape)\($0.number)"})")
+}
+
+extension Player: CustomStringConvertible{
+    var description: String {
+        return "\(name) \(cards.map{"\($0.shape.description)\($0.number.description)"})"
     }
-    
-    func cardsNumber() -> Int{
-        return cards.count
-    }
-    
 }
