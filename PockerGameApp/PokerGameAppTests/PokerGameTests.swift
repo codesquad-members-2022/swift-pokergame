@@ -15,7 +15,8 @@ class PokerGameTests: XCTestCase {
     }
     
     func testDealerDeal() {
-        let testPlayers = (0..<5).map { _ in Player() }
+        let testNames = Player.getRandomPlayerNames(pick: 5)
+        let testPlayers = testNames.map { name in Player(name: name) }
         let testNumber = 5
         let dealer = Dealer(deck: CardDeck(), players: testPlayers)
         
@@ -23,7 +24,8 @@ class PokerGameTests: XCTestCase {
     }
     
     func testWithTooManyCards() {
-        let testPlayers = (0..<5).map { _ in Player() }
+        let testNames = Player.getRandomPlayerNames(pick: 5)
+        let testPlayers = testNames.map { name in Player(name: name) }
         let tooManyNumber = 10
         let dealer = Dealer(deck: CardDeck(), players: testPlayers)
         

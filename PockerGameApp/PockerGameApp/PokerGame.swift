@@ -17,19 +17,7 @@ struct PokerGame {
             throw PokerGameError.tooManyPlayer
         }
         
-        func getRandomCombinations(pick: Int, from array: [String]) -> [String] {
-            guard !array.isEmpty, pick > 0 else { return [] }
-            
-            let roll = Int.random(in: 0..<array.count)
-            let prefix = array[roll]
-            
-            if pick == 1 { return [prefix] }
-            let combinationOfRemains = getRandomCombinations(pick: pick-1, from: Array(array.dropFirst(roll)))
-            return [prefix] + combinationOfRemains
-        }
-        
-        let names = getRandomCombinations(pick: numberOfPlayers, from: Player.candidates)
-        
+        let names = Player.getRandomPlayerNames(pick: numberOfPlayers)
         let players = names.map { name in Player(name: name) }
         let dealer = Dealer(deck: CardDeck(), players: players)
         self.dealer = dealer
