@@ -28,7 +28,10 @@ class Card {
         self.shape = shape
     }
     
-    func getCardInfo() -> String {
+}
+
+extension Card: CustomStringConvertible {
+    var description: String {
         var info: String = ""
         switch shape {
         case Shape.spade:
