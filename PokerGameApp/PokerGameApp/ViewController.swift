@@ -87,20 +87,14 @@ class ViewController: UIViewController {
         
         for user in users{
             
-            let label: UILabel = UILabel()
-            label.frame = CGRect(x: initialXPosition, y: cardYPosition, width: 200, height: 30)
-            label.font = UIFont.systemFont(ofSize: 20)
-            label.textColor = UIColor.white
-            label.text = user.name
+            let label = createUserNameLabel(name: user.name, x: initialXPosition, y: initialXPosition)
             self.view.addSubview(label)
             self.labels.append(label)
             cardYPosition += label.frame.height
             
             for card in user.cards{
                 guard let image = UIImage(named: "\(card.description)") else { continue }
-                let imageView: UIImageView = UIImageView(frame: CGRect(x: cardXPosition, y: cardYPosition, width: cardWidth, height: cardHeight))
-                imageView.image = image
-                imageView.contentMode = .scaleAspectFit
+                let imageView = createCardImageView(image: image, x: cardXPosition, y: cardYPosition, width: cardWidth, height: cardHeight)
                 self.view.addSubview(imageView)
                 self.cardImageViews.append(imageView)
                 cardXPosition += cardWidth - CGFloat(10)
@@ -108,6 +102,22 @@ class ViewController: UIViewController {
             cardXPosition = initialXPosition
             cardYPosition += cardHeight + CGFloat(10)
         }
+    }
+    
+    private func createUserNameLabel(name: String, x: CGFloat, y: CGFloat) -> UILabel{
+        let label: UILabel = UILabel()
+        label.frame = CGRect(x: x, y: y, width: 200, height: 30)
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textColor = UIColor.white
+        label.text = name
+        return label
+    }
+    
+    private func createCardImageView(image: UIImage, x:CGFloat, y:CGFloat, width: CGFloat, height:CGFloat) -> UIImageView{
+        let imageView: UIImageView = UIImageView(frame: CGRect(x: x, y: y, width: width, height: height))
+        imageView.image = image
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }
     
     private func removePreviousCardImageViewsAndLabels(){
