@@ -11,26 +11,26 @@ import UIKit
 struct Players{
     static let playerNames: [String] = ["ebony","eddy","gucci","chez"]
     private var players: [Player] = []
-    var number: Int{
+    var count: Int{
         return players.count
     }
     
-    var playersCardCountSum: Int{
+    var allCardCount: Int{
         var answer = 0
-        for i in 0 ..< number{
-            answer += players[i].playerCardCount
+        for index in 0 ..< count{
+            answer += players[index].playerCardCount
         }
         return answer
     }
     
-    init(numbers: PockerGame.PlayerNumber){
-        for i in 0 ..< numbers.playerNumber{
-            players.append(Player(name: Players.playerNames[i]))
+    init(playerCount: PockerGame.PlayerCount){
+        for index in 0 ..< playerCount.getNumberOfPlayer(){
+            players.append(Player(name: Players.playerNames[index]))
         }
     }
     
     func takeCard(index: Int, card: PockerCard){
-        players[index].takeCard(card: card)
+        players[index].receiveCard(card: card)
     }
     
 }

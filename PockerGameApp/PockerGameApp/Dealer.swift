@@ -15,8 +15,12 @@ class Dealer: Player{
         super.init(name: "딜러")
     }
 
-    func takeCardFromDealer() -> PockerCard?{
-        return cardDeck.removeOne()
+    func giveCardToPlayer() -> PockerCard?{
+        switch cardDeck.removeOne(){
+        case .success(let card):
+            return card
+        case .failure(let error):
+            return nil
+        }
     }
-    
 }
