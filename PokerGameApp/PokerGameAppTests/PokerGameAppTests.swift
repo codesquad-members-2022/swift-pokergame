@@ -14,6 +14,12 @@ class PokerGameAppTests: XCTestCase {
     func testCardIsInitialized() {
         XCTAssertEqual(sut.count, 52, "Card is Not Initialized")
     }
+    
+    func testCardIsShuffled() {
+        let initialCardDeck = sut
+        sut.shuffle()
+        XCTAssertNotEqual(initialCardDeck, sut, "Card is Not Shuffled")
+    }
 
     override func setUpWithError() throws {
         try super.setUpWithError()
