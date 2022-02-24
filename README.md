@@ -486,3 +486,158 @@
 
 ---
 
+## 4. 게임로직 구현하기
+
+### 📌체크 리스트
+
+- [x] 게임에 참가하는 참가자, 딜러에 해당하는 클래스 구현
+- [x] 포커게임의 진행 시나리오를 관리하는 PokerGame 클래스 구현
+	- [x] 카드 게임 규칙과 참가자 수에 따라 다른 방식으로 카드를 뽑아 참가자에게 나눠주도록 설정
+- [x] PkerGame의 메서드의 동작을 확인하는 테스트 코드 추가
+
+
+
+---
+
+### 💻진행 과정
+
+1. 딜러에 해당하는 클래스를 만들었습니다. 
+
+	딜러는 초기화된 CardDeck을 가지고 있고, 자신만의 덱을 가지고 있습니다. 따라서 위의 2가지를 프로퍼티로 갖습니다. 또한 가지고 있는 프로퍼티들을 모두 `private` 접근제어자로 설정해놓기 위해서, 나중에 필요할 수 있을거라 생각되는, 딜러가 가지고 있는 CardDeck의 남은 카드 개수를 연산 프로퍼티로 가지도록 했습니다.
+
+	또한 딜러는 카드를 하나 선택해 게임 참가자들에게 나누어주어야 하기 때문에 `pickCard()` 메소드를 가지고, 딜러 또한 카드를 한 장 씩 받아 본인의 덱에 넣을 수 있어야 하므로 `receiveCard(_:)` 메소드를 가지도록 했습니다. 그리고 딜러가 카드를 직접 섞는다고 생각해서 `shuffleWholeDeck()` 메소드도 추가했습니다.
+
+	
+
+	(처음에는 Struct로 구현했으나, PokerGame 클래스를 구현할 때 해당 클래스의 프로퍼티로 Dealer를 가질텐데, 해당 프로퍼티는 상수 프로퍼티여야 할 것이라 판단했고, 상수 프로퍼티의 경우에 Struct로 구현된 경우에는 mutating한 메서드들을 사용할 수 없기 때문에 Class로 수정했습니다.)
+
+2. 참가자에 해당하는 클래스를 만들었습니다. 
+
+	딜러와 유사하지만, 좀 더 기능이 적기도 하고, 이름에 해당하는 프로퍼티를 가집니다. 그리고 본인의 덱 또한 프로퍼티로 가집니다. 메서드의 경우에는 이번 Step에서는 카드를 받는 메서드만 가진다고 가정하여 `receiveCard()` 메서드만 가지도록 했습니다.
+
+	
+
+3. 포커게임의 진행과 관련된 PokerGame 클래스를 구현했습니다. 
+
+	해당 클래스는 프로퍼티로 딜러와 참가자들, 그리고 게임 규칙(5카드 스터드/ 7카드 스터드)에 해당하는 프로퍼티를 가지고, 이번 Step에서는 카드를 나눠주도록 하는 메서드를 포함하도록 선언해주었습니다. 그리고 PokerGame의 init() 메서드에서는 사용자의 이름을 정해진 배열 내에서 랜덤으로 정해주고, Gamler의 수와 게임 규칙을 매개변수로 받도록 설정했습니다.
+
+	
+
+4. PokerGame 클래스에 있는 `distribute()` 메서드의 동작을 확인하기 위한 테스트코드를 작성했습니다.
+
+	해당 테스트 코드에서는 위의 메서드를 실행했을 때, 참가자와 딜러가 가지고 있는 각자의 덱의 카드의 개수를 합한 값과 게임 룰에 의해 각자가 가지고 있어야하는 카드의 개수와 같은지를 확인하도록 했습니다. 
+
+
+
+---
+
+### 🤔코드리뷰 후 추가 수정사항
+
+1. CardDeck 클래스의 `shuffle()` 메서드에서의 변수 count가 1인 경우는 어떻게 되나요?
+
+	원래 작성했던 shuffle() 메서드는 아래와 같았습니다.
+
+	```swift
+	public mutating func shuffle() { // Knuth Shuffle 로직 사용하여 구현
+	    let count = self.count
+	    
+	    for indexToSwap1 in 0..<count-1 {
+	        let indexToSwap2 = Int.random(in: indexToSwap1..<count)
+	        self.deck.swapAt(indexToSwap1, indexToSwap2)
+	    }
+	    if self.deck[count-1] == self.originDeck[count-1] {
+	        self.deck.swapAt(count-1, count-2)
+	    }
+	}
+	```
+
+	이전 코드 리뷰에서 해당 셔플 로직을 이용한 경우에는 index가 count-2까지만 섞이고 count-1은 안 섞일 확률도 존재할 것 같다고 판단하여 8~9번 줄을 추가했는데, 해당 줄에서 count == 1 인 경우에는 런타임 에러가 발생하는 문제가 생겼습니다. 따라서 이 부분을 수정하기 위해, 아래 8~9번 줄은 `count > 1 ` 인 조건을 추가했습니다.
+
+2. 항상 프로퍼티들은 private 접근제어를 우선적으로 생각해보세요
+
+	PokerGame은 추후에 앱의 UI를 만들때 필요하다고 프로퍼티에 대한 접근이 필요하다고 판단되어, PokerGame 클래스 외의 Gambler, Dealer, CardDeck의 프로퍼티들은 모두 private으로 수정했습니다.
+
+3. Gambler 이름에 대한 요구사항이 빠진거 같네요
+
+	Gambler의 이름을 검사하는 로직을 Gambler 클래스 초기화 메서드 내에 추가했습니다.
+
+	-> Gambler 클래스에 여러 책임이 생기는 것 같아, String를 extension하여 아래의 메서드를 추가했고, Gambler 메서드에서 해당 메서드들을 사용하도록 했습니다.
+
+	```swift
+	extension String {
+	    func isAvailable() -> Bool {
+	        let alphabetSet = CharacterSet.letters
+	        
+	        switch self.count {
+	            case ...1:
+	                return false
+	            case 2...5:
+	                return CharacterSet(charactersIn: self).isSubset(of: alphabetSet)
+	            default:
+	                let target = String(self.prefix(5))
+	                return CharacterSet(charactersIn: target).isSubset(of: alphabetSet)
+	        }
+	    }
+	    
+	    mutating func makeAvailable() {
+	        
+	        switch self.count {
+	            case 0:
+	                self = "JK"
+	            case 1:
+	                self = self + self
+	            case 2...5:
+	                self = "JK"
+	            default:
+	                self = String(self.prefix(5))
+	        }
+	    }
+	}
+	```
+
+4. 속성을 구할 때도 구문 내부에 이렇게 표현식을 넣는 것은 읽기 어렵습니다. 분리해도 좋은 표현 같습니다.
+
+	아래의 코드처럼 분리해서 표현식을 나누었습니다.
+
+	```swift
+	// let newGambler = Gambler(name: nameArray.remove(at: (0..<nameArray.count).randomElement() ?? 0))
+	let pickedIndex = (0..<nameArray.count).randomElement() ?? 0
+	let pickedName = nameArray.remove(at: pickedIndex)
+	let newGambler = Gambler(name: pickedName)
+	```
+
+
+
+---
+
+### 📝강의 후 추가추가 수정한 사항
+
+- 상위 모듈의 메서드에 많은 내용을 넣기 보다는, 상위 모듈의 메서드는 하위 모듈에게 지시 정도만 하고 하위 모듈에서 해당하는 동작들을 처리하는게 더 좋은 설계라고 말씀해주신 내용을 듣고, PokerGame 클래스에서의 `distributeCard()` 메서드에서는 딜러에게 `~에게 ~방식으로 카드를 분배하라` 라고 지시만 하도록 하고, 카드를 분배하는 코드를 Dealer 클래스에 `distributeCard(to:in:)` 메서드를 추가하여 옮겼습니다. 
+
+	그리고 Dealer 클래스 내에서 카드를 배분하다보니, `pickCard()` 메서드는 public할 필요가 없어져 private으로 고쳤고, `receiveCard()` 메서드는 필요없어져서 제거했습니다.
+
+	Dealer 클래스에 새로 생긴 `distributeCard(to:in:)` 메서드는 아래와 같습니다.
+
+	```swift
+	// PokerGame 클래스의 distributeCard() 메서드는 바로 밑의 주석처럼 변경했습니다.
+	/* public func distributeCard() {
+	    dealer.distributeCard(to: gamblers, in: gameRule)
+	   } */
+	
+	public func distributeCard(to gamblers: [Gambler], in rule: GameRule) {
+	    guard wholeDeck.count >= rule.numberOfCard * (gamblers.count + 1) else { return }
+	    shuffleWholeDeck()
+	    for _ in 0..<rule.numberOfCard {
+	        for index in 0..<gamblers.count {
+	            guard let newCard = pickCard() else { return }
+	            gamblers[index].receiveCard(newCard)
+	        }
+	        guard let newCard = pickCard() else { return }
+	        cardDeck.append(newCard)
+	    }
+	}
+	```
+
+	
+
+	
