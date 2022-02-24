@@ -10,20 +10,28 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var logTextView: UITextView!
+    @IBOutlet weak var algorithmControl: UISegmentedControl!
     
-    let CARD_INSET: CGFloat = 3
-    let CARD_COUNT = 5
-    var cards: [UIImageView]!
+    private var shuffleAlgorithm: CardDeck.ShuffleAlgorithms = .FisherYates
     
-    let bgImageName = "bg_pattern"
-    let cardImageName = "card-back"
+    private let CARD_INSET: CGFloat = 3
+    private let CARD_COUNT = 5
+    private var cards: [UIImageView]!
     
-    var readableFrame: CGRect!
+    private let bgImageName = "bg_pattern"
+    private let cardImageName = "card-back"
     
-    var deck = CardDeck()
+    private var readableFrame: CGRect!
+    
+    private var deck = CardDeck()
+    
+    private var endOfRange: UITextRange? {
+        logTextView.textRange(from: logTextView.endOfDocument, to: logTextView.endOfDocument)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        logTextView.delegate = self
         
         if let bgPattern = UIImage.init(named: bgImageName) {
             self.view.backgroundColor = UIColor.init(patternImage: bgPattern)
@@ -64,24 +72,55 @@ class ViewController: UIViewController {
         stackView.frame.size.height = cardWidth * 1.27
     }
     
+    @IBAction func algorithmControlValueChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0: shuffleAlgorithm = .FisherYates
+        case 1: shuffleAlgorithm = .Knuth
+        default: shuffleAlgorithm = .Ordinary
+        }
+    }
     @IBAction func countButtonTouchUpInside(_ sender: UIButton) {
-        let result = deck.count()
+        var text = "> 카드의 총 갯수\n"
+        text += "총 \(deck.count())장의 카드가 있습니다.\n"
+        setLog(text: text)
     }
     
     @IBAction func shuffleButtonTouchUpInside(_ sender: UIButton) {
-        deck.shuffle()
+        deck.shuffle(using: shuffleAlgorithm)
+        
+        var text = "> 카드 섞기(\(shuffleAlgorithm.rawValue))\n"
+        text += "전체 \(deck.count())장의 카드를 섞었습니다.\n"
+        setLog(text: text)
     }
     
     @IBAction func removeOneButtonTouchUpInside(_ sender: UIButton) {
-        deck.removeOne() // mutating 함수를 호출하니 deck 구조체가 let 이면 안된다고 해서 var 로 바꿈
+        let card = deck.removeOne()
+        
+        var text = "> 카드 하나 뽑기\n"
+        text += "\(card != nil ? String(describing: card!) : "카드가 존재하지 않습니다.")\n"
+        text += "총 \(deck.count())장의 카드가 남아있습니다.\n"
+        setLog(text: text)
     }
     
     @IBAction func resetButtonTouchUpInside(_ sender: UIButton) {
         deck.reset()
+        
+        var text = "> 카드 초기화\n"
+        text += "총 \(deck.count())장의 카드가 남아있습니다.\n"
+        setLog(text: text)
     }
     
     private func alert(with message: String) {
         UIAlertController.alert(with: "값은 아래와 같습니다", at: self)
+    }
+    
+    // UITextView.text를 변경해도 UITextViewDelegate의 메소드들이 실행되지 않아
+    // UITextView.replace() 메소드를 이용하였습니다.
+    // TextView의 range가 필요한 메소드라 아래와 같이 처리하였습니다.
+    private func setLog(text: String) {
+        if let endOfRange = logTextView.textRange(from: logTextView.endOfDocument, to: logTextView.endOfDocument) {
+            logTextView.replace(endOfRange, withText: text)
+        }
     }
 }
 
@@ -97,3 +136,18 @@ extension UIAlertController {
         viewController.show(alert, sender: nil)
     }
 }
+
+extension ViewController: UITextViewDelegate {
+    
+    // 텍스트 뷰가 바뀔 경우 맨 밑으로 스크롤을 내리도록 조치하였습니다.
+    func textViewDidChange(_ textView: UITextView) {
+        
+        textView.text += "\n"
+        
+        textView.scrollRectToVisible(
+            CGRect(origin: textView.contentOffset, size: textView.contentSize),
+            animated: true
+        )
+    }
+}
+

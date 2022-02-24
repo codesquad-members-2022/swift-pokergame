@@ -20,7 +20,7 @@
                                 <rect key="frame" x="107" y="298" width="200" height="300"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nvw-mj-Blr">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="66"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="50.5"/>
                                         <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Count">
@@ -30,8 +30,19 @@
                                             <action selector="countButtonTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J6s-BR-ScP"/>
                                         </connections>
                                     </button>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZTp-C4-6Zf">
+                                        <rect key="frame" x="0.0" y="62.5" width="200" height="51.5"/>
+                                        <segments>
+                                            <segment title="F&amp;Y"/>
+                                            <segment title="Knuth"/>
+                                            <segment title="Ordinary"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="algorithmControlValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="2To-55-cgc"/>
+                                        </connections>
+                                    </segmentedControl>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oLg-hR-5Gx">
-                                        <rect key="frame" x="0.0" y="78" width="200" height="66"/>
+                                        <rect key="frame" x="0.0" y="125" width="200" height="50"/>
                                         <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Shuffle">
@@ -42,7 +53,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VaU-y6-iLq">
-                                        <rect key="frame" x="0.0" y="156" width="200" height="66"/>
+                                        <rect key="frame" x="0.0" y="187" width="200" height="50.5"/>
                                         <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="RemoveOne">
@@ -53,7 +64,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5Z-p5-JKx">
-                                        <rect key="frame" x="0.0" y="234" width="200" height="66"/>
+                                        <rect key="frame" x="0.0" y="249.5" width="200" height="50.5"/>
                                         <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Reset">
@@ -69,8 +80,8 @@
                                     <constraint firstAttribute="width" constant="200" id="MuE-hG-5bR"/>
                                 </constraints>
                             </stackView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ehH-oW-vxJ">
-                                <rect key="frame" x="16" y="642" width="382" height="220"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="scrollableAxes" indicatorStyle="white" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ehH-oW-vxJ">
+                                <rect key="frame" x="16" y="630" width="382" height="220"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -81,14 +92,15 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ehH-oW-vxJ" secondAttribute="trailing" constant="16" id="3dw-8B-bH2"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ehH-oW-vxJ" secondAttribute="bottom" id="AbR-5D-zsz"/>
-                            <constraint firstItem="ehH-oW-vxJ" firstAttribute="top" secondItem="obd-di-QIf" secondAttribute="bottom" constant="44" id="BeR-If-TNT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ehH-oW-vxJ" secondAttribute="bottom" constant="12" id="AbR-5D-zsz"/>
+                            <constraint firstItem="ehH-oW-vxJ" firstAttribute="top" secondItem="obd-di-QIf" secondAttribute="bottom" constant="32" id="BeR-If-TNT"/>
                             <constraint firstItem="obd-di-QIf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="L0I-tZ-Rgc"/>
                             <constraint firstItem="obd-di-QIf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ab1-Un-IfZ"/>
                             <constraint firstItem="ehH-oW-vxJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="hLd-ju-AYE"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="algorithmControl" destination="ZTp-C4-6Zf" id="1J5-tU-xEJ"/>
                         <outlet property="logTextView" destination="ehH-oW-vxJ" id="Tqf-ye-rnH"/>
                     </connections>
                 </viewController>
