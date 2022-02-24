@@ -24,6 +24,7 @@
 		1BEB002227C332C1005738B5 /* PokerGameAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB002127C332C1005738B5 /* PokerGameAppUITestsLaunchTests.swift */; };
 		1BEB002F27C33583005738B5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1BEB002E27C33583005738B5 /* README.md */; };
 		1BEBFFFF27C332BF005738B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEBFFFE27C332BF005738B5 /* AppDelegate.swift */; };
+		1BF3F4DA27C7755A0086FFB0 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF3F4D927C7755A0086FFB0 /* CardDeck.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		1BEB002E27C33583005738B5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		1BEBFFFB27C332BF005738B5 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEBFFFE27C332BF005738B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1BF3F4D927C7755A0086FFB0 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				1BEBFFFE27C332BF005738B5 /* AppDelegate.swift */,
+				1BF3F4D927C7755A0086FFB0 /* CardDeck.swift */,
 				1BEB000027C332BF005738B5 /* SceneDelegate.swift */,
 				1BEB000227C332BF005738B5 /* ViewController.swift */,
 				1B55D93027C5013800001B52 /* Card.swift */,
@@ -313,6 +316,7 @@
 			files = (
 				1B55D93927C51AB600001B52 /* CardFactory.swift in Sources */,
 				1BAF190D27C6298500317699 /* Card+Extension.swift in Sources */,
+				1BF3F4DA27C7755A0086FFB0 /* CardDeck.swift in Sources */,
 				1B55D93127C5013800001B52 /* Card.swift in Sources */,
 				1BEB000327C332BF005738B5 /* ViewController.swift in Sources */,
 				1BEBFFFF27C332BF005738B5 /* AppDelegate.swift in Sources */,
