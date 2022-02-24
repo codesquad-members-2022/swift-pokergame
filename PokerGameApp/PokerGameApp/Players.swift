@@ -17,9 +17,10 @@ struct Players {
         self.players.append(player)
     }
     
-    func eachReceive(card: Card) {
+    func eachReceive(cards: [Card]) {
+        var cards = cards
         for player in players {
-            player.receiveCard(card: card )
+            player.receiveCard(card: cards.removeFirst() )
         }
     }
     
