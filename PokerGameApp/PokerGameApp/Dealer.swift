@@ -31,14 +31,13 @@ class Dealer {
         //2. 참가자들에게 카드 분배
         var result = [Player]()
         for player in players {
-            var p = player
             for _ in 0..<stud.rawValue {
                 guard let removedCard = cardDeck.removeOne() else {
                     continue
                 }
-                p.handOver(cards: [removedCard])
+                player.handOver(cards: [removedCard])
             }
-            result.append(p)
+            result.append(player)
         }
         return result
     }
