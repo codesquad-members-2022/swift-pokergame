@@ -7,21 +7,20 @@
 
 import Foundation
 struct PokerGame {
-    var cardDeckCount : Int {
-        return cardDeck.count
-    }
     private var cardDeck : CardDeck = CardDeck()
     private let dealer : Dealer
     private var players : [Player] = []
     private let stud : Stud
-    private let playerCount : Int
+    private var playerCount : Int {
+        return self.players.count
+    }
+    
     init(stud: Stud, playerCount: PlayerCount) {
         self.stud = stud
-        let playerCount = playerCount.rawValue
         self.dealer = Dealer(cardDeck: cardDeck)
-        self.playerCount = playerCount + 1
         seatPlayer(playerCount: playerCount)
     }
+    
     mutating func play() {
         drawCard(each: self.stud.rawValue)
         while cardDeck.count != 0 {
@@ -29,7 +28,7 @@ struct PokerGame {
         }
     }
     
-    func drawCard(each : Int) {
+    private func drawCard(each : Int) {
         for _ in 0..<each {
             for player in players {
                 guard let drawedCard = dealer.draw() else {break}
@@ -37,10 +36,11 @@ struct PokerGame {
             }
         }
     }
-    private mutating func seatPlayer(playerCount : Int) {
+    
+    private mutating func seatPlayer(playerCount : PlayerCount) {
         var playerName = PlayerName()
         self.players.append(dealer)
-        for _ in 0..<playerCount {
+        for _ in 0..<playerCount.rawValue {
             let name = playerName.popName()
             self.players.append(Player(name: name))
         }
@@ -52,6 +52,7 @@ struct PokerGame {
         case three
         case four
     }
+    
     enum Stud : Int {
         case sevenCard = 7
         case fiveCard = 5
