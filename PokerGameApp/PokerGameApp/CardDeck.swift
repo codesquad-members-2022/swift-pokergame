@@ -40,7 +40,7 @@ struct CardDeck {
     
     
     mutating func removeOne() -> Card? {
-        return count != 0 ? cards.remove(at: Int.random(in: 0..<count)) : nil
+        return cards.popLast()
     }
     
     
