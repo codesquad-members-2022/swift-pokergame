@@ -49,28 +49,36 @@ class ViewController: UIViewController {
     func cardDeckTestScenario() {
         print("카드 초기화 >")
         var cardDeck = CardDeck()
-        print("카드 전체를 초기화했습니다.")
-        print("총 \(cardDeck.count())장의 카드가 있습니다.")
+        
+        if cardDeck.count == 52 {
+            print("카드 전체를 초기화했습니다.")
+            print("총 \(cardDeck.count)장의 카드가 있습니다.")
+        } else { print("카드초기화에 실패했습니다.") }
+
         
         print()
         
         print("카드 섞기 >")
         cardDeck.shuffle()
-        print("전체 \(cardDeck.count())장의 카드를 섞었습니다.")
+        print("전체 \(cardDeck.count)장의 카드를 섞었습니다.")
         
         print()
         
         print("카드 하나뽑기 >")
+        let previousCount = cardDeck.count
         print(cardDeck.removeOne())
-        print("총 \(cardDeck.count())장의 카드가 남았습니다.")
+        if previousCount-1 == (cardDeck.count) {
+            print("총 \(cardDeck.count)장의 카드가 남았습니다.")
+        } else { print("카드 뽑기에 실패했습니다.") }
         
         print()
         
         print("카드 리셋 >")
         cardDeck.reset()
-        print("총 \(cardDeck.count())장의 카드가 있습니다.")
-        
-        
+        if cardDeck.count == 52 {
+            print("총 \(cardDeck.count)장의 카드가 있습니다.")
+        } else { print("카드 리셋에 실패했습니다.") }
+
     }
 
 
