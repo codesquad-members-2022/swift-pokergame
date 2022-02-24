@@ -11,8 +11,8 @@ struct Player {
     private(set) var cards = [Card]()
     private let name: String
     
-    init() {
-        self.name = "rosa"
+    init(name: String) {
+        self.name = name
     }
 
     mutating func handOver(cards: [Card]) {
