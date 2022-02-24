@@ -13,34 +13,6 @@ class PockerGame: CustomStringConvertible{
         case five = 5
         case seven = 7
     }
-
-    internal class Player: CustomStringConvertible{
-        var name: String
-        fileprivate (set) var cards: [Card] = []
-        var description: String{
-            return "\(name) \(cards)"
-        }
-        
-        init(_ name: String){
-            self.name = name
-        }
-        
-        func addCard(_ card: Card){
-            self.cards.append(card)
-        }
-    }
-
-    internal class Dealer: Player{
-
-        init() {
-            super.init("딜러")
-        }
-        
-        func handOutCard(stud: Int)-> Card?{
-            guard let card = self.cards.popLast() else { return nil }
-            return card
-        }
-    }
     
     private var randomNames = ["dale","eddy","jee","foucault","sol"]
     private (set) var stud: Stud
@@ -91,7 +63,7 @@ class PockerGame: CustomStringConvertible{
         for _ in 0..<stud.rawValue{
             for index in 0..<players.count{
                 guard let card = dealer.handOutCard(stud: stud.rawValue) else { continue }
-                players[index].getCard(card)
+                players[index].addCard(card)
             }
         }
     }
