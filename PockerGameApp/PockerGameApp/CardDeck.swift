@@ -64,5 +64,5 @@ struct CardDeck{
 }
 
 enum CardDeckError: Error{
-    case nonCardInDeck
+    case cardDeckEmpty
 }
