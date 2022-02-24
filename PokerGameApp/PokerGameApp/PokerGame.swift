@@ -9,14 +9,14 @@ import Foundation
 
 class PokerGame {
     private let stud: Stud
-    private let participantCount: ParticipantCount
+    private let playerCount: PlayerCount
     private let gameDealer: Dealer
     private let players: [Player]
     
-    init(stud: Stud, participantCount: ParticipantCount) {
+    init(stud: Stud, playerCount: PlayerCount) {
         self.stud = stud
-        self.participantCount = participantCount
         self.gameDealer = Dealer(stud: stud)
         self.players = ParticipantFactory.generateParcipants(count: participantCount)
+        self.playerCount = playerCount
     }
 }
