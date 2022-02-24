@@ -17,6 +17,7 @@ struct Card : Equatable {
         case clover = "♣️"
         case diamond = "♦️"
     }
+    
     enum Number : String, CustomStringConvertible, CaseIterable {
         var description: String {
             return rawValue
@@ -35,16 +36,19 @@ struct Card : Equatable {
         case Q
         case K
     }
+    
     let shape : Shape
     let number : Number
     init(shape : Shape, number: Number) {
         self.shape = shape
         self.number = number
     }
+    
 }
 
 extension Card: CustomStringConvertible {
     var description: String {
         return "\(shape)\(number)"
     }
+    
 }
