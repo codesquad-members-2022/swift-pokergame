@@ -23,6 +23,9 @@
                                     <segment title="First"/>
                                     <segment title="Second"/>
                                 </segments>
+                                <connections>
+                                    <action selector="studOptionSelected:" destination="BYZ-38-t0r" eventType="valueChanged" id="MQy-Bp-wnC"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="SFS-sm-91s">
                                 <rect key="frame" x="122" y="196" width="131" height="32"/>
@@ -32,6 +35,9 @@
                                     <segment title="Second"/>
                                     <segment title="Third"/>
                                 </segments>
+                                <connections>
+                                    <action selector="playerCountSelected:" destination="BYZ-38-t0r" eventType="valueChanged" id="DiV-cO-Frl"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
