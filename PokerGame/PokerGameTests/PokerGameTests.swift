@@ -18,6 +18,7 @@ class PokerGameTests: XCTestCase {
         
         case noScore, one, two, triple, four, straight
         
+        @discardableResult
         func getCard(pattern: [Card.Pattern], numbers: [Card.Number]) -> [Card] {
             switch self {
             case .noScore:
@@ -228,31 +229,24 @@ class PokerGameTests: XCTestCase {
     }
     
     func testCardDeckReset() {
-        let removeCount = 3
         let cardDeck = CardDeck()
+        
+        let removeCount = 3
         (0..<removeCount).forEach { _ in
             guard let _ = cardDeck.removeOne() else {
                 return
             }
         }
+        
         XCTAssertEqual(cardDeck.count, 52 - removeCount)
         cardDeck.reset()
-        XCTAssertEqual(cardDeck.count, 52)
+        XCTAssertEqual(cardDeck.count, 52, "카드덱 리셋이 안됬습니다")
     }
     
     func testCardDeckRemoveOne() {        
         let cardDeck = CardDeck()
-        var removedCards = [Card]()
-        (0..<52).forEach { _ in
-            guard let card = cardDeck.removeOne() else {
-                return
-            }
-            
-            removedCards.forEach {
-                XCTAssertFalse($0 == card, "중복된 카드가 뽑혔습니다")
-            }
-            removedCards.append(card)
-        }
+        cardDeck.removeOne()
+        XCTAssertEqual(cardDeck.count, 51, "카드가 제거되지 않았습니다")
     }
     
     func testCardDeckShuffle() {

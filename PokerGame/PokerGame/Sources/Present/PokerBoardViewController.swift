@@ -12,9 +12,7 @@ class PokerBoardViewController: UIViewController {
         
     let pokerOptionView = PokerOptionView()
     let playerCardStackView = UIStackView()
-    let playerCardViews = [PlayerCardView(), PlayerCardView(),
-                           PlayerCardView(), PlayerCardView(),
-                           PlayerCardView()]
+    let playerCardViews = (0...PokerPlayers.Count.max.index).map { _ in PlayerCardView() }
     
     let pokerGame = PokerGame()
     

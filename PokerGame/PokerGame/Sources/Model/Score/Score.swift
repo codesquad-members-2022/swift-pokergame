@@ -8,7 +8,6 @@
 import Foundation
 
 class Score: CustomStringConvertible, Comparable {
-    
     let rule: Rule
     let highNumber: Card.Number
     
