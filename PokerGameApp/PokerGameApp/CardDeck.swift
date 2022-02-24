@@ -7,7 +7,12 @@
 
 import Foundation
 
-struct CardDeck {
+struct CardDeck: Equatable {
+    static func == (lhs: CardDeck, rhs: CardDeck) -> Bool {
+        return lhs.description == rhs.description
+    }
+    
+    
     private let initialCards: [Card]
     private var cards: [Card]
     var count: Int {
