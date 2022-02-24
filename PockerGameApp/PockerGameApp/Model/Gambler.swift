@@ -13,28 +13,47 @@ class Gambler {
     private var cardDeck: [Card]
     
     init(name: String) {
-        let alphabetSet = CharacterSet.letters
-        var newName = ""
-        if name.count > 5 {
-            newName = String(Array(name)[0...4])
-        } else if name.count < 2 {
-            newName = name
-            while newName.count < 2 {
-                newName += name
-            }
-        } else {
-            newName = name
+        var name = name
+        
+        if !name.isAvailable() {
+            name.makeAvailable()
         }
-        if CharacterSet(charactersIn: newName).isSubset(of: alphabetSet) {
-            self.name = newName
-        } else {
-            self.name = "JK"
-        }
-    
+        
+        self.name = name
         self.cardDeck = [Card]()
     }
     
     public func receiveCard(_ card: Card) {
         self.cardDeck.append(card)
+    }
+}
+
+extension String {
+    func isAvailable() -> Bool {
+        let alphabetSet = CharacterSet.letters
+        
+        switch self.count {
+            case ...1:
+                return false
+            case 2...5:
+                return CharacterSet(charactersIn: self).isSubset(of: alphabetSet)
+            default:
+                let target = String(self.prefix(5))
+                return CharacterSet(charactersIn: target).isSubset(of: alphabetSet)
+        }
+    }
+    
+    mutating func makeAvailable() {
+        
+        switch self.count {
+            case 0:
+                self = "JK"
+            case 1:
+                self = self + self
+            case 2...5:
+                self = "JK"
+            default:
+                self = String(self.prefix(5))
+        }
     }
 }
