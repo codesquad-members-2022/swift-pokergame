@@ -63,7 +63,7 @@ class PokerGame {
         dealer.removeAllCard()
         dealer.cardShuffle()
         
-        if dealer.cardCount < (pokerPlayers.count + 1) * pokerStud.cardCount {
+        if dealer.hasRemainCardCount(stud: pokerStud, playerCount: pokerPlayers.count) {
             self.state.finishPoker()
             return
         }
