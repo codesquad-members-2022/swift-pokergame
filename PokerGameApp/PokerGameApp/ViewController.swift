@@ -69,20 +69,23 @@ class ViewController: UIViewController {
         let cardWidth = (self.view.bounds.width - cardMargin*(cardsCount+1))/cardsCount
         let cardHeight = cardWidth*CGFloat(1.27)
         var cardXPosition = cardMargin
-        var cardYPosition = CGFloat(studSelectionControl.center.y * 1.4)
+        var cardYPosition = CGFloat(studSelectionControl.center.y * 1.3)
         
-        for player in game.players{
+        var users: [Player] = game.players
+        users.append(game.dealer)
+        
+        for user in users{
             
             let label: UILabel = UILabel()
             label.frame = CGRect(x: cardMargin, y: cardYPosition, width: 200, height: 30)
             label.font = UIFont.systemFont(ofSize: 20)
             label.textColor = UIColor.white
-            label.text = player.name
+            label.text = user.name
             self.view.addSubview(label)
             self.labels.append(label)
             cardYPosition += label.frame.height
             
-            for card in player.cards{
+            for card in user.cards{
                 guard let image = UIImage(named: "\(card.description)") else { continue }
                 let imageView: UIImageView = UIImageView(frame: CGRect(x: cardXPosition, y: cardYPosition, width: cardWidth, height: cardHeight))
                 imageView.image = image
