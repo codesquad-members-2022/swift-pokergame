@@ -6,28 +6,14 @@
 //
 
 //Card의 정보를 한번에 담아서 출력하고자 Struct를 선언하고 그안에 Suit와 Rank Enum을 넣었다.
-//Test에서 비교를 하기 위해 Equatable 프로토콜을 사용했다.
-struct Card:CustomStringConvertible, Equatable{
+struct Card:CustomStringConvertible{
     
     var description: String {
         return "\(suit)\(rank)"
     }
     
-    //Deck을 만드는 메서드.
-    //Deck클래스의 init에서 선언하기에 코드가 길어져서 하나의 함수로 묶어보았다.
-    static func makeDeck() -> [Card] {
-        var deck:[Card] = [Card]()
-        for suit in Card.Suit.allCases {                                                    //문양 별로 1...13까지 숫자를 넣습니다.
-            let suitForAllRank = Card.Rank.allCases.map { Card(suit: suit, rank: $0) }      //문양이 가질수 있는 모든 Rank를 포함하고 있기 때문에 suitForAllRank라고 지었습니다.
-            deck.append(contentsOf: suitForAllRank)
-        }
-        return deck
-    }
-    
-    
-    //생성할때 값을 넣지 않으면 초기값으로 랜덤한 값을 가지도록 하기 위해 선언했다.
-    var suit:Suit = Suit.initSuit
-    var rank:Rank = Rank.initRank
+    var suit:Suit
+    var rank:Rank
     
     //카드의 모양(suit)를 나타내줄 Enum
     //카드의 모양은 총 네가지로 고정되어 있으므로 예외처리를 원활하게 하기 위해서 Enum으로 설정한다.
@@ -43,11 +29,6 @@ struct Card:CustomStringConvertible, Equatable{
         case diamond = "♦️"
         case clover = "♣️"
         
-        
-        //랜덤 값을 뽑아내는 프로퍼티, 생성할때 값을 넣지 않으면 랜덤으로 값을 가지도록 하기 위해 선언했다.
-        static var initSuit:Card.Suit {
-            Suit.allCases.randomElement() ?? .heart
-        }
     }
     
     //카드의 Rank(숫자)를 나타내줄 Enum
@@ -81,10 +62,6 @@ struct Card:CustomStringConvertible, Equatable{
             case .king: return "K"
             default: return String(self.rawValue)
             }
-        }
-        
-        static var initRank:Rank {
-            Rank.allCases.randomElement() ?? .king
         }
     }
 }
