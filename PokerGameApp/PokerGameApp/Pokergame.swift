@@ -11,14 +11,13 @@ struct PokerGame {
     var cardDeckCount : Int {
         return cardDeck.count
     }
-    var dealer : Dealer
-    var players : [Player] = []
-    let stud : Stud
-    let playerCount : Int
+    private var dealer : Dealer
+    private var players : [Player] = []
+    private let stud : Stud
+    private let playerCount : Int
     init(stud: Stud, playerCount: PlayerCount) {
         self.stud = stud
         self.dealer = Dealer(cardDeck: cardDeck)
-        //playerCount에 딜러 인원 추가
         self.players.append(dealer)
         self.playerCount = playerCount.rawValue + 1
         var playerName = PlayerName()
