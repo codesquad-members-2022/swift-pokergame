@@ -13,10 +13,10 @@ class PokerOptionView: UIView {
     let menuStackView = UIStackView()
     
     let typeView = UIStackView()
-    let typeButtons = PokerGame.Stud.allCases.map { PokerStudButton(pokerStud: $0) } 
+    let typeButtons = PokerGame.Stud.allCases.map { _ in UIButton() }
     
     let playerView = UIStackView()
-    var playerButtons = (0..<PokerPlayers.Constants.limitCount).map { PlayerButton(playerCount: $0 + 1) }
+    var playerButtons = (0..<PokerPlayers.Constants.limitCount).map { _ in UIButton() }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,20 +31,15 @@ class PokerOptionView: UIView {
     private func initialize() {
         attribute()
         
-        typeButtons
-            .filter{ $0.pokerStud == PokerGame.Constants.defaultPokerStud }
-            .first?.isEnabled = false
-        
-        playerButtons
-            .filter{ $0.playerCount == PokerPlayers.Constants.defaultCount}
-            .first?.isEnabled = false
+        typeButtons[PokerGame.Constants.defaultPokerStud.index].isEnabled = false
+        playerButtons[PokerPlayers.Constants.defaultCount - 1].isEnabled = false
     }
     
     func bind(pokerGame: PokerGame) {
         typeButtons.enumerated().forEach { index, button in
             let action = UIAction(handler: { sender in
                 self.switchToggleButton(buttons: self.typeButtons, at: index)
-                pokerGame.action.inputPokerStud(button.pokerStud)
+                pokerGame.action.inputPokerStud(PokerGame.Stud.allCases[index])
             })
             button.addAction(action, for: .touchUpInside)
         }
@@ -52,7 +47,7 @@ class PokerOptionView: UIView {
         playerButtons.enumerated().forEach { index, button in
             let action = UIAction(handler: { sender in
                 self.switchToggleButton(buttons: self.playerButtons, at: index)
-                pokerGame.action.inputPlayerCount(button.playerCount)
+                pokerGame.action.inputPlayerCount(index + 1)
             })
             button.addAction(action, for: .touchUpInside)
         }
@@ -73,7 +68,8 @@ class PokerOptionView: UIView {
             $1.setBackgroundImage(UIImage(named: "buttonBg"), for: .disabled)
             $1.setTitleColor(.black, for: .disabled)
             $1.setTitleColor(.white, for: .normal)
-            $1.setTitle("\($1.pokerStud.cardCount) Cards", for: .normal)
+            let stud = PokerGame.Stud.allCases[$0]
+            $1.setTitle("\(stud.cardCount) Cards", for: .normal)
             $1.titleLabel?.font = .systemFont(ofSize: 15)
         }
         
