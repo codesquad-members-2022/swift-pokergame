@@ -13,7 +13,7 @@ class PokerOptionView: UIView {
     let menuStackView = UIStackView()
     
     let typeView = UIStackView()
-    let typeButtons = PokerGame.Stud.allCases.map { PokerTypeButton(pokerType: $0) }
+    let typeButtons = PokerGame.Stud.allCases.map { PokerStudButton(pokerStud: $0) }
     
     let playerView = UIStackView()
     var playerButtons = (0..<PokerPlayers.Constants.limitCount).map { PlayerButton(playerCount: $0 + 1) }
@@ -32,7 +32,7 @@ class PokerOptionView: UIView {
         attribute()
         
         typeButtons
-            .filter{ $0.pokerType == PokerGame.Constants.defaultType }
+            .filter{ $0.pokerStud == PokerGame.Constants.defaultPokerStud }
             .first?.isEnabled = false
         
         playerButtons
@@ -44,7 +44,7 @@ class PokerOptionView: UIView {
         typeButtons.enumerated().forEach { index, button in
             let action = UIAction(handler: { sender in
                 self.switchToggleButton(buttons: self.typeButtons, at: index)
-                pokerGame.action.inputPokerType(button.pokerType)
+                pokerGame.action.inputPokerStud(button.pokerStud)
             })
             button.addAction(action, for: .touchUpInside)
         }
@@ -73,7 +73,7 @@ class PokerOptionView: UIView {
             $1.setBackgroundImage(UIImage(named: "buttonBg"), for: .disabled)
             $1.setTitleColor(.black, for: .disabled)
             $1.setTitleColor(.white, for: .normal)
-            $1.setTitle("\($1.pokerType.cardCount) Cards", for: .normal)
+            $1.setTitle("\($1.pokerStud.cardCount) Cards", for: .normal)
             $1.titleLabel?.font = .systemFont(ofSize: 15)
         }
         
