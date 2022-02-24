@@ -19,3 +19,5 @@ class Player {
         cards.forEach { self.cards.append($0) }
     }
 }
+
+class Guest: Player {}

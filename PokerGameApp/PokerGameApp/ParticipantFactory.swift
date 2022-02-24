@@ -8,16 +8,16 @@
 import Foundation
 
 struct ParticipantFactory {
-    static func generateParcipants(count: PlayerCount) -> [Player] {
-        var parcipants = [Player]()
+    static func generateGuests(count: GuestCount) -> [Guest] {
+        var guests = [Guest]()
         for _ in 0..<count.rawValue {
             guard let randomName = PersonName.allCases.randomElement() else {
                 continue
             }
-            let player = Player(name: randomName.rawValue)
-            parcipants.append(player)
+            let guest = Guest(name: randomName.rawValue)
+            guests.append(guest)
         }
-        return parcipants
+        return guests
     }
     
     enum PersonName: String,CaseIterable {

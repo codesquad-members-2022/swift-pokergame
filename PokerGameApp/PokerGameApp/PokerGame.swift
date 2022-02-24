@@ -9,24 +9,24 @@ import Foundation
 
 class PokerGame {
     private let stud: Stud
-    private let playerCount: PlayerCount
+    private let guestCount: GuestCount
     private let gameDealer: Dealer
     private let team: Team
     
-    init(stud: Stud, playerCount: PlayerCount) {
+    init(stud: Stud, guestCount: GuestCount) {
         self.stud = stud
-        self.playerCount = playerCount
+        self.guestCount = guestCount
         let dealer = Dealer(name: "딜러", stud: stud)
         self.gameDealer = dealer
-        self.team = Team(playerCount: playerCount, dealer: dealer)
+        self.team = Team(guestCount: guestCount, dealer: dealer)
     }
 }
 
 class Team {
     private let players: [Player]
     
-    init(playerCount: PlayerCount, dealer: Dealer){
-        var generatedPlayers = ParticipantFactory.generateParcipants(count: playerCount)
+    init(guestCount: GuestCount, dealer: Dealer){
+        var generatedPlayers: [Player] = ParticipantFactory.generateGuests(count: guestCount)
         generatedPlayers.append(dealer)
         self.players = generatedPlayers
     }
