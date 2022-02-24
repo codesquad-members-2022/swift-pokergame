@@ -31,9 +31,9 @@ class ViewController: UIViewController {
         drawCards(cards)
         
         //덱 테스트 하기
-        var deckTest = DeckTest()
-        deckTest.conductTest()
-        
+        var deckTest = Deck()
+        print(deckTest.removeOne())
+        print(deckTest.removeOne())
     }
     
     
