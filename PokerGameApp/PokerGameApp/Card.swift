@@ -8,8 +8,8 @@
 import Foundation
 
 struct OutputView {
-    static func printCard(card: Card) {
-        print("\(card.suit) \(card.rank)")
+    static func printCard(card: Card) -> String {
+        return "\(card.getSuit()) \(card.getRank())"
     }
 }
 
@@ -23,28 +23,48 @@ class Card {
      구조체 역시 같은 값타입으로써 좋은 대안일 수 있으나, Suit와 Rank 가 제한된 범위의 데이터를 표현하는 역할을 한다는 점에서 Enum 이 적합하다고 판단했습니다.
      */
     enum Suit: Int {
-        case clover = 1, diamond, heart, spade
+        case clover = 1
+        case diamond
+        case heart
+        case spade
     }
     
     enum Rank: Int {
         case ace = 1
-        case two, three, four, five, six, seven, eight, nine, ten
-        case jack, queen, king
+        case two
+        case three
+        case four
+        case five
+        case six
+        case seven
+        case eight
+        case nine
+        case ten
+        case jack
+        case queen
+        case king
         
     }
     
-    private(set) var suit: Suit
-    private(set) var rank: Rank
+    private let suit: Suit
+    private let rank: Rank
 
     init(rank: Rank, suit: Suit) {
         self.rank = rank
         self.suit = suit
     }
     
+    func getSuit() -> Suit {
+        return self.suit
+    }
+    
+    func getRank() -> Rank {
+        return self.rank
+    }
+    
 }
 
 extension Card: Comparable {
-    
     static func < (lhs: Card, rhs: Card) -> Bool {
         if lhs.rank == lhs.rank {
             return lhs.suit < rhs.suit
@@ -56,11 +76,9 @@ extension Card: Comparable {
     static func == (lhs: Card, rhs: Card) -> Bool {
         return lhs.suit == rhs.suit && lhs.rank == rhs.rank
     }
-    
 }
 
 extension Card.Suit: Comparable, CustomStringConvertible {
-    
     static func < (lhs: Self, rhs: Self) -> Bool {
         return lhs.rawValue < rhs.rawValue
     }
@@ -82,11 +100,9 @@ extension Card.Suit: Comparable, CustomStringConvertible {
             return "♠️"
         }
     }
-    
 }
 
 extension Card.Rank: Comparable, CustomStringConvertible {
-    
     static func < (lhs: Self, rhs: Self) -> Bool {
         return lhs.rawValue < rhs.rawValue
     }
@@ -105,5 +121,4 @@ extension Card.Rank: Comparable, CustomStringConvertible {
             return String(self.rawValue)
         }
     }
-    
 }
