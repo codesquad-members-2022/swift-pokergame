@@ -41,6 +41,7 @@ class CardDeck: CustomStringConvertible {
         }
     }
     
+    @discardableResult
     func removeOne() -> Card? {
         if isEmpty {
             return nil

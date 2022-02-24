@@ -16,7 +16,7 @@ class PokerOptionView: UIView {
     let typeButtons = PokerGame.Stud.allCases.map { _ in UIButton() }
     
     let playerView = UIStackView()
-    var playerButtons = (0..<PokerPlayers.Constants.limitCount).map { _ in UIButton() }
+    var playerButtons = (0..<PokerPlayers.Count.max.index).map { _ in UIButton() }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,7 +32,7 @@ class PokerOptionView: UIView {
         attribute()
         
         typeButtons[PokerGame.Constants.defaultPokerStud.index].isEnabled = false
-        playerButtons[PokerPlayers.Constants.defaultCount - 1].isEnabled = false
+        playerButtons[PokerPlayers.Constants.defaultCount.index].isEnabled = false
     }
     
     func bind(pokerGame: PokerGame) {
@@ -47,7 +47,7 @@ class PokerOptionView: UIView {
         playerButtons.enumerated().forEach { index, button in
             let action = UIAction(handler: { sender in
                 self.switchToggleButton(buttons: self.playerButtons, at: index)
-                pokerGame.action.inputPlayerCount(index + 1)
+                pokerGame.action.inputPlayerCount(PokerPlayers.Count.allCases[index])
             })
             button.addAction(action, for: .touchUpInside)
         }

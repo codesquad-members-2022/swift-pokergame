@@ -15,7 +15,7 @@ class PokerGame {
     
     struct Action {
         var inputPokerStud: (Stud) -> Void = { _ in }
-        var inputPlayerCount: (Int) -> Void = { _ in }
+        var inputPlayerCount: (PokerPlayers.Count) -> Void = { _ in }
         var pokerReset: () -> Void = { }
         var pokerPlay: () -> Void = { }
     }
@@ -81,14 +81,14 @@ class PokerGame {
         }
     }
     
-    private func makeNewPlayers(count: Int) -> [Player] {
+    private func makeNewPlayers(count: PokerPlayers.Count) -> [Player] {
         var nameData = ["shingha", "bibi", "alex", "rosa", "chez",
                            "ocean", "Jason", "Alex", "dale", "kai",
                            "jee", "mase", "sol", "ebony", "gucci",
                            "jed", "beck", "eddy", "selina", "pigBag"]
         
         var players = [Player]()
-        while players.count != count {
+        while players.count != count.value {
             let randomIndex = Int.random(in: 0..<nameData.count)
             let name = nameData.remove(at: randomIndex)
             if name.count < 2 || name.count > 5 {
