@@ -28,10 +28,10 @@ class PockerGame: CustomStringConvertible{
         self.stud = stud
         self.dealer = Dealer()
         self.deck = CardDeck()
-        self.players = createPlayers(numberOfPlayers)
+        self.players = createPlayers(numberOfPlayers: numberOfPlayers)
     }
     
-    private func createPlayers(_ numberOfPlayers: Count)-> [Player]{
+    private func createPlayers(numberOfPlayers: Count)-> [Player]{
         var players: [Player] = []
         for _ in 0..<numberOfPlayers.rawValue{
             guard let playerName = randomNames.popLast() else { continue }
