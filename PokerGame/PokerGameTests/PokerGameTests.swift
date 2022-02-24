@@ -139,7 +139,7 @@ class PokerGameTests: XCTestCase {
     
     func testPokerStart() {
         let pokerStud = PokerGame.Stud.sevenCard
-        let playerCount = 4
+        let playerCount = PokerPlayers.Count.four
         
         let pokerPlayers = PokerPlayers()
         var players: [Player] = []
