@@ -20,10 +20,3 @@ class PokerGame {
         self.players = ParticipantFactory.generateParcipants(count: participantCount)
     }
 }
-
-enum ParticipantCount: Int {
-    case one = 1
-    case two = 2
-    case three = 3
-    case four = 4
-}
