@@ -20,6 +20,12 @@ class PokerGameAppTests: XCTestCase {
         sut.shuffle()
         XCTAssertNotEqual(initialCardDeck, sut, "Card is Not Shuffled")
     }
+    
+    func testCardIsRemoved() {
+        let cardCount = sut.count
+        sut.removeOne()
+        XCTAssertNotEqual(cardCount, sut.count, "Card is Not Removed")
+    }
 
     override func setUpWithError() throws {
         try super.setUpWithError()
