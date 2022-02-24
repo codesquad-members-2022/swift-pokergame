@@ -39,11 +39,11 @@ class Card {
         self.shape = shape
         self.number = number
     }
-    
-    func printInfo() {
-        print("\(shape.rawValue)\(number.rawValue)")
-    }
-    
 }
 
+extension Card: CustomStringConvertible {
+    var description: String {
+        return "\(shape.rawValue)\(number.rawValue)"
+    }
+}
 
