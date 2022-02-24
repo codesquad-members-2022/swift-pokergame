@@ -15,6 +15,9 @@ class ViewController: UIViewController {
         setBackgroundImage()
         addCard(count: 7)
         
+        var cardDeck = CardDeck()
+        print(cardDeck.description)
+        
     }
     
     private func setBackgroundImage() {

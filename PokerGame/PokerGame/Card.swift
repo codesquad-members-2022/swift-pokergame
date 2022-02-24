@@ -17,8 +17,7 @@ class Card {
         case spade = "\u{2660}", heart = "\u{1F5A4}", diamond = "\u{25C6}", clover = "\u{1F340}"
     }
     enum Rank: Int, CaseIterable {
-        case one = 1, two = 2, three = 3, four = 4, five = 5, six = 6, seven = 7,
-             eight = 8, nine = 9, ten = 10, eleven = 11, twelve = 12, thirteen = 13
+        case one = 1, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen
         
         var descriptionInNumber: String {
             switch self {
