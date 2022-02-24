@@ -1,6 +1,6 @@
 import Foundation
 
-class PockerGame: CustomStringConvertible{
+class PokerGame: CustomStringConvertible{
     
     internal enum Count: Int{
         case one = 1
