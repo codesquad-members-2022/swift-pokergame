@@ -8,7 +8,7 @@
 import Foundation
 
 class Player {
-    private(set) var cards = [Card]()
+    private var cards = [Card]()
     private let name: String
     
     init(name: String) {

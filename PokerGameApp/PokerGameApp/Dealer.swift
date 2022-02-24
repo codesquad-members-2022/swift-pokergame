@@ -7,15 +7,13 @@
 
 import Foundation
 
-class Dealer {
+class Dealer: Player {
     private let cardDeck = CardDeck()
     private let stud: Stud
     
-    private var cards = [Card]()
-    private let name: String = "딜러"
-    
-    init(stud: Stud) {
+    init(name: String, stud: Stud) {
         self.stud = stud
+        super.init(name: name)
     }
     
     func distributeCard(to players: [Player]) -> [Player] {
@@ -26,7 +24,7 @@ class Dealer {
             guard let removedCard = cardDeck.removeOne() else {
                 continue
             }
-            self.cards.append(removedCard)
+            self.handOver(cards: [removedCard])
         }
         //2. 참가자들에게 카드 분배
         var result = [Player]()

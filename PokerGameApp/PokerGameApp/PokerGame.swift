@@ -11,12 +11,23 @@ class PokerGame {
     private let stud: Stud
     private let playerCount: PlayerCount
     private let gameDealer: Dealer
-    private let players: [Player]
+    private let team: Team
     
     init(stud: Stud, playerCount: PlayerCount) {
         self.stud = stud
-        self.gameDealer = Dealer(stud: stud)
-        self.players = ParticipantFactory.generateParcipants(count: participantCount)
         self.playerCount = playerCount
+        let dealer = Dealer(name: "딜러", stud: stud)
+        self.gameDealer = dealer
+        self.team = Team(playerCount: playerCount, dealer: dealer)
+    }
+}
+
+class Team {
+    private let players: [Player]
+    
+    init(playerCount: PlayerCount, dealer: Dealer){
+        var generatedPlayers = ParticipantFactory.generateParcipants(count: playerCount)
+        generatedPlayers.append(dealer)
+        self.players = generatedPlayers
     }
 }
