@@ -30,10 +30,9 @@ class ViewController: UIViewController {
         makeCardImage(num: 7)
         drawCards(cards)
         
-        //덱 테스트 하기
-        var deckTest = Deck()
-        print(deckTest.removeOne())
-        print(deckTest.removeOne())
+        var game = PokerGame()
+        game.start()
+        
     }
     
     
