@@ -17,7 +17,7 @@ class Player {
     init(name: String) {
         self.name = name
     }
-    func getCard(card : Card) {
+    func receiveCard(card : Card) {
         self.hand.append(card)
     }
 }
