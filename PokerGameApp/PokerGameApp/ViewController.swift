@@ -22,6 +22,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.configureUI()
         OutputView.printCard(card: Card(rank: .ace, suit: .spade))
+        OutputView.printCard(card: Card(rank: .king, suit: .diamond))
+        OutputView.printCard(card: Card(rank: .ten, suit: .heart))
     }
     
     // MARK: - Methods

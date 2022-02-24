@@ -68,7 +68,7 @@ extension Card.Suit: Comparable, CustomStringConvertible {
     /** Suit Enum 의 원시값 타입을 String 으로 하지 않은 이유
      문자열의 경우 Swift 에서는 값타입이지만 내부적으로는  storage 가 Objective-C 의 클래스로 되어 있어 Heap 영역에 저장됩니다.
      따라서 Enum 의 원시값을 문자열로 저장한다면 Enum 역시 값타입이지만 결과적으로 Reference Semantic 방식으로 동작할 것이라고 생각해
-     메모리 관리 측면에서 문자열 데이터가 필요한 경우에만 계산 속성으로 생성해 사용하는 방식이 효율적이라고 생각했습니다.
+     메모리 관리 측면에서 문자열 데이터가 필요한 경우에만 계산 속성으로 생성해 사용하는 방식이 효율적이라고 생각합니다.
      */
     var description: String {
         switch self {
