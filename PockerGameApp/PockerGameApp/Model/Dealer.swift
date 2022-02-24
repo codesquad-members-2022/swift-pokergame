@@ -10,7 +10,7 @@ import Foundation
 class Dealer {
     
     private var wholeDeck = CardDeck()
-    var cardDeck = [Card]()
+    private var cardDeck = [Card]()
     var countRemainingCards: Int {
         return wholeDeck.count
     }

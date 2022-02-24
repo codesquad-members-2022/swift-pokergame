@@ -9,7 +9,7 @@ import Foundation
 
 class Gambler {
     
-    let name: String
+    private let name: String
     private var cardDeck: [Card]
     
     init(name: String) {
