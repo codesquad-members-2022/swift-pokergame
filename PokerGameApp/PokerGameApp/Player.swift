@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class Player {
-    var name : String
+    private var name : String
     private var hand : [Card] = []
     var handCount : Int {
         return hand.count

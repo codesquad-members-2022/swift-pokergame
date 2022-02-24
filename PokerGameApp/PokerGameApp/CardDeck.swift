@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CardDeck {
+struct CardDeck {
     private var originCards : [Card] = []
     private var cards : [Card]
     var count : Int {
@@ -21,7 +21,7 @@ class CardDeck {
         }
         cards = originCards
     }
-    func shuffle() {
+    mutating func shuffle() {
         for cardIndex in 0..<self.count {
             guard let randomIndex = (cardIndex..<self.count).randomElement() else {continue}
             let tempCard = cards[cardIndex]
@@ -29,10 +29,10 @@ class CardDeck {
             cards[randomIndex] = tempCard
         }
     }
-    func removeOne() -> Card? {
+    mutating func removeOne() -> Card? {
         return self.cards.popLast()
     }
-    func reset() {
+    mutating func reset() {
         cards = originCards
     }
 }
