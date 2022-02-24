@@ -20,7 +20,7 @@
 /* Begin PBXFileReference section */
 		E414C88427C74ADD00E88F9E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E414C88627C74EC300E88F9E /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
-		E45634F527C46F0E0008D897 /* Pocker Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocker Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E45634F527C46F0E0008D897 /* PockerGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PockerGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E45634F827C46F0E0008D897 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E45634FA27C46F0E0008D897 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E45634FC27C46F0E0008D897 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -52,7 +52,7 @@
 		E45634F627C46F0E0008D897 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E45634F527C46F0E0008D897 /* Pocker Game.app */,
+				E45634F527C46F0E0008D897 /* PockerGame.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,9 +76,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E45634F427C46F0E0008D897 /* Pocker Game */ = {
+		E45634F427C46F0E0008D897 /* PockerGame */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E456350927C46F0F0008D897 /* Build configuration list for PBXNativeTarget "Pocker Game" */;
+			buildConfigurationList = E456350927C46F0F0008D897 /* Build configuration list for PBXNativeTarget "PockerGame" */;
 			buildPhases = (
 				E45634F127C46F0E0008D897 /* Sources */,
 				E45634F227C46F0E0008D897 /* Frameworks */,
@@ -88,9 +88,9 @@
 			);
 			dependencies = (
 			);
-			name = "Pocker Game";
+			name = PockerGame;
 			productName = PokerGameApp;
-			productReference = E45634F527C46F0E0008D897 /* Pocker Game.app */;
+			productReference = E45634F527C46F0E0008D897 /* PockerGame.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -108,7 +108,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E45634F027C46F0E0008D897 /* Build configuration list for PBXProject "Pocker Game" */;
+			buildConfigurationList = E45634F027C46F0E0008D897 /* Build configuration list for PBXProject "Pocker" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -121,7 +121,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E45634F427C46F0E0008D897 /* Pocker Game */,
+				E45634F427C46F0E0008D897 /* PockerGame */,
 			);
 		};
 /* End PBXProject section */
@@ -300,6 +300,7 @@
 				DEVELOPMENT_TEAM = FCQD35AW5P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PokerGameApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Pocker;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -328,6 +329,7 @@
 				DEVELOPMENT_TEAM = FCQD35AW5P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PokerGameApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Pocker;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -349,7 +351,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E45634F027C46F0E0008D897 /* Build configuration list for PBXProject "Pocker Game" */ = {
+		E45634F027C46F0E0008D897 /* Build configuration list for PBXProject "Pocker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E456350727C46F0F0008D897 /* Debug */,
@@ -358,7 +360,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E456350927C46F0F0008D897 /* Build configuration list for PBXNativeTarget "Pocker Game" */ = {
+		E456350927C46F0F0008D897 /* Build configuration list for PBXNativeTarget "PockerGame" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E456350A27C46F0F0008D897 /* Debug */,
