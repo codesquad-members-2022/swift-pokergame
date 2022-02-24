@@ -9,16 +9,11 @@ import XCTest
 @testable import PokerGameApp
 
 class PokerGameTest: XCTestCase {
-    func testDraw() {
-        let pokerGame = PokerGame(stud: .fiveCard, playerCount: .four)
-        pokerGame.dealer.draw()
-        XCTAssertEqual(pokerGame.dealer.cardDeckCount, 51, "값이 일치하지 않습니다")
-    }
-    
-    func testDrawEachPlayerEqual() {
+
+    func testPlay() {
         var pokerGame = PokerGame(stud: .fiveCard, playerCount: .four)
         pokerGame.play()
-        XCTAssertEqual(pokerGame.dealer.cardDeckCount, 2, "드로우가 되지 않았습니다.")
+        XCTAssertEqual(pokerGame.remainCardCount, 2, "게임결과가 잘못되었습니다.")
     }
     
 }
