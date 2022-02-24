@@ -9,17 +9,13 @@ import Foundation
 
 struct CardDeck {
     private var originCards : [Card] = []
-    private var cards : [Card]
+    private var cards : [Card] = []
     var count : Int {
         return cards.count
     }
     
     init() {
-        for shape in Card.Shape.allCases {
-            for number in Card.Number.allCases{
-                self.originCards.append(Card(shape: shape, number: number))
-            }
-        }
+        setNewDeck()
         cards = originCards
     }
     
@@ -38,6 +34,14 @@ struct CardDeck {
     
     mutating func reset() {
         cards = originCards
+    }
+    
+    mutating private func setNewDeck() {
+        for shape in Card.Shape.allCases {
+            for number in Card.Number.allCases{
+                self.originCards.append(Card(shape: shape, number: number))
+            }
+        }
     }
     
 }
