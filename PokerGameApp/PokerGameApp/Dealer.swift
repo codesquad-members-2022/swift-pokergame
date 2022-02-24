@@ -8,12 +8,11 @@
 import Foundation
 
 class Dealer : Player {
-    private var cardDeck : CardDeck
+    private var cardDeck : CardDeck = CardDeck()
     var cardDeckCount : Int {
         return cardDeck.count
     }
-    init(cardDeck : CardDeck) {
-        self.cardDeck = cardDeck
+    init() {
         super.init(name: "dealer")
     }
     func draw() -> Card?{
