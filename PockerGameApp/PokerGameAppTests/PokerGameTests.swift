@@ -14,16 +14,18 @@ class PokerGameTests: XCTestCase {
         XCTAssertEqual(1+1, 2)
     }
     
-    func testDealerDeal() {
-        let testPlayers = (0..<5).map { _ in Player() }
+    func testDealerDeal() throws {
+        let testNames = Player.getRandomPlayerNames(pick: 5)
+        let testPlayers = testNames.map { name in Player(name: name) }
         let testNumber = 5
         let dealer = Dealer(deck: CardDeck(), players: testPlayers)
         
-        try? dealer.deal(numOfcards: testNumber)
+        try dealer.deal(numOfcards: testNumber)
     }
     
-    func testWithTooManyCards() {
-        let testPlayers = (0..<5).map { _ in Player() }
+    func testWithTooManyCards() throws {
+        let testNames = Player.getRandomPlayerNames(pick: 5)
+        let testPlayers = testNames.map { name in Player(name: name) }
         let tooManyNumber = 10
         let dealer = Dealer(deck: CardDeck(), players: testPlayers)
         
