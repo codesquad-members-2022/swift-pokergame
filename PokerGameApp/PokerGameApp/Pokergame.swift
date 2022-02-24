@@ -7,8 +7,8 @@
 
 import Foundation
 struct PokerGame {
-    private let dealer : Dealer
-    private var players : Players
+    let dealer : Dealer
+    var players : Players
     private let stud : Stud
     private var playerCount : Int {
         return self.players.count
