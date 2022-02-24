@@ -9,7 +9,7 @@ import Foundation
 struct PokerGame {
     private var cardDeck : CardDeck = CardDeck()
     private let dealer : Dealer
-    private var players : [Player] = []
+    private var players : Players
     private let stud : Stud
     private var playerCount : Int {
         return self.players.count
@@ -17,6 +17,7 @@ struct PokerGame {
     
     init(stud: Stud, playerCount: PlayerCount) {
         self.stud = stud
+        self.players = Players()
         self.dealer = Dealer(cardDeck: cardDeck)
         seatPlayer(playerCount: playerCount)
     }
@@ -30,19 +31,17 @@ struct PokerGame {
     
     private func drawCard(each : Int) {
         for _ in 0..<each {
-            for player in players {
-                guard let drawedCard = dealer.draw() else {break}
-                player.getCard(card: drawedCard )
-            }
+            guard let drawedCard = dealer.draw() else {break}
+            players.eachReceive(card: drawedCard)
         }
     }
     
     private mutating func seatPlayer(playerCount : PlayerCount) {
         var playerName = PlayerName()
-        self.players.append(dealer)
+        self.players.seat(player: dealer)
         for _ in 0..<playerCount.rawValue {
             let name = playerName.popName()
-            self.players.append(Player(name: name))
+            self.players.seat(player: Player(name: name))
         }
     }
 
