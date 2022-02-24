@@ -60,10 +60,8 @@ class ViewController: UIViewController {
 }
 
 extension UIView {
-    
     func setBounds(x: Int, y: Int) {
         self.bounds.origin.x = CGFloat(x)
         self.bounds.origin.y = CGFloat(y)
     }
-    
 }
