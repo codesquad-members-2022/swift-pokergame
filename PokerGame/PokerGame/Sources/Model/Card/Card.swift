@@ -47,7 +47,7 @@ extension Card {
 // MARK: - CardNumber
 
 extension Card {
-    enum Number: Int, CaseIterable, CustomStringConvertible {
+    enum Number: Int, CaseIterable, CustomStringConvertible, Equatable {
         case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
         
         var description: String {
@@ -63,6 +63,14 @@ extension Card {
             default:
                 return String(self.rawValue)
             }
+        }
+        
+        var value: Int {
+            self.rawValue
+        }
+        
+        static func > (lhs: Self, rhs: Self) -> Bool {
+            lhs.rawValue > rhs.rawValue
         }
     }
 }
