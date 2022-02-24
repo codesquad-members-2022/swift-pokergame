@@ -28,6 +28,8 @@ class ViewController: UIViewController {
         self.setBackgroundImage()
         self.view.setBounds(x: 0, y: -44)
         self.setCardViews(count: 7)
+        
+        print(Card(suit: .heart, rank: .two))
     }
     
     func setBackgroundImage() {
