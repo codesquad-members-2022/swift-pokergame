@@ -35,7 +35,7 @@ class PockerGame: CustomStringConvertible{
         var players: [Player] = []
         for _ in 0..<numberOfPlayers.rawValue{
             guard let playerName = randomNames.popLast() else { continue }
-            players.append(Player(playerName))
+            players.append(Player(name: playerName))
         }
         return players
     }

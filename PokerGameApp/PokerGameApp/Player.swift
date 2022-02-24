@@ -7,7 +7,7 @@ class Player: CustomStringConvertible{
         return "\(name) \(cards)"
     }
     
-    init(_ name: String){
+    init(name: String){
         self.name = name
     }
     
@@ -19,7 +19,7 @@ class Player: CustomStringConvertible{
 class Dealer: Player{
 
     init() {
-        super.init("딜러")
+        super.init(name: "딜러")
     }
     
     func handOutCard(stud: Int)-> Card?{
