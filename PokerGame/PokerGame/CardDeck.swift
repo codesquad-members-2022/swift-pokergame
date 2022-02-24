@@ -49,3 +49,8 @@ extension CardDeck: CustomStringConvertible {
     }
 }
 
+extension CardDeck: Equatable {
+    static func == (lhs: CardDeck, rhs: CardDeck) -> Bool {
+        return lhs.card == rhs.card && lhs.cardDeck == rhs.cardDeck
+    }
+}

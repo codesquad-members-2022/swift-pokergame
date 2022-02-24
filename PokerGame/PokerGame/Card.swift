@@ -48,3 +48,9 @@ extension Card: CustomStringConvertible {
         return "\(shape.rawValue)\(number.descriptionInNumber)"
     }
 }
+
+extension Card: Equatable {
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.shape == rhs.shape && lhs.number == rhs.number
+    }
+}

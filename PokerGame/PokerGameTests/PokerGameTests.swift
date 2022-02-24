@@ -19,6 +19,12 @@ class PokerGameTests: XCTestCase {
     }
     
     func testShuffle() {
+        let originalCardDeck = CardDeck()
+        let resultCardDeck = CardDeck()
+        
+        resultCardDeck.shuffle()
+        
+        XCTAssertNotEqual(originalCardDeck, resultCardDeck)
     }
     
     func testReset() {
