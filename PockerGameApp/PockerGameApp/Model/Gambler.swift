@@ -34,7 +34,7 @@ class Gambler {
         self.cardDeck = [Card]()
     }
     
-    public func getCard(_ card: Card) {
+    public func receiveCard(_ card: Card) {
         self.cardDeck.append(card)
     }
 }

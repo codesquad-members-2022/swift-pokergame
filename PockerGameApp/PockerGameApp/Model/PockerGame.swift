@@ -34,10 +34,10 @@ class PokerGame {
         for _ in 0..<gameRule.numberOfCard {
             for index in 0..<gamblers.count {
                 guard let newCard = self.dealer.pickCard() else { return }
-                gamblers[index].getCard(newCard)
+                gamblers[index].receiveCard(newCard)
             }
             guard let newCard = self.dealer.pickCard() else { return }
-            dealer.getCard(newCard)
+            dealer.receiveCard(newCard)
         }
     }
 }
