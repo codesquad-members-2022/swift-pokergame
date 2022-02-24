@@ -7,17 +7,12 @@
 
 import Foundation
 
-class Score: CustomStringConvertible, Comparable {
+struct Score: CustomStringConvertible, Comparable {
     let rule: Rule
     let highNumber: Card.Number
     
     var description: String {
         "\(rule)(\(highNumber))"
-    }
-    
-    init(rule: Rule, highNumber: Card.Number) {
-        self.rule = rule
-        self.highNumber = highNumber
     }
     
     static func == (lhs: Score, rhs: Score) -> Bool {
@@ -34,7 +29,6 @@ class Score: CustomStringConvertible, Comparable {
 
 extension Score {
     enum Rule: Int, Comparable {
-        
         case none, onePair, twoPair, triple, straight, fourCard
         
         static func < (lhs: Score.Rule, rhs: Score.Rule) -> Bool {
