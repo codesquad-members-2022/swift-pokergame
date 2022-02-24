@@ -21,26 +21,9 @@ class PokerGameTests: XCTestCase {
 
     override func tearDownWithError() throws {
     }
-        
-    func testPokerStart() {
-        let pokerGame = PokerGame()
-        pokerGame.resetGame()        
-        pokerGame.action.inputPokerStud(.sevenCard)
-        pokerGame.action.inputPlayerCount(4)
-        pokerGame.action.pokerPlay()
-        
-//        players.forEach {
-//            $0.sort()
-//            if let score = Score.calculation(player: $0) {
-//                print("\($0) -- \(score)")
-//            } else {
-//                print("\($0) -- 점수없음")
-//            }
-//        }
-    }
     
-    func testPlayerScore() {
-        let names = ["테스터1", "테스터1", "테스터1", "테스터1"]
+    func testPokerStart() {
+        let names = ["테스터1", "테스터2", "테스터3", "테스터4", "딜러"]
         let players = names.map { Player(name: $0) }
 
         let pokerGame = PokerGame()
@@ -49,22 +32,22 @@ class PokerGameTests: XCTestCase {
                 players[index].add(card: card)
             }
         }
-        pokerGame.action.inputPokerStud(.sevenCard)
-        pokerGame.action.inputPlayerCount(players.count)
-        pokerGame.action.pokerPlay()
         
-        players.forEach {
-            if let score = Score.calculation(player: $0) {
-                print("\($0) -- \(score)")
-            } else {
-                print("\($0) -- 점수없음")
+        pokerGame.state.pokerWinner = { winner in
+            players.forEach {
+                if let score = Score.calculation(player: $0) {
+                    print("\($0) -- \(score)")
+                } else {
+                    print("\($0) -- 점수없음")
+                }
             }
+            
+            print("승자는 \(names[winner.0]) 입니다!! (\(winner.1))")
         }
         
-//        pokerPlayers.set(players: names.map { Player(name: $0) })
-//        if let highScorePlayer = pokerPlayers.highScorePlayer() {
-//            print("\(highScorePlayer)")
-//        }
+        pokerGame.action.inputPokerStud(.sevenCard)
+        pokerGame.action.inputPlayerCount(players.count - 1)
+        pokerGame.action.pokerPlay()
     }
     
     func testPlayerScoreStraight() {

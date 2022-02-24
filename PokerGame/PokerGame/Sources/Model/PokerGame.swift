@@ -23,7 +23,7 @@ class PokerGame {
     struct State {
         var resetPokerBoard: (Stud, [String]) -> Void = { _, _ in }
         var givePlayerCard: (Int, Int, Card) -> Void = { _, _, _ in }
-        var pokerResult: (Int, Score) -> Void = { _, _ in }
+        var pokerWinner: ((Int, Score)) -> Void = { _ in }
         var finishPoker: () -> Void = { }
     }
     
@@ -81,10 +81,9 @@ class PokerGame {
             }
         }
         
-        pokerPlayers.getHighScore()
-//        if let highScorePlayer = pokerPlayers.highScorePlayer() {
-//            print("\(highScorePlayer)")
-//        }
+        if let winner = pokerPlayers.getHighScore() {
+            self.state.pokerWinner(winner)
+        }
     }
     
     private func makeNewPlayers(count: Int) -> [Player] {
