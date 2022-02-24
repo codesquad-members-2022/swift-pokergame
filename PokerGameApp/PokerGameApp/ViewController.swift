@@ -5,6 +5,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var studSelectionControl: UISegmentedControl!
     @IBOutlet weak var playerCountSelectionControl: UISegmentedControl!
     private var pokerGame: PokerGame?
+    private var cardImageViews: [UIImageView] = []
     
     @IBAction func studOptionSelected(_ sender: UISegmentedControl) {
         setPokerGame()
@@ -52,12 +53,47 @@ class ViewController: UIViewController {
         self.pokerGame = PokerGame(numberOfPlayers: selectedCount, stud: selectedStud)
         if let _ = self.pokerGame{
             self.pokerGame?.start()
+            setAllImageViews()
         }
+    }
+    
+    func setAllImageViews(){
+        
+        guard let game = self.pokerGame else { return }
+        
+        removePreviousCardImageViews()
+        
+        let cardsCount = CGFloat(game.stud.rawValue)
+        let cardMargin = CGFloat(15)
+        let cardWidth = (self.view.bounds.width - cardMargin*(cardsCount+1))/cardsCount
+        let cardHeight = cardWidth*CGFloat(1.27)
+        var cardXPosition = cardMargin
+        var cardYPosition = CGFloat(studSelectionControl.center.y * 1.4)
+        
+        for player in game.players{
+            for card in player.cards{
+                guard let image = UIImage(named: "\(card.description)") else { continue }
+                let imageView: UIImageView = UIImageView(frame: CGRect(x: cardXPosition, y: cardYPosition, width: cardWidth, height: cardHeight))
+                imageView.image = image
+                imageView.contentMode = .scaleAspectFit
+                self.view.addSubview(imageView)
+                self.cardImageViews.append(imageView)
+                cardXPosition += cardMargin+cardWidth
+            }
+            cardXPosition = cardMargin
+            cardYPosition += cardHeight + cardMargin
+        }
+    }
+    
+    private func removePreviousCardImageViews(){
+        for imageView in self.cardImageViews{
+            imageView.removeFromSuperview()
+        }
+        self.cardImageViews = []
     }
     
     func setInitialImageView(_ cardsCount: CGFloat){
         guard let image = UIImage(named: "card-back") else{ return }
-   
         let cardMargin = CGFloat(10)
         let cardWidth = (self.view.bounds.width - cardMargin*(cardsCount+1))/cardsCount
         let cardHeight = cardWidth*CGFloat(1.27)
