@@ -74,6 +74,8 @@ class PokerGame {
             self.state.givePlayerCard(index, cardIndex, card)
         }
         
+        pokerPlayers.scoreCalculation()
+        
         if let winner = pokerPlayers.getWinner() {
             self.state.pokerWinner(winner)
         }
@@ -107,6 +109,13 @@ extension PokerGame {
             switch self{
             case .sevenCard: return 7
             case .fiveCard: return 5
+            }
+        }
+        
+        var index: Int {
+            switch self{
+            case .sevenCard: return 0
+            case .fiveCard: return 1
             }
         }
     }
