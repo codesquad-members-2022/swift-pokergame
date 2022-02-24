@@ -4,12 +4,21 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var studSelectionControl: UISegmentedControl!
     @IBOutlet weak var playerCountSelectionControl: UISegmentedControl!
+    private var pokerGame: PokerGame?
+    
+    @IBAction func studOptionSelected(_ sender: UISegmentedControl) {
+        setPokerGame()
+    }
+    
+    @IBAction func playerCountSelected(_ sender: UISegmentedControl) {
+        setPokerGame()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundColor()
         //setInitialImageView(7)
-        setGameOptionButtons()
+        setPokerGame()
         setStudSelectionControl()
         setPlayerCountSelectionControl()
     }
@@ -36,7 +45,14 @@ class ViewController: UIViewController {
         }
     }
     
-    func setGameOptionButtons(){
+    func setPokerGame(){
+        let selectedCount = PokerGame.Count.allCases[playerCountSelectionControl.selectedSegmentIndex]
+        let selectedStud = PokerGame.Stud.allCases[studSelectionControl.selectedSegmentIndex]
+        
+        self.pokerGame = PokerGame(numberOfPlayers: selectedCount, stud: selectedStud)
+        if let _ = self.pokerGame{
+            self.pokerGame?.start()
+        }
     }
     
     func setInitialImageView(_ cardsCount: CGFloat){
