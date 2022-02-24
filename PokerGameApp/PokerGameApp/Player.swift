@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Player {
+class Player {
     private(set) var cards = [Card]()
     private let name: String
     
@@ -15,7 +15,7 @@ struct Player {
         self.name = name
     }
 
-    mutating func handOver(cards: [Card]) {
+    func handOver(cards: [Card]) {
         cards.forEach { self.cards.append($0) }
     }
 }
