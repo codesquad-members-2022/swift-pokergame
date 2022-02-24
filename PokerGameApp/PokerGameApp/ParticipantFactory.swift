@@ -8,7 +8,7 @@
 import Foundation
 
 struct ParticipantFactory {
-    static func generateParcipants(count: ParticipantCount) -> [Player] {
+    static func generateParcipants(count: PlayerCount) -> [Player] {
         var parcipants = [Player]()
         for _ in 0..<count.rawValue {
             guard let randomName = PersonName.allCases.randomElement() else {
