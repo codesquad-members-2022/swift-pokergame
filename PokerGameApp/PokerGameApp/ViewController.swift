@@ -6,6 +6,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var playerCountSelectionControl: UISegmentedControl!
     private var pokerGame: PokerGame?
     private var cardImageViews: [UIImageView] = []
+    private var labels: [UILabel] = []
     
     @IBAction func studOptionSelected(_ sender: UISegmentedControl) {
         setPokerGame()
@@ -53,15 +54,15 @@ class ViewController: UIViewController {
         self.pokerGame = PokerGame(numberOfPlayers: selectedCount, stud: selectedStud)
         if let _ = self.pokerGame{
             self.pokerGame?.start()
-            setAllImageViews()
+            setAllImageViewsAndLabels()
         }
     }
     
-    func setAllImageViews(){
+    func setAllImageViewsAndLabels(){
         
         guard let game = self.pokerGame else { return }
         
-        removePreviousCardImageViews()
+        removePreviousCardImageViewsAndLabels()
         
         let cardsCount = CGFloat(game.stud.rawValue)
         let cardMargin = CGFloat(15)
@@ -71,6 +72,16 @@ class ViewController: UIViewController {
         var cardYPosition = CGFloat(studSelectionControl.center.y * 1.4)
         
         for player in game.players{
+            
+            let label: UILabel = UILabel()
+            label.frame = CGRect(x: cardMargin, y: cardYPosition, width: 200, height: 30)
+            label.font = UIFont.systemFont(ofSize: 20)
+            label.textColor = UIColor.white
+            label.text = player.name
+            self.view.addSubview(label)
+            self.labels.append(label)
+            cardYPosition += label.frame.height
+            
             for card in player.cards{
                 guard let image = UIImage(named: "\(card.description)") else { continue }
                 let imageView: UIImageView = UIImageView(frame: CGRect(x: cardXPosition, y: cardYPosition, width: cardWidth, height: cardHeight))
@@ -85,11 +96,16 @@ class ViewController: UIViewController {
         }
     }
     
-    private func removePreviousCardImageViews(){
+    private func removePreviousCardImageViewsAndLabels(){
         for imageView in self.cardImageViews{
             imageView.removeFromSuperview()
         }
         self.cardImageViews = []
+
+        for label in self.labels{
+            label.removeFromSuperview()
+        }
+        self.labels = []
     }
     
     func setInitialImageView(_ cardsCount: CGFloat){
