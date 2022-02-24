@@ -10,11 +10,11 @@ import Foundation
 class PokerGame {
     
     enum Constants {
-        static let defaultType = PokerGame.Stud.fiveCard
+        static let defaultPokerStud = PokerGame.Stud.fiveCard
     }
     
     struct Action {
-        var inputPokerType: (Stud) -> Void = { _ in }
+        var inputPokerStud: (Stud) -> Void = { _ in }
         var inputPlayerCount: (Int) -> Void = { _ in }
         var pokerReset: () -> Void = { }
         var pokerPlay: () -> Void = { }
@@ -30,7 +30,7 @@ class PokerGame {
     var action = Action()
     var state = State()
     
-    private var pokerType = Constants.defaultType
+    private var pokerStud = Constants.defaultPokerStud
     private var playerCount = PokerPlayers.Constants.defaultCount
     
     private let pokerPlayers = PokerPlayers()
@@ -40,22 +40,22 @@ class PokerGame {
         action.pokerReset = resetGame
         action.pokerPlay = play
         
-        action.inputPokerType = { pokerType in
-            self.pokerType = pokerType
-            self.state.resetPokerBoard(self.pokerType, self.pokerPlayers.names)
+        action.inputPokerStud = { pokerStud in
+            self.pokerStud = pokerStud
+            self.state.resetPokerBoard(self.pokerStud, self.pokerPlayers.names)
         }
         
         action.inputPlayerCount = { playerCount in
             self.playerCount = playerCount
             self.pokerPlayers.set(players: self.createPlayers(count: playerCount))
-            self.state.resetPokerBoard(self.pokerType, self.pokerPlayers.names)
+            self.state.resetPokerBoard(self.pokerStud, self.pokerPlayers.names)
         }
     }
     
     func resetGame() {
         dealer.cardReset()
         pokerPlayers.set(players: createPlayers(count: playerCount))
-        state.resetPokerBoard(pokerType, pokerPlayers.names)
+        state.resetPokerBoard(pokerStud, pokerPlayers.names)
     }
     
     private func play() {
@@ -63,12 +63,12 @@ class PokerGame {
         dealer.removeAllCard()
         dealer.cardShuffle()
         
-        if dealer.cardCount < (pokerPlayers.count + 1) * pokerType.cardCount {
+        if dealer.cardCount < (pokerPlayers.count + 1) * pokerStud.cardCount {
             self.state.finishPoker()
             return
         }
         
-        (0..<pokerType.cardCount).forEach { cardIndex in
+        (0..<pokerStud.cardCount).forEach { cardIndex in
             (0..<pokerPlayers.count).forEach { index in
                 guard let card = dealer.removeOne() else {
                     return

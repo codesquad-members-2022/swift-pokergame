@@ -1,5 +1,5 @@
 //
-//  PokerTypeButton.swift
+//  PokerStudButton.swift
 //  PokerGame
 //
 //  Created by seongha shin on 2022/02/24.
@@ -8,13 +8,13 @@
 import Foundation
 import UIKit
 
-class PokerTypeButton: UIButton {
+class PokerStudButton: UIButton {
     
-    public private(set) var pokerType = PokerGame.Stud.sevenCard
+    public private(set) var pokerStud = PokerGame.Stud.sevenCard
     
-    init(pokerType: PokerGame.Stud) {
+    init(pokerStud: PokerGame.Stud) {
         super.init(frame: CGRect.zero)
-        self.pokerType = pokerType
+        self.pokerStud = pokerStud
     }
     
     required init?(coder: NSCoder) {

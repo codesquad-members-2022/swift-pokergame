@@ -29,4 +29,8 @@ class Dealer: Player {
     func removeOne() -> Card? {
         cardDeck.removeOne()
     }
+    
+    func checkRemainingCardCount(stud: PokerGame.Stud, playerCount: Int) -> Bool {
+        return true
+    }
 }

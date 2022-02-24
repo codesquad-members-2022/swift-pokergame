@@ -48,14 +48,14 @@ class PokerBoardViewController: UIViewController {
     private func bind() {
         pokerOptionView.bind(pokerGame: pokerGame)
         
-        pokerGame.state.resetPokerBoard = { pokerType, playerNames in
+        pokerGame.state.resetPokerBoard = { pokerStud, playerNames in
             (0..<self.playerCardViews.count).forEach {
                 let cardView = self.playerCardViews[$0]
                 let name = $0 < playerNames.count ? playerNames[$0] : nil
-                cardView.resetPokerBoard(pokerType: pokerType, name: name)
+                cardView.resetPokerBoard(pokerStud: pokerStud, name: name)
             }
             
-            self.dealerCardView.resetPokerBoard(pokerType: pokerType, name: "Dealer")
+            self.dealerCardView.resetPokerBoard(pokerStud: pokerStud, name: "Dealer")
         }
         
         pokerGame.state.givePlayerCard = { index, cardIndex, card in

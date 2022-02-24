@@ -10,7 +10,7 @@ import XCTest
 class PokerGameTests: XCTestCase {
 
     enum Constants {
-        static let testPokerType = PokerGame.PokerType.fiveCard
+        static let testPokerStud = PokerGame.Stud.fiveCard
         static let testPlayerCount = 4
     }
     
