@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import PokerGameApp
 
 class PokerGameAppTests: XCTestCase {
 
@@ -15,6 +16,15 @@ class PokerGameAppTests: XCTestCase {
     override func tearDownWithError() throws {
     }
 
-    func testExample() throws {
+    func testDistributeCard_isCorrectCardCount() throws {
+        let players: [Player] = [
+            Player(),
+            Player(),
+            Player(),
+            Player()
+        ]
+        var dealer = Dealer(stud: .five)
+        let distributedPlayers = dealer.distributeCard(to: players)
+        XCTAssertEqual(distributedPlayers[0].cards.count, 5)
     }
 }
