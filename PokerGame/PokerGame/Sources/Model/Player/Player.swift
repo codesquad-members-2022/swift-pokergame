@@ -12,6 +12,10 @@ class Player: CustomStringConvertible {
     let name: String
     public private(set) var cards: [Card] = []
     
+    var score: Score? {
+        Score.calculation(player: self)
+    }
+    
     init(name: String) {
         self.name = name
     }

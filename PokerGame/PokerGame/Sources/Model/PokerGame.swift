@@ -23,7 +23,7 @@ class PokerGame {
     struct State {
         var resetPokerBoard: (Stud, [String]) -> Void = { _, _ in }
         var givePlayerCard: (Int, Int, Card) -> Void = { _, _, _ in }
-        var giveDealerCard: (Int, Card) -> Void = { _, _ in }
+        var pokerResult: (Int, Score) -> Void = { _, _ in }
         var finishPoker: () -> Void = { }
     }
     
@@ -47,23 +47,26 @@ class PokerGame {
         
         action.inputPlayerCount = { playerCount in
             self.playerCount = playerCount
-            self.pokerPlayers.set(players: self.createPlayers(count: playerCount))
+            self.pokerPlayers.removeAllPlayer()
+            self.pokerPlayers.addPlayer(players: self.makeNewPlayers(count: playerCount))
+            self.pokerPlayers.addPlayer(player: self.dealer)
             self.state.resetPokerBoard(self.pokerStud, self.pokerPlayers.names)
         }
     }
     
     func resetGame() {
+        pokerPlayers.removeAllPlayer()
+        pokerPlayers.addPlayer(players: self.makeNewPlayers(count: playerCount))
+        pokerPlayers.addPlayer(player: dealer)
         dealer.cardReset()
-        pokerPlayers.set(players: createPlayers(count: playerCount))
         state.resetPokerBoard(pokerStud, pokerPlayers.names)
     }
     
     private func play() {
         pokerPlayers.removeAllCard()
-        dealer.removeAllCard()
         dealer.cardShuffle()
         
-        if dealer.hasRemainCardCount(stud: pokerStud, playerCount: pokerPlayers.count) {
+        if dealer.hasRemainCardCount(stud: pokerStud, playerCount: pokerPlayers.count) == false {
             self.state.finishPoker()
             return
         }
@@ -76,29 +79,28 @@ class PokerGame {
                 pokerPlayers.addCard(at: index, card: card)
                 state.givePlayerCard(index, cardIndex, card)
             }
-            
-            guard let card = dealer.removeOne() else {
-                return
-            }
-            dealer.add(card: card)
-            state.giveDealerCard(cardIndex, card)
         }
+        
+        pokerPlayers.getHighScore()
+//        if let highScorePlayer = pokerPlayers.highScorePlayer() {
+//            print("\(highScorePlayer)")
+//        }
     }
     
-    private func createPlayers(count: Int) -> [PokerPlayer] {
+    private func makeNewPlayers(count: Int) -> [Player] {
         var nameData = ["shingha", "bibi", "alex", "rosa", "chez",
                            "ocean", "Jason", "Alex", "dale", "kai",
                            "jee", "mase", "sol", "ebony", "gucci",
                            "jed", "beck", "eddy", "selina", "pigBag"]
         
-        var players = [PokerPlayer]()
+        var players = [Player]()
         while players.count != count {
             let randomIndex = Int.random(in: 0..<nameData.count)
             let name = nameData.remove(at: randomIndex)
             if name.count < 2 || name.count > 5 {
                 continue
             }
-            players.append(PokerPlayer(name: name))
+            players.append(Player(name: name))
         }
         return players
     }

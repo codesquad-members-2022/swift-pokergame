@@ -24,27 +24,47 @@ class PokerGameTests: XCTestCase {
         
     func testPokerStart() {
         let pokerGame = PokerGame()
+        pokerGame.resetGame()        
+        pokerGame.action.inputPokerStud(.sevenCard)
+        pokerGame.action.inputPlayerCount(4)
+        pokerGame.action.pokerPlay()
         
-        let players = (0..<4).map { index -> Player in
-            Player(name: "tester\(index)")
-        }
-        
+//        players.forEach {
+//            $0.sort()
+//            if let score = Score.calculation(player: $0) {
+//                print("\($0) -- \(score)")
+//            } else {
+//                print("\($0) -- 점수없음")
+//            }
+//        }
+    }
+    
+    func testPlayerScore() {
+        let names = ["테스터1", "테스터1", "테스터1", "테스터1"]
+        let players = names.map { Player(name: $0) }
+
+        let pokerGame = PokerGame()
         pokerGame.state.givePlayerCard = { index, _, card in
-            players[index].add(card: card)
+            if index < names.count {
+                players[index].add(card: card)
+            }
         }
-        
         pokerGame.action.inputPokerStud(.sevenCard)
         pokerGame.action.inputPlayerCount(players.count)
         pokerGame.action.pokerPlay()
         
         players.forEach {
-            $0.sort()
             if let score = Score.calculation(player: $0) {
                 print("\($0) -- \(score)")
             } else {
                 print("\($0) -- 점수없음")
             }
         }
+        
+//        pokerPlayers.set(players: names.map { Player(name: $0) })
+//        if let highScorePlayer = pokerPlayers.highScorePlayer() {
+//            print("\(highScorePlayer)")
+//        }
     }
     
     func testPlayerScoreStraight() {

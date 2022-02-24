@@ -13,8 +13,8 @@ class PokerBoardViewController: UIViewController {
     let pokerOptionView = PokerOptionView()
     let playerCardStackView = UIStackView()
     let playerCardViews = [PlayerCardView(), PlayerCardView(),
-                           PlayerCardView(), PlayerCardView()]
-    let dealerCardView = PlayerCardView()
+                           PlayerCardView(), PlayerCardView(),
+                           PlayerCardView()]
     
     let pokerGame = PokerGame()
     
@@ -54,16 +54,10 @@ class PokerBoardViewController: UIViewController {
                 let name = $0 < playerNames.count ? playerNames[$0] : nil
                 cardView.resetPokerBoard(pokerStud: pokerStud, name: name)
             }
-            
-            self.dealerCardView.resetPokerBoard(pokerStud: pokerStud, name: "Dealer")
         }
         
         pokerGame.state.givePlayerCard = { index, cardIndex, card in
             self.playerCardViews[index].setCard(at: cardIndex, card: card)
-        }
-        
-        pokerGame.state.giveDealerCard = { cardIndex, card in
-            self.dealerCardView.setCard(at: cardIndex, card: card)
         }
     }
     
@@ -99,14 +93,11 @@ class PokerBoardViewController: UIViewController {
             playerCardStackView.addArrangedSubview($1)
         }
         
-        playerCardStackView.addArrangedSubview(dealerCardView)
-        
         self.view.layoutIfNeeded()
         
         pokerOptionView.layout()
         playerCardViews.enumerated().forEach {
             $1.layout()
         }
-        dealerCardView.layout()
     }
 }
