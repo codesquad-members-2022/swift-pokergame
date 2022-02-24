@@ -12,57 +12,39 @@ struct PockerGame{
     enum Stud: Int{
         case five = 5
         case seven = 7
+        var studValue: Int{
+            return self.rawValue
+        }
     }
     enum PlayerNumber: Int{
         case one = 1, two, three, four
+        var playerNumber: Int{
+            return self.rawValue
+        }
     }
     
     private let stud: Stud
     private let dealer = Dealer()
-    private var players: [Player] = []
+    public private(set) var players: Players
     
-    init(stud: Stud, playerNumbers: PlayerNumber){
+    init(stud: Stud, playerNumber: PlayerNumber){
         self.stud = stud
-        for i in 0 ..< playerNumbers.rawValue{
-            players.append(Player(name: playerNames[i]))
-        }
+        players = Players(numbers: playerNumber)
     }
     
     func play(){
-        for i in 0 ..< stud.rawValue{
-            for j in 0 ..< players.count{
-                getCard(player: players[j])
+        for i in 0 ..< stud.studValue{
+            for index in 0 ..< players.number{
+                guard let card = dealer.takeCardFromDealer() else {
+                    return
+                }
+                players.takeCard(index: index, card: card)
             }
-            getCard(player: dealer)
-        }
-    }
-
-    private func getCard(player: Player){
-        guard let card = dealer.shareCard() else {
-            print("덱의 카드가 소진되었으므로 게임을 종료합니다.")
-            return
-        }
-        player.addCard(card: card)
-    }
-    
-    func printPlayerCards(){
-        for i in players{
-            i.printName()
-        }
-        dealer.printName()
-    }
-    
-    func testPlayerCards() -> Bool{
-        for i in players{
-            if i.cardsNumber() != stud.rawValue{
-                return false
+            guard let card = dealer.takeCardFromDealer() else {
+                return
             }
+            dealer.takeCard(card: card)
         }
-        if dealer.cardsNumber() != stud.rawValue{
-            return false
-        }
-        return true
     }
-    
 }
 
