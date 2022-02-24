@@ -10,17 +10,44 @@ import UIKit
 @testable import PockerGameApp
 
 class PockerGameTest: XCTestCase {
+    let dealer = Dealer()
     
-    func testPockerGameStud() throws {
-        let pockerTest1 = PockerGame(stud: .five, playerNumbers: .one)
-        pockerTest1.play()
-        XCTAssertEqual(pockerTest1.testPlayerCards(), true)
+    func testPlayerTakeCard() throws {
+        let player = Player(name: Players.playerNames[0])
+        guard let card = dealer.takeCardFromDealer() else{
+            return
+        }
+        player.takeCard(card: card)
+        XCTAssertEqual(player.playerCardCount, 1)
     }
     
-    func testPockerGamePlayers() throws {
-        let pockerTest1 = PockerGame(stud: .seven, playerNumbers: .four)
-        pockerTest1.play()
-        XCTAssertTrue(pockerTest1.testPlayerCards())
+    func testPlayersNumbers() throws{
+        let playerNumber: PockerGame.PlayerNumber = .four
+        let players = Players(numbers: playerNumber)
+        XCTAssertEqual(playerNumber.playerNumber, 4)
     }
+    
+    func testPlayersTakeCard() throws{
+        let playerNumber: PockerGame.PlayerNumber = .four
+        let players = Players(numbers: playerNumber)
+        for i in 0 ..< playerNumber.playerNumber{
+            guard let card = dealer.takeCardFromDealer() else {
+                return
+            }
+            players.takeCard(index: i, card: card)
+        }
+        XCTAssertEqual(players.playersCardCountSum, 4)
+    }
+    
+    func testStudCardNumber() throws{
+        let pockerGame = PockerGame(stud: .five, playerNumber: .four)
+        pockerGame.play()
+        XCTAssertEqual(pockerGame.players.playersCardCountSum, 20)
+        
+        let pockerGame2 = PockerGame(stud: .seven, playerNumber: .three)
+        pockerGame2.play()
+        XCTAssertEqual(pockerGame2.players.playersCardCountSum, 21)
+    }
+    
 }
 
