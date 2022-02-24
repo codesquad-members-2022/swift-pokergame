@@ -56,11 +56,16 @@ class PockerGame: CustomStringConvertible{
         self.stud = stud
         self.dealer = Dealer()
         self.deck = CardDeck()
+        self.players = createPlayers(numberOfPlayers)
+    }
     
+    private func createPlayers(_ numberOfPlayers: Count)-> [Player]{
+        var players: [Player] = []
         for _ in 0..<numberOfPlayers.rawValue{
             guard let playerName = randomNames.popLast() else { continue }
             players.append(Player(playerName))
         }
+        return players
     }
     
     func start(){
@@ -69,13 +74,17 @@ class PockerGame: CustomStringConvertible{
     }
     
     private func run(){
-        if(deck.count >= (players.count + 1) * stud.rawValue){
+        if(isNumberOfCardsEnough()){
             for _ in 0..<(players.count + 1) * stud.rawValue{
                 guard let card = deck.removeOne() else { continue }
                 dealer.getCard(card)
             }
             distributeCards()
         }
+    }
+    
+    private func isNumberOfCardsEnough()-> Bool{
+        return deck.count >= (players.count + 1) * stud.rawValue
     }
     
     private func distributeCards(){
