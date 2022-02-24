@@ -10,12 +10,7 @@ import UIKit
 @testable import PockerGameApp
 
 class PockerGameAppTests: XCTestCase {
-
     private var cardDeck = CardDeck()
-    
-    func testExample() throws {
-        XCTAssertEqual((1+1), 2)
-    }
     
     func testReset() throws{
         cardDeck.reset()
