@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		732224FA27C766E7007F1731 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732224F927C766E7007F1731 /* Player.swift */; };
+		732224FB27C766E7007F1731 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732224F927C766E7007F1731 /* Player.swift */; };
 		7347132027C5D8C500468516 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7347131F27C5D8C500468516 /* CardDeck.swift */; };
 		7347132827C64B0A00468516 /* PokerGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7347132727C64B0A00468516 /* PokerGameTests.swift */; };
 		7347132E27C64B6900468516 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7347131F27C5D8C500468516 /* CardDeck.swift */; };
@@ -33,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		732224F927C766E7007F1731 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		7347131F27C5D8C500468516 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 		7347132527C64B0A00468516 /* PokerGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7347132727C64B0A00468516 /* PokerGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameTests.swift; sourceTree = "<group>"; };
@@ -101,6 +104,7 @@
 				73ADCB9527C32E76009C0499 /* AppDelegate.swift */,
 				73ADCB9727C32E76009C0499 /* SceneDelegate.swift */,
 				73ADCBB927C3C990009C0499 /* Card.swift */,
+				732224F927C766E7007F1731 /* Player.swift */,
 				7347131F27C5D8C500468516 /* CardDeck.swift */,
 				73ADCB9927C32E76009C0499 /* ViewController.swift */,
 				73ADCB9B27C32E76009C0499 /* Main.storyboard */,
@@ -218,6 +222,7 @@
 				737D42EB27C64DC4004CBB46 /* ViewController.swift in Sources */,
 				7347132E27C64B6900468516 /* CardDeck.swift in Sources */,
 				7347132827C64B0A00468516 /* PokerGameTests.swift in Sources */,
+				732224FB27C766E7007F1731 /* Player.swift in Sources */,
 				737D42EC27C64DC7004CBB46 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,6 +235,7 @@
 				7347132027C5D8C500468516 /* CardDeck.swift in Sources */,
 				73ADCB9627C32E76009C0499 /* AppDelegate.swift in Sources */,
 				73ADCB9827C32E76009C0499 /* SceneDelegate.swift in Sources */,
+				732224FA27C766E7007F1731 /* Player.swift in Sources */,
 				73ADCBBA27C3C990009C0499 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
