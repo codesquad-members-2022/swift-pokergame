@@ -21,8 +21,8 @@ class ViewController: UIViewController {
     }
     
     func createCard() {
-        cards.append(Card(12, .heart))
-        cards.append(Card(7, .spade))
+        cards.append(Card(.twelve, .heart))
+        cards.append(Card(.seven, .spade))
     }
     
     func printCard() {
