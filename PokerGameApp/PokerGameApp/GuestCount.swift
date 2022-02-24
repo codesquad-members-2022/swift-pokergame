@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PlayerCount: Int {
+enum GuestCount: Int {
     case one = 1
     case two = 2
     case three = 3
