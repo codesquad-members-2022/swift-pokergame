@@ -37,19 +37,20 @@ class PokerGame {
     private var dealer = Dealer()
     
     init() {
-        action.pokerReset = resetGame
         action.pokerPlay = play
         
-        action.inputPokerStud = { pokerStud in
-            self.pokerStud = pokerStud
-            self.state.resetPokerBoard(self.pokerStud, self.pokerPlayers.names)
+        action.pokerReset = {
+            self.resetGame()
+            self.dealer.cardReset()
         }
         
         action.inputPlayerCount = { playerCount in
             self.playerCount = playerCount
-            self.pokerPlayers.removeAllPlayer()
-            self.pokerPlayers.addPlayer(players: self.makeNewPlayers(count: playerCount))
-            self.pokerPlayers.addPlayer(player: self.dealer)
+            self.resetGame()
+        }
+        
+        action.inputPokerStud = { pokerStud in
+            self.pokerStud = pokerStud
             self.state.resetPokerBoard(self.pokerStud, self.pokerPlayers.names)
         }
     }
@@ -58,7 +59,6 @@ class PokerGame {
         pokerPlayers.removeAllPlayer()
         pokerPlayers.addPlayer(players: self.makeNewPlayers(count: playerCount))
         pokerPlayers.addPlayer(player: dealer)
-        dealer.cardReset()
         state.resetPokerBoard(pokerStud, pokerPlayers.names)
     }
     
