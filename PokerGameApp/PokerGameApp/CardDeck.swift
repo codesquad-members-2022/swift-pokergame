@@ -59,6 +59,26 @@ class Deck {
     }
 }
 
+struct validateDeck {
+    
+        func testCardGeneration() throws -> Deck {
+            let deck = Deck()
+            guard deck.count == 52 else {
+                throw TestError.deckGenerationError
+            }
+            return deck
+        }
+        
+        func testRemoveOne(deck: Deck) throws -> Card?{
+            let cardCount = deck.count
+            let lastCard = deck.removeOne()
+            if cardCount == deck.count {
+                throw TestError.deckRemoveError
+            }
+            return lastCard
+        }
+
+}
 
 //class DeckTest {
 //
@@ -100,24 +120,9 @@ class Deck {
 //    }
 //
 //
-//    func testCardGeneration() throws -> Deck {
-//        print("> 덱을 생성 하였습니다.")
-//        let deck = Deck()
-//        guard deck.count == 52 else {
-//            throw TestError.deckGenerationError
-//        }
-//        return deck
-//    }
+
 //
-//
-//    func testRemoveOne(deck: Deck) throws -> Card?{
-//        let cardCount = deck.count
-//        let lastCard = deck.removeOne()
-//        if cardCount == deck.count {
-//            throw TestError.deckRemoveError
-//        }
-//        return lastCard
-//    }
+
 //
 //    func testShuffle(deck : Deck) throws {
 //        let firstTenCards = deck.cards?[..<10]
@@ -138,24 +143,24 @@ class Deck {
 //        }
 //    }
 //
-//    enum TestError : Error, CustomStringConvertible {
-//
-//        case deckGenerationError
-//        case deckRemoveError
-//        case deckShuffleError
-//        case deckResetError
-//
-//        var description: String {
-//            switch self {
-//            case .deckGenerationError :
-//                return "Failed to generate Deck"
-//            case .deckRemoveError :
-//                return "Failed to remove Card From Deck"
-//            case .deckShuffleError :
-//                return "Failed to shuffle Deck"
-//            case .deckResetError :
-//                return "Failed to reset Deck"
-//            }
-//        }
-//    }
-//}
+    enum TestError : Error, CustomStringConvertible {
+
+        case deckGenerationError
+        case deckRemoveError
+        case deckShuffleError
+        case deckResetError
+
+        var description: String {
+            switch self {
+            case .deckGenerationError :
+                return "Failed to generate Deck"
+            case .deckRemoveError :
+                return "Failed to remove Card From Deck"
+            case .deckShuffleError :
+                return "Failed to shuffle Deck"
+            case .deckResetError :
+                return "Failed to reset Deck"
+            }
+        }
+    }
+
