@@ -13,6 +13,13 @@ struct CardDeck {
     var count : Int {
         return cards.count
     }
+    var showCards : [String] {
+        var tempCards : [String] = []
+        for card in cards {
+            tempCards.append("\(card)")
+        }
+        return tempCards
+    }
     
     init() {
         setNewDeck()
