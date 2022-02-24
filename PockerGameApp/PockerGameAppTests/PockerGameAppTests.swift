@@ -13,7 +13,6 @@ class PockerGameAppTests: XCTestCase {
     private var cardDeck = CardDeck()
     
     func testReset() throws{
-        cardDeck.reset()
         XCTAssertEqual(cardDeck.count, 52)
     }
     
@@ -24,12 +23,6 @@ class PockerGameAppTests: XCTestCase {
     }
     
     func testShuffle() throws{
-        let deckCards = cardDeck.cards
-        cardDeck.shuffle()
-        let duplicated = zip(cardDeck.cards, deckCards).enumerated().filter() {
-            $1.0.number == $1.1.number && $1.0.shape == $1.1.shape
-        }
-        let duplicatedCount = duplicated.map{$0.offset}.count
-        XCTAssertTrue(deckCards.count > duplicatedCount)
+        XCTAssertEqual(cardDeck.testShuffle(), true)
     }
 }
