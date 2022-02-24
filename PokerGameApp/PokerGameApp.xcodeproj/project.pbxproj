@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B52EC60927C5DB4E00C73E54 /* PockerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EC60827C5DB4E00C73E54 /* PockerGame.swift */; };
-		B52EC61A27C66D3300C73E54 /* PockerGameTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EC61927C66D3300C73E54 /* PockerGameTest.swift */; };
+		B52EC60927C5DB4E00C73E54 /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EC60827C5DB4E00C73E54 /* PokerGame.swift */; };
+		B52EC61A27C66D3300C73E54 /* PokerGameTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EC61927C66D3300C73E54 /* PokerGameTest.swift */; };
 		B52EC61C27C679CB00C73E54 /* CardDeckTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EC61B27C679CB00C73E54 /* CardDeckTest.swift */; };
 		B52EC61E27C7582300C73E54 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EC61D27C7582300C73E54 /* Player.swift */; };
 		B56CA14227C3234D001DC373 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CA14127C3234D001DC373 /* AppDelegate.swift */; };
@@ -32,9 +32,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B52EC60827C5DB4E00C73E54 /* PockerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockerGame.swift; sourceTree = "<group>"; };
+		B52EC60827C5DB4E00C73E54 /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
 		B52EC61027C63A0F00C73E54 /* PokerGameAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerGameAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B52EC61927C66D3300C73E54 /* PockerGameTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockerGameTest.swift; sourceTree = SOURCE_ROOT; };
+		B52EC61927C66D3300C73E54 /* PokerGameTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameTest.swift; sourceTree = SOURCE_ROOT; };
 		B52EC61B27C679CB00C73E54 /* CardDeckTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeckTest.swift; sourceTree = "<group>"; };
 		B52EC61D27C7582300C73E54 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		B56CA13E27C3234D001DC373 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,7 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				B52EC61B27C679CB00C73E54 /* CardDeckTest.swift */,
-				B52EC61927C66D3300C73E54 /* PockerGameTest.swift */,
+				B52EC61927C66D3300C73E54 /* PokerGameTest.swift */,
 			);
 			path = PokerGameAppTests;
 			sourceTree = "<group>";
@@ -100,7 +100,7 @@
 				B56CA15727C486FA001DC373 /* Card.swift */,
 				B56CA15927C4B688001DC373 /* CardDeck.swift */,
 				B52EC61D27C7582300C73E54 /* Player.swift */,
-				B52EC60827C5DB4E00C73E54 /* PockerGame.swift */,
+				B52EC60827C5DB4E00C73E54 /* PokerGame.swift */,
 				B56CA14127C3234D001DC373 /* AppDelegate.swift */,
 				B56CA14327C3234D001DC373 /* SceneDelegate.swift */,
 				B56CA14527C3234D001DC373 /* ViewController.swift */,
@@ -217,7 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B52EC61C27C679CB00C73E54 /* CardDeckTest.swift in Sources */,
-				B52EC61A27C66D3300C73E54 /* PockerGameTest.swift in Sources */,
+				B52EC61A27C66D3300C73E54 /* PokerGameTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,7 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B56CA15827C486FA001DC373 /* Card.swift in Sources */,
-				B52EC60927C5DB4E00C73E54 /* PockerGame.swift in Sources */,
+				B52EC60927C5DB4E00C73E54 /* PokerGame.swift in Sources */,
 				B56CA15A27C4B688001DC373 /* CardDeck.swift in Sources */,
 				B56CA14627C3234D001DC373 /* ViewController.swift in Sources */,
 				B52EC61E27C7582300C73E54 /* Player.swift in Sources */,
