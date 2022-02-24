@@ -65,8 +65,8 @@ class ViewController: UIViewController {
         removePreviousCardImageViewsAndLabels()
         
         let cardsCount = CGFloat(game.stud.rawValue)
-        let cardMargin = CGFloat(15)
-        let cardWidth = (self.view.bounds.width - cardMargin*(cardsCount+1))/cardsCount
+        let cardMargin = CGFloat(20)
+        let cardWidth = (self.view.bounds.width)/(cardsCount+1)
         let cardHeight = cardWidth*CGFloat(1.27)
         var cardXPosition = cardMargin
         var cardYPosition = CGFloat(studSelectionControl.center.y * 1.3)
@@ -92,10 +92,10 @@ class ViewController: UIViewController {
                 imageView.contentMode = .scaleAspectFit
                 self.view.addSubview(imageView)
                 self.cardImageViews.append(imageView)
-                cardXPosition += cardMargin+cardWidth
+                cardXPosition += cardWidth - CGFloat(10)
             }
             cardXPosition = cardMargin
-            cardYPosition += cardHeight + cardMargin
+            cardYPosition += cardHeight + CGFloat(10)
         }
     }
     
