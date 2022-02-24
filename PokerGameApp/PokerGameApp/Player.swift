@@ -14,10 +14,13 @@ class Player {
     var handCount : Int {
         return hand.count
     }
+    
     init(name: String) {
         self.name = name
     }
+    
     func receiveCard(card : Card) {
         self.hand.append(card)
     }
+    
 }

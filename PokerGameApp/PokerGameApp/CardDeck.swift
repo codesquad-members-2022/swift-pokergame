@@ -13,6 +13,7 @@ struct CardDeck {
     var count : Int {
         return cards.count
     }
+    
     init() {
         for shape in Card.Shape.allCases {
             for number in Card.Number.allCases{
@@ -21,6 +22,7 @@ struct CardDeck {
         }
         cards = originCards
     }
+    
     mutating func shuffle() {
         for cardIndex in 0..<self.count {
             guard let randomIndex = (cardIndex..<self.count).randomElement() else {continue}
@@ -29,18 +31,20 @@ struct CardDeck {
             cards[randomIndex] = tempCard
         }
     }
+    
     mutating func removeOne() -> Card? {
         return self.cards.popLast()
     }
+    
     mutating func reset() {
         cards = originCards
     }
+    
 }
 
 extension CardDeck : Equatable {
     static func == (lhs: CardDeck, rhs: CardDeck) -> Bool {
         return lhs.cards == rhs.cards
     }
-    
     
 }
