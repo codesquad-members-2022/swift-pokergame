@@ -22,7 +22,7 @@ class CardDeckTest: XCTestCase {
     func testRemoveOne(){
         deck.reset()
         XCTAssertNotNil(deck.removeOne())
-        XCTAssertEqual(deck.removeOne()!.suit.description, "♥︎")
+        XCTAssertEqual(deck.removeOne()!.suit.description, "h")
     }
     
     func testReset(){
