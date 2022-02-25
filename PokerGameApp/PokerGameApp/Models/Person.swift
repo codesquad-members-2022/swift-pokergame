@@ -10,7 +10,8 @@ import Foundation
 class Person {
     
     private var name : String
-    private var cards = [Card]()
+    //XCTest 하기 위해 외부에서 읽기만 가능하고 내부에서만 수정이 가능하도록  private (set) 설정.
+    private(set) var cards = [Card]()
 
     init(name: String) {
         self.name = name
