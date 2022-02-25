@@ -18,6 +18,15 @@ class Player {
     func handOver(cards: [Card]) {
         cards.forEach { self.cards.append($0) }
     }
+    
+    func state() -> PlayerViewModel {
+        return PlayerViewModel(name: self.name, cards: self.cards)
+    }
 }
 
 class Guest: Player {}
+
+struct PlayerViewModel {
+    let name: String
+    let cards: [Card]
+}

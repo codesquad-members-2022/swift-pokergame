@@ -16,27 +16,20 @@ class Dealer: Player {
         super.init(name: name)
     }
     
-    func distributeCard(to players: [Player]) -> [Player] {
+    func prepare() {
         cardDeck.shuffle()
-        
-        //1. 게임딜러도 카드를 가진다
-        for _ in 0..<stud.rawValue {
-            guard let removedCard = cardDeck.removeOne() else {
-                continue
-            }
-            self.handOver(cards: [removedCard])
-        }
-        //2. 참가자들에게 카드 분배
-        var result = [Player]()
-        for player in players {
+    }
+    
+    func distributeCard(to team: Team) {
+        team.loop { player in
+            var removedCards = [Card]()
             for _ in 0..<stud.rawValue {
-                guard let removedCard = cardDeck.removeOne() else {
+                guard let card = cardDeck.removeOne() else {
                     continue
                 }
-                player.handOver(cards: [removedCard])
+                removedCards.append(card)
             }
-            result.append(player)
+            player.handOver(cards: removedCards)
         }
-        return result
     }
 }
