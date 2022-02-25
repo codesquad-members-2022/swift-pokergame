@@ -9,12 +9,12 @@ import Foundation
 
 struct PokerGame {
     private var players = [String]()
-    private var cardCount: Int = 0
+    private var cardStud: Int = 0
     
     
     // 게임을 실행합니다.
     mutating func run() {
-        self.cardCount = 7
+        self.cardStud = 7
         let playersCount = 4
         self.players = makeRandomName(count: playersCount)
     }
