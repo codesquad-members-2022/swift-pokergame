@@ -10,9 +10,7 @@ struct PokerGame {
     private let dealer : Dealer
     private var players : Players
     private let stud : Stud
-    private var playerCount : Int {
-        return self.players.count
-    }
+    private var playerCount : Int
     var remainCardCount : Int {
         return dealer.cardDeckCount
     }
@@ -21,17 +19,19 @@ struct PokerGame {
         self.stud = stud
         self.players = Players()
         self.dealer = Dealer()
-        seatPlayer(playerCount: playerCount)
+        self.playerCount = playerCount.intValue
+        seatPlayer(count: self.playerCount)
     }
     
     mutating func play() {
-        drawCard(each: self.stud.rawValue)
+        draw(each: stud.initialCard)
+        let oneCard = 1
         while dealer.cardDeckCount-playerCount >= 0 {
-            drawCard(each: 1)
+            draw(each: oneCard)
         }
     }
     
-    private func drawCard(each : Int) {
+    private func draw(each : Int) {
         for _ in 0..<each {
             var oneCycleDraw = Cards()
             for _ in 0..<playerCount {
@@ -42,10 +42,10 @@ struct PokerGame {
         }
     }
     
-    private mutating func seatPlayer(playerCount : PlayerCount) {
+    private mutating func seatPlayer(count : Int) {
         var playerName = PlayerName()
         self.players.seat(player: dealer)
-        for _ in 0..<playerCount.rawValue {
+        for _ in 0..<count {
             let name = playerName.popName()
             let newPlayer = Player(name: name)
             self.players.seat(player: newPlayer)
@@ -57,10 +57,18 @@ struct PokerGame {
         case two
         case three
         case four
+        
+        var intValue : Int {
+            return rawValue
+        }
     }
     
     enum Stud : Int {
         case sevenCard = 7
         case fiveCard = 5
+        
+        var initialCard : Int {
+            return rawValue
+        }
     }
 }
