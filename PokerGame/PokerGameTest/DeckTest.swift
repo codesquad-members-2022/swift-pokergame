@@ -6,30 +6,91 @@
 //
 
 import XCTest
+@testable import PokerGame
 
 class DeckTest: XCTestCase {
-
+    var factory:DeckFactory!
+    var sut:Deck!
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
+        factory = DeckFactory()
+        sut = factory.makeDeck()
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        
+    //Equatable시 비교되는 값은 Deck의 usedCards 프로퍼티입니다.
+    //약 10번정도의 shuffle을 했음에도 같지 않다면 shuffle이 잘된것이라 판단했습니다.
+     func testSuffule() {
+        let deck0 = factory.makeDeck()
+        let deck1 = factory.makeDeck()
+        
+         for _ in 0..<10  {
+            deck0.shuffle()
+            deck1.shuffle()
+            XCTAssertNotEqual(deck0, deck1)
+         }
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+     func testSuffuled() {
+        let deck0 = factory.makeDeck()
+        let deck1 = factory.makeDeck()
+        
+        let suffledCards0 = deck0.shuffled()
+        let suffeldCards1 = deck1.shuffled()
+        
+        XCTAssertNotEqual(suffledCards0, suffeldCards1)
+        
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
+    
+    //52개의 카드가 정상적으로 '하나'씩 제거가 되면 test가 정상적으로 작동한다고 가정하였습니다.
+    func testRemoveOne() {
+        let deck = factory.makeDeck()
+        
+        let originCount = 52
+        var count = 0
+        
+        for _ in 0..<originCount {
+            count += 1
+            deck.removeOne()
+            
+            XCTAssertTrue(deck.count + count == originCount)
+    }
+}
+    
+    //52개의 카드가 순서대로 정상적으로 제거된후 리턴이 되고, 이전에 지운카드와 앞으로 지울 카드가 52번동안 다르다면 test가 정상이라고 생각했습니다.
+    func testRemovedOne() {
+        let deck = factory.makeDeck()
+        
+        let testCount = 52
+        var removedCard:Card?
+        
+        for _ in 0..<testCount {
+            let willRemoveCard = deck.removedOne()
+            
+            XCTAssertTrue(willRemoveCard != removedCard)
+            
+            removedCard = willRemoveCard
         }
     }
-
+    
+    //origin Deck과 사용중이던 Deck을 originDeck과 비교하여 같다면 reset이 잘된것이라 판단하였습니다.
+    func testReset() {
+        let originDeck = factory.makeDeck()
+        let usedDeck = factory.makeDeck()
+        
+        usedDeck.reset()
+        
+        XCTAssertEqual(originDeck, usedDeck)
+    }
+    
+    
+    
+    
+    override func tearDownWithError() throws {
+        factory = nil
+        sut = nil
+        try? super.tearDownWithError()
+    }
 }
+
+
