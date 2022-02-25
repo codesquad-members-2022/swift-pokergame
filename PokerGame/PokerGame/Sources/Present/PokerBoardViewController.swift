@@ -57,6 +57,12 @@ class PokerBoardViewController: UIViewController {
         pokerGame.state.givePlayerCard = { index, cardIndex, card in
             self.playerCardViews[index].setCard(at: cardIndex, card: card)
         }
+        
+        pokerGame.state.pokerWinner = { winner in
+            self.playerCardViews.forEach {
+                $0.setWinner(winner: winner)
+            }
+        }
     }
     
     private func attribute() {        
@@ -64,6 +70,7 @@ class PokerBoardViewController: UIViewController {
             self.view.backgroundColor = UIColor(patternImage: backImage)
         }
         
+        playerCardStackView.spacing = 5
         playerCardStackView.axis = .vertical
         playerCardStackView.distribution = .fillProportionally
     }

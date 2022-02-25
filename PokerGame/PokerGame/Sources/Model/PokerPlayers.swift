@@ -71,7 +71,7 @@ class PokerPlayers {
 
 extension PokerPlayers {
     enum Count: Int, CaseIterable {
-        case one = 1, two, three, four, five, max
+        case one = 1, two, three, four, max
         
         var value: Int {
             self.rawValue
