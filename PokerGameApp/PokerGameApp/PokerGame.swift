@@ -17,10 +17,10 @@ class PokerGame: CustomStringConvertible{
     private (set) var stud: Stud
     private (set) var deck: CardDeck
     var dealer: Dealer
-    var players: [Player] = []
+    //var players: [Player] = []
+    var players: Players?
     var description: String{
-        let value: String = players.reduce(into: "", { $0 += $1.description+"\n"})
-        return "\(value)\(dealer)"
+        return "\(players)\(dealer)"
     }
     
     init(numberOfPlayers: Count, stud: Stud){
@@ -30,14 +30,14 @@ class PokerGame: CustomStringConvertible{
         self.players = createPlayers(numberOfPlayers: numberOfPlayers)
     }
     
-    private func createPlayers(numberOfPlayers: Count)-> [Player]{
+    private func createPlayers(numberOfPlayers: Count)-> Players{
         var players: [Player] = []
         self.randomNames.shuffle()
         for _ in 0..<numberOfPlayers.rawValue{
             guard let playerName = randomNames.popLast() else { continue }
             players.append(Player(name: playerName))
         }
-        return players
+        return Players(players: players)
     }
     
     func start(){
@@ -46,6 +46,8 @@ class PokerGame: CustomStringConvertible{
     }
     
     private func run(){
+        guard let players = self.players else { return }
+        
         if(isNumberOfCardsEnough()){
             for _ in 0..<(players.count + 1) * stud.rawValue{
                 guard let card = deck.removeOne() else { continue }
@@ -56,14 +58,18 @@ class PokerGame: CustomStringConvertible{
     }
     
     private func isNumberOfCardsEnough()-> Bool{
+        guard let players = self.players else { return false }
+        
         return deck.count >= (players.count + 1) * stud.rawValue
     }
     
     private func distributeCards(){
+        guard let players = self.players else { return }
+        
         for _ in 0..<stud.rawValue{
             for index in 0..<players.count{
                 guard let card = dealer.handOutCard(stud: stud.rawValue) else { continue }
-                players[index].addCard(card)
+                players.addCard(playerIndex: index, card: card)
             }
         }
     }
