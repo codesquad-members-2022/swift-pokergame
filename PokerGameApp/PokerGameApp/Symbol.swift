@@ -60,7 +60,7 @@ enum SymbolString: String {
     case king = "K"
 }
 
-enum SymbolInt: Int {
+enum SymbolInt: Int, CaseIterable {
     case ace = 1
     case two = 2
     case three = 3
@@ -74,37 +74,13 @@ enum SymbolInt: Int {
     case jack = 11
     case queen = 12
     case king = 13
-    
-    init?(_ number: Int) {
-        switch number {
-        case 1:
-            self = .ace
-        case 2:
-            self = .two
-        case 3:
-            self = .three
-        case 4:
-            self = .four
-        case 5:
-            self = .five
-        case 6:
-            self = .six
-        case 7:
-            self = .seven
-        case 8:
-            self = .eight
-        case 9:
-            self = .nine
-        case 10:
-            self = .ten
-        case 11:
-            self = .jack
-        case 12:
-            self = .queen
-        case 13:
-            self = .king
-        default :
-            return nil
-        }
+
+}
+
+extension Symbol: CustomStringConvertible {
+    var description: String {
+        return self.symbolString.rawValue
     }
+    
+    
 }

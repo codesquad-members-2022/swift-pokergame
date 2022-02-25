@@ -40,11 +40,11 @@ struct Deck {
     
     mutating func reset() {
         self.cardDeck = Array<Card>()
-        for i in 1...initCardNumber {
-            self.cardDeck.append(Card(shape: .spades, symbol: .init(SymbolInt(i) ?? .ace)))
-            self.cardDeck.append(Card(shape: .diamonds, symbol: .init(SymbolInt(i) ?? .ace)))
-            self.cardDeck.append(Card(shape: .hearts, symbol: .init(SymbolInt(i) ?? .ace)))
-            self.cardDeck.append(Card(shape: .clubs, symbol: .init(SymbolInt(i) ?? .ace)))
+        for symbolIntCase in SymbolInt.allCases {
+            self.cardDeck.append(Card(shape: .spades, symbol: .init(symbolIntCase)))
+            self.cardDeck.append(Card(shape: .diamonds, symbol: .init(symbolIntCase)))
+            self.cardDeck.append(Card(shape: .hearts, symbol: .init(symbolIntCase)))
+            self.cardDeck.append(Card(shape: .clubs, symbol: .init(symbolIntCase)))
         }
     }
 }

@@ -17,8 +17,6 @@ class Card {
         case diamonds = "♦︎"
     }
     
-    
-    
     let shape: Shape
     let symbol: Symbol
     
@@ -33,7 +31,7 @@ class Card {
 
 extension Card: CustomStringConvertible {
     var description: String {
-        return "\(shape.description)\(symbol)"
+        return "\(shape.description)\(symbol.description)"
     }
 }
 
