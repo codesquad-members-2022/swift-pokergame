@@ -33,8 +33,12 @@ class CardDeck {
     public func shuffle() {
         
     }
-    //MARK: 
-    public func removeOne() {
-        
+    //MARK: 덱 중에 하나를 pop한다
+    public func removeOne() -> Card {
+        let randomInt = Int.random(in: 0..<cardCount)
+        let removed = deck.remove(at: randomInt)
+        print(removed.description)
+        print("총 \(cardCount)장의 카드가 남았습니다.")
+        return removed
     }
 }
