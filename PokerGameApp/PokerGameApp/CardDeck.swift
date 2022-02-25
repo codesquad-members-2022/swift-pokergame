@@ -27,15 +27,11 @@ struct CardDeck {
     }
     
     mutating func shuffle() {
-        
-        
-        for i in 0..<count-1 {
-            let randomIndex = Int.random(in: i..<count)
-              
-            let temp = deck[i]
-            deck[i] = deck[randomIndex]
+        for changedIndex in 0..<count-1 {
+            let randomIndex = Int.random(in: changedIndex..<count)
+            let temp = deck[changedIndex]
+            deck[changedIndex] = deck[randomIndex]
             deck[randomIndex] = temp
-            
         }
         
     }
@@ -43,7 +39,6 @@ struct CardDeck {
     mutating func removeOne() -> Card {
         
         let randomIndex = Int.random(in: 0..<count)
-        
         let removedCard = deck.remove(at: randomIndex)
         return removedCard
         
