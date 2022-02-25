@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1B55D93127C5013800001B52 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B55D93027C5013800001B52 /* Card.swift */; };
-		1B55D93327C5053100001B52 /* CardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B55D93227C5053100001B52 /* CardInfo.swift */; };
 		1B55D93927C51AB600001B52 /* CardFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B55D93827C51AB600001B52 /* CardFactory.swift */; };
 		1B55D93D27C5B18800001B52 /* Step1_Result.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1B55D93C27C5B18800001B52 /* Step1_Result.jpg */; };
 		1B6FAC2727C4F1B3005A49CE /* Info_plist_code.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1B6FAC2527C4F1B3005A49CE /* Info_plist_code.jpg */; };
@@ -47,7 +46,6 @@
 
 /* Begin PBXFileReference section */
 		1B55D93027C5013800001B52 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		1B55D93227C5053100001B52 /* CardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfo.swift; sourceTree = "<group>"; };
 		1B55D93827C51AB600001B52 /* CardFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFactory.swift; sourceTree = "<group>"; };
 		1B55D93C27C5B18800001B52 /* Step1_Result.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Step1_Result.jpg; sourceTree = "<group>"; };
 		1B6FAC2527C4F1B3005A49CE /* Info_plist_code.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Info_plist_code.jpg; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 				1B55D93027C5013800001B52 /* Card.swift */,
 				1BAF190C27C6298500317699 /* Card+Extension.swift */,
 				1B55D93827C51AB600001B52 /* CardFactory.swift */,
-				1B55D93227C5053100001B52 /* CardInfo.swift */,
 				1BEB000427C332BF005738B5 /* Main.storyboard */,
 				1BEB000727C332C1005738B5 /* Assets.xcassets */,
 				1BEB000927C332C1005738B5 /* LaunchScreen.storyboard */,
@@ -325,7 +322,6 @@
 				1BEBFFFF27C332BF005738B5 /* AppDelegate.swift in Sources */,
 				1BF3F4DC27C86EDA0086FFB0 /* ShuffleAlgorithm.swift in Sources */,
 				1BEB000127C332BF005738B5 /* SceneDelegate.swift in Sources */,
-				1B55D93327C5053100001B52 /* CardInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

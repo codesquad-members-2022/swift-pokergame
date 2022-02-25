@@ -7,14 +7,27 @@
 
 import Foundation
 
-class Card {
-    
-    typealias Number = Int
-    
-    private(set) var info: CardInfo
+typealias CardNumber = Card.Number
+typealias CardSymbol = Card.Symbol
 
-    init(using info: CardInfo) {
-        self.info = info
+class Card {
+    private let number: CardNumber!
+    private let symbol: CardSymbol!
+
+    init(as number: CardNumber, using symbol: CardSymbol) {
+        self.number = number
+        self.symbol = symbol
     }
 }
 
+extension Card: CustomStringConvertible {
+    public var description: String {
+        "\(symbol.rawValue)\(number.encodedNum)"
+    }
+}
+
+extension Card: Equatable {
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        lhs.number == rhs.number && lhs.symbol == rhs.symbol
+    }
+}

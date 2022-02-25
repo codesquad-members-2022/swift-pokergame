@@ -7,13 +7,23 @@
 
 import Foundation
 
-extension Card: CustomStringConvertible {
-    public var description: String {
-        "\(info.symbol.rawValue)\(info.number.encodedNum)"
-    }
-}
-
 extension Card {
+    enum Number: Int, CaseIterable {
+        case one = 1
+        case two = 2
+        case three = 3
+        case four = 4
+        case five = 5
+        case six = 6
+        case seven = 7
+        case eight = 8
+        case nine = 9
+        case ten = 10
+        case eleven = 11
+        case twelve = 12
+        case thirteen = 13
+    }
+    
     enum Symbol: String, CaseIterable {
         case spade = "♠️"
         case clover = "♣️"
@@ -26,20 +36,9 @@ extension Card {
     }
 }
 
-extension Card: Equatable {
-    static func == (lhs: Card, rhs: Card) -> Bool {
-        lhs.info == rhs.info
-    }
-}
-
-extension Card.Number {
-    
-    static var allRange: ClosedRange<Card.Number> {
-        (1...13) as ClosedRange<Card.Number>
-    }
-    
+extension CardNumber { // Card.Number
     static var random: Card.Number {
-        allRange.randomElement()!
+        self.allCases.randomElement()!
     }
     
     var encodedNum: String {
@@ -52,11 +51,17 @@ extension Card.Number {
     
     private func encode() -> String {
         switch self {
-        case 1: return "A"
-        case 11: return "J"
-        case 12: return "Q"
-        case 13: return "K"
-        default: return String(self)
+        case .one: return "A"
+        case .eleven: return "J"
+        case .twelve: return "Q"
+        case .thirteen: return "K"
+        default: return "\(self.rawValue)"
         }
+    }
+}
+
+extension CardSymbol { // Card.Symbol
+    static var random: Card.Symbol {
+        self.allCases.randomElement()!
     }
 }
