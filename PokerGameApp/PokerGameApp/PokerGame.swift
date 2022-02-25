@@ -38,17 +38,7 @@ class PokerGame {
     private var playerCount: PlayerCount
     private var dealer: Dealer
     private var participants: Participants
-    
-    var getPlayersHand: String {
-        var str = ""
-        
-        self.participants.players.forEach { player in
-            str += "\(player.name) \(player.hand.getCards)\n"
-        }
-        
-        return str
-    }
-    
+
     init(stud: Stud, playerCount: PlayerCount) {
         self.stud = stud
         self.playerCount = playerCount
