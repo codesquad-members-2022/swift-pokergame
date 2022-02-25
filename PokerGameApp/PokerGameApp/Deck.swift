@@ -21,8 +21,15 @@ struct Deck {
         return cardDeck.count
     }
     
-    func shuffle() {
-        // 전체 카드를 랜덤하게 섞음
+    mutating func shuffle() {
+        var cardDeckIndex = cardDeck.count - 1
+        for i in 1...cardDeck.count {
+            let tempCard = cardDeck[cardDeckIndex]
+            let randomIndex = Int.random(in: 1...cardDeckIndex)
+            cardDeck[cardDeckIndex] = cardDeck[randomIndex]
+            cardDeck[randomIndex] = tempCard
+            cardDeckIndex -= 1
+        }
     }
     
     mutating func removeOne() -> Card? {
@@ -49,7 +56,6 @@ extension Deck: CustomStringConvertible {
         for card in cardDeck {
             if let cardContent = card {
                 deckInfo += "\(cardContent.shape)\(cardContent.number)\n"
-                
             }
         }
         return deckInfo
