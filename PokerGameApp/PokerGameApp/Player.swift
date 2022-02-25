@@ -20,7 +20,7 @@ class Player {
         self.hand = Cards()
     }
     
-    func receiveCard(card : Card) {
+    func receive(_ card : Card) {
         self.hand.add(card: card)
     }
     

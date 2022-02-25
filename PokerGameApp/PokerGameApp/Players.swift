@@ -28,7 +28,7 @@ struct Players {
         var cards = cards
         for player in players {
             guard let popedCard = cards.pop() else {break}
-            player.receiveCard(card: popedCard)
+            player.receive(popedCard)
         }
     }
     
