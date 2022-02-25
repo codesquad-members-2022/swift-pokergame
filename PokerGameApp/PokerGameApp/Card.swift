@@ -62,7 +62,11 @@ class Card {
     }
 }
 
-extension Card: Comparable {
+extension Card: Comparable, CustomStringConvertible {
+    var description: String {
+        return "\(self.getSuit())\(self.getRank())"
+    }
+    
     static func < (lhs: Card, rhs: Card) -> Bool {
         if lhs.rank == lhs.rank {
             return lhs.suit < rhs.suit
