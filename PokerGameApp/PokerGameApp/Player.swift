@@ -1,7 +1,10 @@
 import Foundation
 
 class Player: CustomStringConvertible{
-    var name: String
+    private var name: String
+    var playerName: String{
+        return self.name
+    }
     fileprivate (set) var cards: [Card] = []
     var description: String{
         return "\(name) \(cards)"
