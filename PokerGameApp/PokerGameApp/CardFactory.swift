@@ -15,14 +15,13 @@ class CardFactory {
     }
     
     static func randomCard() -> Card {
-        let info = CardInfo(as: Card.Symbol.randomElement, with: Card.Number.random)!
-        return Card(using: info)
+        return Card(as: .random, using: .random)
     }
     
     static func deckOfCard() -> [Card] {
         var result = [Card]()
-        for symbol in Card.Symbol.allCases {
-            let cards = Card.Number.allRange.compactMap({ cardNumber in Card(using: CardInfo(as: symbol, with: cardNumber)!) })
+        for symbol in CardSymbol.allCases {
+            let cards = CardNumber.allCases.compactMap({ number in Card(as: number, using: symbol) })
             result.append(contentsOf: cards)
         }
         
