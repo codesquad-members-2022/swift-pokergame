@@ -52,10 +52,14 @@ struct Deck {
 
 extension Deck: CustomStringConvertible {
     var description: String {
-        var deckInfo = "Deck Info\n"
-        for card in cardDeck {
-            if let cardContent = card {
+        let lineBreakNum = 4
+        var deckInfo = "---Deck Info---\n"
+        for i in 0..<cardDeck.count {
+            let card = cardDeck[i]
+            if let cardContent = card, (i + 1) % lineBreakNum == 0 {
                 deckInfo += "\(cardContent.shape)\(cardContent.number)\n"
+            } else if let cardContent = card, (i + 1) % lineBreakNum != 0 {
+                deckInfo  += "\(cardContent.shape)\(cardContent.number), "
             }
         }
         return deckInfo
