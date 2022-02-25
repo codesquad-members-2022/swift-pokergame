@@ -25,6 +25,7 @@
 		1BEB002F27C33583005738B5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1BEB002E27C33583005738B5 /* README.md */; };
 		1BEBFFFF27C332BF005738B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEBFFFE27C332BF005738B5 /* AppDelegate.swift */; };
 		1BF3F4DA27C7755A0086FFB0 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF3F4D927C7755A0086FFB0 /* CardDeck.swift */; };
+		1BF3F4DC27C86EDA0086FFB0 /* ShuffleAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF3F4DB27C86EDA0086FFB0 /* ShuffleAlgorithm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		1BEBFFFB27C332BF005738B5 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEBFFFE27C332BF005738B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BF3F4D927C7755A0086FFB0 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
+		1BF3F4DB27C86EDA0086FFB0 /* ShuffleAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShuffleAlgorithm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 		1BEBFFFD27C332BF005738B5 /* PokerGameApp */ = {
 			isa = PBXGroup;
 			children = (
+				1BF3F4DB27C86EDA0086FFB0 /* ShuffleAlgorithm.swift */,
 				1BEBFFFE27C332BF005738B5 /* AppDelegate.swift */,
 				1BF3F4D927C7755A0086FFB0 /* CardDeck.swift */,
 				1BEB000027C332BF005738B5 /* SceneDelegate.swift */,
@@ -320,6 +323,7 @@
 				1B55D93127C5013800001B52 /* Card.swift in Sources */,
 				1BEB000327C332BF005738B5 /* ViewController.swift in Sources */,
 				1BEBFFFF27C332BF005738B5 /* AppDelegate.swift in Sources */,
+				1BF3F4DC27C86EDA0086FFB0 /* ShuffleAlgorithm.swift in Sources */,
 				1BEB000127C332BF005738B5 /* SceneDelegate.swift in Sources */,
 				1B55D93327C5053100001B52 /* CardInfo.swift in Sources */,
 			);
