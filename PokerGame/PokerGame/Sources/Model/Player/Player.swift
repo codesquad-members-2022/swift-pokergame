@@ -15,7 +15,7 @@ class Player: CustomStringConvertible {
         return "Name: \(name), cards: \(cards)"
     }
     
-    var score: Score? {
+    var score: Score {
         Score.calculated(cards: cards)
     }
     

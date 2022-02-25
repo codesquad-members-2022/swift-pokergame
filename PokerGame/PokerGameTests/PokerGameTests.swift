@@ -93,7 +93,7 @@ class PokerGameTests: XCTestCase {
         }
         print("-------------------------------")
         
-        XCTAssertEqual(players[checkWinnerIndex].score, winner)
+        XCTAssertEqual(players[checkWinnerIndex].name, winner)
     }
     
     func testScoreRule() {
@@ -111,11 +111,11 @@ class PokerGameTests: XCTestCase {
             $0.name < $1.name
         }
         
-        XCTAssertEqual(players[0].score?.rule, .onePair)
-        XCTAssertEqual(players[1].score?.rule, .twoPair)
-        XCTAssertEqual(players[2].score?.rule, .triple)
-        XCTAssertEqual(players[3].score?.rule, .fourCard)
-        XCTAssertEqual(players[4].score?.rule, .straight)
+        XCTAssertEqual(players[0].score.rule, .onePair)
+        XCTAssertEqual(players[1].score.rule, .twoPair)
+        XCTAssertEqual(players[2].score.rule, .triple)
+        XCTAssertEqual(players[3].score.rule, .fourCard)
+        XCTAssertEqual(players[4].score.rule, .straight)
     }
     
     func testCardDeckReset() {

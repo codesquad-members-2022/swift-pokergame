@@ -32,7 +32,7 @@ extension Score {
         numberCounting.filter{ $0.value == count }.sorted(by: {$0.key > $1.key}).map { $0.key }
     }
     
-    static func calculated(cards: [Card]) -> Score? {
+    static func calculated(cards: [Card]) -> Score {
         //숫자 별로 갯수를 정리
         let numberCounting = cards.reduce(into: [Card.Number:Int]()) {
             $0[$1.number] = ($0[$1.number] ?? 0) + 1
@@ -78,7 +78,7 @@ extension Score {
         }
         
         //해당사항없으면 점수없음
-        return nil
+        return Score(rule: .none, highNumber: .ace)
     }
 }
 
