@@ -51,16 +51,17 @@ class PokerPlayers {
         self.players.removeAll()
     }
     
-    func cardDistribution(dealer: Dealer, pokerStud: PokerGame.Stud, addEventHandler: @escaping (Int, Int, Card) -> Void ) {
-        pokerStud.cardDistribution { cardIndex in
-            (0..<self.count.value).forEach { index in
-                guard let card = dealer.removeOne() else {
-                    return
-                }
-                self.addCard(at: index, card: card)
-                addEventHandler(index, cardIndex, card)
+    func cardDistribution(dealer: Dealer, pokerStud: PokerGame.Stud,
+                          addEventHandler: @escaping (Int, Int, Card) -> Void,
+                          finishEventHandler: @escaping () -> Void) {
+        
+        pokerStud.cardDistribution(playerCount: self.count, loopEvent: { playerIndex, cardIndex in
+            guard let card = dealer.removeOne() else {
+                return
             }
-        }
+            self.addCard(at: playerIndex, card: card)
+            addEventHandler(playerIndex, cardIndex, card)
+        }, finishEvent: finishEventHandler)
     }
     
     func getWinner() -> String?{
