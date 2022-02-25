@@ -40,8 +40,8 @@ struct CardDeck {
         }
     }
     
-    mutating func draw() -> Card? {
-        return count > 0 ? self.cards.remove(at: Int.random(in: (0..<count))) : nil
+    mutating func draw() -> Card {
+        return self.cards.removeFirst()
     }
     
     mutating func reset() {
