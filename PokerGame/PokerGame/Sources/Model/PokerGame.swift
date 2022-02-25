@@ -118,5 +118,11 @@ extension PokerGame {
             case .fiveCard: return 1
             }
         }
+        
+        func cardDistribution(loopEvent: @escaping (Int) -> Void) {
+            (0..<cardCount).forEach {
+                loopEvent($0)
+            }
+        }
     }
 }

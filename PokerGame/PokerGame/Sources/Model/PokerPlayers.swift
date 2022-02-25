@@ -52,12 +52,12 @@ class PokerPlayers {
     }
     
     func cardDistribution(dealer: Dealer, pokerStud: PokerGame.Stud, addEventHandler: @escaping (Int, Int, Card) -> Void ) {
-        (0..<pokerStud.cardCount).forEach { cardIndex in
-            (0..<count.value).forEach { index in
+        pokerStud.cardDistribution { cardIndex in
+            (0..<self.count.value).forEach { index in
                 guard let card = dealer.removeOne() else {
                     return
                 }
-                addCard(at: index, card: card)
+                self.addCard(at: index, card: card)
                 addEventHandler(index, cardIndex, card)
             }
         }
