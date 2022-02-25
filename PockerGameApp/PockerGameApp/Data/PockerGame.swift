@@ -10,57 +10,55 @@ import Foundation
 class PockerGame{
     private var variant: PockerGame.Variants
     private var entries: PockerGame.Entries
-    private var dealer = Dealer()
-    private var players: [Player] = []
+    private var players: InGamePlayers
+    private var dealer = Dealer(role: "Dealer")
     
     private var inHandCards = [String:[String]]()
     private var canPlayGame = true
     
-    func playPockerGame(){
-        // 현재 판 수
-        var nowPlay = 1
-        // 시작에 앞서 딜러가 카드를 셔플하고 52장 맞는지 확인
-        let _ = dealer.shuffleCardDeck()
-        
-        // 카드덱이 떨어질 때까지 게임 진행 반복
-        while canPlayGame{
-            // 5장 or 7장 나눠주기
-            for _ in 0..<variant.rawValue{
-                divideCards()
-            }
-            
-            overOneGame()
-            let show = showAllCardInHand()
-            
-            nowPlay += 1
-            clearGame()
-            
-        }
+    func playingCardNumber() -> Int{
+        return variant.rawValue
+    }
+    
+    func playingLoop() -> Bool{
+        return canPlayGame
+    }
+    
+    func dealerShuffle() -> Int{
+        let cardCount = self.dealer.shuffleCardDeck()
+        return cardCount
     }
     
     func divideCards(){
-        players.forEach{ player in
-            guard let card = dealer.giveCard() else{
-                self.canPlayGame = false
-                return
-            }
-            
-            player.receiveCard(card: card)
-        }
+        players.playersGetCards(dealer: dealer)
         
         if let card = dealer.giveCard(){
             dealer.receiveCard(card: card)
         } else{
             self.canPlayGame = false
         }
+        
+        overOneTurn()
     }
     
-    func overOneGame(){
+    func overOneTurn(){
         // 한게임 마무리 시, 현재 참여자들의 카드를 inHandCards에 할당
-        players.forEach{ player in
-            inHandCards[player.name] = player.checkingCards()
+        let playersCard = players.inMyHandCard()
+        playersCard.forEach{ player in
+            if inHandCards[player.key] != nil{
+                inHandCards[player.key]?.append(player.value)
+            } else{
+                inHandCards[player.key] = [player.value]
+            }
         }
-        inHandCards[dealer.role] = dealer.checkingCards()
+        
+        if let dealerCard = dealer.showMyCards().last{
+            if inHandCards[dealer.role] != nil{
+                inHandCards[dealer.role]?.append(dealerCard)
+            } else{
+                inHandCards[dealer.role] = [dealerCard]
+            }
+        }
     }
     
     func showAllCardInHand() -> String{
@@ -78,32 +76,29 @@ class PockerGame{
     }
     
     func clearGame(){
-        // 이번 판의 카드들 전부 해제
         inHandCards.removeAll()
         
-        players.forEach{ player in
-            player.removeCards()
-        }
+        players.throwAwayCards()
         dealer.removeCards()
     }
     
     init(variant: PockerGame.Variants, entries: PockerGame.Entries){
         self.variant = variant
         self.entries = entries
+        self.players = InGamePlayers(entry: self.entries.rawValue)
         
-        for _ in 0..<self.entries.rawValue{
-            let name = String.makePlayerName()
-            let player = Player(randomName: name)
-            self.players.append(player)
-        }
     }
     
     enum Variants: Int{
-        case fiveCardStud = 5, sevenCardStud = 7
+        case fiveCardStud = 5
+        case sevenCardStud = 7
     }
     
     enum Entries: Int{
-        case one = 1, two = 2, three = 3, four = 4
+        case one = 1
+        case two = 2
+        case three = 3
+        case four = 4
     }
 }
 

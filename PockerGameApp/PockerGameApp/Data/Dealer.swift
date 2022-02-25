@@ -8,7 +8,7 @@
 import Foundation
 
 class Dealer{
-    let role = "Dealer"
+    let role: String
     private var cards: [Card] = []
     private var cardDeck: CardDeck = CardDeck()
     
@@ -20,12 +20,17 @@ class Dealer{
     }
     
     func shuffleCardDeck() -> Int{
-        self.cardDeck.shuffle()
+        if cardDeck.count() < 52{
+            self.cardDeck.reset()
+            self.cardDeck.shuffle()
+        } else{
+            self.cardDeck.shuffle()
+        }
         
         return self.cardDeck.count()
     }
     
-    func checkingCards() -> [String]{
+    func showMyCards() -> [String]{
         var cardsDescription: [String] = []
         
         cards.forEach{ card in
@@ -41,5 +46,9 @@ class Dealer{
     
     func removeCards(){
         self.cards.removeAll()
+    }
+    
+    init(role: String){
+        self.role = role
     }
 }

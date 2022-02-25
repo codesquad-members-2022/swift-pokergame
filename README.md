@@ -768,3 +768,13 @@ extension String{
 
 - playPockerGame 함수 확인
 <img src = "https://user-images.githubusercontent.com/44107696/155286533-38a16172-d6b5-4c73-9471-2b3fd2c329e5.png" width="800" height="1300">
+
+
+## 포커게임 화면 만들기
+### 리팩토링 진행
+- 배열 관리 타입 InGamePlayers 구현 (forEach문 활용 로직이 주)
+    + plyaer들이 딜러가 주는 카드들을 받는 playersGetGards(dealer: Dealer) 함수 구현
+    + 카드를 넘겨받는 턴이 끝난 뒤, 해당 턴에 넘겨받은 카드의 종류를 알려주는 inMyHandCard 함수 구현
+    + 게임이 끝나고 손에 들고 있던 카드들을 모두 버리는 throwAwayCards 함수 구현
+
+### 프로그래밍 요구사항
