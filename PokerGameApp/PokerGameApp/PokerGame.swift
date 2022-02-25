@@ -33,4 +33,35 @@ class PokerGame {
             return self.rawValue
         }
     }
+
+    private var stud: Stud
+    private var playerCount: PlayerCount
+    private var dealer: Dealer
+    private var participants: Participants
+    
+    var getPlayersHand: String {
+        var str = ""
+        
+        self.participants.players.forEach { player in
+            str += "\(player.name) \(player.hand.getCards)\n"
+        }
+        
+        return str
+    }
+    
+    init(stud: Stud, playerCount: PlayerCount) {
+        self.stud = stud
+        self.playerCount = playerCount
+        self.dealer = Dealer()
+        self.participants = Participants(playerCount: playerCount.excludeDealer, dealer: dealer)
+    }
+
+    func start() {
+        if dealer.canDrawCards(count: stud.cardCountForGame * participants.count) {
+            dealer.setUpPokerGame(stud: stud.cardCountForGame, participants: participants)
+        }
+        else {
+            // TODO: 종료 처리에 대한 코드 작성
+        }
+    }
 }
