@@ -19,9 +19,9 @@ class PokerGameTest: XCTestCase {
     func testCardDistribution(){
         pokerGame.start()
         for player in pokerGame.players.currentPlayers{
-            XCTAssertEqual(player.cards.currentCards.count, pokerGame.stud.rawValue)
+            XCTAssertEqual(player.cards.count, pokerGame.stud.rawValue)
         }
-        XCTAssertEqual(pokerGame.dealer.cards.currentCards.count, pokerGame.stud.rawValue)
+        XCTAssertEqual(pokerGame.dealer.cards.count, pokerGame.stud.rawValue)
     }
 
 }
