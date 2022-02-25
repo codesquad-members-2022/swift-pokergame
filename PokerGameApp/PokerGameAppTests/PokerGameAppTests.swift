@@ -36,7 +36,7 @@ class PokerGameAppTests: XCTestCase {
         let dealer = Dealer(name: "딜러", stud: .five)
         let team = Team(guestCount: .four, dealer: dealer)
         
-        dealer.prepare()
+        dealer.prepare(with: team)
         dealer.start(with: team) { isOutOfCard in
             if isOutOfCard {
                 XCTAssertTrue(dealer.isOutOfCard(), "딜러가 덱이 빌때까지 카드를 한장씩 나눠주었나")

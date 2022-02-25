@@ -20,8 +20,9 @@ class Dealer: Player {
         return cardDeck.count() == 0
     }
     
-    func prepare() {
+    func prepare(with team: Team) {
         cardDeck.shuffle()
+        distributeCard(to: team)
     }
     
     func start(with team: Team, outOfCard: (Bool) -> Void) {
@@ -36,7 +37,7 @@ class Dealer: Player {
         outOfCard(true)
     }
     
-    func distributeCard(to team: Team) {
+    private func distributeCard(to team: Team) {
         team.loop { player in
             var removedCards = [Card]()
             for _ in 0..<stud.rawValue {

@@ -8,23 +8,18 @@
 import Foundation
 
 class PokerGame {
-    private let stud: Stud
-    private let guestCount: GuestCount
     private let gameDealer: Dealer
     private let team: Team
     private(set) var isEnd: Bool = false
     
     init(stud: Stud, guestCount: GuestCount) {
-        self.stud = stud
-        self.guestCount = guestCount
         let dealer = ParticipantFactory.generateDealer(stud: stud)
         self.gameDealer = dealer
         self.team = Team(guestCount: guestCount, dealer: dealer)
     }
     
     func prepare() {
-        gameDealer.prepare()
-        gameDealer.distributeCard(to: team)
+        gameDealer.prepare(with: self.team)
     }
     
     func run(handler: (Bool) -> Void) {
