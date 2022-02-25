@@ -17,7 +17,6 @@ class PokerGame: CustomStringConvertible{
     private (set) var stud: Stud
     private (set) var deck: CardDeck
     var dealer: Dealer
-    //var players: [Player] = []
     var players: Players?
     var description: String{
         return "\(players)\(dealer)"
