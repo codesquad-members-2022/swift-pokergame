@@ -70,11 +70,11 @@ class PokerGame {
             return
         }
         
-        pokerPlayers.cardDistribution(dealer: dealer, pokerStud: pokerStud) { index, cardIndex, card in
-            self.state.givePlayerCard(index, cardIndex, card)
-        }
-        
-        self.state.pokerWinner(pokerPlayers.getWinner())
+        pokerPlayers.cardDistribution(dealer: dealer, pokerStud: pokerStud,
+                                      addEventHandler: self.state.givePlayerCard, finishEventHandler: {
+            
+            self.state.pokerWinner(self.pokerPlayers.getWinner())
+        })
     }
     
     private func makeNewPlayers(count: PokerPlayers.Count) -> [Player] {
@@ -115,9 +115,24 @@ extension PokerGame {
             }
         }
         
-        func cardDistribution(loopEvent: @escaping (Int) -> Void) {
-            (0..<cardCount).forEach {
-                loopEvent($0)
+        func cardDistribution(playerCount: PokerPlayers.Count,
+                              loopEvent: @escaping (_ playerIndex: Int, _ cardInex: Int) -> Void,
+                              finishEvent: @escaping () -> Void) {
+            let maxLoopCount = cardCount * playerCount.value
+            let speed = 0.3
+            var loopCount = 0
+            
+            Timer.scheduledTimer(withTimeInterval: speed, repeats: true) { timer in
+                let cardIndex = loopCount / playerCount.value
+                let playerIndex = loopCount % playerCount.value
+                
+                loopEvent(playerIndex, cardIndex)
+                loopCount += 1
+                
+                if maxLoopCount == loopCount {
+                    finishEvent()
+                    timer.invalidate()
+                }
             }
         }
     }
