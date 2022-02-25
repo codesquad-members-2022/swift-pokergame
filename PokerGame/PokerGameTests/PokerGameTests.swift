@@ -10,75 +10,35 @@ import XCTest
 class PokerGameTests: XCTestCase {
 
     enum TestCase {
-        case noScore, one, two, triple, four, straight
+        case noScore
+        case one(number: Card.Number)
+        case two(numbers: [Card.Number])
+        case triple(number: Card.Number)
+        case four(number: Card.Number)
+        case straight(startNumber: Card.Number)
         
         var cards: [Card] {
             switch self {
             case .noScore:
-                return TestCase.noScore.getCard(pattern: [], numbers: [])
-            case .one:
-                return TestCase.one.getCard(pattern: [.spade, .heart], numbers: [.four])
-            case .two:
-                return TestCase.two.getCard(pattern: [.spade, .heart], numbers: [.four, .eight])
-            case .triple:
-                return TestCase.triple.getCard(pattern: [.spade], numbers: [.four])
-            case .four:
-                return TestCase.four.getCard(pattern: [.heart], numbers: [.king])
-            case .straight:
-                return TestCase.straight.getCard(pattern: [], numbers: [.four])
-            }
-        }
-        
-        private func getCard(pattern: [Card.Pattern], numbers: [Card.Number]) -> [Card] {
-            switch self {
-            case .noScore:
-                return [
-                    Card(pattern: .heart, number: .king)
-                ]
-            case .one:
-                if pattern.count < 2 || numbers.count < 1 {
-                    return []
+                return []
+            case .one(let number):
+                return (0..<2).map { _ in Card(pattern: .heart, number: number)}
+            case .two(let numbers):
+                return (0..<4).map {
+                    if $0 % 2 == 0 {
+                        return Card(pattern: .heart, number: numbers[0])
+                    } else {
+                        return Card(pattern: .heart, number: numbers[1])
+                    }
                 }
-                return [
-                    Card(pattern: pattern[0], number: numbers[0]),
-                    Card(pattern: pattern[1], number: numbers[0])
-                ]
-            case .two:
-                if pattern.count < 2 || numbers.count < 2 {
-                    return []
-                }
-                return [
-                    Card(pattern: .clover, number: numbers[0]),
-                    Card(pattern: .diamond, number: numbers[0]),
-                    Card(pattern: .clover, number: numbers[1]),
-                    Card(pattern: .diamond, number: numbers[1])
-                ]
-            case .triple:
-                if pattern.count < 1 || numbers.count < 1 {
-                    return []
-                }
-                return [
-                    Card(pattern: .clover, number: numbers[0]),
-                    Card(pattern: .diamond, number: numbers[0]),
-                    Card(pattern: .heart, number: numbers[0])
-                ]
-            case .four:
-                if pattern.count < 1 || numbers.count < 1 {
-                    return []
-                }
-                return [
-                    Card(pattern: .clover, number: numbers[0]),
-                    Card(pattern: .diamond, number: numbers[0]),
-                    Card(pattern: .heart, number: numbers[0]),
-                    Card(pattern: .spade, number: numbers[0])
-                ]
-            case .straight:
-                if numbers.count < 1 && numbers[0].value > 9 {
-                    return []
-                }
-                return (numbers[0].value..<numbers[0].value+5).map {
-                    let number = Card.Number.allCases[$0]
-                    return Card(pattern: .clover, number: number)
+            case .triple(let number):
+                return (0..<3).map { _ in Card(pattern: .heart, number: number)}
+            case .four(let number):
+                return (0..<4).map { _ in Card(pattern: .heart, number: number)}
+            case .straight(let startNumber):
+                return (0..<5).map {
+                    let number = startNumber.value + $0
+                    return Card(pattern: .heart, number: Card.Number(rawValue: number) ?? .jack)
                 }
             }
         }
@@ -101,14 +61,14 @@ class PokerGameTests: XCTestCase {
         //플레이어에 테스트 카드 설정
         //딕셔너리를 사용하므로 이름순으로 정렬해줌
         let players = [
-            "0.테스터":TestCase.one.cards,
-            "1.테스터":TestCase.two.cards,
-            "2.테스터":TestCase.triple.cards,
-            "3.테스터":TestCase.four.cards,
-            "4.딜러":TestCase.straight.cards
+            "0.테스터":TestCase.one(number: .jack),
+            "1.테스터":TestCase.two(numbers: [.jack, .four]),
+            "2.테스터":TestCase.triple(number: .jack),
+            "3.테스터":TestCase.four(number: .jack),
+            "4.딜러":TestCase.straight(startNumber: .eight),
         ].map { pair -> Player in
                 let player = Player(name: pair.key)
-                addCard(player, pair.value)
+            addCard(player, pair.value.cards)
                 return player
         }.sorted{
             $0.name < $1.name
@@ -138,14 +98,14 @@ class PokerGameTests: XCTestCase {
     
     func testScoreRule() {
         let players = [
-            "0.테스터":TestCase.one.cards,
-            "1.테스터":TestCase.two.cards,
-            "2.테스터":TestCase.triple.cards,
-            "3.테스터":TestCase.four.cards,
-            "4.딜러":TestCase.straight.cards
+            "0.테스터":TestCase.one(number: .jack),
+            "1.테스터":TestCase.two(numbers: [.jack, .four]),
+            "2.테스터":TestCase.triple(number: .jack),
+            "3.테스터":TestCase.four(number: .jack),
+            "4.딜러":TestCase.straight(startNumber: .eight),
         ].map { pair -> Player in
                 let player = Player(name: pair.key)
-                addCard(player, pair.value)
+            addCard(player, pair.value.cards)
                 return player
         }.sorted{
             $0.name < $1.name
