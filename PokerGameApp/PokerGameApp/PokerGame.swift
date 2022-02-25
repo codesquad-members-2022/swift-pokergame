@@ -27,10 +27,11 @@ class PokerGame {
         gameDealer.distributeCard(to: team)
     }
     
-    func run() {
+    func run(handler: (Bool) -> Void) {
         gameDealer.start(with: team) { isOutOfCard in
             if isOutOfCard {
                 isEnd = true
+                handler(true)
             }
         }
     }

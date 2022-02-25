@@ -45,5 +45,19 @@ class PokerGameAppTests: XCTestCase {
         XCTAssertEqual(playersState.count, 5, "게임 준비 후, 모든 참가자의 수는 방문자와 딜러수의 합이다")
         XCTAssertFalse(isNotSameCardCount, "게임 준비 후, 모든 참가자의 카드갯수가 7장이다")
     }
+    
+    func testGame_isCorrectTotalCardCount_whenGameEnd() throws {
+        let game = PokerGame(stud: .seven, guestCount: .four)
+        game.prepare()
+        game.run { isEnd in
+            if !isEnd {
+                return
+            }
+            let playerState = game.playersState()
+            let allCardCount = playerState.reduce(0, { (result, player) in
+                return result + player.cards.count
+            })
+            XCTAssertEqual(allCardCount, 52, "게임이 끝났을때 모든 참가자가 가진 카드 수의 합은 52장이다")
+        }
     }
 }
