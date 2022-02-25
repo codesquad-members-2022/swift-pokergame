@@ -34,8 +34,8 @@ class PokerGame {
         }
     }
 
-    private var stud: Stud
-    private var playerCount: PlayerCount
+    private(set) var stud: Stud
+    private(set) var playerCount: PlayerCount
     private var dealer: Dealer
     private(set) var participants: Participants
 
