@@ -21,15 +21,12 @@ class ViewController: UIViewController {
         let spade7 = Card(suit: .spade, number: .seven)
         print(spade7)
         
-        let testCardDeck = TestCardDeck()
+        // TODO: XCTest 적용
+//        let testCardDeck = TestCardDeck()
 //        testCardDeck.countWhenInit()
 //        testCardDeck.removeOne()
 //        testCardDeck.resetWhenRemoveOne()
-        testCardDeck.shuffle()
-        
-        // TODO: XCTest 적용
-//        let game = PokerGame(stud: .seven, personCount: 4)
-//        game.allPlayers()
+//        testCardDeck.shuffle()
     }
     
     private func addPattern(to view: UIView, pattern: UIImage) {

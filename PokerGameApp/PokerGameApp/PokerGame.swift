@@ -20,6 +20,15 @@ class PokerGame {
         self.gameDealer = dealer
         self.team = Team(guestCount: guestCount, dealer: dealer)
     }
+    
+    func prepare() {
+        gameDealer.prepare()
+        gameDealer.distributeCard(to: team)
+    }
+    
+    func playersState() -> [PlayerViewModel] {
+        return self.team.playersState()
+    }
 }
 
 class Team {
@@ -29,5 +38,15 @@ class Team {
         var generatedPlayers: [Player] = ParticipantFactory.generateGuests(count: guestCount)
         generatedPlayers.append(dealer)
         self.players = generatedPlayers
+    }
+    
+    func playersState() -> [PlayerViewModel] {
+        return players.map{ $0.state() }
+    }
+    
+    func loop(act: (Player) -> Void) {
+        for player in players {
+            act(player)
+        }
     }
 }
