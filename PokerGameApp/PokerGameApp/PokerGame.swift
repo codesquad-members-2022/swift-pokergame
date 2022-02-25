@@ -67,7 +67,7 @@ class PokerGame: CustomStringConvertible{
         
         for _ in 0..<stud.rawValue{
             for index in 0..<players.count{
-                guard let card = dealer.handOutCard(stud: stud.rawValue) else { continue }
+                guard let card = dealer.handOutCard() else { continue }
                 players.addCard(playerIndex: index, card: card)
             }
         }

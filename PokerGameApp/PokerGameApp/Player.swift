@@ -25,7 +25,7 @@ class Dealer: Player{
         super.init(name: "딜러")
     }
     
-    func handOutCard(stud: Int)-> Card?{
+    func handOutCard()-> Card?{
         guard let card = self.cards.popLast() else { return nil }
         return card
     }
