@@ -8,10 +8,22 @@
 import Foundation
 
 class PokerGame {
+    enum StudRule {
+        
+        case sevenCardStud
+        case fiveCardStud
+        
+        var numberOfCard: Int {
+            switch self {
+            case .sevenCardStud: return 7
+            case .fiveCardStud: return 5
+            }
+        }
+    }
     
     let dealer: Dealer
-    let gameRule: GameRule
     let gamblers: Gamblers
+    let gameRule: StudRule
     
     init(numberOfGamblers: numberOfGamblers, gameRule: StudRule) {
         
@@ -22,18 +34,5 @@ class PokerGame {
     
     public func distributeCard() {
         dealer.distributeCard(to: gamblers, in: gameRule)
-    }
-}
-
-enum GameRule {
-    
-    case sevenCardStud
-    case fiveCardStud
-    
-    var numberOfCard: Int {
-        switch self {
-        case .sevenCardStud: return 7
-        case .fiveCardStud: return 5
-        }
     }
 }
