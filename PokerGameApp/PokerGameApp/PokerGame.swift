@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PokerGame {
+struct PokerGame {
     
     enum Stud: Int {
         case five
@@ -46,7 +46,7 @@ class PokerGame {
         self.participants = Participants(playerCount: playerCount.excludeDealer, dealer: dealer)
     }
 
-    func start() {
+    mutating func start() {
         if dealer.canDrawCards(count: stud.cardCountForGame * participants.count) {
             dealer.setUpPokerGame(stud: stud.cardCountForGame, participants: participants)
         }
