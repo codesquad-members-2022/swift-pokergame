@@ -72,7 +72,6 @@ class ViewController: UIViewController {
     func setAllImageViewsAndLabels(){
         
         guard let game = self.pokerGame else { return }
-        guard let players = game.players else { return }
         
         removePreviousCardImageViewsAndLabels()
         
@@ -83,7 +82,7 @@ class ViewController: UIViewController {
         var cardXPosition = initialXPosition
         var cardYPosition = CGFloat(studSelectionControl.center.y * 1.2)
         
-        var users: [Player] = players.currentPlayers
+        var users: [Player] = game.players.currentPlayers
         users.append(game.dealer)
         
         for user in users{
