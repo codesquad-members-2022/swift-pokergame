@@ -11,6 +11,7 @@
 		B52EC61A27C66D3300C73E54 /* PokerGameTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EC61927C66D3300C73E54 /* PokerGameTest.swift */; };
 		B52EC61C27C679CB00C73E54 /* CardDeckTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EC61B27C679CB00C73E54 /* CardDeckTest.swift */; };
 		B52EC61E27C7582300C73E54 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EC61D27C7582300C73E54 /* Player.swift */; };
+		B52EC62227C863EE00C73E54 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EC62127C863EE00C73E54 /* Players.swift */; };
 		B56CA14227C3234D001DC373 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CA14127C3234D001DC373 /* AppDelegate.swift */; };
 		B56CA14427C3234D001DC373 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CA14327C3234D001DC373 /* SceneDelegate.swift */; };
 		B56CA14627C3234D001DC373 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CA14527C3234D001DC373 /* ViewController.swift */; };
@@ -37,6 +38,7 @@
 		B52EC61927C66D3300C73E54 /* PokerGameTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameTest.swift; sourceTree = SOURCE_ROOT; };
 		B52EC61B27C679CB00C73E54 /* CardDeckTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeckTest.swift; sourceTree = "<group>"; };
 		B52EC61D27C7582300C73E54 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		B52EC62127C863EE00C73E54 /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		B56CA13E27C3234D001DC373 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B56CA14127C3234D001DC373 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B56CA14327C3234D001DC373 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				B56CA15727C486FA001DC373 /* Card.swift */,
 				B56CA15927C4B688001DC373 /* CardDeck.swift */,
 				B52EC61D27C7582300C73E54 /* Player.swift */,
+				B52EC62127C863EE00C73E54 /* Players.swift */,
 				B52EC60827C5DB4E00C73E54 /* PokerGame.swift */,
 				B56CA14127C3234D001DC373 /* AppDelegate.swift */,
 				B56CA14327C3234D001DC373 /* SceneDelegate.swift */,
@@ -225,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B52EC62227C863EE00C73E54 /* Players.swift in Sources */,
 				B56CA15827C486FA001DC373 /* Card.swift in Sources */,
 				B52EC60927C5DB4E00C73E54 /* PokerGame.swift in Sources */,
 				B56CA15A27C4B688001DC373 /* CardDeck.swift in Sources */,
