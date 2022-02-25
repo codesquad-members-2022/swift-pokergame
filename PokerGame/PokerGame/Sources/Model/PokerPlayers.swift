@@ -63,14 +63,8 @@ class PokerPlayers {
         }
     }
     
-    func scoreCalculation() {
-        players.forEach {
-            $0.scoreCalculation()
-        }
-    }
-    
-    func getWinner() -> Player? {
-        players.filter{ $0.hasScore }.sorted().last
+    func getWinner() -> Score? {
+        players.compactMap { $0.score }.sorted().last
     }
 }
 

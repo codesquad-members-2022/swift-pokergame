@@ -120,7 +120,6 @@ class PokerGameTests: XCTestCase {
         //비지니스 로직 실행
         let pokerPlayers = PokerPlayers()
         pokerPlayers.addPlayer(players: players)
-        pokerPlayers.scoreCalculation()
         let winner = pokerPlayers.getWinner()
         
         print("-------------------------------")
@@ -134,41 +133,7 @@ class PokerGameTests: XCTestCase {
         }
         print("-------------------------------")
         
-        XCTAssertEqual(players[checkWinnerIndex], winner)
-    }
-    
-    func testPokerStart() {
-        let pokerStud = PokerGame.Stud.sevenCard
-        let playerCount = PokerPlayers.Count.four
-        
-        let pokerPlayers = PokerPlayers()
-        var players: [Player] = []
-        
-        let pokerGame = PokerGame()
-        
-        pokerGame.state.resetPokerBoard = { stud, names in
-            print("\(pokerStud.cardCount)카드 / 참가자 \(names.count - 1)명 일 때")
-            players = names.map {
-                Player(name: $0)
-            }
-            pokerPlayers.addPlayer(players: players)
-        }
-        
-        pokerGame.state.givePlayerCard = { index, _, card in
-            players[index].add(card: card)
-        }
-        
-        pokerGame.state.pokerWinner = { winner in
-            players.forEach {
-                $0.scoreCalculation()
-                print($0)
-            }
-            print("승자는 \(winner.name) 입니다!!")
-        }
-        
-        pokerGame.action.inputPokerStud(PokerGame.Stud.sevenCard)
-        pokerGame.action.inputPlayerCount(playerCount)
-        pokerGame.action.pokerPlay()
+        XCTAssertEqual(players[checkWinnerIndex].score, winner)
     }
     
     func testPlayerScoreStraight() {
@@ -180,7 +145,7 @@ class PokerGameTests: XCTestCase {
         player.add(card: Card(pattern: .spade, number: .six))
         player.add(card: Card(pattern: .spade, number: .seven))
         player.add(card: Card(pattern: .spade, number: .eight))
-        let result = player.scoreCalculated()
+        let result = player.score
         XCTAssertEqual(result?.rule, .straight)
     }
     
@@ -191,7 +156,7 @@ class PokerGameTests: XCTestCase {
         player.add(card: Card(pattern: .diamond, number: .ace))
         player.add(card: Card(pattern: .clover, number: .ace))
         player.add(card: Card(pattern: .spade, number: .two))
-        let result = player.scoreCalculated()
+        let result = player.score
         XCTAssertEqual(result?.rule, .fourCard)
     }
     
@@ -202,7 +167,7 @@ class PokerGameTests: XCTestCase {
         player.add(card: Card(pattern: .diamond, number: .ace))
         player.add(card: Card(pattern: .heart, number: .two))
         player.add(card: Card(pattern: .diamond, number: .six))
-        let result = player.scoreCalculated()
+        let result = player.score
         XCTAssertEqual(result?.rule, .triple)
     }
     
@@ -213,7 +178,7 @@ class PokerGameTests: XCTestCase {
         player.add(card: Card(pattern: .diamond, number: .two))
         player.add(card: Card(pattern: .heart, number: .two))
         player.add(card: Card(pattern: .diamond, number: .six))
-        let result = player.scoreCalculated()
+        let result = player.score
         XCTAssertEqual(result?.rule, .twoPair)
     }
     
@@ -224,7 +189,7 @@ class PokerGameTests: XCTestCase {
         player.add(card: Card(pattern: .diamond, number: .two))
         player.add(card: Card(pattern: .diamond, number: .four))
         player.add(card: Card(pattern: .diamond, number: .six))
-        let result = player.scoreCalculated()
+        let result = player.score
         XCTAssertEqual(result?.rule, .onePair)
     }
     
