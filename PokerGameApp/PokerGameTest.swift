@@ -12,16 +12,16 @@ class PokerGameTest: XCTestCase {
     
     
     func testInitialization(){
-        XCTAssertEqual(pokerGame.dealer.name, "딜러")
+        XCTAssertEqual(pokerGame.dealer.currentName, "딜러")
         XCTAssertEqual(pokerGame.players.count, 4)
     }
     
     func testCardDistribution(){
         pokerGame.start()
-        for player in pokerGame.players{
-            XCTAssertEqual(player.cards.count, pokerGame.stud.rawValue)
+        for player in pokerGame.players.currentPlayers{
+            XCTAssertEqual(player.cards.currentCards.count, pokerGame.stud.rawValue)
         }
-        XCTAssertEqual(pokerGame.dealer.cards.count, pokerGame.stud.rawValue)
+        XCTAssertEqual(pokerGame.dealer.cards.currentCards.count, pokerGame.stud.rawValue)
     }
 
 }
