@@ -10,9 +10,11 @@ import Foundation
 struct Deck {
     
     private var cardDeck: Array<Card?>
-    private var initCardNumber = 13
+    private var initCardNumber: Int
     
     init() {
+        cardDeck = Array<Card?>()
+        initCardNumber = 13
         reset()
     }
     
