@@ -18,3 +18,9 @@
 - class Card, enum Number, enum Shape 생성
 - 카드 정보 출력 메서드 생성
 - 뷰 컨트롤러에서 특정 카드 인스턴스를 만들어 출력
+
+---
+
+## [2/25] Step3 - 카드 덱 구조체와 관련 메서드 구현하기
+- struct Deck 생성
+- Deck의 메서드 - count, shuffle, removeOne, reset 구현
