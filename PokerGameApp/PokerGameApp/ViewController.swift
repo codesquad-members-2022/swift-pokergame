@@ -88,7 +88,7 @@ class ViewController: UIViewController {
         
         for user in users{
             
-            let label = createUserNameLabel(name: user.name, x: initialXPosition, y: cardYPosition)
+            let label = createUserNameLabel(name: user.playerName, x: initialXPosition, y: cardYPosition)
             self.view.addSubview(label)
             self.labels.append(label)
             cardYPosition += label.frame.height
