@@ -45,14 +45,10 @@ class Player: CustomStringConvertible, Comparable {
     }
     
     static func < (lhs: Player, rhs: Player) -> Bool {
-        guard let lhsScore = lhs.score else {
+        guard let lhsScore = lhs.score,
+              let rhsScore = rhs.score else {
             return false
         }
-        
-        guard let rhsScore = rhs.score else {
-            return false
-        }
-    
         return lhsScore < rhsScore
     }
     
