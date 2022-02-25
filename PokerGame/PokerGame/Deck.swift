@@ -14,6 +14,7 @@ class Deck {
     //reset시 다시 Card의 배열을 생성해서 값을 바꾸는것보다 초깃값을 가지는 프로퍼티를 하나더 만들어서 reset시 초기값을 넣어주는 형태를 생각해 봤다.
     private var defaultCards:[Card]
     private var usedCards:[Card]
+    
     var count:Int  { self.usedCards.count }    //Deck안에 있는 Card들은 함수의 호출에 따라 값이 달라지므로 computedproperty로 정의했다.
     
     init(cards:[Card]) {
@@ -32,8 +33,8 @@ class Deck {
         return self.usedCards
     }
     
-    func removeOne() -> Card {
-        let removedCard = usedCards.removeLast()
+    func removeOne() -> Card? {
+        guard let removedCard = usedCards.popLast() else { return nil }
         return removedCard
     }
     
