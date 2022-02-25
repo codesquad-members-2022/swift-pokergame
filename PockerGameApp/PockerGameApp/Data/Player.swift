@@ -17,7 +17,7 @@ class Player{
     }
     
     // 결과 확인을 위해 패를 깔 때 사용되는 함수
-    func checkingCards() -> [String]{
+    func showMyCards() -> [String]{
         var cardsDescription: [String] = []
         
         cards.forEach{ card in
