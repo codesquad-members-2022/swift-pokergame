@@ -23,8 +23,9 @@ class ViewController: UIViewController {
             offset += SizeOfCard.width + 3
         }
         //TODO: 클래스의 인스턴스를 let으로 선언했을 때와 var로 선언했을 때의 차이
-        let card = Card(shape: .club, rank: .ace)
-        print("\(card.description)")
+        //아직까진 둘 다로 선언해 보았을 때 그 차이를 모르겠다. 일단 let으로 하는게 좋은듯?!
+        let deck: CardDeck = CardDeck()
+        deck.reset()
     }
     
     func createCard(XCoordinate: Int) {
