@@ -10,6 +10,9 @@ import Foundation
 struct Participants {
 
     var players: [Playable]
+    var count: Int {
+        return players.count
+    }
     
     init(playerCount: Int, dealer: Dealer) {
         self.players = (0..<playerCount).map { _ in
