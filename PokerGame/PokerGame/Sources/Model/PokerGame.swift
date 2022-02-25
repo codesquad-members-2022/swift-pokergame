@@ -23,7 +23,7 @@ class PokerGame {
     struct State {
         var resetPokerBoard: (Stud, [String]) -> Void = { _, _ in }
         var givePlayerCard: (Int, Int, Card) -> Void = { _, _, _ in }
-        var pokerWinner: (Player) -> Void = { _ in }
+        var pokerWinner: (Score?) -> Void = { _ in }
         var finishPoker: () -> Void = { }
     }
     
@@ -74,11 +74,7 @@ class PokerGame {
             self.state.givePlayerCard(index, cardIndex, card)
         }
         
-        pokerPlayers.scoreCalculation()
-        
-        if let winner = pokerPlayers.getWinner() {
-            self.state.pokerWinner(winner)
-        }
+        self.state.pokerWinner(pokerPlayers.getWinner())
     }
     
     private func makeNewPlayers(count: PokerPlayers.Count) -> [Player] {

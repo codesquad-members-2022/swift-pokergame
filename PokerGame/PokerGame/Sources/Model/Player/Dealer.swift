@@ -10,10 +10,6 @@ import Foundation
 class Dealer: Player {
     private let cardDeck = CardDeck()
     
-    var cardCount: Int {
-        cardDeck.count
-    }
-    
     init() {
         super.init(name: "Dealer")
     }
@@ -31,7 +27,7 @@ class Dealer: Player {
     }
     
     func hasRemainCardCount(stud: PokerGame.Stud, playerCount: PokerPlayers.Count) -> Bool {
-        if cardCount < playerCount.value * stud.cardCount {
+        if cardDeck.count < playerCount.value * stud.cardCount {
             return false
         }
         return true

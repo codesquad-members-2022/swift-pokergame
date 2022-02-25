@@ -23,10 +23,6 @@ class CardDeck: CustomStringConvertible {
         deck.count
     }
     
-    var isEmpty: Bool {
-        deck.isEmpty
-    }
-    
     init() {
         reset()
     }
@@ -43,7 +39,7 @@ class CardDeck: CustomStringConvertible {
     
     @discardableResult
     func removeOne() -> Card? {
-        if isEmpty {
+        if deck.isEmpty {
             return nil
         }
         let randomIndex = Int.random(in: 0..<deck.count)
