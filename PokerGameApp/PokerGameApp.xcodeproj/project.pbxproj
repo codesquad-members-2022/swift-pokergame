@@ -13,6 +13,7 @@
 		B52EC61E27C7582300C73E54 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EC61D27C7582300C73E54 /* Player.swift */; };
 		B52EC62227C863EE00C73E54 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EC62127C863EE00C73E54 /* Players.swift */; };
 		B52EC62427C8B0E300C73E54 /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EC62327C8B0E300C73E54 /* Cards.swift */; };
+		B52EC62627C8C1CC00C73E54 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EC62527C8C1CC00C73E54 /* Dealer.swift */; };
 		B56CA14227C3234D001DC373 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CA14127C3234D001DC373 /* AppDelegate.swift */; };
 		B56CA14427C3234D001DC373 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CA14327C3234D001DC373 /* SceneDelegate.swift */; };
 		B56CA14627C3234D001DC373 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56CA14527C3234D001DC373 /* ViewController.swift */; };
@@ -41,6 +42,7 @@
 		B52EC61D27C7582300C73E54 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		B52EC62127C863EE00C73E54 /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		B52EC62327C8B0E300C73E54 /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
+		B52EC62527C8C1CC00C73E54 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		B56CA13E27C3234D001DC373 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B56CA14127C3234D001DC373 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B56CA14327C3234D001DC373 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				B56CA15727C486FA001DC373 /* Card.swift */,
 				B52EC62327C8B0E300C73E54 /* Cards.swift */,
 				B56CA15927C4B688001DC373 /* CardDeck.swift */,
+				B52EC62527C8C1CC00C73E54 /* Dealer.swift */,
 				B52EC61D27C7582300C73E54 /* Player.swift */,
 				B52EC62127C863EE00C73E54 /* Players.swift */,
 				B52EC60827C5DB4E00C73E54 /* PokerGame.swift */,
@@ -239,6 +242,7 @@
 				B56CA14627C3234D001DC373 /* ViewController.swift in Sources */,
 				B52EC61E27C7582300C73E54 /* Player.swift in Sources */,
 				B56CA14227C3234D001DC373 /* AppDelegate.swift in Sources */,
+				B52EC62627C8C1CC00C73E54 /* Dealer.swift in Sources */,
 				B56CA14427C3234D001DC373 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
