@@ -25,8 +25,3 @@ class Player {
 }
 
 class Guest: Player {}
-
-struct PlayerViewModel {
-    let name: String
-    let cards: [Card]
-}

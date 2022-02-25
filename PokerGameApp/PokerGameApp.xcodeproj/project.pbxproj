@@ -14,6 +14,8 @@
 		6F569CAE27C8042600054BB2 /* Stud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F569CAD27C8042600054BB2 /* Stud.swift */; };
 		6F569CB227C80C5400054BB2 /* ParticipantFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F569CB127C80C5400054BB2 /* ParticipantFactory.swift */; };
 		6F569CB427C8108300054BB2 /* GuestCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F569CB327C8108300054BB2 /* GuestCount.swift */; };
+		6F569CB627C8BB1500054BB2 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F569CB527C8BB1500054BB2 /* Team.swift */; };
+		6F569CB827C8BB6000054BB2 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F569CB727C8BB6000054BB2 /* PlayerViewModel.swift */; };
 		6F57A00227C4C153001FB129 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F57A00127C4C153001FB129 /* Card.swift */; };
 		6F82D8E827C37CD700D18369 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F82D8E727C37CD700D18369 /* AppDelegate.swift */; };
 		6F82D8EA27C37CD700D18369 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F82D8E927C37CD700D18369 /* SceneDelegate.swift */; };
@@ -45,6 +47,8 @@
 		6F569CAD27C8042600054BB2 /* Stud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stud.swift; sourceTree = "<group>"; };
 		6F569CB127C80C5400054BB2 /* ParticipantFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantFactory.swift; sourceTree = "<group>"; };
 		6F569CB327C8108300054BB2 /* GuestCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCount.swift; sourceTree = "<group>"; };
+		6F569CB527C8BB1500054BB2 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		6F569CB727C8BB6000054BB2 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		6F57A00127C4C153001FB129 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		6F82D8E427C37CD700D18369 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F82D8E727C37CD700D18369 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +89,30 @@
 			path = PokerGameAppTests;
 			sourceTree = "<group>";
 		};
+		6F569CB927C8BC2800054BB2 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				6F569CB127C80C5400054BB2 /* ParticipantFactory.swift */,
+				6F569CB527C8BB1500054BB2 /* Team.swift */,
+				6F569C9D27C7CE2200054BB2 /* Player.swift */,
+				6F1B51EC27C695F6001715D2 /* Dealer.swift */,
+				6F569CB727C8BB6000054BB2 /* PlayerViewModel.swift */,
+				6F569CB327C8108300054BB2 /* GuestCount.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		6F569CBA27C8BC5700054BB2 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				6F57A00127C4C153001FB129 /* Card.swift */,
+				6F91910227C6090C007D2088 /* CardDeck.swift */,
+				6F91910027C605D6007D2088 /* TestCardDeck.swift */,
+				6F569CAD27C8042600054BB2 /* Stud.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
 		6F82D8DB27C37CD700D18369 = {
 			isa = PBXGroup;
 			children = (
@@ -106,18 +134,12 @@
 		6F82D8E627C37CD700D18369 /* PokerGameApp */ = {
 			isa = PBXGroup;
 			children = (
+				6F1B51EA27C692B0001715D2 /* PokerGame.swift */,
+				6F569CBA27C8BC5700054BB2 /* Card */,
+				6F569CB927C8BC2800054BB2 /* Player */,
 				6F82D8E727C37CD700D18369 /* AppDelegate.swift */,
 				6F82D8E927C37CD700D18369 /* SceneDelegate.swift */,
 				6F82D8EB27C37CD700D18369 /* ViewController.swift */,
-				6F1B51EA27C692B0001715D2 /* PokerGame.swift */,
-				6F569CAD27C8042600054BB2 /* Stud.swift */,
-				6F569CB327C8108300054BB2 /* GuestCount.swift */,
-				6F1B51EC27C695F6001715D2 /* Dealer.swift */,
-				6F569C9D27C7CE2200054BB2 /* Player.swift */,
-				6F57A00127C4C153001FB129 /* Card.swift */,
-				6F91910027C605D6007D2088 /* TestCardDeck.swift */,
-				6F91910227C6090C007D2088 /* CardDeck.swift */,
-				6F569CB127C80C5400054BB2 /* ParticipantFactory.swift */,
 				6F82D8ED27C37CD700D18369 /* Main.storyboard */,
 				6F82D8F027C37CDD00D18369 /* Assets.xcassets */,
 				6F82D8F227C37CDD00D18369 /* LaunchScreen.storyboard */,
@@ -236,8 +258,10 @@
 			files = (
 				6F1B51EB27C692B0001715D2 /* PokerGame.swift in Sources */,
 				6F569CB427C8108300054BB2 /* GuestCount.swift in Sources */,
+				6F569CB627C8BB1500054BB2 /* Team.swift in Sources */,
 				6F569CAE27C8042600054BB2 /* Stud.swift in Sources */,
 				6F91910327C6090C007D2088 /* CardDeck.swift in Sources */,
+				6F569CB827C8BB6000054BB2 /* PlayerViewModel.swift in Sources */,
 				6F82D8EC27C37CD700D18369 /* ViewController.swift in Sources */,
 				6F82D8E827C37CD700D18369 /* AppDelegate.swift in Sources */,
 				6F1B51ED27C695F6001715D2 /* Dealer.swift in Sources */,
