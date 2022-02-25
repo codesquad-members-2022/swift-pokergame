@@ -7,3 +7,13 @@
 
 import Foundation
 
+struct Participants {
+
+    var players: [Playable]
+    
+    init(playerCount: Int, dealer: Dealer) {
+        self.players = (0..<playerCount).map { _ in
+            Player() }
+        self.players.append(dealer)
+    }
+}
