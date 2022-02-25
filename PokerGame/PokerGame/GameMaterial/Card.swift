@@ -6,7 +6,7 @@
 //
 
 //Card의 정보를 한번에 담아서 출력하고자 Struct를 선언하고 그안에 Suit와 Rank Enum을 넣었다.
-struct Card:CustomStringConvertible{
+struct Card:CustomStringConvertible,Equatable{
     
     var description: String {
         return "\(suit)\(rank)"
