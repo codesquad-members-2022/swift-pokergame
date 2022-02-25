@@ -17,6 +17,20 @@ class PokerGameAppTests: XCTestCase {
         XCTAssertEqual(guests.count, expectCount)
     }
     
+    func testParticipantFactory_multipleName_whenGenerateGuests() throws {
+        let guests = ParticipantFactory.generateGuests(count: .four)
+        var isMultipleName = false
+        var names = [String]()
+        for guest in guests {
+            if names.contains(guest.state().name) {
+                isMultipleName = true
+                break
+            }
+            names.append(guest.state().name)
+        }
+        XCTAssertFalse(isMultipleName, "중복으로 생성된 플레이어 이름이 없다")
+    }
+    
     // MARK:- Dealer
     func testDealer_isOutOfCardDeckWhenStartGame() throws {
         let dealer = Dealer(name: "딜러", stud: .five)
