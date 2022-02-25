@@ -4,9 +4,6 @@ class Players: CustomStringConvertible{
     
     private var randomNames = ["dale","eddy","jee","foucault","sol"]
     private var players: [Player] = []
-    var currentPlayers: [Player]{
-        return self.players
-    }
     private let numberOfPlayers: PokerGame.Count
     var count: Int{
         return players.count
@@ -35,6 +32,12 @@ class Players: CustomStringConvertible{
     
     func addCard(playerIndex: Int, card: Card){
         self.players[playerIndex].addCard(card)
+    }
+    
+    func getIterator(additionalPlayer: Player) -> IndexingIterator<[Player]>{
+        var playersCopy = self.players
+        playersCopy.append(additionalPlayer)
+        return playersCopy.makeIterator()
     }
     
 }
