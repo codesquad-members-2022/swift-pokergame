@@ -28,11 +28,19 @@ class ViewController: UIViewController {
             self.view.addSubview(cardBackView)
         }
         
-        let heartQ = Card(shape: .hearts, number: .queen)
-        let spade7 = Card(shape: .spades, number: .seven)
+        testMethod()
         
-        var deck1 = Deck()
-        
+    }
+    
+    func testMethod() {
+        var testDeck = Deck()
+        print("\(testDeck)")
+        print("현재 카드 갯수 : \(testDeck.count())")
+        testDeck.shuffle()
+        print("shuffle 후\n \(testDeck)")
+        print("카드 한 장 뽑기 : \(testDeck.removeOne())")
+        print("남은 카드 갯수 :  \(testDeck.count())")
+        print("\(testDeck)")
     }
     
 }
