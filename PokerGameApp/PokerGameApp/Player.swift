@@ -25,7 +25,20 @@ class Dealer: Player{
         super.init(name: "딜러")
     }
     
-    func handOutCard()-> Card?{
+    func distributeCards(){
+        
+    }
+    
+    func takeOutAllNecessaryCards(deck: CardDeck, count: Int)->CardDeck{
+        var deckCopy = deck
+        for _ in 0..<count{
+            guard let card = deckCopy.removeOne() else { continue }
+            super.addCard(card)
+        }
+        return deckCopy
+    }
+    
+    func takeOutCard()-> Card?{
         guard let card = self.cards.popLast() else { return nil }
         return card
     }

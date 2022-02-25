@@ -48,10 +48,7 @@ class PokerGame: CustomStringConvertible{
         guard let players = self.players else { return }
         
         if(isNumberOfCardsEnough()){
-            for _ in 0..<(players.count + 1) * stud.rawValue{
-                guard let card = deck.removeOne() else { continue }
-                dealer.addCard(card)
-            }
+            self.deck = dealer.takeOutAllNecessaryCards(deck: self.deck, count: (players.count + 1) * stud.rawValue)
             distributeCards()
         }
     }
@@ -67,7 +64,7 @@ class PokerGame: CustomStringConvertible{
         
         for _ in 0..<stud.rawValue{
             for index in 0..<players.count{
-                guard let card = dealer.handOutCard() else { continue }
+                guard let card = dealer.takeOutCard() else { continue }
                 players.addCard(playerIndex: index, card: card)
             }
         }
