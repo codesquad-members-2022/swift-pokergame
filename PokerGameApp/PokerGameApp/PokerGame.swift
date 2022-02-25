@@ -22,7 +22,7 @@ struct PokerGame {
     
     // 게임을 실행합니다.
     mutating func run() {
-        let playersCount = 4 // 플레이어는 1 ~ 4명 (Int.random(in: 1...4))
+        let playersCount = Int.random(in: 1...4) // 플레이어는 1 ~ 4명 (Int.random(in: 1...4))
         let playerNames = makeRandomName(count: playersCount) // 참가자 이름 배열 생성
         
         // 플레이어 추가
@@ -48,7 +48,7 @@ struct PokerGame {
             }
         }
         
-        print("종료합니다,,")
+        print("포커게임을 종료합니다👋")
     }
     
     
