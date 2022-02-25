@@ -3,7 +3,10 @@ import Foundation
 class Players: CustomStringConvertible{
     
     private var randomNames = ["dale","eddy","jee","foucault","sol"]
-    private (set) var players: [Player] = []
+    private var players: [Player] = []
+    var currentPlayers: [Player]{
+        return self.players
+    }
     private let numberOfPlayers: PokerGame.Count
     
     var count: Int{

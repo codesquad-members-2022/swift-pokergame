@@ -83,7 +83,7 @@ class ViewController: UIViewController {
         var cardXPosition = initialXPosition
         var cardYPosition = CGFloat(studSelectionControl.center.y * 1.2)
         
-        var users: [Player] = players.players
+        var users: [Player] = players.currentPlayers
         users.append(game.dealer)
         
         for user in users{
