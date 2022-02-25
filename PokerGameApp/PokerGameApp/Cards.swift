@@ -1,11 +1,15 @@
 import Foundation
 
-struct Cards{
-    
+struct Cards: CustomStringConvertible{
+  
     private var cards: [Card] = []
-    var currentCards: [Card]{
-        return self.cards
+    var count: Int{
+        return self.cards.count
     }
+    var description: String{
+        return self.cards.description
+    }
+    private var index = 0
     
     mutating func addCard(_ card: Card){
         self.cards.append(card)
@@ -14,4 +18,9 @@ struct Cards{
     mutating func removeOne()-> Card?{
         return self.cards.popLast()
     }
+    
+    func getIterator() -> IndexingIterator<[Card]>{
+        return self.cards.makeIterator()
+    }
+
 }
