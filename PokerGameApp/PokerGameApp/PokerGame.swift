@@ -78,10 +78,18 @@ struct PokerGame {
         
         // 자신을 포함한 플레이어에게 카드를 나눠주고 나눠준 총 카드 수를 리턴합니다.
         mutating func distributeCard(to players: inout [Player]) -> Int {
-            cards.append(totalCards.removeOne()!)
+            guard let pickedCard = totalCards.removeOne() else {
+                print("Card is not picked")
+                return -1
+            }
+            cards.append(pickedCard)
             
             for player in 0..<players.count {
-                players[player].cards.append(totalCards.removeOne()!)
+                guard let pickedCard = totalCards.removeOne() else {
+                    print("Card is not picked")
+                    return -1
+                }
+                players[player].cards.append(pickedCard)
             }
             return cards.count
         }
