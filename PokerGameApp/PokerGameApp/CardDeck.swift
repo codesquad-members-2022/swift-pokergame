@@ -26,8 +26,19 @@ class CardDeck {
         return deck.count
     }
     //MARK: 처음처럼 카드 덱을 채워 넣는다(52장).
+    // 채우는 방법
+    // 1 : 'let initDeck'을 하나 만들어서 'deck = initdeck'
+    // 2 : '2중 for 문을 돌면서, 카드를 생성해서 채움 - 카드 생성시에 enum이 static이 아닌 이상 enum 형의 값을 넣을 수가 없음. 
     public func reset() {
-        
+        let shapeSet: Set<Card.Shape> = [.club, .diamond, .heart, .spade]
+        let rankSet: Set<Card.Rank> = [.ace, .two, .three, .four, .five, .six, .seven, .eight, .nine, .ten, .jack, .queen, .king]
+        for shape in shapeSet {
+            for rank in rankSet {
+                deck.append(Card(shape: shape, rank: rank))
+            }
+        }
+        print("카드 전체를 초기화했습니다.")
+        print("총 \(cardCount)장의 카드가 있습니다.")
     }
     //MARK: 무작위로 섞는다. Array.suffle(), suffled() 사용금지
     public func shuffle() {
