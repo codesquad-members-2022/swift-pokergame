@@ -68,7 +68,7 @@ extension Card: Comparable, CustomStringConvertible {
     }
     
     static func < (lhs: Card, rhs: Card) -> Bool {
-        if lhs.rank == lhs.rank {
+        if lhs.rank == rhs.rank {
             return lhs.suit < rhs.suit
         }
         
