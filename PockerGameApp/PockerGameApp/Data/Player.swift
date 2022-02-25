@@ -17,14 +17,8 @@ class Player{
     }
     
     // 결과 확인을 위해 패를 깔 때 사용되는 함수
-    func showMyCards() -> [String]{
-        var cardsDescription: [String] = []
-        
-        cards.forEach{ card in
-            cardsDescription.append(card.description)
-        }
-        
-        return cardsDescription
+    func showMyCards() -> [Card]{
+        return self.cards
     }
     
     // 게임 완료 후, 현재 패 버리기

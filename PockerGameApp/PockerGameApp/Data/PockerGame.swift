@@ -13,23 +13,19 @@ class PockerGame{
     private var players: InGamePlayers
     private var dealer = Dealer(role: "Dealer")
     
-    private var inHandCards = [String:[String]]()
+    private var inHandCards = [String:[Card]]()
     private var canPlayGame = true
-    
-    func playingCardNumber() -> Int{
-        return variant.rawValue
-    }
     
     func playingLoop() -> Bool{
         return canPlayGame
     }
     
-    func changeVariant(variant: PockerGame.Variants){
-        self.variant = variant
+    func entryPlayers() -> InGamePlayers{
+        return self.players
     }
     
-    func changeEntries(entries: PockerGame.Entries){
-        self.entries = entries
+    func entryDealer() -> Dealer{
+        return self.dealer
     }
     
     func dealerShuffle() -> Int{
@@ -38,7 +34,7 @@ class PockerGame{
     }
     
     func divideCards(){
-        players.playersGetCards(dealer: dealer)
+        self.canPlayGame = players.playersGetCards(dealer: dealer)
         
         if let card = dealer.giveCard(){
             dealer.receiveCard(card: card)
@@ -50,7 +46,6 @@ class PockerGame{
     }
     
     func overOneTurn(){
-        // 한게임 마무리 시, 현재 참여자들의 카드를 inHandCards에 할당
         let playersCard = players.inMyHandCard()
         playersCard.forEach{ player in
             if inHandCards[player.key] != nil{
@@ -73,9 +68,14 @@ class PockerGame{
         var showAll = [String]()
         
         inHandCards.forEach{ playerAndDealer in
+            var cards = [String]()
             let name = playerAndDealer.key
-            let cards = playerAndDealer.value.joined(separator: ",")
-            showAll.append("\(name) : \(cards)")
+            playerAndDealer.value.forEach{ card in
+                cards.append(card.description)
+            }
+            
+            let cardsDescription = cards.joined(separator: ",")
+            showAll.append("\(name) : \(cardsDescription)")
         }
         
         showAll.sort(by: < )
@@ -93,20 +93,39 @@ class PockerGame{
     init(variant: PockerGame.Variants, entries: PockerGame.Entries){
         self.variant = variant
         self.entries = entries
-        self.players = InGamePlayers(entry: self.entries.rawValue)
+        self.players = InGamePlayers(entry: self.entries)
         
     }
     
-    enum Variants: Int{
-        case fiveCardStud = 5
-        case sevenCardStud = 7
+    enum Variants: CaseIterable{
+        case fiveCardStud
+        case sevenCardStud
+        
+        var caseNumber: Int{
+            switch self {
+            case .fiveCardStud:
+                return 5
+            case .sevenCardStud:
+                return 7
+            }
+        }
     }
     
-    enum Entries: Int{
-        case one = 1
-        case two = 2
-        case three = 3
-        case four = 4
+    enum Entries: CaseIterable{
+        case two
+        case three
+        case four
+        
+        var caseNumber: Int{
+            switch self {
+            case .two:
+                return 2
+            case .three:
+                return 3
+            case .four:
+                return 4
+            }
+        }
     }
 }
 

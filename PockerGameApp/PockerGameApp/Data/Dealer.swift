@@ -30,14 +30,8 @@ class Dealer{
         return self.cardDeck.count()
     }
     
-    func showMyCards() -> [String]{
-        var cardsDescription: [String] = []
-        
-        cards.forEach{ card in
-            cardsDescription.append(card.description)
-        }
-        
-        return cardsDescription
+    func showMyCards() -> [Card]{
+        return self.cards
     }
     
     func receiveCard(card: Card){

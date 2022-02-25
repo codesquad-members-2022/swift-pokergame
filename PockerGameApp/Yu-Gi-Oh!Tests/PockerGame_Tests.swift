@@ -18,12 +18,32 @@ class PockerGameTest: XCTestCase {
     }
 
     func testExample() throws {
-        let game = PockerGame(variant: PockerGame.Variants.sevenCardStud, entries: PockerGame.Entries.four)
+        let randomVariant = PockerGame.Variants.allCases.randomElement()!
+        let randomEntries = PockerGame.Entries.allCases.randomElement()!
+        
+        let game = PockerGame(variant: randomVariant, entries: randomEntries)
+        var playGameTurn = 1
+        var playerHavingCards = ""
+        
+        let cardNum = game.dealerShuffle()
         
         while game.playingLoop(){
+            for _ in 0..<randomVariant.caseNumber{
+                if game.playingLoop(){
+                    game.divideCards()
+                }else{
+                    break
+                }
+                playerHavingCards = game.showAllCardInHand()
+            }
             
+            if game.playingLoop(){
+                game.clearGame()
+                playGameTurn += 1
+            } else{
+                break
+            }
         }
-        
     }
 
     func testPerformanceExample() throws {
