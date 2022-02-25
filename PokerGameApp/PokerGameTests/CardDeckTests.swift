@@ -8,7 +8,7 @@
 import XCTest
 @testable import PokerGame
 
-class PokerGameTests: XCTestCase {
+class CardDeckTests: XCTestCase {
     private var cardDeck: CardDeck!
     
     override func setUp() {
