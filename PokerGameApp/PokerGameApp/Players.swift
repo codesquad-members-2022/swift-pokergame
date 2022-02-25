@@ -7,7 +7,7 @@ class Players: CustomStringConvertible{
         return players.count
     }
     var description: String{
-        return players.reduce(into: "", { $0 += $1.description+"\n"})
+        return players.description
     }
     
     init(players: [Player]){
