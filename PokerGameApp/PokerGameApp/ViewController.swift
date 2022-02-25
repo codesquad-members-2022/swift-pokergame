@@ -82,17 +82,15 @@ class ViewController: UIViewController {
         var cardXPosition = initialXPosition
         var cardYPosition = CGFloat(studSelectionControl.center.y * 1.2)
         
-        var users: [Player] = game.players.currentPlayers
-        users.append(game.dealer)
-        
-        for user in users{
+        var playerIterator = game.players.getIterator(additionalPlayer: game.dealer)
+        while let player = playerIterator.next(){
             
-            let label = createUserNameLabel(name: user.currentName, x: initialXPosition, y: cardYPosition)
+            let label = createUserNameLabel(name: player.currentName, x: initialXPosition, y: cardYPosition)
             self.view.addSubview(label)
             self.labels.append(label)
             cardYPosition += label.frame.height
             
-            var cardIterator = user.cards.getIterator()
+            var cardIterator = player.cards.getIterator()
             while let card = cardIterator.next() {
                 guard let image = UIImage(named: "\(card.description)") else { continue }
                 let imageView = createCardImageView(image: image, x: cardXPosition, y: cardYPosition, width: cardWidth, height: cardHeight)
