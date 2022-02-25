@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00075F0927C6556800E65EF7 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00075F0827C6556800E65EF7 /* Card.swift */; };
 		0039AD7127C7673700A8C8C8 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0039AD7027C7673700A8C8C8 /* Deck.swift */; };
+		0090E44D27C8F2CF00D34C11 /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0090E44C27C8F2CF00D34C11 /* Symbol.swift */; };
 		00BD4B0927C4BA6800C29E59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BD4B0827C4BA6800C29E59 /* AppDelegate.swift */; };
 		00BD4B0B27C4BA6800C29E59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BD4B0A27C4BA6800C29E59 /* SceneDelegate.swift */; };
 		00BD4B0D27C4BA6800C29E59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BD4B0C27C4BA6800C29E59 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		00075F0827C6556800E65EF7 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		0039AD7027C7673700A8C8C8 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		0090E44C27C8F2CF00D34C11 /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
 		00BD4B0527C4BA6800C29E59 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00BD4B0827C4BA6800C29E59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00BD4B0A27C4BA6800C29E59 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				00BD4B0A27C4BA6800C29E59 /* SceneDelegate.swift */,
 				00BD4B0C27C4BA6800C29E59 /* ViewController.swift */,
 				00075F0827C6556800E65EF7 /* Card.swift */,
+				0090E44C27C8F2CF00D34C11 /* Symbol.swift */,
 				0039AD7027C7673700A8C8C8 /* Deck.swift */,
 				00BD4B0E27C4BA6800C29E59 /* Main.storyboard */,
 				00BD4B1127C4BA6800C29E59 /* Assets.xcassets */,
@@ -149,6 +152,7 @@
 				0039AD7127C7673700A8C8C8 /* Deck.swift in Sources */,
 				00BD4B0B27C4BA6800C29E59 /* SceneDelegate.swift in Sources */,
 				00075F0927C6556800E65EF7 /* Card.swift in Sources */,
+				0090E44D27C8F2CF00D34C11 /* Symbol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
