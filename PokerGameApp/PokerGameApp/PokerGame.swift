@@ -8,8 +8,8 @@
 import Foundation
 
 struct PokerGame {
-    private var dealer: Dealer? // run 하면 Dealer를 지정합니다.
-    private var players = [Player]() // run 하면 players를 추가해줍니다.
+    var dealer: Dealer? // run 하면 Dealer를 지정합니다.
+    var players = [Player]() // run 하면 players를 추가해줍니다.
     static var totalCards = CardDeck() // 전체 카드
     static var cardStud: Int = Stud.five.rawValue // default는 5카드 스터드
     
@@ -69,7 +69,11 @@ struct PokerGame {
     }
     
     
-    struct Dealer: Participant {
+    struct Dealer: Participant, CustomStringConvertible {
+        var description: String {
+            return "😎Dealer: \(self.cards)"
+        }
+        
         var cards = [Card]()
         
         // 자신을 포함한 플레이어에게 카드를 나눠주고 나눠준 총 카드 수를 리턴합니다.
@@ -84,7 +88,11 @@ struct PokerGame {
     }
     
     
-    struct Player: Participant {
+    struct Player: Participant, CustomStringConvertible {
+        var description: String {
+            return "👤User(\(name)): \(self.cards)"
+        }
+        
         var name: String
         var cards = [Card]()
     }
@@ -93,4 +101,11 @@ struct PokerGame {
 
 protocol Participant {
     var cards: [Card] { get set } // 딜러, 플레이어는 모두 카드 갖고 있음. Card 타입을 배열로 갖고 있음
+}
+
+
+extension PokerGame: CustomStringConvertible {
+    var description: String {
+        return "\(dealer)\n\(players)"
+    }
 }
