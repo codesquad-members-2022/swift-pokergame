@@ -5,28 +5,25 @@ class Player: CustomStringConvertible{
     var currentName: String{
         return self.name
     }
-    fileprivate (set) var cards: [Card] = []
+    fileprivate (set) var cards: Cards
     var description: String{
         return "\(name) \(cards)"
     }
     
     init(name: String){
         self.name = name
+        self.cards = Cards()
     }
     
     func addCard(_ card: Card){
-        self.cards.append(card)
+        self.cards.addCard(card)
     }
 }
 
 class Dealer: Player{
-
+    
     init() {
         super.init(name: "딜러")
-    }
-    
-    func distributeCards(){
-        
     }
     
     func takeOutAllNecessaryCards(deck: CardDeck, count: Int)->CardDeck{
@@ -39,7 +36,7 @@ class Dealer: Player{
     }
     
     func takeOutCard()-> Card?{
-        guard let card = self.cards.popLast() else { return nil }
+        guard let card = self.cards.removeCard() else { return nil }
         return card
     }
 }
