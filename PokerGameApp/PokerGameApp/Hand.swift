@@ -7,21 +7,18 @@
 
 import Foundation
 
-protocol Handable {
-    var cards: [Card] { get }
-    mutating func receive(card: Card)
-}
-
-struct Hand: Handable {
-    var cards: [Card]
+class Hand {
+    private var cards: [Card]
+    
+    var getCards: [Card] {
+        return cards
+    }
     
     init() {
         self.cards = [Card]()
     }
-}
-
-extension Hand {
-    mutating func receive(card: Card) {
+    
+    func receive(card: Card) {
         self.cards.append(card)
     }
 }
