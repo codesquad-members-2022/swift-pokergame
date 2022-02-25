@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		D004DF2A27C5ECD200A9D23D /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = D004DF2927C5ECD200A9D23D /* CardDeck.swift */; };
 		D00D246127C7511C006FF1A5 /* PokerGameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D246027C7511C006FF1A5 /* PokerGameAppTests.swift */; };
-		D00D246C27C7C878006FF1A5 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D246B27C7C878006FF1A5 /* InputView.swift */; };
 		D00D246E27C7EBCA006FF1A5 /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D246D27C7EBCA006FF1A5 /* PokerGame.swift */; };
 		D0536DAD27C4A7BF0079F166 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0536DAC27C4A7BF0079F166 /* Card.swift */; };
 		D0F62D1C27C320EB00B9B815 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F62D1B27C320EB00B9B815 /* AppDelegate.swift */; };
@@ -34,7 +33,6 @@
 		D004DF2927C5ECD200A9D23D /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 		D00D245E27C7511C006FF1A5 /* PokerGameAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerGameAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D00D246027C7511C006FF1A5 /* PokerGameAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameAppTests.swift; sourceTree = "<group>"; };
-		D00D246B27C7C878006FF1A5 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		D00D246D27C7EBCA006FF1A5 /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
 		D0536DAC27C4A7BF0079F166 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		D0F62D1827C320EB00B9B815 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,7 +101,6 @@
 				D0F62D2927C320EB00B9B815 /* Info.plist */,
 				D0536DAC27C4A7BF0079F166 /* Card.swift */,
 				D004DF2927C5ECD200A9D23D /* CardDeck.swift */,
-				D00D246B27C7C878006FF1A5 /* InputView.swift */,
 				D00D246D27C7EBCA006FF1A5 /* PokerGame.swift */,
 			);
 			path = PokerGameApp;
@@ -222,7 +219,6 @@
 				D0F62D2027C320EB00B9B815 /* ViewController.swift in Sources */,
 				D004DF2A27C5ECD200A9D23D /* CardDeck.swift in Sources */,
 				D0F62D1C27C320EB00B9B815 /* AppDelegate.swift in Sources */,
-				D00D246C27C7C878006FF1A5 /* InputView.swift in Sources */,
 				D0F62D1E27C320EB00B9B815 /* SceneDelegate.swift in Sources */,
 				D0536DAD27C4A7BF0079F166 /* Card.swift in Sources */,
 			);
