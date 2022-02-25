@@ -92,7 +92,8 @@ class ViewController: UIViewController {
             self.labels.append(label)
             cardYPosition += label.frame.height
             
-            for card in user.cards.currentCards{
+            var cardIterator = user.cards.getIterator()
+            while let card = cardIterator.next() {
                 guard let image = UIImage(named: "\(card.description)") else { continue }
                 let imageView = createCardImageView(image: image, x: cardXPosition, y: cardYPosition, width: cardWidth, height: cardHeight)
                 self.view.addSubview(imageView)
