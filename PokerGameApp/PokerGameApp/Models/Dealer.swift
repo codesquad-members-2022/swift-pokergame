@@ -20,7 +20,7 @@ class Dealer : Person {
         if let card = deck.removeOne() {
             player.getCard(card)
         }else{
-            throw Errors.insufficientCard
+            throw PokerGame.Errors.insufficientCard
         }
     }
     
