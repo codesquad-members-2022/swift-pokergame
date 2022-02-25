@@ -17,8 +17,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        guard let patternImage: UIImage = UIImage(named: "bg_pattern.png") else {
+            return
+        }
+        self.view.backgroundColor = UIColor(patternImage: patternImage)
     }
-
+    
 
 }
 
