@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         }
         //TODO: 클래스의 인스턴스를 let으로 선언했을 때와 var로 선언했을 때의 차이
         let card = Card(shape: .club, rank: .ace)
-        print("\(card.filp())")
+        print("\(card.description)")
     }
     
     func createCard(XCoordinate: Int) {

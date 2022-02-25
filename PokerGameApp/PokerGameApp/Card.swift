@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Card {
+class Card: CustomStringConvertible {
     let shape: Shape, rank: Rank
     init(shape: Shape, rank: Rank) {
         self.shape = shape
@@ -29,21 +29,18 @@ class Card {
     }
     
     //MARK: 실제 카드를 추상화해서 은유적으로 뒤집어 본다, 패를 뒤집어 본다는 느낌으로 함수명을 지었습니다.
-    func filp() -> String {
-        var output = ""
-        output += "\(shape.rawValue)"
+    var description: String {
         switch rank {
         case .ace:
-            output += "A"
+            return "\(shape.rawValue)A"
         case .jack:
-            output += "J"
+            return "\(shape.rawValue)J"
         case .queen:
-            output += "Q"
+            return "\(shape.rawValue)Q"
         case .king:
-            output += "K"
+            return "\(shape.rawValue)K"
         default:
-            output += "\(rank.rawValue)"
+            return "\(shape.rawValue)\(rank.rawValue)"
         }
-        return output
     }
 }
