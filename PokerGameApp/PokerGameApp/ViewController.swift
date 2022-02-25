@@ -27,6 +27,8 @@ class ViewController: UIViewController {
         let deck: CardDeck = CardDeck()
         deck.reset()
         deck.shuffle()
+        deck.removeOne()
+        print(deck.cardCount)
     }
     
     func createCard(XCoordinate: Int) {
