@@ -12,7 +12,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var logTextView: UITextView!
     @IBOutlet weak var algorithmControl: UISegmentedControl!
     
-    private var shuffleAlgorithm: CardDeck.ShuffleAlgorithms = .FisherYates
+    private let shuffleAlgorithm: ShuffleAlgorithm<Card> = ShuffleAlgorithm()
+    private var algorithmType: CardDeck.ShuffleAlgorithms = .FisherYates {
+        didSet {
+            switch algorithmType {
+            case .FisherYates: selectedAlgorithm = shuffleAlgorithm.fisherYatesAlgorithm
+            case .Knuth: selectedAlgorithm = shuffleAlgorithm.knuthAlgorithm
+            case .Ordinary: selectedAlgorithm = shuffleAlgorithm.ordinaryCardShuffle
+            }
+        }
+    }
+    private var selectedAlgorithm: ((inout [Card]) -> Void)!
     
     private let CARD_INSET: CGFloat = 3
     private let CARD_COUNT = 5
@@ -23,7 +33,7 @@ class ViewController: UIViewController {
     
     private var readableFrame: CGRect!
     
-    private var deck = CardDeck()
+    private var deck = CardDeck(.deck)
     
     private var endOfRange: UITextRange? {
         logTextView.textRange(from: logTextView.endOfDocument, to: logTextView.endOfDocument)
@@ -32,6 +42,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         logTextView.delegate = self
+        selectedAlgorithm = shuffleAlgorithm.fisherYatesAlgorithm
         
         if let bgPattern = UIImage.init(named: bgImageName) {
             self.view.backgroundColor = UIColor.init(patternImage: bgPattern)
@@ -74,9 +85,9 @@ class ViewController: UIViewController {
     
     @IBAction func algorithmControlValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
-        case 0: shuffleAlgorithm = .FisherYates
-        case 1: shuffleAlgorithm = .Knuth
-        default: shuffleAlgorithm = .Ordinary
+        case 0: algorithmType = .FisherYates
+        case 1: algorithmType = .Knuth
+        default: algorithmType = .Ordinary
         }
     }
     @IBAction func countButtonTouchUpInside(_ sender: UIButton) {
@@ -86,9 +97,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func shuffleButtonTouchUpInside(_ sender: UIButton) {
-        deck.shuffle(using: shuffleAlgorithm)
+        deck.shuffle(use: selectedAlgorithm)
         
-        var text = "> 카드 섞기(\(shuffleAlgorithm.rawValue))\n"
+        var text = "> 카드 섞기(\(algorithmType.rawValue))\n"
         text += "전체 \(deck.count())장의 카드를 섞었습니다.\n"
         setLog(text: text)
     }

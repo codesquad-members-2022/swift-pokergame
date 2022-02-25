@@ -9,6 +9,11 @@ import Foundation
 
 class CardFactory {
     
+    enum Init {
+        case random
+        case deck
+    }
+    
     static func randomCard() -> Card {
         let info = CardInfo(as: Card.Symbol.randomElement, with: Card.Number.random)!
         return Card(using: info)
