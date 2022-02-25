@@ -40,9 +40,16 @@ class CardDeck {
         print("카드 전체를 초기화했습니다.")
         print("총 \(cardCount)장의 카드가 있습니다.")
     }
-    //MARK: 무작위로 섞는다. Array.suffle(), suffled() 사용금지
+    //MARK: 무작위로 섞는다. Knuth suffle 알고리즘 적용
     public func shuffle() {
-        
+        let count = cardCount
+        for i in 0..<count - 1 {   // 0 ~ n - 2
+            let randomIndex = Int.random(in: i..<count)
+            let temp = deck[i]
+            deck[i] = deck[randomIndex]
+            deck[randomIndex] = temp
+        }
+        print("전체 \(cardCount)장의 카드를 섞었습니다.")
     }
     //MARK: 덱 중에 하나를 pop한다
     public func removeOne() -> Card {

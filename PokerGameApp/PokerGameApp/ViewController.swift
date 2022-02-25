@@ -26,6 +26,7 @@ class ViewController: UIViewController {
         //아직까진 둘 다로 선언해 보았을 때 그 차이를 모르겠다. 일단 let으로 하는게 좋은듯?!
         let deck: CardDeck = CardDeck()
         deck.reset()
+        deck.shuffle()
     }
     
     func createCard(XCoordinate: Int) {
