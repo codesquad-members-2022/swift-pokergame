@@ -2,7 +2,7 @@ import Foundation
 
 class Player: CustomStringConvertible{
     private var name: String
-    var playerName: String{
+    var currentName: String{
         return self.name
     }
     fileprivate (set) var cards: [Card] = []
