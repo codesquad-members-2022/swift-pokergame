@@ -19,9 +19,16 @@ struct CardDeck {
     // MARK: - Initializer
     init(cards: [Card]) {
         self.cards = cards
+        self.shuffle()
     }
     
     // MARK: - Methods
+    private mutating func swap(_ i: Int, _ j: Int) {
+        let card = self.cards[j]
+        self.cards[j] = self.cards[i]
+        self.cards[i] = card
+    }
+    
     mutating func removeOne() -> Card? {
         guard let card = self.cards.popLast() else {
             return nil
@@ -33,12 +40,23 @@ struct CardDeck {
     }
     
     mutating func shuffle() {
+        var i = self.count - 1
         
+        while i > 0 {
+            let j = Int.random(in: 0...i)
+            self.swap(i, j)
+            i -= 1
+        }
     }
     
     mutating func reset() {
         self.cards = self.cards.isEmpty ? self.cache : self.cards + self.cache
         self.cache = []
-        self.shuffle()
+    }
+}
+
+extension CardDeck: CustomStringConvertible {
+    var description: String {
+        return self.cards.description
     }
 }
