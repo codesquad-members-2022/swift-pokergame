@@ -58,7 +58,6 @@ struct PokerGame {
     }
     
     //딜러가 카드를 gameMode 에 맞게 플레이어들에게 나누어준다.
-    //public 으로 지정하여서 XCTest 진행 가능하게 만들었다.
     private mutating func playOneSet() {
         do{
             try dealer.dealCard(to: totalPlayerList, on: gameMode)
