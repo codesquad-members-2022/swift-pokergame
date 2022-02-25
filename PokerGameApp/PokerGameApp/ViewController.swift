@@ -31,7 +31,8 @@ class ViewController: UIViewController {
         let heartQ = Card(shape: .hearts, number: .queen)
         let spade7 = Card(shape: .spades, number: .seven)
         
-        let deck1 = Deck()
+        var deck1 = Deck()
+        
     }
     
 }
