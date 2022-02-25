@@ -30,6 +30,7 @@ class CardDeck {
     // 1 : 'let initDeck'을 하나 만들어서 'deck = initdeck'
     // 2 : '2중 for 문을 돌면서, 카드를 생성해서 채움 - 카드 생성시에 enum이 static이 아닌 이상 enum 형의 값을 넣을 수가 없음. 
     func reset() {
+        deck.removeAll()
         let shapeSet: Set<Card.Shape> = [.club, .diamond, .heart, .spade]
         let rankSet: Set<Card.Rank> = [.ace, .two, .three, .four, .five, .six, .seven, .eight, .nine, .ten, .jack, .queen, .king]
         for shape in shapeSet {
