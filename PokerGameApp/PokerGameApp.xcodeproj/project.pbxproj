@@ -16,6 +16,9 @@
 		1E95A15827C4F6E0005FE52A /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E95A15727C4F6E0005FE52A /* Card.swift */; };
 		1E95A15C27C5C315005FE52A /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E95A15B27C5C315005FE52A /* CardDeck.swift */; };
 		1E95A1A427C61421005FE52A /* CardDeckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E95A1A327C61421005FE52A /* CardDeckTests.swift */; };
+		1E95A1B727C87D16005FE52A /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E95A1B627C87D16005FE52A /* PokerGame.swift */; };
+		1E95A1B927C87D2C005FE52A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E95A1B827C87D2C005FE52A /* Player.swift */; };
+		1E95A1BB27C87D32005FE52A /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E95A1BA27C87D32005FE52A /* Dealer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +44,9 @@
 		1E95A15B27C5C315005FE52A /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 		1E95A1A127C61421005FE52A /* PokerGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E95A1A327C61421005FE52A /* CardDeckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeckTests.swift; sourceTree = "<group>"; };
+		1E95A1B627C87D16005FE52A /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
+		1E95A1B827C87D2C005FE52A /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		1E95A1BA27C87D32005FE52A /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,9 @@
 				1E95A0F127C32767005FE52A /* SceneDelegate.swift */,
 				1E95A15727C4F6E0005FE52A /* Card.swift */,
 				1E95A15B27C5C315005FE52A /* CardDeck.swift */,
+				1E95A1BA27C87D32005FE52A /* Dealer.swift */,
+				1E95A1B827C87D2C005FE52A /* Player.swift */,
+				1E95A1B627C87D16005FE52A /* PokerGame.swift */,
 				1E95A0F327C32767005FE52A /* ViewController.swift */,
 				1E95A0F527C32767005FE52A /* Main.storyboard */,
 				1E95A0F827C32768005FE52A /* Assets.xcassets */,
@@ -207,6 +216,9 @@
 				1E95A0F427C32767005FE52A /* ViewController.swift in Sources */,
 				1E95A15C27C5C315005FE52A /* CardDeck.swift in Sources */,
 				1E95A0F027C32767005FE52A /* AppDelegate.swift in Sources */,
+				1E95A1B727C87D16005FE52A /* PokerGame.swift in Sources */,
+				1E95A1BB27C87D32005FE52A /* Dealer.swift in Sources */,
+				1E95A1B927C87D2C005FE52A /* Player.swift in Sources */,
 				1E95A0F227C32767005FE52A /* SceneDelegate.swift in Sources */,
 				1E95A15827C4F6E0005FE52A /* Card.swift in Sources */,
 			);
