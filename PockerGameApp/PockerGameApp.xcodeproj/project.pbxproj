@@ -17,6 +17,7 @@
 		02227AFB27C4AC8B00E7CFC5 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02227AFA27C4AC8B00E7CFC5 /* CardDeck.swift */; };
 		02227B0327C4ADD300E7CFC5 /* PockerGameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02227B0227C4ADD300E7CFC5 /* PockerGameAppTests.swift */; };
 		02D099C927C875AE000979C5 /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D099C827C875AE000979C5 /* Cards.swift */; };
+		02D099CB27C87A18000979C5 /* Gamblers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D099CA27C87A18000979C5 /* Gamblers.swift */; };
 		02F1382D27C5CB6900CEBA93 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F1382C27C5CB6900CEBA93 /* Dealer.swift */; };
 		02F1383127C5D2FC00CEBA93 /* Gambler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F1383027C5D2FC00CEBA93 /* Gambler.swift */; };
 		02F1383327C5D87D00CEBA93 /* PockerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F1383227C5D87D00CEBA93 /* PockerGame.swift */; };
@@ -46,6 +47,7 @@
 		02227B0027C4ADD300E7CFC5 /* PockerGameAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PockerGameAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02227B0227C4ADD300E7CFC5 /* PockerGameAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockerGameAppTests.swift; sourceTree = "<group>"; };
 		02D099C827C875AE000979C5 /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
+		02D099CA27C87A18000979C5 /* Gamblers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gamblers.swift; sourceTree = "<group>"; };
 		02F1382C27C5CB6900CEBA93 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		02F1383027C5D2FC00CEBA93 /* Gambler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gambler.swift; sourceTree = "<group>"; };
 		02F1383227C5D87D00CEBA93 /* PockerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockerGame.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				02227AFA27C4AC8B00E7CFC5 /* CardDeck.swift */,
 				02F1382C27C5CB6900CEBA93 /* Dealer.swift */,
 				02F1383027C5D2FC00CEBA93 /* Gambler.swift */,
+				02D099CA27C87A18000979C5 /* Gamblers.swift */,
 				02F1383227C5D87D00CEBA93 /* PockerGame.swift */,
 			);
 			path = Model;
@@ -228,6 +231,7 @@
 				02F1383327C5D87D00CEBA93 /* PockerGame.swift in Sources */,
 				02227AFB27C4AC8B00E7CFC5 /* CardDeck.swift in Sources */,
 				02D099C927C875AE000979C5 /* Cards.swift in Sources */,
+				02D099CB27C87A18000979C5 /* Gamblers.swift in Sources */,
 				02F1383127C5D2FC00CEBA93 /* Gambler.swift in Sources */,
 				02F1382D27C5CB6900CEBA93 /* Dealer.swift in Sources */,
 				020FBEE827C328C800A794D9 /* AppDelegate.swift in Sources */,

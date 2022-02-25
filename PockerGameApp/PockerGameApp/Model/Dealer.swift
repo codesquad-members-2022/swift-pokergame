@@ -12,7 +12,7 @@ class Dealer {
     private var wholeDeck = CardDeck()
     private var cards = Cards()
     
-    public func distributeCard(to gamblers: [Gambler], in rule: GameRule) {
+    public func distributeCard(to gamblers: Gamblers, in rule: PokerGame.StudRule) {
         guard wholeDeck.count >= rule.numberOfCard * (gamblers.count + 1) else { return }
         shuffleWholeDeck()
         for _ in 0..<rule.numberOfCard {

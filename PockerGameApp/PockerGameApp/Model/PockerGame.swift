@@ -10,21 +10,13 @@ import Foundation
 class PokerGame {
     
     let dealer: Dealer
-    let gamblers: [Gambler]
     let gameRule: GameRule
+    let gamblers: Gamblers
     
-    init(numberOfGamblers: Int, gameRule: GameRule) {
-        var nameArray = ["Sol", "Jee", "Eddy", "Jed", "Dale"]
-        var gamblers = [Gambler]()
-        for _ in 0..<numberOfGamblers{
-            let pickedIndex = (0..<nameArray.count).randomElement() ?? 0
-            let pickedName = nameArray.remove(at: pickedIndex)
-            let newGambler = Gambler(name: pickedName)
-            gamblers.append(newGambler)
-        }
+    init(numberOfGamblers: numberOfGamblers, gameRule: StudRule) {
         
         self.dealer = Dealer()
-        self.gamblers = gamblers
+        self.gamblers = Gamblers.init(with: numberOfGamblers)
         self.gameRule = gameRule
     }
     
