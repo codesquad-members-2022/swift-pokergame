@@ -43,41 +43,5 @@ class ViewController: UIViewController {
         }
         
         showCardImages()
-        test()
     }
-    
-    func test() {
-        print("🃏카드 초기화🃏")
-        var cardDeck = CardDeck()
-        
-        if cardDeck.count == 52 {
-            print("카드 전체를 초기화했습니다.")
-            print("총 \(cardDeck.count)장의 카드가 있습니다.\n")
-        }
-        
-        print("🃏카드 섞기🃏")
-        cardDeck.shuffle()
-        print("전체 \(cardDeck.count)장의 카드를 섞었습니다.\n")
-        
-        var pokerGame = PokerGame()
-        pokerGame.run()
-        
-        print("🃏카드 하나 뽑기🃏 > 뽑은 카드", cardDeck.removeOne()!)
-        if cardDeck.count == 51 {
-            print("총 \(cardDeck.count)장의 카드가 남아있습니다.\n")
-        }
-        
-        print("🃏카드 하나 뽑기🃏 > 뽑은 카드", cardDeck.removeOne()!)
-        if cardDeck.count == 50 {
-            print("총 \(cardDeck.count)장의 카드가 남아있습니다.\n")
-        }
-        
-        print("🃏카드 초기화🃏")
-        cardDeck.reset()
-        if cardDeck.count == 52 {
-            print("카드 전체를 초기화했습니다.")
-            print("총 \(cardDeck.count)장의 카드가 있습니다.\n")
-        }
-    }
-    
 }
