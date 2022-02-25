@@ -72,6 +72,7 @@ class ViewController: UIViewController {
     func setAllImageViewsAndLabels(){
         
         guard let game = self.pokerGame else { return }
+        guard let players = game.players else { return }
         
         removePreviousCardImageViewsAndLabels()
         
@@ -82,12 +83,12 @@ class ViewController: UIViewController {
         var cardXPosition = initialXPosition
         var cardYPosition = CGFloat(studSelectionControl.center.y * 1.2)
         
-        var users: [Player] = game.players
+        var users: [Player] = players.players
         users.append(game.dealer)
         
         for user in users{
             
-            let label = createUserNameLabel(name: user.name, x: initialXPosition, y: initialXPosition)
+            let label = createUserNameLabel(name: user.name, x: initialXPosition, y: cardYPosition)
             self.view.addSubview(label)
             self.labels.append(label)
             cardYPosition += label.frame.height
