@@ -34,9 +34,11 @@ class Players: CustomStringConvertible{
         self.players[playerIndex].addCard(card)
     }
     
-    func getIterator(additionalPlayer: Player) -> IndexingIterator<[Player]>{
+    func getIterator(additionalPlayer: Player?) -> IndexingIterator<[Player]>{
         var playersCopy = self.players
-        playersCopy.append(additionalPlayer)
+        if let additionalPlayer = additionalPlayer{
+            playersCopy.append(additionalPlayer)
+        }
         return playersCopy.makeIterator()
     }
     
