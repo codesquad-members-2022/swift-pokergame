@@ -8,9 +8,8 @@
 import Foundation
 
 struct Deck {
-    // 52장의 카드
     
-    private var cardDeck = Array<Card?>()
+    private var cardDeck: Array<Card?>
     private var initCardNumber = 13
     
     init() {
@@ -42,10 +41,10 @@ struct Deck {
     mutating func reset() {
         self.cardDeck = Array<Card>()
         for i in 1...initCardNumber {
-            self.cardDeck.append(Card(shape: .spades, number: Card.Number.init(rawValue: i) ?? .ace))
-            self.cardDeck.append(Card(shape: .diamonds, number: Card.Number.init(rawValue: i) ?? .ace))
-            self.cardDeck.append(Card(shape: .hearts, number: Card.Number.init(rawValue: i) ?? .ace))
-            self.cardDeck.append(Card(shape: .clubs, number: Card.Number.init(rawValue: i) ?? .ace))
+            self.cardDeck.append(Card(shape: .spades, symbol: .init(SymbolInt(i) ?? .ace)))
+            self.cardDeck.append(Card(shape: .diamonds, symbol: .init(SymbolInt(i) ?? .ace)))
+            self.cardDeck.append(Card(shape: .hearts, symbol: .init(SymbolInt(i) ?? .ace)))
+            self.cardDeck.append(Card(shape: .clubs, symbol: .init(SymbolInt(i) ?? .ace)))
         }
     }
 }
@@ -57,9 +56,9 @@ extension Deck: CustomStringConvertible {
         for i in 0..<cardDeck.count {
             let card = cardDeck[i]
             if let cardContent = card, (i + 1) % lineBreakNum == 0 {
-                deckInfo += "\(cardContent.shape)\(cardContent.number)\n"
+                deckInfo += "\(cardContent.shape)\(cardContent.symbol)\n"
             } else if let cardContent = card, (i + 1) % lineBreakNum != 0 {
-                deckInfo  += "\(cardContent.shape)\(cardContent.number), "
+                deckInfo  += "\(cardContent.shape)\(cardContent.symbol), "
             }
         }
         return deckInfo
