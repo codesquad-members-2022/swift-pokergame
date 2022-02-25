@@ -10,6 +10,7 @@ import XCTest
 
 class PokerGameAppTests: XCTestCase {
     var sut: CardDeck!
+    var sut2: CardGame!
     
     func testCardIsInitialized() {
         XCTAssertEqual(sut.count, 52, "Card is Not Initialized")
@@ -33,14 +34,21 @@ class PokerGameAppTests: XCTestCase {
         sut.reset()
         XCTAssertEqual(sut.count, 52)
     }
+    
+    func testCardGameIsStarted() {
+        sut2.run()
+        
+    }
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         sut = CardDeck()
+        sut2 = CardGame()
     }
 
     override func tearDownWithError() throws {
         sut = nil
+        sut2 = nil
         try super.tearDownWithError()
     }
 }
