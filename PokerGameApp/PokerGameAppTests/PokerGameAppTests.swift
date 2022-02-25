@@ -25,9 +25,17 @@ class PokerGameAppTests: XCTestCase {
         XCTAssertFalse(isNotSameCardCount, "게임 준비 후, 모든 참가자의 카드갯수가 7장이다")
     }
     
-    func testParticipantFactory_isCorrectGenerateCount() throws {
-        let guests = ParticipantFactory.generateGuests(count: .four)
-        let expectCount = 4
-        XCTAssertEqual(guests.count, expectCount)
+    func testDealer_isOutOfCardDeckWhenStartGame() throws {
+        let dealer = Dealer(name: "딜러", stud: .five)
+        let team = Team(guestCount: .four, dealer: dealer)
+        
+        dealer.prepare()
+        dealer.start(with: team) { isOutOfCard in
+            if isOutOfCard {
+                XCTAssertTrue(dealer.isOutOfCard(), "딜러가 덱이 빌때까지 카드를 한장씩 나눠주었나")
+            }
+        }
+    }
+    
     }
 }
