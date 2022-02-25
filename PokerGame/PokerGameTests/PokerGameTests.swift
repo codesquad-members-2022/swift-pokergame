@@ -9,17 +9,27 @@ import XCTest
 
 class PokerGameTests: XCTestCase {
 
-    enum Constants {
-        static let testPokerStud = PokerGame.Stud.fiveCard
-        static let testPlayerCount = 4
-    }
-    
     enum TestCase {
-        
         case noScore, one, two, triple, four, straight
         
-        @discardableResult
-        func getCard(pattern: [Card.Pattern], numbers: [Card.Number]) -> [Card] {
+        var cards: [Card] {
+            switch self {
+            case .noScore:
+                return TestCase.noScore.getCard(pattern: [], numbers: [])
+            case .one:
+                return TestCase.one.getCard(pattern: [.spade, .heart], numbers: [.four])
+            case .two:
+                return TestCase.two.getCard(pattern: [.spade, .heart], numbers: [.four, .eight])
+            case .triple:
+                return TestCase.triple.getCard(pattern: [.spade], numbers: [.four])
+            case .four:
+                return TestCase.four.getCard(pattern: [.heart], numbers: [.king])
+            case .straight:
+                return TestCase.straight.getCard(pattern: [], numbers: [.four])
+            }
+        }
+        
+        private func getCard(pattern: [Card.Pattern], numbers: [Card.Number]) -> [Card] {
             switch self {
             case .noScore:
                 return [
@@ -74,7 +84,11 @@ class PokerGameTests: XCTestCase {
         }
     }
     
-    var testPlayerCount: Int = 0
+    let addCard: (Player, [Card]) -> Void = { player, cards in
+        cards.forEach {
+            player.add(card: $0)
+        }
+    }
     
     override func setUpWithError() throws {
     }
@@ -82,30 +96,16 @@ class PokerGameTests: XCTestCase {
     override func tearDownWithError() throws {
     }
     
-    func testDummyPokerStart() {
-        //플레이어에 카드 넣어주는 함수
-        let addCard: (Player, [Card]) -> Void = { player, cards in
-            cards.forEach {
-                player.add(card: $0)
-            }
-        }
-        
-        //테스트 카드 샘플
-        let noScoreCards = TestCase.noScore.getCard(pattern: [], numbers: [])
-        let onePairCards = TestCase.one.getCard(pattern: [.spade, .heart], numbers: [.four])
-        let twoPairCards = TestCase.two.getCard(pattern: [.spade, .heart], numbers: [.four, .eight])
-        let triplePairCards = TestCase.triple.getCard(pattern: [.spade], numbers: [.four])
-        let fourPairCards = TestCase.four.getCard(pattern: [.heart], numbers: [.king])
-        let straightPairCards = TestCase.straight.getCard(pattern: [], numbers: [.four])
+    func testGetWinner() {
         
         //플레이어에 테스트 카드 설정
         //딕셔너리를 사용하므로 이름순으로 정렬해줌
         let players = [
-            "0.테스터":noScoreCards,
-            "1.테스터":triplePairCards,
-            "2.테스터":onePairCards,
-            "3.테스터":straightPairCards,
-            "4.딜러":noScoreCards
+            "0.테스터":TestCase.one.cards,
+            "1.테스터":TestCase.two.cards,
+            "2.테스터":TestCase.triple.cards,
+            "3.테스터":TestCase.four.cards,
+            "4.딜러":TestCase.straight.cards
         ].map { pair -> Player in
                 let player = Player(name: pair.key)
                 addCard(player, pair.value)
@@ -136,61 +136,26 @@ class PokerGameTests: XCTestCase {
         XCTAssertEqual(players[checkWinnerIndex].score, winner)
     }
     
-    func testPlayerScoreStraight() {
-        let player = Player(name: "tester")
-        player.add(card: Card(pattern: .spade, number: .ace))
-        player.add(card: Card(pattern: .diamond, number: .two))
-        player.add(card: Card(pattern: .clover, number: .four))
-        player.add(card: Card(pattern: .spade, number: .five))
-        player.add(card: Card(pattern: .spade, number: .six))
-        player.add(card: Card(pattern: .spade, number: .seven))
-        player.add(card: Card(pattern: .spade, number: .eight))
-        let result = player.score
-        XCTAssertEqual(result?.rule, .straight)
-    }
-    
-    func testPlayerScoreFourCard() {
-        let player = Player(name: "tester")
-        player.add(card: Card(pattern: .spade, number: .ace))
-        player.add(card: Card(pattern: .heart, number: .ace))
-        player.add(card: Card(pattern: .diamond, number: .ace))
-        player.add(card: Card(pattern: .clover, number: .ace))
-        player.add(card: Card(pattern: .spade, number: .two))
-        let result = player.score
-        XCTAssertEqual(result?.rule, .fourCard)
-    }
-    
-    func testPlayerScoreTriple() {
-        let player = Player(name: "tester")
-        player.add(card: Card(pattern: .spade, number: .ace))
-        player.add(card: Card(pattern: .heart, number: .ace))
-        player.add(card: Card(pattern: .diamond, number: .ace))
-        player.add(card: Card(pattern: .heart, number: .two))
-        player.add(card: Card(pattern: .diamond, number: .six))
-        let result = player.score
-        XCTAssertEqual(result?.rule, .triple)
-    }
-    
-    func testPlayerScoreTwoPair() {
-        let player = Player(name: "tester")
-        player.add(card: Card(pattern: .spade, number: .ace))
-        player.add(card: Card(pattern: .heart, number: .ace))
-        player.add(card: Card(pattern: .diamond, number: .two))
-        player.add(card: Card(pattern: .heart, number: .two))
-        player.add(card: Card(pattern: .diamond, number: .six))
-        let result = player.score
-        XCTAssertEqual(result?.rule, .twoPair)
-    }
-    
-    func testPlayerScoreOnePair() {
-        let player = Player(name: "tester")
-        player.add(card: Card(pattern: .spade, number: .ace))
-        player.add(card: Card(pattern: .heart, number: .ace))
-        player.add(card: Card(pattern: .diamond, number: .two))
-        player.add(card: Card(pattern: .diamond, number: .four))
-        player.add(card: Card(pattern: .diamond, number: .six))
-        let result = player.score
-        XCTAssertEqual(result?.rule, .onePair)
+    func testScoreRule() {
+        let players = [
+            "0.테스터":TestCase.one.cards,
+            "1.테스터":TestCase.two.cards,
+            "2.테스터":TestCase.triple.cards,
+            "3.테스터":TestCase.four.cards,
+            "4.딜러":TestCase.straight.cards
+        ].map { pair -> Player in
+                let player = Player(name: pair.key)
+                addCard(player, pair.value)
+                return player
+        }.sorted{
+            $0.name < $1.name
+        }
+        
+        XCTAssertEqual(players[0].score?.rule, .onePair)
+        XCTAssertEqual(players[1].score?.rule, .twoPair)
+        XCTAssertEqual(players[2].score?.rule, .triple)
+        XCTAssertEqual(players[3].score?.rule, .fourCard)
+        XCTAssertEqual(players[4].score?.rule, .straight)
     }
     
     func testCardDeckReset() {
