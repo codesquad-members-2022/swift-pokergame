@@ -24,6 +24,14 @@ class PockerGame{
         return canPlayGame
     }
     
+    func changeVariant(variant: PockerGame.Variants){
+        self.variant = variant
+    }
+    
+    func changeEntries(entries: PockerGame.Entries){
+        self.entries = entries
+    }
+    
     func dealerShuffle() -> Int{
         let cardCount = self.dealer.shuffleCardDeck()
         return cardCount
