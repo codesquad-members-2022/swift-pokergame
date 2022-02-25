@@ -23,8 +23,8 @@
 - [x] XCTest 코드 작성
   - [x] 원페어, 투페어, 트리플, 스트레이트, 포카드의 규칙을 적용해 정상적으로 찾는지?
 - [x] 승자표시를 위한 UI 구현
-- [ ] 추가요구사항 구현
-  - [ ] 일정시간 간격을 두고 카드를 나눠주는 것 처럼 반복해서 업데이트
+- [x] 추가요구사항 구현
+  - [x] 일정시간 간격을 두고 카드를 나눠주는 것 처럼 반복해서 업데이트
 
 ### 결과화면
 
@@ -57,7 +57,7 @@ Name: 딜러, cards: [h3, c8, sJ, d2, d3, s10, c10] -- twoPair(10)
 
 ![스크린샷 2022-02-25 오후 2 25 33](https://user-images.githubusercontent.com/5019378/155659156-e94e8761-14e0-4c95-89ea-d73da7c1edfd.png)
 
-
+![Simulator Screen Recording - iPhone 12 Pro - 2022-02-25 at 15 30 48](https://user-images.githubusercontent.com/5019378/155666207-144be205-f003-4513-b440-f78d45700ef7.gif)
 
 ------
 
