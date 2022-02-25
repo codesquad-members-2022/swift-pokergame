@@ -15,8 +15,8 @@ class Participants {
     }
     
     init(playerCount: Int, dealer: Dealer) {
-        self.players = (0..<playerCount).map { _ in
-            Player() }
+        self.players = (0..<playerCount).map { number in
+            Player(name: "player\(number + 1)") }
         self.players.append(dealer)
     }
 }

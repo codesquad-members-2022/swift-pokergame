@@ -18,11 +18,9 @@ class Player: Playable {
     private(set) var name: String
     private(set) var hand: Hand
     
-    init() {
+    init(name: String) {
         self.hand = Hand()
-        
-        // TODO: 랜덤한 이름으로 생성되도록 변경
-        self.name = "RandomName"
+        self.name = name
     }
 }
 
