@@ -9,14 +9,14 @@ import Foundation
 
 protocol Playable {
     var name: String { get }
-    var hand: Hand { get set }
-    mutating func receive(card: Card)
+    var hand: Hand { get }
+    func receive(card: Card)
 }
 
-struct Player: Playable {
+class Player: Playable {
     
     private(set) var name: String
-    var hand: Hand
+    private(set) var hand: Hand
     
     init() {
         self.hand = Hand()
@@ -27,7 +27,7 @@ struct Player: Playable {
 }
 
 extension Playable {
-    mutating func receive(card: Card) {
+    func receive(card: Card) {
         self.hand.receive(card: card)
     }
 }
