@@ -38,7 +38,32 @@ class PokerGameAppTests: XCTestCase {
     func testCardGameIsStarted() {
         sut2.run()
     }
-
+    
+    func testPlayerNameIsInitialized() {
+        let randomValue = Int.random(in: 1...4)
+        let randomNames = sut2.makeRandomName(count: randomValue)
+        XCTAssertEqual(randomNames.count, randomValue)
+    }
+    
+    func testDealerIsInitialized() {
+        sut2.run()
+        XCTAssertNotNil(sut2.dealer)
+    }
+    
+    func testCardIsDistributedToDealer() {
+        sut2.run()
+        let cardStud = PokerGame.cardStud
+        XCTAssertEqual(sut2.dealer?.cards.count, cardStud)
+    }
+    
+    func testCardIsDistributedToPlayer() {
+        sut2.run()
+        let cardStud = PokerGame.cardStud
+        for index in 0..<sut2.players.count {
+            XCTAssertEqual(sut2.players[index].cards.count, cardStud)
+        }
+    }
+    
     override func setUpWithError() throws {
         try super.setUpWithError()
         sut = CardDeck()
