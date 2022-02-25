@@ -10,7 +10,7 @@ import Foundation
 class Gambler {
     
     private let name: String
-    private var cardDeck: [Card]
+    private var cards = Cards()
     
     init(name: String) {
         var name = name
@@ -20,11 +20,10 @@ class Gambler {
         }
         
         self.name = name
-        self.cardDeck = [Card]()
     }
     
     public func receiveCard(_ card: Card) {
-        self.cardDeck.append(card)
+        self.cards.add(card)
     }
 }
 

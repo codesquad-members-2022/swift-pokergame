@@ -10,7 +10,7 @@ import Foundation
 class Dealer {
     
     private var wholeDeck = CardDeck()
-    private var cardDeck = [Card]()
+    private var cards = Cards()
     
     public func distributeCard(to gamblers: [Gambler], in rule: GameRule) {
         guard wholeDeck.count >= rule.numberOfCard * (gamblers.count + 1) else { return }
@@ -21,7 +21,7 @@ class Dealer {
                 gamblers[index].receiveCard(newCard)
             }
             guard let newCard = pickCard() else { return }
-            cardDeck.append(newCard)
+            cards.add(newCard)
         }
     }
     

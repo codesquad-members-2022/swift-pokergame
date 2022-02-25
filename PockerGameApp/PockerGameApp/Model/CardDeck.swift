@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct CardDeck: Equatable {
+struct CardDeck {
     
-    private var deck = [Card]()
-    private let originDeck: [Card]
+    private var deck = Cards()
+    private let originDeck: Cards
     public var count: Int {
         return self.deck.count
     }
@@ -20,15 +20,15 @@ struct CardDeck: Equatable {
         let allSymbolCases = Card.Symbol.allCases
         for numberCase in allNumberCases {
             for symbolCase in allSymbolCases {
-                self.deck.append(Card(number: numberCase, symbol: symbolCase))
+                self.deck.add(Card(number: numberCase, symbol: symbolCase))
             }
         }
-        self.originDeck = deck
+        self.originDeck = self.deck
     }
     
     init(with cardArray: [Card]) {
-        self.deck.append(contentsOf: cardArray)
-        self.originDeck = cardArray
+        self.deck.add(bunch: cardArray)
+        self.originDeck = self.deck
     }
     
     public mutating func shuffle() { // Knuth Shuffle 로직 사용하여 구현
@@ -36,26 +36,22 @@ struct CardDeck: Equatable {
         
         for indexToSwap1 in 0..<count-1 {
             let indexToSwap2 = Int.random(in: indexToSwap1..<count)
-            self.deck.swapAt(indexToSwap1, indexToSwap2)
+            deck.swapAt(indexToSwap1, indexToSwap2)
         }
-        if self.deck[count-1] == self.originDeck[count-1] && count > 1 {
-            self.deck.swapAt(count-1, count-2)
+        if deck[count-1] == originDeck[count-1] && count > 1 {
+            deck.swapAt(count-1, count-2)
         }
     }
     
     public mutating func removeOne() -> Card? {
-        return self.deck.popLast()
+        return deck.pop()
     }
     
     public mutating func reset() {
         self.deck = self.originDeck
     }
     
-    public func last() -> Card? { // Test시 사용하기 위한 메서드
-        return self.deck.last
-    }
-    
     public mutating func add(_ card: Card) {
-        self.deck.append(card)
+        self.deck.add(card)
     }
 }
