@@ -10,12 +10,23 @@ import Foundation
 struct ParticipantFactory {
     static func generateGuests(count: GuestCount) -> [Guest] {
         var guests = [Guest]()
+        var appendedNames = [String]()
+        
         for _ in 0..<count.rawValue {
-            guard let randomName = PersonName.allCases.randomElement() else {
-                continue
+            var newName = ""
+            var isExsistName = true
+            while (isExsistName) {
+                guard let randomName = PersonName.allCases.randomElement() else {
+                    continue
+                }
+                if !appendedNames.contains(randomName.rawValue) {
+                    newName = randomName.rawValue
+                    isExsistName = false
+                }
             }
-            let guest = Guest(name: randomName.rawValue)
+            let guest = Guest(name: newName)
             guests.append(guest)
+            appendedNames.append(guest.state().name)
         }
         return guests
     }
