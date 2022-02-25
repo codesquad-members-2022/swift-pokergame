@@ -7,8 +7,9 @@
 
 import XCTest
 
-class PockerGameTests: XCTestCase {
-
+final class PockerGameTests: XCTestCase {
+    private let factory = CardDeckFactory()
+    
     override func setUpWithError() throws {
         try? super.setUpWithError()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -43,18 +44,24 @@ class PockerGameTests: XCTestCase {
     }
     
     func testCardDeck() {
+        var deck = self.factory.create()
+        XCTAssertTrue(deck.count ==  52, "Total number of cards is 52")
         
-    }
-    
-    func testCardDeckFactory() {
+        XCTAssertNotNil(deck.removeOne())
         
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
+        deck.removeOne()
+        deck.removeOne()
+        XCTAssertTrue(deck.count ==  49, "Total number of cards is 49")
+        
+        for _ in 0...52 {
+            deck.removeOne()
         }
+        
+        XCTAssertNil(deck.removeOne())
+        XCTAssertTrue(deck.count == 0, "Deck must be empty")
+        
+        deck.shuffle()
+        XCTAssertNil(deck.removeOne())
+        XCTAssertTrue(deck.count == 0, "Deck must be empty")
     }
-
 }
