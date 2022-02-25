@@ -21,14 +21,14 @@ class Card {
      뿐만아니라 클래스로 구현했을 때 보다도 적은 코드량을 유지할 수 있습니다.
      구조체 역시 같은 값타입으로써 좋은 대안일 수 있으나, Suit와 Rank 가 제한된 범위의 데이터를 표현하는 역할을 한다는 점에서 Enum 이 적합하다고 판단했습니다.
      */
-    enum Suit: Int {
+    enum Suit: Int, CaseIterable {
         case clover = 1
         case diamond
         case heart
         case spade
     }
     
-    enum Rank: Int {
+    enum Rank: Int, CaseIterable {
         case ace = 1
         case two
         case three
