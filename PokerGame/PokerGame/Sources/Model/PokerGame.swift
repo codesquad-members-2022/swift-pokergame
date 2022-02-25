@@ -23,7 +23,7 @@ class PokerGame {
     struct State {
         var resetPokerBoard: (Stud, [String]) -> Void = { _, _ in }
         var givePlayerCard: (Int, Int, Card) -> Void = { _, _, _ in }
-        var pokerWinner: (Score?) -> Void = { _ in }
+        var pokerWinner: (String?) -> Void = { _ in }
         var finishPoker: () -> Void = { }
     }
     

@@ -63,8 +63,9 @@ class PokerPlayers {
         }
     }
     
-    func getWinner() -> Score? {
-        players.compactMap { $0.score }.sorted().last
+    func getWinner() -> String?{
+        players.reduce(into: [String:Score]()) {$0[$1.name] = $1.score}
+        .sorted{ $0.value < $1.value}.last?.key
     }
 }
 
