@@ -23,9 +23,9 @@ struct Deck {
     
     mutating func shuffle() {
         var cardDeckIndex = cardDeck.count - 1
-        for i in 1...cardDeck.count {
+        for _ in 1...cardDeck.count {
             let tempCard = cardDeck[cardDeckIndex]
-            let randomIndex = Int.random(in: 1...cardDeckIndex)
+            let randomIndex = Int.random(in: 0...cardDeckIndex)
             cardDeck[cardDeckIndex] = cardDeck[randomIndex]
             cardDeck[randomIndex] = tempCard
             cardDeckIndex -= 1
