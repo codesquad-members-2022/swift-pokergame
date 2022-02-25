@@ -10,17 +10,25 @@ import Foundation
 struct InGamePlayers{
     private var players: [Player] = []
     
-    func playersGetCards(dealer: Dealer){
+    func showPlayers() -> [Player]{
+        return self.players
+    }
+    
+    func playersGetCards(dealer: Dealer) -> Bool{
+        var isCardHere = true
+        
         players.forEach{ player in
             guard let card = dealer.giveCard() else{
+                isCardHere = false
                 return
             }
             player.receiveCard(card: card)
         }
+        return isCardHere
     }
     
-    func inMyHandCard() -> [String: String]{
-        var myCards = [String : String]()
+    func inMyHandCard() -> [String: Card]{
+        var myCards = [String : Card]()
         
         players.forEach{ player in
             if let card = player.showMyCards().last{
@@ -37,8 +45,8 @@ struct InGamePlayers{
         }
     }
     
-    init(entry: Int){
-        for _ in 0..<entry{
+    init(entry: PockerGame.Entries){
+        for _ in 0..<entry.caseNumber{
             players.append(Player(randomName: String.makePlayerName()))
         }
     }

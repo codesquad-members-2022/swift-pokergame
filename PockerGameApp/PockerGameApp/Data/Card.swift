@@ -50,13 +50,13 @@ struct Card: CustomStringConvertible{
         var description: String{
             switch self {
             case .heart:
-                return "♥️"
+                return "h"
             case .dia:
-                return "♦️"
+                return "d"
             case .spade:
-                return "♠️"
+                return "s"
             case .clover:
-                return "♣️"
+                return "c"
             }
         }
     }
