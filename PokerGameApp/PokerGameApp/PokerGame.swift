@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PokerGame {
+class PokerGame {
     
     enum Stud: Int {
         case five
