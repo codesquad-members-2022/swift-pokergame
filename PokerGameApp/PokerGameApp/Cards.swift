@@ -9,7 +9,6 @@ struct Cards: CustomStringConvertible{
     var description: String{
         return self.cards.description
     }
-    private var index = 0
     
     mutating func addCard(_ card: Card){
         self.cards.append(card)
