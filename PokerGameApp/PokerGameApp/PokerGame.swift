@@ -37,7 +37,7 @@ class PokerGame {
     private var stud: Stud
     private var playerCount: PlayerCount
     private var dealer: Dealer
-    private var participants: Participants
+    private(set) var participants: Participants
 
     init(stud: Stud, playerCount: PlayerCount) {
         self.stud = stud
@@ -51,7 +51,7 @@ class PokerGame {
             dealer.setUpPokerGame(stud: stud.cardCountForGame, participants: participants)
         }
         else {
-            // TODO: 종료 처리에 대한 코드 작성
+            return
         }
     }
 }
