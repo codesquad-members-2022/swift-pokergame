@@ -8,7 +8,6 @@ class Players: CustomStringConvertible{
         return self.players
     }
     private let numberOfPlayers: PokerGame.Count
-    
     var count: Int{
         return players.count
     }
