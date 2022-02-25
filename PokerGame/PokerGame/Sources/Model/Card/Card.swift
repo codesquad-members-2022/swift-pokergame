@@ -20,15 +20,18 @@ struct Card: CustomStringConvertible, Comparable {
     }
     
     static func < (lhs: Card, rhs: Card) -> Bool {
-        lhs.number < rhs.number
+        if lhs.number == rhs.number {
+            return lhs.pattern < rhs.pattern
+        }
+        return lhs.number < rhs.number
     }
 }
 
 // MARK: - CardPattern
 
 extension Card {
-    enum Pattern: String, CaseIterable, CustomStringConvertible {
-        case spade
+    enum Pattern: Int, CaseIterable, CustomStringConvertible, Comparable {
+        case spade = 0
         case diamond
         case heart
         case clover
@@ -44,6 +47,10 @@ extension Card {
             case .spade:
                 return "s"
             }
+        }
+        
+        static func < (lhs: Card.Pattern, rhs: Card.Pattern) -> Bool {
+            lhs.rawValue < rhs.rawValue
         }
     }
 }
