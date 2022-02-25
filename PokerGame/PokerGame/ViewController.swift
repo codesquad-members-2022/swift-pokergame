@@ -14,10 +14,10 @@ final class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: Image.backgroundPatternImage) //ViewBackground Pattern
         putCardsOnView(originX: 0, y: 40, count: 7,inset: 10) //여러개의 카드 View에 올리기
 
-        let factory = CardFactory()
         
-        let DesignatedCard = factory.makeDesignatedCard(suit: .clover, rank: .king)
-        let randomCard = factory.makeRandomCard()
+        let card = Card(suit: .clover, rank: .ace)
+        
+        let factory = DeckFactory()
         let deck = factory.makeDeck()
         
     }
