@@ -11,27 +11,23 @@ import Foundation
 struct Player {
     
     private var player: [String] = []
+    private var numberOfPlayer: Int
     
-    init(player: [String]) {
-        self.player = player
-    }
-    
-    func determineThePlayer() -> Int {
-        return Int.random(in: 1...4)
-    }
-    
-    mutating func namingPlayers(playerNumber: Int) {
+    mutating func namingPlayers() {
         let name = ["Jee", "Sol", "Selina", "Jed", "푸코", "Dale", "Eddy"]
         
-        for appendPlayer in 1...playerNumber {
+        for appendPlayer in 1...numberOfPlayer {
             player.append("\(name[Int.random(in: 0..<name.count)])")
         }
     }
     
-    
-    
-    
-    
-    
-    
+    init() {
+        numberOfPlayer = Int.random(in: 1...4)
+    }
+}
+
+extension Player: CustomStringConvertible {
+    var description: String {
+        return "\(player)"
+    }
 }
