@@ -10,8 +10,8 @@ import Foundation
 struct Deck {
     // 52장의 카드
     
-    private var cardDeck = Array<Card>()
-    private let cardNumber = 13
+    private var cardDeck = Array<Card?>()
+    private var initCardNumber = 13
     
     init() {
         reset()
@@ -32,7 +32,7 @@ struct Deck {
     mutating func reset() {
         // 처음처럼 모든 카드를 다시 채워넣음
         self.cardDeck = Array<Card>()
-        for i in 1...cardNumber {
+        for i in 1...initCardNumber {
             self.cardDeck.append(Card(shape: .spades, number: Card.Number.init(rawValue: i) ?? .ace))
             self.cardDeck.append(Card(shape: .diamonds, number: Card.Number.init(rawValue: i) ?? .ace))
             self.cardDeck.append(Card(shape: .hearts, number: Card.Number.init(rawValue: i) ?? .ace))
@@ -45,7 +45,10 @@ extension Deck: CustomStringConvertible {
     var description: String {
         var deckInfo = "Deck Info\n"
         for card in cardDeck {
-            deckInfo += "\(card.shape)\(card.number)\n"
+            if let cardContent = card {
+                deckInfo += "\(cardContent.shape)\(cardContent.number)\n"
+                
+            }
         }
         return deckInfo
     }
