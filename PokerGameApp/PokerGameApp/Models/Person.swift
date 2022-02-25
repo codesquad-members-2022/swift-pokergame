@@ -6,13 +6,13 @@
 //
 
 import Foundation
-
+//딜러와 플레이어의 상위 클래스
 class Person {
     
-    private var name : Names
+    private var name : String
     private var cards = [Card]()
 
-    init(name: Names) {
+    init(name: String) {
         self.name = name
     }
     
@@ -20,6 +20,9 @@ class Person {
         self.cards.append(card)
     }
     
+    func resetCards() {
+        self.cards.removeAll()
+    }
 }
 
 extension Person : CustomStringConvertible {
@@ -29,10 +32,4 @@ extension Person : CustomStringConvertible {
 }
 
 
-enum Names : String,CaseIterable {
-    case Kai
-    case Tim
-    case Luan
-    case Hana
-    case Dealer
-}
+

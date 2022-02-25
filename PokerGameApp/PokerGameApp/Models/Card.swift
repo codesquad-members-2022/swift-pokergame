@@ -12,10 +12,10 @@ struct Card :Equatable {
     //각 카드 는 4개의 다른 모양의 suit 가 있으므로 Card 클래스 안에 선언.
     //CustomStringConvertible 를 사용하면 description 프로퍼티에 열거형 의 RawValue 를 할당할수 있게되어 print(Suit) 일때 그 rawValue 를 바로 볼수있다.
     enum Suit : Character, CaseIterable, CustomStringConvertible {
-        case spade = "♠️"
-        case club = "♣️"
-        case heart = "♥️"
-        case diamond = "♦️"
+        case Spade = "♠️"
+        case Club = "♣️"
+        case Heart = "♥️"
+        case Diamond = "♦️"
         var description: String {
             return "\(self.rawValue)"
         }
@@ -23,28 +23,28 @@ struct Card :Equatable {
     
     //각 카드의 값들을 열거형으로 선언 하여 관련된 값들을 Rank 를 통해 쉽게 얻을수 있음.
     enum Rank : Int, CaseIterable, CustomStringConvertible {
-        case ace = 1
-        case two
-        case three
-        case four
-        case five
-        case six
-        case seven
-        case eight
-        case nine
-        case ten
-        case jack
-        case king
-        case queen
+        case Ace = 1
+        case Two
+        case Three
+        case Four
+        case Five
+        case Six
+        case Seven
+        case Eight
+        case Nine
+        case Ten
+        case Jack
+        case King
+        case Queen
         var description: String {
             switch self {
-            case .ace :
+            case .Ace :
                 return "A"
-            case .jack :
+            case .Jack :
                 return "J"
-            case .king :
+            case .King :
                 return "K"
-            case .queen :
+            case .Queen :
                 return "Q"
             default :
                 return "\(self.rawValue)"
