@@ -11,7 +11,13 @@ struct PokerGame {
     private var dealer: Dealer? // run 하면 Dealer를 지정합니다.
     private var players = [Player]() // run 하면 players를 추가해줍니다.
     static var totalCards = CardDeck() // 전체 카드
-    static var cardStud: Int = 5 // default는 5카드 스터드
+    static var cardStud: Int = Stud.five.rawValue // default는 5카드 스터드
+    
+    
+    enum Stud: Int {
+        case five = 5
+        case seven = 7
+    }
     
     
     // 게임을 실행합니다.
