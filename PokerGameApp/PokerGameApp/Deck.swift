@@ -40,3 +40,13 @@ struct Deck {
         }
     }
 }
+
+extension Deck: CustomStringConvertible {
+    var description: String {
+        var deckInfo = "Deck Info\n"
+        for card in cardDeck {
+            deckInfo += "\(card.shape)\(card.number)\n"
+        }
+        return deckInfo
+    }
+}
