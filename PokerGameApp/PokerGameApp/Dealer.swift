@@ -16,8 +16,24 @@ class Dealer: Player {
         super.init(name: name)
     }
     
+    func isOutOfCard() -> Bool {
+        return cardDeck.count() == 0
+    }
+    
     func prepare() {
         cardDeck.shuffle()
+    }
+    
+    func start(with team: Team, outOfCard: (Bool) -> Void) {
+        while (cardDeck.count() != 0) {
+            team.loop { player in
+                guard let card = cardDeck.removeOne() else {
+                    return
+                }
+                player.handOver(cards: [card])
+            }
+        }
+        outOfCard(true)
     }
     
     func distributeCard(to team: Team) {

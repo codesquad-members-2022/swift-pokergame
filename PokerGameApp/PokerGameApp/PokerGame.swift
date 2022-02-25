@@ -12,6 +12,7 @@ class PokerGame {
     private let guestCount: GuestCount
     private let gameDealer: Dealer
     private let team: Team
+    private(set) var isEnd: Bool = false
     
     init(stud: Stud, guestCount: GuestCount) {
         self.stud = stud
@@ -24,6 +25,14 @@ class PokerGame {
     func prepare() {
         gameDealer.prepare()
         gameDealer.distributeCard(to: team)
+    }
+    
+    func run() {
+        gameDealer.start(with: team) { isOutOfCard in
+            if isOutOfCard {
+                isEnd = true
+            }
+        }
     }
     
     func playersState() -> [PlayerViewModel] {
