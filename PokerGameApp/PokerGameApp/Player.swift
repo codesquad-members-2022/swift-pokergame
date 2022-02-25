@@ -36,7 +36,7 @@ class Dealer: Player{
     }
     
     func takeOutCard()-> Card?{
-        guard let card = self.cards.removeCard() else { return nil }
+        guard let card = self.cards.removeOne() else { return nil }
         return card
     }
 }

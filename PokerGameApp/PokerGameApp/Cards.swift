@@ -11,7 +11,7 @@ struct Cards{
         self.cards.append(card)
     }
     
-    mutating func removeCard()-> Card?{
+    mutating func removeOne()-> Card?{
         return self.cards.popLast()
     }
 }
