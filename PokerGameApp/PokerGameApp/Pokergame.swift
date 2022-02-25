@@ -10,7 +10,7 @@ struct PokerGame {
     private let dealer : Dealer
     private var players : Players
     private let stud : Stud
-    private var playerCount : Int
+    private var playerCount : PlayerCount
     var remainCardCount : Int {
         return dealer.cardDeckCount
     }
@@ -19,37 +19,29 @@ struct PokerGame {
         self.stud = stud
         self.players = Players()
         self.dealer = Dealer()
-        self.playerCount = playerCount.intValue
-        seatPlayer(count: self.playerCount)
+        self.playerCount = playerCount
+        seatPlayer()
     }
     
     mutating func play() {
         draw(each: stud.initialCard)
         let oneCard = 1
-        while dealer.cardDeckCount-playerCount >= 0 {
+        while dealer.playAble(with: players.count){
             draw(each: oneCard)
         }
     }
     
     private func draw(each : Int) {
         for _ in 0..<each {
-            var oneCycleDraw = Cards()
-            for _ in 0..<playerCount {
-                guard let drawedCard = dealer.draw() else {break}
-                oneCycleDraw.add(card:drawedCard)
-            }
+            let oneCycleDraw = playerCount.drawLoop(dealer)
             players.eachReceive(cards: oneCycleDraw)
         }
     }
     
-    private mutating func seatPlayer(count : Int) {
-        var playerName = PlayerName()
+    private mutating func seatPlayer() {
         self.players.seat(player: dealer)
-        for _ in 0..<count {
-            let name = playerName.popName()
-            let newPlayer = Player(name: name)
-            self.players.seat(player: newPlayer)
-        }
+        let seatedPlayer = playerCount.seatLoop(players)
+        self.players = seatedPlayer
     }
 
     enum PlayerCount : Int{
@@ -58,8 +50,28 @@ struct PokerGame {
         case three
         case four
         
-        var intValue : Int {
-            return rawValue
+        var drawLoop : (Dealer) -> Cards {
+            {(dealer: Dealer) -> Cards in
+            var oneCycleDraw = Cards()
+            for _ in 0..<rawValue{
+                guard let drawedCard = dealer.draw() else {break}
+                oneCycleDraw.add(card:drawedCard)
+            }
+            return oneCycleDraw
+            }
+        }
+        
+        var seatLoop : (Players) -> Players {
+            {(players: Players) -> Players in
+                var seatedPlayers = players
+                var playerName = PlayerName()
+                for _ in 0..<rawValue {
+                    let name = playerName.popName()
+                    let newPlayer = Player(name: name)
+                    seatedPlayers.seat(player: newPlayer)
+                }
+                return seatedPlayers
+            }
         }
     }
     
