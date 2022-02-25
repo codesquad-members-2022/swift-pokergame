@@ -7,11 +7,11 @@
 
 import Foundation
 
-class Dealer: Playable {
+struct Dealer: Playable {
     
     private(set) var cardDeck: CardDeck
     private(set) var name: String
-    private(set) var hand: Hand
+    var hand: Hand
     
     init() {
         self.cardDeck = CardDeck()
@@ -23,7 +23,7 @@ class Dealer: Playable {
         return self.cardDeck.count >= count
     }
     
-    func distributeHand(to participants: Participants, by stud: Int) {
+    mutating func distributeHand(to participants: Participants, by stud: Int) {
         participants.players.forEach { player in
             (0..<stud).forEach { _ in
                 player.receive(card: self.cardDeck.draw())
@@ -31,12 +31,12 @@ class Dealer: Playable {
         }
     }
     
-    func generateShuffledCardDeck() {
+    mutating func generateShuffledCardDeck() {
         self.cardDeck.setUpCards()
         self.cardDeck.shuffle()
     }
     
-    func setUpPokerGame(stud: Int, participants: Participants) {
+    mutating func setUpPokerGame(stud: Int, participants: Participants) {
         self.generateShuffledCardDeck()
         self.distributeHand(to: participants, by: stud)
     }

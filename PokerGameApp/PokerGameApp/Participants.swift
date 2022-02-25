@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Participants {
+struct Participants {
     
     var players: [Playable]
     var count: Int {
