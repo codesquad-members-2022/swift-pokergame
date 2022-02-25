@@ -47,6 +47,12 @@ extension Card: CustomStringConvertible {
     }
 }
 
+extension Card.Shape: CustomStringConvertible {
+    var description: String {
+        return "\(self.rawValue)"
+    }
+}
+
 extension Card.Number: CustomStringConvertible {
     var description: String {
         switch self {
@@ -59,9 +65,7 @@ extension Card.Number: CustomStringConvertible {
         case .king:
             return "K"
         default:
-            return "\(self)"
+            return "\(self.rawValue)"
         }
     }
-    
-    
 }
