@@ -20,6 +20,10 @@ class ViewController: UIViewController{
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         cardImage()
+        
+        let pokerCard = PokerCard(suit: .hearts, rank: .Queen)
+        let displayCard = pokerCard.makeCard()
+        print(displayCard)
     }
 
     func backgroundImage(){
