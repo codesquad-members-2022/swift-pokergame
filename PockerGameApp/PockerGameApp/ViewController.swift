@@ -183,4 +183,10 @@ class ViewController: UIViewController {
     @IBAction func start(_ sender: Any) {
         playGame()
     }
+    
+    @IBAction func resetGame(_ sender: Any) {
+        let _ = pockerGame?.dealerShuffle()
+        removeLabelStackView()
+        addLabelStackView()
+    }
 }
