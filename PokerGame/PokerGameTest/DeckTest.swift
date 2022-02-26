@@ -13,7 +13,7 @@ class DeckTest: XCTestCase {
     var sut:Deck!
     
     override func setUpWithError() throws {
-        super.setUp()
+        try super.setUpWithError()
         factory = DeckFactory()
         sut = factory.makeDeck()
     }
@@ -53,7 +53,7 @@ class DeckTest: XCTestCase {
             count += 1
             deck.removeOne()
             
-            XCTAssertTrue(deck.count + count == originCount)
+            XCTAssertTrue(deck.count == originCount)
     }
 }
     
@@ -82,9 +82,6 @@ class DeckTest: XCTestCase {
         
         XCTAssertEqual(originDeck, usedDeck)
     }
-    
-    
-    
     
     override func tearDownWithError() throws {
         factory = nil

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DeckFactory {
+final class DeckFactory {
         
     func makeDeck() -> Deck {
         let cards:[Card] = iterateSuitWithAllRank()
