@@ -1,4 +1,45 @@
 # swift-pokergame
+## 작업내역
+
+| 날짜       | 번호   | 내용                                    | 비고                                  |
+| ---------- | :----- | --------------------------------------- | -------------------------------- |
+| 2022.02.26 | Step06 | 게임화면 구현하기                            |                                  |
+| 2022.02.25 | Step05 | Step04 리팩토링                           |                                   |
+| 2022.02.24 | Step04 | 게임로직 구현하기                            |                                  |
+| 2022.02.23 | Step03 | 카드덱 구현하기 |                           |                                  |
+| 2022.02.22 | Step02 | 카드 클래스 구현하기                         |                                  |
+| 2022.02.21 | Step01 | 게임보드 만들기                             |                                  |
+
+------
+## [Step06] 게임화면 구현하기
+### Description
+- 기존에 구현한 Data와의 연결을 통해 카드 게임 화면 및 동작을 구현 (승자 구하는 로직 구현X)
+
+### Task
+- [x] 리팩토링한 Data들의 로직에 대한 Test 로직 구현
+    - [x] 카드덱이 비어서 딜러가 나눠줄 수 없는 상황 시, 자동으로 게임 종료되는 지에 대한 로직도 테스트
+- [x] SegmentedController로 게임 방식과 인원 수 선택 구현
+    - [x] 전체 배경에 묻히지 않도록 속성 변경
+    - [x] 세그먼트 선택 액션과 실제 Data 상의 variant와 entries 변경 연결
+- [x] Label / StackView 추가
+    - [x] 세그먼트 액션에 따라 Label / StackView 개수 변화 구현
+    - [x] StackView identifier 설정 (imageView 추가 단계 시 필요)
+    - [x] StackView 내에 variant의 값만큼의 빈 ImageView 추가 (정렬 문제를 해결하기 위해 미리 추가)
+- [x] Image 추가
+    - [x] 차례대로 StackView 내의 ImageView에 Image 추가
+- [x] Play / Reset 버튼 구현
+    - [x] 현재 인원 그대로 게임을 다시 할 수 있는 로직 구현
+    - [x] Play 시 단계 별로 작동하는 로직 각각 구현
+
+### 결과 화면
+- UnitTest
+<img src = "https://user-images.githubusercontent.com/44107696/155844508-33c70818-609e-4407-8c61-5fdd49edb395.gif" width="800" height="340">
+
+- 게임화면 동작 (iphone 13 pro)
+<img src = "https://user-images.githubusercontent.com/44107696/155844528-8091ee6f-d054-469b-b48f-3070dcca8d17.gif" width="780" height="1688">
+
+
+------
 ## 게임보드 만들기
 ### 프로그래밍 요구사항
 - 앱 기본 설정을 지정해서 StatusBar 스타일을 LightContent로 보이도록 한다.
