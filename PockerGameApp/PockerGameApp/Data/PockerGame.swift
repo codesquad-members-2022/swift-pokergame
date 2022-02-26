@@ -20,6 +20,10 @@ class PockerGame{
         return canPlayGame
     }
     
+    func changeVariant(variant: PockerGame.Variants){
+        self.variant = variant
+    }
+    
     func entryPlayers() -> InGamePlayers{
         return self.players
     }

@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var variant: UISegmentedControl!
     @IBOutlet weak var entries: UISegmentedControl!
+    @IBOutlet weak var playButton: UIButton!
     
     private var labelViews: [UILabel] = []
     private var stackViews: [UIStackView] = []
@@ -30,6 +31,9 @@ class ViewController: UIViewController {
             return PockerGame.Entries.four
         }
     }
+    
+    private var showNextTurnButton: Bool = false
+    private var imageViewsIndex = 0
     private var pockerGame: PockerGame?
     
     override func viewDidLoad() {
@@ -50,13 +54,29 @@ class ViewController: UIViewController {
         }
         
         let _ = pockerGame.dealerShuffle()
+    }
+    
+    func divideCards(){
+        pockerGame?.divideCards()
+        makeUIImage()
+    }
+    
+    func replayGame(){
+        imageViewsIndex = 0
+        showNextTurnButton = false
+        playButton.setTitle("Play", for: .normal)
         
+        pockerGame?.clearGame()
+        let _ = pockerGame?.dealerShuffle()
+        removeLabelStackView()
+        addLabelStackView()
+    }
+    
+    func makeImageView(stackView: UIStackView){
         for _ in 0..<variantValue.caseNumber{
-            pockerGame.divideCards()
-            makeUIImage()
+            let imageView = UIImageView()
+            stackView.addArrangedSubview(imageView)
         }
-            
-        pockerGame.clearGame()
     }
     
     func makeUIImage(){
@@ -69,15 +89,16 @@ class ViewController: UIViewController {
                 return
             }
             let image = UIImage(named: "\(card.description)")
-            let imageView = UIImageView(image: image)
             
             self.view.subviews.forEach{ view in
                 guard let stackView = view as? UIStackView else{
                     return
                 }
                 
-                if stackView.restorationIdentifier == player.name{
-                    stackView.addArrangedSubview(imageView)
+                if stackView.restorationIdentifier == player.name, let imageView = stackView.subviews[imageViewsIndex] as? UIImageView{
+                    imageView.image = image
+                } else{
+                    return
                 }
             }
         }
@@ -87,17 +108,20 @@ class ViewController: UIViewController {
         }
         
         let image = UIImage(named: "\(card.description)")
-        let imageView = UIImageView(image: image)
         
         self.view.subviews.forEach{ view in
             guard let stackView = view as? UIStackView else{
                 return
             }
             
-            if stackView.restorationIdentifier == dealer.role{
-                stackView.addArrangedSubview(imageView)
+            if stackView.restorationIdentifier == dealer.role, let imageView = stackView.subviews[imageViewsIndex] as? UIImageView{
+                imageView.image = image
+            } else{
+                return
             }
         }
+        
+        imageViewsIndex += 1
     }
     
     func addLabelStackView(){
@@ -146,6 +170,7 @@ class ViewController: UIViewController {
             stackView.distribution = .fillEqually
             stackView.contentMode = .scaleAspectFit
             stackView.backgroundColor = .white
+            makeImageView(stackView: stackView)
             self.stackViews.append(stackView)
             
             frameY += stackViewHeight + 20
@@ -165,28 +190,52 @@ class ViewController: UIViewController {
         stackView.distribution = .fillEqually
         stackView.contentMode = .scaleAspectFit
         stackView.backgroundColor = .white
+        makeImageView(stackView: stackView)
         self.stackViews.append(stackView)
     }
     
     @IBAction func variantControllClick(_ sender: Any) {
-        pockerGame = PockerGame(variant: variantValue, entries: entriesValue)
+        pockerGame?.changeVariant(variant: variantValue)
         removeLabelStackView()
         addLabelStackView()
+        
+        imageViewsIndex = 0
+        showNextTurnButton = false
+        playButton.setTitle("Play", for: .normal)
     }
     
     @IBAction func entriesControllClick(_ sender: Any) {
         pockerGame = PockerGame(variant: variantValue, entries: entriesValue)
         removeLabelStackView()
         addLabelStackView()
+        
+        imageViewsIndex = 0
+        showNextTurnButton = false
+        playButton.setTitle("Play", for: .normal)
     }
     
-    @IBAction func start(_ sender: Any) {
-        playGame()
+    @IBAction func play(_ sender: Any) {
+        if showNextTurnButton{
+            playGame()
+            showNextTurnButton.toggle()
+        } else{
+            guard let cardsCount = pockerGame?.entryDealer().showMyCards().count else{
+                return
+            }
+            playButton.setTitle("Dividing", for: .normal)
+            
+            if cardsCount < variantValue.caseNumber - 1{
+                divideCards()
+            } else if cardsCount == variantValue.caseNumber - 1{
+                divideCards()
+                playButton.setTitle("ReGame", for: .normal)
+            } else{
+                replayGame()
+            }
+        }
     }
     
     @IBAction func resetGame(_ sender: Any) {
-        let _ = pockerGame?.dealerShuffle()
-        removeLabelStackView()
-        addLabelStackView()
+        replayGame()
     }
 }
