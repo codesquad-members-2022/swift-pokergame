@@ -24,20 +24,20 @@ struct PokerCard {
     var rank: Rank
     
     func makeCard() -> String{
-        var changeValue: String
+        var rawValue: String
         switch rank.rawValue{
         case 1:
-            changeValue = "A"
+            rawValue = "A"
         case 11:
-            changeValue = "J"
+            rawValue = "J"
         case 12:
-            changeValue = "Q"
+            rawValue = "Q"
         case 13:
-            changeValue = "K"
+            rawValue = "K"
         default :
-            changeValue = "기본값"
+            rawValue = "기본값"
         }
-        return "\(suit.rawValue)\(changeValue)"
+        return "\(suit.rawValue)\(rawValue)"
     }
 }
 
