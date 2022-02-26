@@ -20,7 +20,6 @@
 		D26BD12C27C47169001D0AD4 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BD12B27C47169001D0AD4 /* Card.swift */; };
 		D26BD13027C4B334001D0AD4 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BD12F27C4B334001D0AD4 /* CardDeck.swift */; };
 		D276C6C527C764BC007C9960 /* InGamePlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D276C6C427C764BC007C9960 /* InGamePlayers.swift */; };
-		D276C6C727C8C23D007C9960 /* PGController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D276C6C627C8C23D007C9960 /* PGController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +49,6 @@
 		D26BD12B27C47169001D0AD4 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		D26BD12F27C4B334001D0AD4 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 		D276C6C427C764BC007C9960 /* InGamePlayers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGamePlayers.swift; sourceTree = "<group>"; };
-		D276C6C627C8C23D007C9960 /* PGController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +103,6 @@
 				D267E90627C31E90009A2EA3 /* SceneDelegate.swift */,
 				D267E90827C31E90009A2EA3 /* ViewController.swift */,
 				D267E90A27C31E90009A2EA3 /* Main.storyboard */,
-				D276C6C627C8C23D007C9960 /* PGController.swift */,
 				D267E90D27C31E91009A2EA3 /* Assets.xcassets */,
 				D267E90F27C31E91009A2EA3 /* LaunchScreen.storyboard */,
 				D267E91227C31E91009A2EA3 /* Info.plist */,
@@ -239,7 +236,6 @@
 				D260D7AB27C600D900855862 /* PockerGame.swift in Sources */,
 				D26BD13027C4B334001D0AD4 /* CardDeck.swift in Sources */,
 				D267E90527C31E90009A2EA3 /* AppDelegate.swift in Sources */,
-				D276C6C727C8C23D007C9960 /* PGController.swift in Sources */,
 				D276C6C527C764BC007C9960 /* InGamePlayers.swift in Sources */,
 				D260D7A727C5D19500855862 /* Dealer.swift in Sources */,
 				D260D7A527C5CF9B00855862 /* Player.swift in Sources */,
