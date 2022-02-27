@@ -7,8 +7,6 @@
 
 import Foundation
 
-typealias CardShuffleAlgo = CardDeck.ShuffleAlgorithms
-
 struct CardDeck {
     
     private var deck: [Card]
@@ -26,10 +24,6 @@ struct CardDeck {
         return deck.count
     }
     
-    mutating func shuffle(use method: (inout [Card])->Void) {
-        method(&deck)
-    }
-    
     mutating func removeOne() -> Card? {
         guard let card = deck.last else { return nil }
         deck.removeLast()
@@ -38,11 +32,5 @@ struct CardDeck {
     
     mutating func reset() {
         deck = CardFactory.deckOfCard()
-    }
-    
-    enum ShuffleAlgorithms: String, CaseIterable {
-        case FisherYates = "FisherYates"
-        case Knuth = "Knuth"
-        case Ordinary = "Ordinary"
     }
 }

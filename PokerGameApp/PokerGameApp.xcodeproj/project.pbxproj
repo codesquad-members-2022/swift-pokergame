@@ -12,7 +12,7 @@
 		1B55D93D27C5B18800001B52 /* Step1_Result.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1B55D93C27C5B18800001B52 /* Step1_Result.jpg */; };
 		1B6FAC2727C4F1B3005A49CE /* Info_plist_code.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1B6FAC2527C4F1B3005A49CE /* Info_plist_code.jpg */; };
 		1B6FAC2827C4F1B3005A49CE /* Info_plist_table.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1B6FAC2627C4F1B3005A49CE /* Info_plist_table.jpg */; };
-		1B6FEFDE27CB1C6A00613870 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6FEFDD27CB1C6A00613870 /* Participant.swift */; };
+		1B6FEFDE27CB1C6A00613870 /* PokerParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6FEFDD27CB1C6A00613870 /* PokerParticipant.swift */; };
 		1B6FEFE027CB1C7C00613870 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6FEFDF27CB1C7C00613870 /* Dealer.swift */; };
 		1B6FEFE227CB298000613870 /* GameMembers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6FEFE127CB297F00613870 /* GameMembers.swift */; };
 		1BAF190D27C6298500317699 /* Card+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF190C27C6298500317699 /* Card+Extension.swift */; };
@@ -54,7 +54,7 @@
 		1B55D93C27C5B18800001B52 /* Step1_Result.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Step1_Result.jpg; sourceTree = "<group>"; };
 		1B6FAC2527C4F1B3005A49CE /* Info_plist_code.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Info_plist_code.jpg; sourceTree = "<group>"; };
 		1B6FAC2627C4F1B3005A49CE /* Info_plist_table.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Info_plist_table.jpg; sourceTree = "<group>"; };
-		1B6FEFDD27CB1C6A00613870 /* Participant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
+		1B6FEFDD27CB1C6A00613870 /* PokerParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerParticipant.swift; sourceTree = "<group>"; };
 		1B6FEFDF27CB1C7C00613870 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		1B6FEFE127CB297F00613870 /* GameMembers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMembers.swift; sourceTree = "<group>"; };
 		1BAF190C27C6298500317699 /* Card+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+Extension.swift"; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 				1BEB000C27C332C1005738B5 /* Info.plist */,
 				1BF3F4DD27CA64960086FFB0 /* PokerGame.swift */,
 				1B6FEFDF27CB1C7C00613870 /* Dealer.swift */,
-				1B6FEFDD27CB1C6A00613870 /* Participant.swift */,
+				1B6FEFDD27CB1C6A00613870 /* PokerParticipant.swift */,
 				1B6FEFE127CB297F00613870 /* GameMembers.swift */,
 			);
 			path = PokerGameApp;
@@ -333,7 +333,7 @@
 				1B55D93127C5013800001B52 /* Card.swift in Sources */,
 				1BEB000327C332BF005738B5 /* ViewController.swift in Sources */,
 				1BEBFFFF27C332BF005738B5 /* AppDelegate.swift in Sources */,
-				1B6FEFDE27CB1C6A00613870 /* Participant.swift in Sources */,
+				1B6FEFDE27CB1C6A00613870 /* PokerParticipant.swift in Sources */,
 				1BF3F4DC27C86EDA0086FFB0 /* ShuffleAlgorithm.swift in Sources */,
 				1B6FEFE227CB298000613870 /* GameMembers.swift in Sources */,
 				1B6FEFE027CB1C7C00613870 /* Dealer.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  Participant.swift
+//  PokerParticipant.swift
 //  PokerGameApp
 //
 //  Created by 백상휘 on 2022/02/27.
@@ -7,15 +7,13 @@
 
 import Foundation
 
-class Participant {
+class PokerParticipant {
     
-    let gameType: TypeOfGame
     let name: String
     var favoriteShuffle: CardShuffleAlgo
     var cards = [Card]()
     
-    init(typeOf game: TypeOfGame) {
-        gameType = game
+    init() {
         name = String.randomString(length: (2...5).randomElement()!)
         favoriteShuffle = CardShuffleAlgo.allCases.randomElement()!
     }

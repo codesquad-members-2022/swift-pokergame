@@ -12,18 +12,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var logTextView: UITextView!
     @IBOutlet weak var algorithmControl: UISegmentedControl!
     
-    private let shuffleAlgorithm: ShuffleAlgorithm<Card> = ShuffleAlgorithm()
-    private var algorithmType: CardDeck.ShuffleAlgorithms = .FisherYates {
-        didSet {
-            switch algorithmType {
-            case .FisherYates: selectedAlgorithm = shuffleAlgorithm.fisherYatesAlgorithm
-            case .Knuth: selectedAlgorithm = shuffleAlgorithm.knuthAlgorithm
-            case .Ordinary: selectedAlgorithm = shuffleAlgorithm.ordinaryCardShuffle
-            }
-        }
-    }
-    private var selectedAlgorithm: ((inout [Card]) -> Void)!
-    
     private let CARD_INSET: CGFloat = 3
     private let CARD_COUNT = 5
     private var cards: [UIImageView]!
@@ -33,18 +21,18 @@ class ViewController: UIViewController {
     
     private var readableFrame: CGRect!
     
-    private var deck = CardDeck(.deck)
-    
     private var endOfRange: UITextRange? {
         logTextView.textRange(from: logTextView.endOfDocument, to: logTextView.endOfDocument)
     }
     
     private let poker = PokerGame()
+    private var dealerDeck: CardDeck { poker.dealer.deck }
+    private var dealerSkill: ShuffleAlgorithm<Card> { poker.dealer.shuffleSkill }
+    private var selectedAlgorithm: ((inout [Card]) -> Void)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         logTextView.delegate = self
-        selectedAlgorithm = shuffleAlgorithm.fisherYatesAlgorithm
         
         if let bgPattern = UIImage.init(named: bgImageName) {
             self.view.backgroundColor = UIColor.init(patternImage: bgPattern)
@@ -89,39 +77,42 @@ class ViewController: UIViewController {
     
     @IBAction func algorithmControlValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
-        case 0: algorithmType = .FisherYates
-        case 1: algorithmType = .Knuth
-        default: algorithmType = .Ordinary
+        case 0: selectedAlgorithm =
+            dealerSkill.fisherYatesAlgorithm
+        case 1: selectedAlgorithm =
+            dealerSkill.knuthAlgorithm
+        default: selectedAlgorithm =
+            dealerSkill.ordinaryCardShuffle
         }
     }
     @IBAction func countButtonTouchUpInside(_ sender: UIButton) {
         var text = "> 카드의 총 갯수\n"
-        text += "총 \(deck.count())장의 카드가 있습니다.\n"
+        text += "총 \(dealerDeck.count())장의 카드가 있습니다.\n"
         setLog(text: text)
     }
     
     @IBAction func shuffleButtonTouchUpInside(_ sender: UIButton) {
-        deck.shuffle(use: selectedAlgorithm)
+        poker.dealer.shuffle()
         
-        var text = "> 카드 섞기(\(algorithmType.rawValue))\n"
-        text += "전체 \(deck.count())장의 카드를 섞었습니다.\n"
+        var text = "> 카드 섞기(\(poker.dealer.shuffleType.rawValue))\n"
+        text += "전체 \(dealerDeck.count())장의 카드를 섞었습니다.\n"
         setLog(text: text)
     }
     
     @IBAction func removeOneButtonTouchUpInside(_ sender: UIButton) {
-        let card = deck.removeOne()
+        let card = poker.dealer.deck.removeOne()
         
         var text = "> 카드 하나 뽑기\n"
         text += "\(card != nil ? String(describing: card!) : "카드가 존재하지 않습니다.")\n"
-        text += "총 \(deck.count())장의 카드가 남아있습니다.\n"
+        text += "총 \(dealerDeck.count())장의 카드가 남아있습니다.\n"
         setLog(text: text)
     }
     
     @IBAction func resetButtonTouchUpInside(_ sender: UIButton) {
-        deck.reset()
+        poker.dealer.deck.reset()
         
         var text = "> 카드 초기화\n"
-        text += "총 \(deck.count())장의 카드가 남아있습니다.\n"
+        text += "총 \(poker.dealer.deck.count())장의 카드가 남아있습니다.\n"
         setLog(text: text)
     }
     

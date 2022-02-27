@@ -12,23 +12,18 @@ class GameMembers {
     var personCount: Int
     let gameType: TypeOfGame
     
-    var members = [Participant]()
+    var members = [PokerParticipant]()
     
     init(numberOf person: Int, gameType type: TypeOfGame) {
         self.personCount = person
         self.gameType = type
         
-        for _ in 0..<personCount {
-            members.append(Participant(typeOf: type))
-        }
+        members.append(contentsOf: (0..<personCount).map({_ in PokerParticipant()}))
     }
     
     func getFavoriteShuffle() -> CardShuffleAlgo {
         
-        var shuffleSet = Dictionary(uniqueKeysWithValues: CardShuffleAlgo.allCases.map(
-            { ($0, 0) }
-        ))
-        
+        var shuffleSet = Dictionary(uniqueKeysWithValues: CardShuffleAlgo.allCases.map { ($0, 0) })
         var maxCount: Int {
             shuffleSet.max(by: { $0.value < $1.value })?.value ?? 0
         }
@@ -50,7 +45,7 @@ class GameMembers {
     }
     
     func isFull(count: Int) -> Bool {
-        members.filter({ $0.cards.count <= count }).count == members.count
+        members.filter({ $0.cards.count >= count }).count == members.count
     }
 }
 
