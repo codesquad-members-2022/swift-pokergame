@@ -9,13 +9,13 @@ import Foundation
 
 final class DeckFactory {
         
-    func makeDeck() -> Deck {
-        let cards:[Card] = iterateSuitWithAllRank()
+    static func makeDeck() -> Deck {
+        let cards:[Card] = DeckFactory.iterateSuitWithAllRank()
         return Deck(cards: cards)
     }
     
     //MARK: -- MakeDeck함수가 너무 비대해서 기능을 나누었다.
-    private func iterateSuitWithAllRank() -> [Card]{
+    private static func iterateSuitWithAllRank() -> [Card]{
         var cards:[Card] = [Card]()
         for suit in Card.Suit.allCases{
             cards.append(contentsOf: makeSuitForAllRank(suit: suit))
@@ -23,7 +23,7 @@ final class DeckFactory {
         return cards
     }
     
-    private func makeSuitForAllRank(suit:Card.Suit) -> [Card] {
+    private static func makeSuitForAllRank(suit:Card.Suit) -> [Card] {
         let suitForAllRank = Card.Rank.allCases.map { Card(suit: suit, rank: $0) }
         return suitForAllRank
     }
