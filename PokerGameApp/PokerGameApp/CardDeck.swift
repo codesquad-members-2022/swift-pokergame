@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias CardShuffleAlgo = CardDeck.ShuffleAlgorithms
+
 struct CardDeck {
     
     private var deck: [Card]
@@ -38,7 +40,7 @@ struct CardDeck {
         deck = CardFactory.deckOfCard()
     }
     
-    enum ShuffleAlgorithms: String {
+    enum ShuffleAlgorithms: String, CaseIterable {
         case FisherYates = "FisherYates"
         case Knuth = "Knuth"
         case Ordinary = "Ordinary"
