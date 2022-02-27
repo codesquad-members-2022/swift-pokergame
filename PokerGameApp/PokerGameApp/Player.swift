@@ -6,3 +6,19 @@
 //
 
 import Foundation
+
+class Player {
+    // MARK: - Properties
+    let name: String
+    var cards = Array<Card>()
+    
+    // MARK: - Initializer
+    init(name: String) {
+        self.name = name
+    }
+    
+    // MARK: - Methods
+    func receive(card: Card) {
+        self.cards.append(card)
+    }
+}

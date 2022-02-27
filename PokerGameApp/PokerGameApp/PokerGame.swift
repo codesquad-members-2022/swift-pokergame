@@ -1,13 +1,13 @@
 //
-//  PockerGame.swift
-//  PockerGame
+//  PokerGame.swift
+//  PokerGame
 //
 //  Created by 송태환 on 2022/02/27.
 //
 
 import Foundation
 
-struct PockerGame: DealerDelegate {
+struct PokerGame: DealerDelegate {
     enum Rule: Int {
         case fiveCardStud = 5
         case sevenCardStud = 7
@@ -25,14 +25,6 @@ struct PockerGame: DealerDelegate {
     }
     
     // MARK: - Methods
-    func draw(card: Card, for player: Player) {
-        player.receive(card: card)
-    }
-    
-    func gameEnd() {
-        // 더 뽑을 카드가 없음을 노티
-    }
-    
     private func playByFiveCardStud() {}
     
     private func playBySevenCardStud() {}
@@ -65,4 +57,12 @@ struct PockerGame: DealerDelegate {
     
     }
     
+    // MARK: - Delegate Methods
+    func draw(card: Card, for player: Player) {
+        player.receive(card: card)
+    }
+    
+    func gameEnd() {
+        // 더 뽑을 카드가 없음을 노티
+    }
 }
