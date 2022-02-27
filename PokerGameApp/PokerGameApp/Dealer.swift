@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias CardShuffleAlgo = Dealer.CardAlgorithm
+
 class Dealer {
     
     var deck: CardDeck // 덱은 카드의 저장소처럼 작동한다. 실제 딜러가 가질 수 있는 카드는 cards 배열에 저장된다.
@@ -39,5 +41,11 @@ class Dealer {
     
     func isFull(count: Int) -> Bool {
         deck.count() >= count
+    }
+    
+    enum CardAlgorithm: String, CaseIterable {
+        case FisherYates = "FisherYates"
+        case Knuth = "Knuth"
+        case Ordinary = "Ordinary"
     }
 }
