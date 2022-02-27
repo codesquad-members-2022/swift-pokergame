@@ -21,10 +21,10 @@ class PlayerTest: XCTestCase {
     
     //각 모드별로 1명씩 player가 증가하면 성공이라고 가정하고 Test를 작성했습니다.
     func testsetPlayerModeCount() {
-        let singlePlayerMode = sut.makePlayers(mode: .singlePlayer)
-        let twoPlayerMode = sut.makePlayers(mode: .twoPlayer)
-        let threePlayerMode = sut.makePlayers(mode: .threePlayer)
-        let fourPlayerMode = sut.makePlayers(mode: .fourPlayer)
+        let singlePlayerMode = PlayerFactory.makePlayers(mode: .singlePlayer)
+        let twoPlayerMode = PlayerFactory.makePlayers(mode: .twoPlayer)
+        let threePlayerMode = PlayerFactory.makePlayers(mode: .threePlayer)
+        let fourPlayerMode = PlayerFactory.makePlayers(mode: .fourPlayer)
         
         let playersCounts = [singlePlayerMode.count,twoPlayerMode.count, threePlayerMode.count, fourPlayerMode.count]
         
@@ -41,9 +41,9 @@ class PlayerTest: XCTestCase {
     
     //모든 Player의 이름이 다르다면 성공으로 가정하여 Test를 작성했습니다.
     func testsetPlayerModeName() {
-        let twoPlayerMode = sut.makePlayers(mode: .twoPlayer)
-        let threePlayerMode = sut.makePlayers(mode: .threePlayer)
-        let fourPlayerMode = sut.makePlayers(mode: .fourPlayer)
+        let twoPlayerMode = PlayerFactory.makePlayers(mode: .twoPlayer)
+        let threePlayerMode = PlayerFactory.makePlayers(mode: .threePlayer)
+        let fourPlayerMode = PlayerFactory.makePlayers(mode: .fourPlayer)
         
         //Set을 이용해 중복되는 이름을 제거한 뒤 남아 있는 이름의 갯수를 세어 보았습니다.
         let filterdTwoPlayersName = Set(twoPlayerMode.map { $0.name  }).count

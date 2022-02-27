@@ -50,7 +50,6 @@ final class Deck:Equatable {
         return removedCard
     }
     
-    
     //사용한 card들을 초기 값으로 바꾸어줌으로써 reset함.
     func reset() {
         self.usedCards = self.defaultCards          //함수의 테스트를 위해 리턴값을 주었는데 reset함수는 리턴값 없이도 테스트가 가능할 것 같아 리턴값을 뺴주었습니다.
