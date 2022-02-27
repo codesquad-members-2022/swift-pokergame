@@ -9,8 +9,11 @@ import Foundation
 
 class PokerGame {
     
-    let dealer: Dealer
     var gameMembers: GameMembers
+    let dealer: Dealer
+    
+    let participantCount = 3
+    let game = TypeOfGame.SevenStudPoker
     
     lazy var isGameReady: (Int) -> Bool = { number -> Bool in
         !self.gameMembers.isFull(count: number) || !self.dealer.isFull(count: number)
@@ -18,22 +21,17 @@ class PokerGame {
     
     init() {
         
-        let participantCount = 3
-        let game = TypeOfGame.SevenStudPoker
-        let fullCardNumber = game == .SevenStudPoker ? 7 : 5
-        
         gameMembers = GameMembers(numberOf: participantCount, gameType: game)
         
-        print("이름 한번씩 말씀해주십시오.")
-        print(gameMembers)
-        
-        print("카드 준비중입니다.")
         dealer = Dealer(deck: CardDeck(.deck), gameType: game)
+        dealer.shuffleType = gameMembers.getFavoriteShuffle()
         
-        print("카드를 섞습니다. 어떤식으로 섞을까요? 의견을 종합해 보겠습니다.")
-        let shuffleAlgo = gameMembers.getFavoriteShuffle()
-        print(shuffleAlgo)
-        dealer.shuffleType = shuffleAlgo
+        drawCardsToAllMembers()
+    }
+    
+    func drawCardsToAllMembers() {
+        
+        let fullCardNumber = game == .SevenStudPoker ? 7 : 5
         
         while isGameReady(fullCardNumber) {
             
