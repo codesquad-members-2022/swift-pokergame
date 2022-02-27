@@ -39,6 +39,8 @@ class ViewController: UIViewController {
         logTextView.textRange(from: logTextView.endOfDocument, to: logTextView.endOfDocument)
     }
     
+    private let poker = PokerGame()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         logTextView.delegate = self
@@ -47,6 +49,8 @@ class ViewController: UIViewController {
         if let bgPattern = UIImage.init(named: bgImageName) {
             self.view.backgroundColor = UIColor.init(patternImage: bgPattern)
         }
+        
+        print(poker)
     }
     
     override func viewSafeAreaInsetsDidChange() {
@@ -162,3 +166,7 @@ extension ViewController: UITextViewDelegate {
     }
 }
 
+enum TypeOfGame {
+    case SevenStudPoker
+    case FiveStudPoker
+}
