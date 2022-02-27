@@ -10,27 +10,26 @@ struct PokerGame {
 
     //게임이 생성되면 한명의 딜러는 자동 으로 카드 덱과 생성된다.
     //XCTest 하기 위해 외부에서 읽기만 가능하고 내부에서만 수정이 가능하도록  private (set) 설정.
-    private(set) var dealer = Dealer(gameDeck: Deck())
-    
+    private(set) var dealer = Dealer()
+    private var gameDeck = Deck()
     //딜러를 포함한 플레이어 리스트
-    private(set) var totalPlayerList = [Person]()
+    private(set) var players = [Person]()
     
     //플레이어수 (딜러 미포함)
-    var numberOfPlayers : NumberOfPlayer
+    var numberOfGuest : NumberOfGuest
     var gameMode : GameMode
     
     //게임 플레이 횟수
     private var numberOfSet = 1
     
-    init(numberOfPlayers : NumberOfPlayer , mode : GameMode){
-        self.numberOfPlayers = numberOfPlayers
+    init(numberOfGuest : NumberOfGuest , mode : GameMode){
+        self.numberOfGuest = numberOfGuest
         self.gameMode = mode
     }
     
     mutating func run() {
         setUp()
         while true {
-            showGameInfo()
             playOneSet()
             showAllCards()
             resetPlayerCards()
@@ -41,16 +40,16 @@ struct PokerGame {
     //외부에서 setup 메소드를 은닉화 시키고 현재 하위 메소드인 setTotalPlayers() 를 public 으로 지정하여서
     //XCTest 진행 가능하게 만들었다.
     private mutating func setUp() {
-        self.totalPlayerList = setTotalPlayers()
+        self.players = setPlayers()
     }
     
     //세팅된 딜러 와 플레이어 의 수만큼 playerList 에 넣어준다.
     //public 으로 지정하여서 XCTest 진행 가능하게 만들었다.
-    func setTotalPlayers() -> [Person] {
+    func setPlayers() -> [Person] {
         var totalPlayers = [Person]()
-        let roster = Roster.allCases.map{$0.rawValue}
-        for i in 0..<numberOfPlayers.rawValue {
-            totalPlayers.append(Player(name: roster[i]))
+        let roster = Roster.allCases.map{$0}
+        for i in 0..<numberOfGuest.rawValue {
+            totalPlayers.append(Person(name: roster[i]))
         }
         totalPlayers.append(dealer)
         
@@ -60,7 +59,12 @@ struct PokerGame {
     //딜러가 카드를 gameMode 에 맞게 플레이어들에게 나누어준다.
     private mutating func playOneSet() {
         do{
-            try dealer.dealCard(to: totalPlayerList, on: gameMode)
+            dealer.shuffleDeck(gameDeck)
+            for _ in 0..<gameMode.rawValue {
+                for player in players {
+                    try dealer.dealCard(to: player, from: gameDeck)
+                }
+            }
             self.numberOfSet += 1
         } catch {
             switch error {
@@ -73,18 +77,26 @@ struct PokerGame {
         }
     }
     
-    private func showGameInfo() {
-        print("현재 게임 모드: \(self.gameMode.rawValue)카드 \n플레이어 수 : \(self.numberOfPlayers.rawValue)명 \n게임 실행 횟수 : \(self.numberOfSet)회")
+    func getGameMode () -> GameMode {
+        return self.gameMode
     }
     
+    func getNumberOfPlayers() -> Int {
+        return self.players.count
+    }
+    
+    func getNumberOfSet() -> Int {
+        return self.numberOfSet
+    }
+        
     private func showAllCards() {
-        for player in totalPlayerList {
+        for player in players {
             print(player)
         }
     }
     
     private func resetPlayerCards() {
-        for player in totalPlayerList {
+        for player in players {
             player.resetCards()
         }
     }
@@ -96,7 +108,7 @@ struct PokerGame {
         case Hana
         case Dealer
     }
-    enum NumberOfPlayer : Int{
+    enum NumberOfGuest : Int{
         case One = 1
         case Two
         case Three

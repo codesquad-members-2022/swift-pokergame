@@ -30,8 +30,8 @@ class ViewController: UIViewController {
         makeCardImage(num: 7)
         drawCards(cards)
         
-        var game = PokerGame(numberOfPlayers: .Three, mode: .SevenStud)
-        game.run()
+//        var game = PokerGame(numberOfGuest: .Three, mode: .SevenStud)
+//        game.run()
     }
     
     

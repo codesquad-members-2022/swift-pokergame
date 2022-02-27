@@ -9,15 +9,15 @@ import Foundation
 //딜러와 플레이어의 상위 클래스
 class Person {
     
-    private var name : String
+    private var name : PokerGame.Roster
     //XCTest 하기 위해 외부에서 읽기만 가능하고 내부에서만 수정이 가능하도록  private (set) 설정.
     private(set) var cards = [Card]()
 
-    init(name: String) {
+    init(name: PokerGame.Roster) {
         self.name = name
     }
     
-    func getCard(_ card :Card){
+    func recieveCard(_ card :Card){
         self.cards.append(card)
     }
     
@@ -28,7 +28,7 @@ class Person {
 
 extension Person : CustomStringConvertible {
     var description: String {
-        return "\(self.name) \(self.cards[..<cards.count])"
+        return "\(self.name) \(self.cards)"
     }
 }
 

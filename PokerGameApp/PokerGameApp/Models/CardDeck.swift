@@ -41,8 +41,7 @@ class Deck {
             scratch[roll] = temp
             range -= 1
         }
-        //랜덤 순열을 reversed 해서 self.cards 에 할당.
-        self.cards = scratch.reversed()
+        self.cards = scratch
     }
   
     //removeOne 기능은 카드 인스턴스 중에 하나를 반환하고 목록에서 삭제한다.
