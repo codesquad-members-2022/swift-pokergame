@@ -9,16 +9,16 @@ import Foundation
 
 protocol Factory {
     associatedtype T
-    func create() -> T
+    static func create() -> T
 }
 
 struct CardDeckFactory: Factory {
     // MARK: - Properties
-    private let ranks = Card.Rank.allCases
-    private let suits = Card.Suit.allCases
+    private static let ranks = Card.Rank.allCases
+    private static let suits = Card.Suit.allCases
     
     // MARK: - Methods
-    private func createCardsBySuit(suit: Card.Suit) -> [Card] {
+    static private func createCardsBySuit(suit: Card.Suit) -> [Card] {
         var card: [Card] = []
         
         for rank in self.ranks {
@@ -28,7 +28,7 @@ struct CardDeckFactory: Factory {
         return card
     }
     
-    func create() -> CardDeck {
+    static func create() -> CardDeck {
         let cards = self.suits.flatMap(createCardsBySuit(suit:))
         return CardDeck(cards: cards)
     }
