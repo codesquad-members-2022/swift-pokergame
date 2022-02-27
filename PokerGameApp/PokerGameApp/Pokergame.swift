@@ -25,16 +25,14 @@ struct PokerGame {
     
     mutating func play() {
         draw(each: stud.initialCard)
-        let oneCard = 1
-        while dealer.playAble(with: players.count){
-            draw(each: oneCard)
-        }
     }
     
     private func draw(each : Int) {
         for _ in 0..<each {
-            let oneCycleDraw = playerCount.drawLoop(dealer)
-            players.eachReceive(cards: oneCycleDraw)
+            playerCount.loop(){ playerIndex in
+                guard let drawedCard = dealer.draw() else {return}
+                players.eachReceive(card: drawedCard, index: playerIndex)
+            }
         }
     }
     
@@ -50,14 +48,9 @@ struct PokerGame {
         case three
         case four
         
-        var drawLoop : (Dealer) -> Cards {
-            {(dealer: Dealer) -> Cards in
-            var oneCycleDraw = Cards()
-            for _ in 0..<rawValue{
-                guard let drawedCard = dealer.draw() else {break}
-                oneCycleDraw.add(card:drawedCard)
-            }
-            return oneCycleDraw
+        func loop(event: @escaping (Int)->Void) {
+            for index in 0...rawValue {
+                event(index)
             }
         }
         
