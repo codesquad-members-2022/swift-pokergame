@@ -13,7 +13,7 @@ class PokerGameTest: XCTestCase {
     func testPlay() {
         var pokerGame = PokerGame(stud: .fiveCard, playerCount: .four)
         pokerGame.play()
-        XCTAssertEqual(pokerGame.remainCardCount, 2, "게임결과가 잘못되었습니다.")
+        XCTAssertEqual(pokerGame.remainCardCount, 27, "게임결과가 잘못되었습니다.")
     }
     
 }

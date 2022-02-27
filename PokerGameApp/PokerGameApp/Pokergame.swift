@@ -58,11 +58,7 @@ struct PokerGame {
     enum Stud : Int {
         case sevenCard = 7
         case fiveCard = 5
-        
-        var initialCard : Int {
-            return rawValue
-        }
-        
+
         func loop(with playerCount : PlayerCount, event: @escaping (Int)->Void) {
             (0..<rawValue).forEach{_ in playerCount.loop(){event($0)}}
         }
