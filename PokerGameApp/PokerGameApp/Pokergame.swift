@@ -24,15 +24,13 @@ struct PokerGame {
     }
     
     mutating func play() {
-        draw(each: stud.initialCard)
+        draw()
     }
     
-    private func draw(each : Int) {
-        stud.loop(with: self.playerCount){
-            playerCount.loop(){ playerIndex in
+    private func draw() {
+        stud.loop(with: self.playerCount){ playerIndex in
                 guard let drawedCard = dealer.draw() else {return}
                 players.eachReceive(card: drawedCard, index: playerIndex)
-            }
         }
     }
     
@@ -76,9 +74,11 @@ struct PokerGame {
             return rawValue
         }
         
-        func loop(with playerCount : PlayerCount, event: @escaping ()->Void) {
+        func loop(with playerCount : PlayerCount, event: @escaping (Int)->Void) {
             for _ in 0..<rawValue {
-                event()
+                playerCount.loop(){ playerIndex in
+                    event(playerIndex)
+                }
             }
         }
     }
