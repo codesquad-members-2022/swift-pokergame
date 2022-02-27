@@ -34,12 +34,17 @@ final class Deck:Equatable {
         }
     }
     
+    //내부 속성을 변경시키지 않기 위해 새로운 복사본을 하나 만들어서 리턴하도록 시도해보았습니다.
     func shuffled() -> [Card] {
-        shuffle()
-        return self.usedCards
+        var copyUsedCards = self.usedCards
+        for cardIndex in 0..<self.count {
+            let randomIndex = Int.random(in: cardIndex..<self.count)
+            copyUsedCards.swapAt(cardIndex, randomIndex)
+        }
+        return copyUsedCards
     }
     
-    func removeOne() {
+    func removeOne()  {
         if self.count > 0 {
             self.usedCards.removeLast()
         }
