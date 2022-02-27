@@ -43,7 +43,7 @@ class Dealer {
     }
     
     func isFull(count: Int) -> Bool {
-        deck.count() >= count
+        cards.count >= count
     }
     
     func setCard(_ card: Card) {
