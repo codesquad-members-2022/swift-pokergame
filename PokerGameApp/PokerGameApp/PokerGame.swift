@@ -41,7 +41,7 @@ class PokerGame {
                 
                 guard let card = dealer.draw() else { break }
                 
-                if i == 0 && dealer.isFull(count: fullCardNumber) == false {
+                if i == 0 {
                     if dealer.isFull(count: fullCardNumber) == false {
                         dealer.cards.append(card)
                     }
