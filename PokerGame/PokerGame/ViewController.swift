@@ -14,11 +14,18 @@ final class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: Image.backgroundPatternImage) //ViewBackground Pattern
         putCardsOnView(originX: 0, y: 40, count: 7,inset: 10) //여러개의 카드 View에 올리기
 
+        let deckfactory = DeckFactory()
+        let playerFactory = PlayerFactory()
         
-        let card = Card(suit: .clover, rank: .ace)
+        let deck = deckfactory.makeDeck()
         
-        let factory = DeckFactory()
-        let deck = factory.makeDeck()
+        let players = playerFactory.makePlayers(mode: .threePlayer)
+        
+        let dealer = Dealer(deck: deck, players: players, gameType: .fiveStud)
+        
+        let game = dealer.dealTheCards()
+
+        
         
     }
     
