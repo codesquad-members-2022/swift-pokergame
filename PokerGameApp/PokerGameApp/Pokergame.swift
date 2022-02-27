@@ -28,7 +28,7 @@ struct PokerGame {
     }
     
     private func draw(each : Int) {
-        for _ in 0..<each {
+        stud.loop(with: self.playerCount){
             playerCount.loop(){ playerIndex in
                 guard let drawedCard = dealer.draw() else {return}
                 players.eachReceive(card: drawedCard, index: playerIndex)
