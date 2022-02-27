@@ -160,4 +160,16 @@ extension ViewController: UITextViewDelegate {
 enum TypeOfGame {
     case SevenStudPoker
     case FiveStudPoker
+    case NotGameCard
+    
+    var cardCount: Int? {
+        switch self {
+        case .SevenStudPoker:
+            return 7
+        case .FiveStudPoker:
+            return 5
+        default:
+            return nil
+        }
+    }
 }

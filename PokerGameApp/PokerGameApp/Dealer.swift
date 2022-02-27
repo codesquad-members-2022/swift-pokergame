@@ -18,6 +18,16 @@ class Dealer {
     var cards = [Card]()
     
     var shuffleType: CardShuffleAlgo = .FisherYates
+    var shuffleMethod: ((inout [Card]) -> Void) {
+        switch shuffleType {
+        case .FisherYates:
+            return shuffleSkill.fisherYatesAlgorithm
+        case .Knuth:
+            return shuffleSkill.knuthAlgorithm
+        case .Ordinary:
+            return shuffleSkill.ordinaryCardShuffle
+        }
+    }
     
     init(deck: CardDeck, gameType type: TypeOfGame) {
         self.deck = deck
@@ -29,18 +39,15 @@ class Dealer {
     }
     
     func shuffle() {
-        switch shuffleType {
-        case .FisherYates:
-            shuffleSkill.fisherYatesAlgorithm(at: &cards)
-        case .Knuth:
-            shuffleSkill.knuthAlgorithm(at: &cards)
-        case .Ordinary:
-            shuffleSkill.ordinaryCardShuffle(at: &cards)
-        }
+        shuffleMethod(&cards)
     }
     
     func isFull(count: Int) -> Bool {
         deck.count() >= count
+    }
+    
+    func setCard(_ card: Card) {
+        cards.append(card)
     }
     
     enum CardAlgorithm: String, CaseIterable {
