@@ -19,8 +19,8 @@ class DealerTest: XCTestCase {
         playerFactory = PlayerFactory()
         deckFactory = DeckFactory()
         
-        let deck = deckFactory.makeDeck()
-        let players = playerFactory.makePlayers(mode: .singlePlayer)
+        let deck = DeckFactory.makeDeck()
+        let players = PlayerFactory.makePlayers(mode: .singlePlayer)
         
         sut = Dealer(deck: deck, players: players, gameType: .fiveStud)
         sut = Dealer(deck: deck, players: players, gameType: .sevenStud)
@@ -28,9 +28,9 @@ class DealerTest: XCTestCase {
 
     //fiveStud를 플레이 하는 플레이어와 SevenStud를 플레이하는 플레이어들의 카드는 딜러들이 카드를 돌리고 나면 각각 5장,7장이어야 합니다.
     func testDealTheCards() {
-        let deck = deckFactory.makeDeck()
-        let fiveStudPlayers = playerFactory.makePlayers(mode: .singlePlayer)
-        let sevenStudPlayers = playerFactory.makePlayers(mode: .singlePlayer)
+        let deck = DeckFactory.makeDeck()
+        let fiveStudPlayers = PlayerFactory.makePlayers(mode: .singlePlayer)
+        let sevenStudPlayers = PlayerFactory.makePlayers(mode: .singlePlayer)
         
         let fiveStudModeDealer = Dealer(deck: deck, players: fiveStudPlayers, gameType: .fiveStud)
         let sevenStudModeDealer = Dealer(deck: deck, players: sevenStudPlayers, gameType: .sevenStud)
@@ -46,9 +46,6 @@ class DealerTest: XCTestCase {
         sevenStudcardCount.forEach { XCTAssertTrue($0 == 7) }
         
     }
-    
-    
-    
     
     override func tearDownWithError() throws {
         

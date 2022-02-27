@@ -18,7 +18,7 @@ class Player {
     
     //패를 확인.
     func checkRankOfHand() -> RankOfHands {
-        return RankOfHands.highCard
+        return self.rankOfHand
     }
     
     func getTheCard(card:Card) {
