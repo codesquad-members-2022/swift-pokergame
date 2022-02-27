@@ -29,21 +29,21 @@ struct PokerGame {
     
     private func draw() {
         stud.loop(with: self.playerCount){ playerIndex in
-                guard let drawedCard = dealer.draw() else {return}
-                players.eachReceive(card: drawedCard, index: playerIndex)
+            guard let drawedCard = dealer.draw() else {return}
+            players.eachReceive(card: drawedCard, index: playerIndex)
         }
     }
     
     private func seatPlayer() {
         self.players.seat(player: dealer)
         var playerName = PlayerName()
-        playerCount.loop() {_ in
-        let name = playerName.popName()
-        let newPlayer = Player(name: name)
-        self.players.seat(player: newPlayer)
+        playerCount.loop(){_ in
+            let name = playerName.popName()
+            let newPlayer = Player(name: name)
+            self.players.seat(player: newPlayer)
         }
     }
-
+    
     enum PlayerCount : Int{
         case one = 1
         case two
@@ -51,9 +51,7 @@ struct PokerGame {
         case four
         
         func loop(event: @escaping (Int)->Void) {
-            for index in 0...rawValue {
-                event(index)
-            }
+            (0...rawValue).forEach{event($0)}
         }
     }
     
@@ -66,11 +64,7 @@ struct PokerGame {
         }
         
         func loop(with playerCount : PlayerCount, event: @escaping (Int)->Void) {
-            for _ in 0..<rawValue {
-                playerCount.loop(){ playerIndex in
-                    event(playerIndex)
-                }
-            }
+            (0..<rawValue).forEach{_ in playerCount.loop(){event($0)}}
         }
     }
 }
