@@ -25,7 +25,7 @@ class Card {
     enum Rank: Int, CaseIterable, CustomStringConvertible {
     
         case one = 1, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen
-        
+
         var description: String {
             switch self {
             case .one:

@@ -7,27 +7,27 @@
 
 import Foundation
 
-
 struct Player {
     
-    private var player: [String] = []
-    private var numberOfPlayer: Int
-    
-    mutating func namingPlayers() {
-        let name = ["Jee", "Sol", "Selina", "Jed", "푸코", "Dale", "Eddy"]
-        
-        for appendPlayer in 1...numberOfPlayer {
-            player.append("\(name[Int.random(in: 0..<name.count)])")
-        }
-    }
+    private var names: [String] = [] // 이름
+    private var numberOfPlayer = Int.random(in: 1...4)
+    private var dealer = "딜러🌟"
     
     init() {
-        numberOfPlayer = Int.random(in: 1...4)
+        var name = ["Jee", "Sol", "Selina", "Jed", "푸코", "Dale", "Eddy"]
+        
+        for appendPlayer in 1...numberOfPlayer {
+            let count = Int.random(in: 0..<name.count)
+            
+            names.append("\(name[count])")
+            name.remove(at: count)
+        }
+        names.append(dealer)
     }
 }
 
 extension Player: CustomStringConvertible {
     var description: String {
-        return "\(player)"
+        return "\(names)"
     }
 }

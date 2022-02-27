@@ -15,9 +15,10 @@ class ViewController: UIViewController {
         setBackgroundImage()
         addCard(count: 7)
         
-        var player = Player()
-        player.namingPlayers()
-        print(player.description)
+        let pp = PokerGame(stud: .five)
+        let dd = CardDeck()
+        print(pp.description)
+
         
     }
     
