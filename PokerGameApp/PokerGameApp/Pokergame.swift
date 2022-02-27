@@ -75,5 +75,11 @@ struct PokerGame {
         var initialCard : Int {
             return rawValue
         }
+        
+        func loop(with playerCount : PlayerCount, event: @escaping ()->Void) {
+            for _ in 0..<rawValue {
+                event()
+            }
+        }
     }
 }
