@@ -4,7 +4,7 @@
 @testable import 포커게임
 import XCTest
 
-class ___FILEBASENAMEASIDENTIFIER___: XCTestCase {
+class PokerGameTest: XCTestCase {
    
     //System Under Test
     private var sut : Deck!
@@ -13,7 +13,7 @@ class ___FILEBASENAMEASIDENTIFIER___: XCTestCase {
     //객체 생성 과정
     override func setUp() {
         sut = Deck()
-        sut2 = PokerGame(numberOfPlayers: .Four, mode: .SevenStud)
+        sut2 = PokerGame(numberOfGuest: .Four, mode: .SevenStud)
         super.setUp()
     }
     
@@ -47,19 +47,19 @@ class ___FILEBASENAMEASIDENTIFIER___: XCTestCase {
     
     //PokerGame 관련 메소드 테스트
     func testsetTotalPlayers() throws {
-        let totalPlayer = sut2.setTotalPlayers()
+        let totalPlayer = sut2.setPlayers()
         XCTAssertEqual(totalPlayer.count,5, "플레이어 세팅 실패!")
     }
     
     func testdealCard() throws {
-        let totalPlayer = sut2.setTotalPlayers()
-        try sut2.dealer.dealCard(to: totalPlayer, on: .SevenStud)
-        XCTAssertEqual(totalPlayer[0].cards.count, 7, "딜러가 현재 플레이어 들에게 줄 카드 부족")
+        let totalPlayer = sut2.setPlayers()
+        try sut2.dealer.dealCard(to: totalPlayer[0], from: sut)
+        XCTAssertEqual(totalPlayer[0].cards.count, 1, "딜러가 현재 플레이어 들에게 줄 카드 부족")
     }
     
     func testresetPlayerCards() throws {
-        let totalPlayer = sut2.setTotalPlayers()
-        try sut2.dealer.dealCard(to: totalPlayer, on: .SevenStud)
+        let totalPlayer = sut2.setPlayers()
+        try sut2.dealer.dealCard(to: totalPlayer[0], from: sut)
         totalPlayer[0].resetCards()
         XCTAssertEqual(totalPlayer[0].cards.count, 0, "플레이어 카드 초기화 실패")
     }
