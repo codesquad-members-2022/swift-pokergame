@@ -21,9 +21,19 @@ final class ViewController: UIViewController {
         
         let players = playerFactory.makePlayers(mode: .threePlayer)
         
-        let dealer = Dealer(deck: deck, players: players, gameType: .fiveStud)
+        let dealer = Dealer(deck: deck, players: players, gameType: .sevenStud)
         
         let game = dealer.dealTheCards()
+        printGameResult(game: game)
+        
+        let game1 = dealer.dealTheCards()
+        printGameResult(game: game1)
+        
+        let game2 = dealer.dealTheCards()
+        printGameResult(game: game2)
+        
+        let game3 = dealer.dealTheCards()
+        printGameResult(game: game3)
 
         
         
@@ -62,5 +72,11 @@ final class ViewController: UIViewController {
         print(card)
     }
 
+    func printGameResult(game:Game) {
+        print(game)
+    }
+    
+    
+    
 }
 
