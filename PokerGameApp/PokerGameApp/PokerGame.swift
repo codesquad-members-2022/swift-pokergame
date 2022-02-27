@@ -9,15 +9,11 @@ import Foundation
 
 class PokerGame {
     
-    var gameMembers: GameMembers
+    let gameMembers: GameMembers
     let dealer: Dealer
     
     let participantCount = 3
     let game = TypeOfGame.SevenStudPoker
-    
-    lazy var isGameReady: (Int) -> Bool = { number -> Bool in
-        !self.gameMembers.isFull(count: number) || !self.dealer.isFull(count: number)
-    }
     
     init() {
         
@@ -31,23 +27,23 @@ class PokerGame {
     
     func drawCardsToAllMembers() {
         
-        let fullCardNumber = game == .SevenStudPoker ? 7 : 5
+        guard let gameCardNumber = game.cardCount else { return }
         
-        while isGameReady(fullCardNumber) {
+        while isGameReady(gameCardNumber) {
             
             for i in 0..<(1+participantCount) {
                 
                 guard let card = dealer.draw() else { break }
                 
                 if i == 0 {
-                    if dealer.isFull(count: fullCardNumber) == false {
-                        dealer.cards.append(card)
+                    if dealer.isFull(count: gameCardNumber) == false {
+                        dealer.setCard(card)
                     }
                     
                     continue
                 }
                 
-                if gameMembers.members[i-1].isFull(count: fullCardNumber) {
+                if gameMembers.members[i-1].isFull(count: gameCardNumber) {
                     gameMembers.members[i-1].cards.append(card)
                 }
             }
@@ -58,6 +54,10 @@ class PokerGame {
             
             dealer.shuffle()
         }
+    }
+    
+    private func isGameReady(_ number: Int) -> Bool {
+        !self.gameMembers.isFull(count: number) || !self.dealer.isFull(count: number)
     }
 }
 
