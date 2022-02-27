@@ -18,7 +18,11 @@ class CardDeck {
         return deck
     }
 
-    func shuffle() {
+    func shuffle() -> [Card] {
+        guard !deck.isEmpty else {
+            self.deck = reset()
+            return shuffle()
+        }
         let count = cardCount
         for i in 0..<count - 1 {   // 0 ~ n - 2
             let randomIndex = Int.random(in: i..<count)
@@ -26,10 +30,15 @@ class CardDeck {
             deck[i] = deck[randomIndex]
             deck[randomIndex] = temp
         }
+        return deck
     }
     
     func removeOne() -> Card {
-        let removed = deck.removeFirst()
-        return removed
+        guard !deck.isEmpty else {
+            self.deck = reset()
+            return removeOne()
+        }
+        return deck.removeFirst()
     }
 }
+
