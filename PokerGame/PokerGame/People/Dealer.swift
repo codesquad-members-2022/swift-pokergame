@@ -13,7 +13,6 @@ class Dealer {
     private var deck:Deck
     private var cards:[Card] = []
     private var players:[Player]
-    private var enoughCardsInDeck:Bool = true               //카드안의 덱이 충분하지 않으면 false로 바뀝니다.
     
     var gameType:GameType                                   //한 딜러가 한가지의 게임타입만 사용할수 있는 것은 이상하다고 생각해 외부에서 값을 변경할 수 있도록 설정했습니다.
     
@@ -31,12 +30,13 @@ class Dealer {
                 deal(gameType:gameType)
             case .sevenStud:
                 deal(gameType:gameType)
-        }
+            }
         return Game(players: self.players)
     }
     
     private func deal(gameType:GameType) {
-        for _ in 0..<gameType.dealCount {
+        self.players.map { $0.resetCards() }                    //카드를 돌리기 전에 플레이어들의 카드를 리셋시킵니다.
+        for _ in 0..<gameType.dealCount { 
             self.getTheCard()
             for player in players {
                 guard let card = deck.removedOne() else { return }

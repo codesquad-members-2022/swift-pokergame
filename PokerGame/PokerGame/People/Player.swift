@@ -24,4 +24,8 @@ class Player {
     func getTheCard(card:Card) {
         cards.append(card)
     }
+    
+    func resetCards() {
+        self.cards.removeAll()
+    }
 }
