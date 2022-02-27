@@ -34,10 +34,14 @@ struct PokerGame {
         }
     }
     
-    private mutating func seatPlayer() {
+    private func seatPlayer() {
         self.players.seat(player: dealer)
-        let seatedPlayer = playerCount.seatLoop(players)
-        self.players = seatedPlayer
+        var playerName = PlayerName()
+        playerCount.loop() {_ in
+        let name = playerName.popName()
+        let newPlayer = Player(name: name)
+        self.players.seat(player: newPlayer)
+        }
     }
 
     enum PlayerCount : Int{
@@ -49,19 +53,6 @@ struct PokerGame {
         func loop(event: @escaping (Int)->Void) {
             for index in 0...rawValue {
                 event(index)
-            }
-        }
-        
-        var seatLoop : (Players) -> Players {
-            {(players: Players) -> Players in
-                var seatedPlayers = players
-                var playerName = PlayerName()
-                for _ in 0..<rawValue {
-                    let name = playerName.popName()
-                    let newPlayer = Player(name: name)
-                    seatedPlayers.seat(player: newPlayer)
-                }
-                return seatedPlayers
             }
         }
     }
