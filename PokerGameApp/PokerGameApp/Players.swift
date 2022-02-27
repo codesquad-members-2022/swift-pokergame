@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Players {
+class Players {
     private var players : [Player] = []
     var count : Int {
         return players.count
@@ -20,7 +20,7 @@ struct Players {
         return cardCount
     }
     
-    mutating func seat(player: Player) {
+    func seat(player: Player) {
         self.players.append(player)
     }
     
