@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E433313127C8B2A800135706"
                BuildableName = "PockerGameTests.xctest"
-               BlueprintName = "PockerGameTests"
+               BlueprintName = "PokerGameTests"
                ReferencedContainer = "container:Pocker.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,7 +34,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E433313127C8B2A800135706"
                BuildableName = "PockerGameTests.xctest"
-               BlueprintName = "PockerGameTests"
+               BlueprintName = "PokerGameTests"
                ReferencedContainer = "container:Pocker.xcodeproj">
             </BuildableReference>
          </TestableReference>
