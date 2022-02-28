@@ -20,7 +20,7 @@ struct PokerGame {
     private let dealer: Dealer
     private var requiredNumberOfCards: Int {
         let players = self.players.count + 1
-        return players * self.dealer.rule.rawValue
+        return players * self.dealer.rule.value
     }
     
     init(rule: Rule) {
@@ -31,7 +31,7 @@ struct PokerGame {
     
     // MARK: - Private Methods
     private func handleGameResult() {
-        let winner = self.determineWinner()
+        let _ = self.determineWinner()
         // TODO: Output 을 담당하는 객체에 승자정보 전달
     }
     
@@ -42,7 +42,7 @@ struct PokerGame {
     
     private func isValidNumberOfPlayer(count: Int) -> Bool {
         guard count > 1 else { return false }
-        return (count + 1) * self.dealer.rule.rawValue <= 52
+        return (count + 1) * self.dealer.rule.value <= 52
     }
     
     // MARK: - Public Methods
