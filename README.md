@@ -553,15 +553,18 @@ VWT는 fix size안에 포함이 되어있기 때문에 Copy가 되더라도 계�
 - 클래스 메모리 관리 방식에 대해 학습한다. reset() 할때 이전에 만든 카드 객체는 어떻게 되는지 설명할 수 있다
 
 - 개발 환경에서 제공하는 메모리를 분석하는 디버깅 도구는 무엇이 있는지 학습한다 
-	- Comand Line Tool: `vmmap --summary App.memgraph`
+    - Comand Line Tool: `vmmap --summary App.memgraph`
     (커맨드 라인툴은 뭔가 잘안된다..)
     - Memory Graph Debugger
 [xcode 메모리 디버깅도구](https://seizze.github.io/2019/12/20/iOS-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%9C%AF%EC%96%B4%EB%B3%B4%EA%B8%B0,-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%9D%B4%EC%8A%88-%EB%94%94%EB%B2%84%EA%B9%85%ED%95%98%EA%B8%B0,-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%A6%AD-%EC%B0%BE%EA%B8%B0.html)
 
 - [X] 모든 종류의 카드 객체 인스턴스를 포함하는 카드덱 구조체를 구현한다.
 - [X] 다양항 알고리즘을 알아보고 적절한 것을 택한다.
-	- [다양한 알고리즘](https://daheenallwhite.github.io/programming/algorithm/2019/06/27/Shuffle-Algorithm-Fisher-Yates/)
+    - [다양한 알고리즘](https://daheenallwhite.github.io/programming/algorithm/2019/06/27/Shuffle-Algorithm-Fisher-Yates/)
     - 시간복잡도에서 성능이 조금더 좋은 Knuth Shuffle를 구현해본다.
+    - 참고로 랜덤값을 이용한 함수는 테스트하기 매우 힘들다.
+    - generate를 이용해서 해결할 수도 있지만 쉽지 않기 때문에 테스트하기 쉬운지 어려운지 정도는 코드를 짜면서 인지하고 있어야한다.
+    
     ~~~swift
         //Knuth Shuffle방법은 각 반복마다 남은 element를 셀 필요가 없으므로 Fisher-Yates shuffle보다 시간복잡도 면에서 더 좋을것 같아 택했다.
     func shuffle() {
@@ -572,12 +575,18 @@ VWT는 fix size안에 포함이 되어있기 때문에 Copy가 되더라도 계�
     }
     ~~~
  - [X] 랜덤한 카드 하나 빼기
+     - 만약 카드가 하나도 안남았을때를 예외처리해주자.
+    - 내부 속성과 리턴을 둘다 하는 함수의 경우 둘로 나누어 보자.
  ~~~swift
-     //랜덤한 카드 하나 빼기
-    func removeOne() -> String{
-        let randomindex = Int.random(in: 0..<self.count)
-        let removedCard = cards.remove(at: randomindex)
-        return "\(removedCard)카드를 하나 뽑았습니다."
+     //카드 하나 빼기
+    func removeOne()  {
+        if self.count > 0 {                //에러가 났을 경우에 어디서 난지 모를 수 있기 때문에 에러를 throw하는 편이 좋음.
+            self.usedCards.removeLast()
+        }
+    }
+    func removedOne() -> Card? {
+        guard let removedCard = self.usedCards.popLast() else { return  nil}
+        return removedCard
     }
     ~~~
     
@@ -591,7 +600,7 @@ VWT는 fix size안에 포함이 되어있기 때문에 Copy가 되더라도 계�
   ~~~
    
 - 카드덱 기능을 확인할 수 있는 테스트 코드를 추가한다.
-	- 밑과같은 클래스를 선언해보았다.
+    - 밑과같은 클래스를 선언해보았다.
    ~~~swift
     //Test케이스를 위한 클래스
 final class ResultTest {
@@ -634,9 +643,6 @@ final class ResultTest {
     init(deck:Deck) {
         self.deck = deck
     }
-    
-}
-    ~~~
 
 - - -
 
@@ -644,14 +650,14 @@ final class ResultTest {
 
 ### 요구사항
 
-- [ ] 포커 딜러가 나눠줄 수 있는 게임 방식을 선택할 수 있다
-- [ ] 게임은 7카드-스터드 방식과 5카드-스터드를 지원한다
-- [ ] 참가자는 딜러를 제외하고 1명에서 4명까지 참여할 수 있다
-- [ ] 딜러는 이름이 없고, 참가자는 영문 2~5글자 이내 이름을 가진다
-- [ ] 인원이 결정되면 랜덤하게 이름을 생성한다
-- [ ] 카드게임 종류와 참가자수에 따라 적절하게 동작을 해야한다
-- [ ] 딜러가 딜러 자신을 포함해서 참여자에게 카드를 나눠주고도, 전체 카드가 남은 경우는 계속해서 게임을 진행한다
-- [ ] 한 번 나눠준 카드는 다시 덱에 넣지 않고 카드가 부족할 경우 종료한다
-- [ ] 카드 개수나 참가자 인원에 대한 입력을 구현할 필요없다
-- [ ] XCTest를 위한 테스트 타깃을 추가한다
-- [ ] 테스트 코드에서 PokerGame 메소드를 호출해서 동작을 확인한다
+- [X] 포커 딜러가 나눠줄 수 있는 게임 방식을 선택할 수 있다
+- [X] 게임은 7카드-스터드 방식과 5카드-스터드를 지원한다
+- [X] 참가자는 딜러를 제외하고 1명에서 4명까지 참여할 수 있다
+- [X] 딜러는 이름이 없고, 참가자는 영문 2~5글자 이내 이름을 가진다
+- [X] 인원이 결정되면 랜덤하게 이름을 생성한다
+- [X] 카드게임 종류와 참가자수에 따라 적절하게 동작을 해야한다
+- [X] 딜러가 딜러 자신을 포함해서 참여자에게 카드를 나눠주고도, 전체 카드가 남은 경우는 계속해서 게임을 진행한다
+- [X] 한 번 나눠준 카드는 다시 덱에 넣지 않고 카드가 부족할 경우 종료한다
+- [X] 카드 개수나 참가자 인원에 대한 입력을 구현할 필요없다
+- [X] XCTest를 위한 테스트 타깃을 추가한다
+- [X] 테스트 코드에서 PokerGame 메소드를 호출해서 동작을 확인한다
