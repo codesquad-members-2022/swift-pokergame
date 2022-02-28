@@ -12,4 +12,10 @@ protocol Playable {
     func addCard(deck: CardDeck, round: Int) -> Card
     func showUpCards() -> String
     func openAllCards() -> String
+    func getHand(cards: [Card], computer: Computer)
+    
+    var name: String { get }
+    var hand: Computer.Hands { get set }
+    var cardDeck: [Card] { get set }
+    var upCards: [Card] { get set }
 }

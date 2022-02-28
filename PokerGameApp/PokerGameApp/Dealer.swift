@@ -8,7 +8,20 @@
 import Foundation
 
 class Dealer: Playable {
-    func addCard(card: Card) {
+    var name: String = "딜러"
+    var hand: Computer.Hands = .highCard
+    var cardDeck: [Card] = []
+    var upCards: [Card] = []
+    
+    func openAllCards() -> String {
+        var cardsString: String = cardDeck.reduce("[ ") {
+            return $0.description + "," + $1.description
+        }
+        cardsString.append(" ]")
+        return cardsString
+    }
+    
+    func addCard(deck: CardDeck, round: Int) -> Card {
         <#code#>
     }
     
@@ -16,11 +29,7 @@ class Dealer: Playable {
         <#code#>
     }
     
-    func openAllCards() -> String {
-        <#code#>
+    func getHand(cards: [Card], computer: Computer) {
+        
     }
-    
-    private let name = "딜러"
-    private var cardDeck: [Card] = []
-    private var upCards: [Card] = []
 }

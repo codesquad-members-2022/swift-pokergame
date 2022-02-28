@@ -20,9 +20,10 @@ class Player: Playable {
         <#code#>
     }
     
-    private let name: String
-    private var cardDeck: [Card] = []
-    private var upCards: [Card] = []
+    var name: String
+    var cardDeck: [Card] = []
+    var upCards: [Card] = []
+    var hand: Computer.Hands = .highCard
     
     init(name: String) {
         self.name = name
