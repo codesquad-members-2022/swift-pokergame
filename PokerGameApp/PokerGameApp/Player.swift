@@ -5,7 +5,7 @@ class Player: CustomStringConvertible{
     var currentName: String{
         return self.name
     }
-    private (set) var cards: Cards
+    private var cards: Cards
     var description: String{
         return "\(name) \(cards)"
     }
