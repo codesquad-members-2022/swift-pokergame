@@ -43,5 +43,8 @@ class ViewController: UIViewController {
         }
         
         showCardImages()
+        
+        var pokergame = PokerGame()
+        pokergame.run()
     }
 }

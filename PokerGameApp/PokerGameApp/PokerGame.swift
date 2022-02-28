@@ -35,7 +35,7 @@ struct PokerGame {
         
         var availableTurnCount = (52 / cardStud) / (playersCount + 1) // 총 가능한 턴 수
         while availableTurnCount != 0 {
-            distribute(numberOfParticipants: playersCount + 1)  // 참여자들 (딜러, 플레이어)에게 cardStud만큼 카드 분배.
+            try? distribute(numberOfParticipants: playersCount + 1)  // 참여자들 (딜러, 플레이어)에게 cardStud만큼 카드 분배.\
             availableTurnCount -= 1
         }
         
@@ -44,19 +44,19 @@ struct PokerGame {
     
     
     // Participant에게 cardStud만큼 카드를 분배합니다.
-    mutating func distribute(numberOfParticipants: Int) {
+    mutating func distribute(numberOfParticipants: Int) throws {
         var distributedCardCount = 0 // 한 턴에서 분배한 카드 수
         
         for _ in 0..<cardStud {
-            guard let dealerCard = getCardOfDealer() else {
-                return
+            guard let dealerCard = try? getCardOfDealer() else {
+                throw PokerGameError.invalidDistributeToDealer
             }
             dealer?.cards = dealerCard
             distributedCardCount += 1
             
             for player in 0..<players.count {
-                guard let cards = getCard(of: players[player]) else {
-                    return
+                guard let cards = try? getCard(of: players[player]) else {
+                    throw PokerGameError.invalidDistributeToPlayer
                 }
                 
                 players[player].cards = cards
@@ -67,17 +67,17 @@ struct PokerGame {
     
     
     // 딜러가 전체 카드덱에서 카드를 한 장 뽑고, 그 카드를 자신의 카드 배열에 추가합니다.
-    mutating func getCardOfDealer() -> [Card]? {
+    mutating func getCardOfDealer() throws -> [Card]? {
         guard let cardStatus = dealer?.remove(card: totalCards) else {
-            return nil
+            throw PokerGameError.invalidDealer
         }
         
         guard let card = cardStatus.0 else {
-            return nil
+            throw PokerGameError.invalidCardPicked
         }
         
         guard let totalCard = cardStatus.1 else {
-            return nil
+            throw PokerGameError.invalidTotalCard
         }
         
         dealer?.receive(card: card) // 뽑은 카드를 자신의 배열에 추가하기
@@ -86,18 +86,18 @@ struct PokerGame {
     }
     
     
-    mutating func getCard(of player: Player) -> [Card]? {
+    mutating func getCard(of player: Player) throws -> [Card]? {
         var currentPlayer = player
         guard let cardStatus = dealer?.remove(card: totalCards) else {
-            return nil
+            throw PokerGameError.invalidDealer
         }
         
         guard let card = cardStatus.0 else {
-            return nil
+            throw PokerGameError.invalidCardPicked
         }
         
         guard let totalCard = cardStatus.1 else {
-            return nil
+            throw PokerGameError.invalidTotalCard
         }
         
         currentPlayer.receive(card: card) // 받은 카드를 자신의 배열에 추가하기
