@@ -38,7 +38,6 @@ struct PokerGame {
         // 배분할 카드 수 < 참여자 + 딜러 수이거나, 전체 카드 수가 0이면 종료
         while !(totalCardCount < playersCount + 1) && totalCardCount != 0 {
             guard let distributedCardCount = dealer?.distributeCard(to: &players) else {
-                print("오류")
                 break
             }
             totalCardCount -= distributedCardCount
@@ -48,7 +47,7 @@ struct PokerGame {
             }
         }
         
-        print("포커게임을 종료합니다👋")
+        
     }
     
     
@@ -79,14 +78,12 @@ struct PokerGame {
         // 자신을 포함한 플레이어에게 카드를 나눠주고 나눠준 총 카드 수를 리턴합니다.
         mutating func distributeCard(to players: inout [Player]) -> Int {
             guard let pickedCard = totalCards.removeOne() else {
-                print("Card is not picked")
                 return -1
             }
             cards.append(pickedCard)
             
             for player in 0..<players.count {
                 guard let pickedCard = totalCards.removeOne() else {
-                    print("Card is not picked")
                     return -1
                 }
                 players[player].cards.append(pickedCard)
