@@ -8,8 +8,10 @@
 import Foundation
 
 struct PlayerFactory {
+    // MARK: - Properties
     private static let defaultPlayerNames = ["JK", "Honux", "Cron", "Ivy", "HK", "Chloe", "Conux", "Avy", "BK", "CK"]
     
+    // MARK: - Methods
     static func makeDealer(rule: Dealer.Rule) -> Dealer {
         let deck = CardDeckFactory.create()
         return Dealer(deck: deck, rule: rule)
@@ -31,5 +33,8 @@ struct PlayerFactory {
             return Player(name: name)
         }
     }
+    
+    // MARK: - Initializer
+    private init() {}
 }
 
