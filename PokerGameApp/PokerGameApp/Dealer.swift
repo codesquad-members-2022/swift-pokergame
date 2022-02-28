@@ -18,17 +18,23 @@ class Dealer {
         self.cards = Array<Card>()
     }
     
-    func serveCard() -> Card? {
+    func pickCard() -> Card? {
         guard let card = deck.removeOne() else {
             return nil
         }
         return card
     }
     
-    func serveCardToMe() {
-        guard let card = deck.removeOne() else {
-            return
-        }
-        self.cards.append(card)
+    func addCard(_ card: Card) {
+        cards.append(card)
     }
+    
+    func getCardsCount() -> Int {
+        return cards.count
+    }
+    
+    func getDeckCount() -> Int {
+        return deck.count()
+    }
+    
 }
