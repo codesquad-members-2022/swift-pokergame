@@ -1,6 +1,6 @@
 import Foundation
 
-struct CardDeck{
+class CardDeck{
     
     private var deck: [Card] = []
     var count: Int{
@@ -11,7 +11,7 @@ struct CardDeck{
         reset()
     }
     
-    mutating func shuffle(){
+    func shuffle(){
         for startIndex in 0..<deck.count-1{
             let randomIndex = Int.random(in: startIndex..<deck.count)
             let temp = deck[startIndex]
@@ -20,11 +20,11 @@ struct CardDeck{
         }
     }
     
-    mutating func removeOne()-> Card?{
+    func removeOne()-> Card?{
         return deck.popLast()
     }
     
-    mutating func reset(){
+    func reset(){
         self.deck = []
         for suit in Card.Suit.allCases{
             for number in Card.Number.allCases{
