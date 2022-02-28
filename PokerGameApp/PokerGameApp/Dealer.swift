@@ -20,4 +20,10 @@ struct Dealer: Participant, CustomStringConvertible {
         var currentCard = card
         return (currentCard.removeOne(), currentCard)
     }
+    
+    
+    // 카드를 받습니다.
+    mutating func receive(card: Card) {
+        cards.append(card)
+    }
 }

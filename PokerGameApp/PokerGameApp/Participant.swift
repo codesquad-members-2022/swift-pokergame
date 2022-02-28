@@ -9,4 +9,6 @@ import Foundation
 
 protocol Participant {
     var cards: [Card] { get set }
+    
+    mutating func receive(card: Card)
 }
