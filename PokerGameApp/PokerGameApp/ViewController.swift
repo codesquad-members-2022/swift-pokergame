@@ -12,12 +12,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var logTextView: UITextView!
     @IBOutlet weak var algorithmControl: UISegmentedControl!
     
-    private let CARD_INSET: CGFloat = 3
-    private let CARD_COUNT = 5
     private var cards: [UIImageView]!
-    
-    private let bgImageName = "bg_pattern"
-    private let cardImageName = "card-back"
     
     private var readableFrame: CGRect!
     
@@ -34,15 +29,18 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         logTextView.delegate = self
         
-        if let bgPattern = UIImage.init(named: bgImageName) {
+        if let bgPattern = UIImage.init(named: "bg_pattern") {
             self.view.backgroundColor = UIColor.init(patternImage: bgPattern)
         }
         
-        print(poker)
+        poker.drawCardsToAllMembers()
     }
     
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
+        
+        let CARD_COUNT = 5
+        
         readableFrame = self.view.readableContentGuide.layoutFrame
         let totalRow: Int = (CARD_COUNT / 7) + (CARD_COUNT % 7 > 0 ? 1 : 0)
         
@@ -56,10 +54,11 @@ class ViewController: UIViewController {
     }
     
     func setStackView(cardNumber: Int) {
+        let CARD_INSET: CGFloat = 3
         let cardWidth = (readableFrame.width / CGFloat(7)) - CARD_INSET
         
         cards = (0..<cardNumber).compactMap { _ in
-            let imageView = UIImageView(image: UIImage(named: cardImageName))
+            let imageView = UIImageView(image: UIImage(named: "card-back"))
             imageView.contentMode = .scaleAspectFit
             return imageView
         }
@@ -67,12 +66,10 @@ class ViewController: UIViewController {
         let stackView = UIStackView.init(arrangedSubviews: cards)
         self.view.addSubview(stackView)
         
-        stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.alignment = .leading
         stackView.spacing = CARD_INSET
-        stackView.frame = readableFrame
-        stackView.frame.size.height = cardWidth * 1.27
+        stackView.frame = CGRect(origin: readableFrame.origin, size: CGSize(width: readableFrame.width, height: cardWidth * 1.27))
     }
     
     @IBAction func algorithmControlValueChanged(_ sender: UISegmentedControl) {
@@ -85,44 +82,33 @@ class ViewController: UIViewController {
             dealerSkill.ordinaryCardShuffle
         }
     }
+    
     @IBAction func countButtonTouchUpInside(_ sender: UIButton) {
-        var text = "> 카드의 총 갯수\n"
-        text += "총 \(dealerDeck.count())장의 카드가 있습니다.\n"
-        setLog(text: text)
+        setLog(text: "> 카드의 총 갯수\n총 \(dealerDeck.count())장의 카드가 있습니다.\n")
     }
     
     @IBAction func shuffleButtonTouchUpInside(_ sender: UIButton) {
         poker.dealer.shuffle()
-        
-        var text = "> 카드 섞기(\(poker.dealer.shuffleType.rawValue))\n"
-        text += "전체 \(dealerDeck.count())장의 카드를 섞었습니다.\n"
-        setLog(text: text)
+        setLog(text: "> 카드 섞기(\(poker.dealer.shuffleType.rawValue))\n전체 \(dealerDeck.count())장의 카드를 섞었습니다.\n")
     }
     
     @IBAction func removeOneButtonTouchUpInside(_ sender: UIButton) {
         let card = poker.dealer.deck.removeOne()
         
         var text = "> 카드 하나 뽑기\n"
-        text += "\(card != nil ? String(describing: card!) : "카드가 존재하지 않습니다.")\n"
-        text += "총 \(dealerDeck.count())장의 카드가 남아있습니다.\n"
+        text += "\(card != nil ? String(describing: card!) : "카드가 존재하지 않습니다.")\n총 \(dealerDeck.count())장의 카드가 남아있습니다.\n"
         setLog(text: text)
     }
     
     @IBAction func resetButtonTouchUpInside(_ sender: UIButton) {
         poker.dealer.deck.reset()
-        
-        var text = "> 카드 초기화\n"
-        text += "총 \(poker.dealer.deck.count())장의 카드가 남아있습니다.\n"
-        setLog(text: text)
+        setLog(text: "> 카드 초기화\n총 \(poker.dealer.deck.count())장의 카드가 남아있습니다.\n")
     }
     
     private func alert(with message: String) {
         UIAlertController.alert(with: "값은 아래와 같습니다", at: self)
     }
     
-    // UITextView.text를 변경해도 UITextViewDelegate의 메소드들이 실행되지 않아
-    // UITextView.replace() 메소드를 이용하였습니다.
-    // TextView의 range가 필요한 메소드라 아래와 같이 처리하였습니다.
     private func setLog(text: String) {
         if let endOfRange = logTextView.textRange(from: logTextView.endOfDocument, to: logTextView.endOfDocument) {
             logTextView.replace(endOfRange, withText: text)
@@ -145,7 +131,6 @@ extension UIAlertController {
 
 extension ViewController: UITextViewDelegate {
     
-    // 텍스트 뷰가 바뀔 경우 맨 밑으로 스크롤을 내리도록 조치하였습니다.
     func textViewDidChange(_ textView: UITextView) {
         
         textView.text += "\n"

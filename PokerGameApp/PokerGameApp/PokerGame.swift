@@ -21,29 +21,27 @@ class PokerGame {
         
         dealer = Dealer(deck: CardDeck(.deck), gameType: game)
         dealer.shuffleType = gameMembers.getFavoriteShuffle()
-        
-        drawCardsToAllMembers()
     }
     
     func drawCardsToAllMembers() {
         
-        guard let gameCardNumber = game.cardCount else { return }
+        guard let cardCount = game.cardCount else { return }
         
-        while isGameReady(gameCardNumber) {
+        while isGameReady(cardCount) {
             
             for i in 0..<(1+participantCount) {
                 
                 guard let card = dealer.draw() else { break }
                 
                 if i == 0 {
-                    if dealer.isFull(count: gameCardNumber) == false {
+                    if dealer.isFull(count: cardCount) == false {
                         dealer.setCard(card)
                     }
                     
                     continue
                 }
                 
-                if gameMembers.members[i-1].isFull(count: gameCardNumber) {
+                if gameMembers.members[i-1].isFull(count: cardCount) {
                     gameMembers.members[i-1].cards.append(card)
                 }
             }
@@ -52,13 +50,13 @@ class PokerGame {
         }
     }
     
-    private func isGameReady(_ number: Int) -> Bool {
-        !self.gameMembers.isFull(count: number) || !self.dealer.isFull(count: number)
+    private func isGameReady(_ n: Int) -> Bool {
+        !gameMembers.isFull(count: n) && !dealer.isFull(count: n)
     }
 }
 
 extension PokerGame: CustomStringConvertible {
     var description: String {
-        "딜러" + String(describing: dealer.cards) + gameMembers.members.reduce("", {$0 + "\n" + $1.name + String(describing: $1.cards)})
+        "딜러\(dealer.cards)" + gameMembers.members.reduce("", {"\($0)\n\($1.name)\($1.cards)"})
     }
 }
