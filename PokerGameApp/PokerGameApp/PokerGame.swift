@@ -9,19 +9,34 @@ import Foundation
 
 class PokerGame {
     
-    let dealer: Dealer
-    let playerGroup: Array<Player>
-    let playerNum: Int
+    private let dealer: Dealer
+    private let playerGroup: Array<Player>
+    private var names: [String] = ["JK", "Honux", "Crong"]
+    private let playerNum: Int
+    private let cardStud = 7
     
     init() {
+        self.playerNum = names.count
         self.dealer = Dealer()
-        self.playerGroup = Array<Player>()
-        self.playerNum = Int.random(in: 1...5)
+        var playerGroup = Array<Player>()
+        for name in names {
+            playerGroup.append(Player(name: name))
+        }
+        self.playerGroup = playerGroup
     }
     
     func setCards() {
-        dealer.serveCard()
+        while dealer.getDeckCount() > playerNum {
+            for player in playerGroup {
+                guard let card = dealer.pickCard() else {
+                    return
+                }
+                player.addCard(card)
+            }
+            if let card = dealer.pickCard() {
+                dealer.addCard(card)
+            }
+            if dealer.getCardsCount() == cardStud { return }
+        }
     }
-    
-    
 }
