@@ -12,14 +12,6 @@ class PokerGameAppTests: XCTestCase {
     
     let poker = PokerGame()
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testPoker() {
         
         print("이름 한번씩 말씀해주십시오.")
@@ -31,7 +23,7 @@ class PokerGameAppTests: XCTestCase {
         poker.drawCardsToAllMembers()
         
         XCTAssertEqual(
-            CardDeck(.deck).count(),
+            52,
             poker.dealer.cards.count + poker.gameMembers.members.reduce(0, {$0+$1.cards.count}) + poker.dealer.deck.count()
         )
         
