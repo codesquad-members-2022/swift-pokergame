@@ -26,7 +26,14 @@ class Dealer: Playable {
     }
     
     func showUpCards() -> String {
-        <#code#>
+        guard !upCards.isEmpty else {
+            return "There is no upCard"
+        }
+        var cardsString: String = upCards.reduce("[ ") {
+            return $0.description + "," + $1.description
+        }
+        cardsString.append(" ]")
+        return cardsString
     }
     
     func getHand(cards: [Card], computer: Computer) {
