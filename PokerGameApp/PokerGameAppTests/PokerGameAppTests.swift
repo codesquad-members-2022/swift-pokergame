@@ -29,6 +29,18 @@ class PokerGameAppTests: XCTestCase {
         print("카드를 섞습니다.")
         
         poker.drawCardsToAllMembers()
+        
+        XCTAssertEqual(
+            CardDeck(.deck).count(),
+            poker.dealer.cards.count + poker.gameMembers.members.reduce(0, {$0+$1.cards.count}) + poker.dealer.deck.count()
+        )
+        
+        print(poker)
+        
+        while let _ = poker.dealer.draw() {
+            continue
+        }
+        
+        XCTAssertEqual(poker.dealer.deck.count(), 0)
     }
-
 }

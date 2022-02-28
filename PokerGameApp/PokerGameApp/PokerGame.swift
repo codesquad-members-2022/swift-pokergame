@@ -48,10 +48,6 @@ class PokerGame {
                 }
             }
             
-            if dealer.draw() == nil {
-                break
-            }
-            
             dealer.shuffle()
         }
     }

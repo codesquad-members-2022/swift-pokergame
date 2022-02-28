@@ -119,3 +119,11 @@ UIStackView의 인터페이스를 정의하는 요소는 axis(방향), distribut
 | spacing(간격)      | 각 뷰들이 서로 띄워지는 간격을 뜻한다.                                                                                                                                                        |
 
 arrangedSubviews나 UIStackView 객체 자체의 속성에 직접 접근하여 하위 뷰들을 변경할 수 있다.
+
+---
+
+# step2 (2022/02/27 23:40 완료)
+
+- [x] Poker Game Logic을 구현해 보았습니다.
+- [x] Poker Game 테스트를 위해 테스트 타겟에 Poker 관련 로직을 실행시켜 보았습니다.
+- [ ] 테스트 관련 추가 자료조사를 통해 좀 더 좋은 테스트 환경을 구축합니다.
