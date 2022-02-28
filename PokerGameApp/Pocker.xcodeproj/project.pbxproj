@@ -25,6 +25,8 @@
 		E464FFAF27CBB14D007C6E69 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = E464FFAA27CBAE8E007C6E69 /* Player.swift */; };
 		E46C181D27CC730A0012A676 /* PlayerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46C181C27CC730A0012A676 /* PlayerFactory.swift */; };
 		E46C181E27CC730A0012A676 /* PlayerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46C181C27CC730A0012A676 /* PlayerFactory.swift */; };
+		E46C182227CCD3CB0012A676 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = E464FFAA27CBAE8E007C6E69 /* Player.swift */; };
+		E46C182327CCD3CB0012A676 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E464FFAB27CBAEA0007C6E69 /* Dealer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -246,6 +248,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E46C182227CCD3CB0012A676 /* Player.swift in Sources */,
+				E46C182327CCD3CB0012A676 /* Dealer.swift in Sources */,
 				E46C181E27CC730A0012A676 /* PlayerFactory.swift in Sources */,
 				E433314027C8B47E00135706 /* Card.swift in Sources */,
 				E433314127C8B47E00135706 /* CardDeck.swift in Sources */,

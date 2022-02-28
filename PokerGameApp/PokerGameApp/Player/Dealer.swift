@@ -14,9 +14,18 @@ protocol DealerDelegate {
 
 final class Dealer: Player {
     // MARK: - Properties
-    enum Rule: Int {
-        case fiveCardStud = 5
-        case sevenCardStud = 7
+    enum Rule {
+        case fiveCardStud
+        case sevenCardStud
+        
+        var value: Int {
+            switch self {
+            case .fiveCardStud:
+                return 5
+            case .sevenCardStud:
+                return 7
+            }
+        }
     }
     
     private var cardDeck: CardDeck
@@ -43,7 +52,7 @@ final class Dealer: Player {
     private func distributeCards() {
         guard let players = self.delegate?.players else { return }
         
-        for _ in 1...self.rule.rawValue {
+        for _ in 1...self.rule.value {
             self.drawCard(for: self)
             
             for player in players {
@@ -61,7 +70,7 @@ final class Dealer: Player {
     
     private func shoudEndGame() -> Bool {
         guard let players = self.delegate?.players else { return true }
-        let minimumRequirement = (players.count + 1) * self.rule.rawValue
+        let minimumRequirement = (players.count + 1) * self.rule.value
         return minimumRequirement > self.cardDeck.count
     }
     
