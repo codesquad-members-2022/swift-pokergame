@@ -23,32 +23,40 @@ struct PokerGame {
     
     // 게임을 실행합니다.
     mutating func run() {
-//        let playersCount = Int.random(in: 1...4) // 플레이어는 1 ~ 4명 (Int.random(in: 1...4))
-//        let playerNames = makeRandomName(count: playersCount) // 참가자 이름 배열 생성
-//        
-//        // 플레이어 추가
-//        for name in playerNames {
-//            self.players.append(Player(name: name))
-//        }
-//        
-//        dealer = Dealer()
-//        
-//        var totalCardCount = PokerGame.totalCards.count
-//        PokerGame.totalCards.shuffle()
-//        
+        let playersCount = Int.random(in: 1...4) // 플레이어는 1 ~ 4명 (Int.random(in: 1...4))
+        let playerNames = makeRandomName(count: playersCount) // 참가자 이름 배열 생성
+
+        // 플레이어 추가
+        for name in playerNames {
+            self.players.append(Player(name: name))
+        }
+
+        dealer = Dealer()
+
+        var totalCardCount = getTotalCardCount()
+        
+        
 //        // 배분할 카드 수 < 참여자 + 딜러 수이거나, 전체 카드 수가 0이면 종료
 //        while !(totalCardCount < playersCount + 1) && totalCardCount != 0 {
 //            guard let distributedCardCount = dealer?.distributeCard(to: &players) else {
 //                break
 //            }
 //            totalCardCount -= distributedCardCount
-//            
+//
 //            if dealer?.cards.count == PokerGame.cardStud { // 카드 5장 분배하면 종료..
 //                break
 //            }
 //        }
         
         
+    }
+    
+    
+    // 카드 수를 세고, 섞고, 전체 카드 수를 리턴합니다.
+    mutating func getTotalCardCount() -> Int {
+        let totalCardCount = totalCards.count
+        totalCards.shuffle()
+        return totalCardCount
     }
     
     
