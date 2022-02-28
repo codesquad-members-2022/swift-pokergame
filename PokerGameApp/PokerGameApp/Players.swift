@@ -4,7 +4,6 @@ class Players: CustomStringConvertible{
     
     private var randomNames = ["dale","eddy","jee","foucault","sol"]
     private var players: [Player] = []
-    private let numberOfPlayers: PokerGame.Count
     var count: Int{
         return players.count
     }
@@ -12,18 +11,16 @@ class Players: CustomStringConvertible{
         return players.description
     }
     
-    init(numberOfPlayers: PokerGame.Count){
+    init(numberOfPlayers: Int){
         self.randomNames.shuffle()
-        self.numberOfPlayers = numberOfPlayers
-        createPlayers()
+        createPlayers(numberOfPlayers: numberOfPlayers)
     }
         
-    func createPlayers(){
-        for _ in 0..<numberOfPlayers.rawValue{
+    func createPlayers(numberOfPlayers: Int){
+        for _ in 0..<numberOfPlayers{
             guard let playerName = randomNames.popLast() else { continue }
             players.append(Player(name: playerName))
         }
-
     }
     
     func addPlayer(_ player: Player){
