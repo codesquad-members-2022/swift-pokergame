@@ -12,7 +12,7 @@ protocol Playable {
     func addCard(card: Card, round: Int)
     func showUpCards() -> String
     func openAllCards() -> String
-    func getHand(playerDeck: [Card], computer: Computer)
+    func getHand(computer: Computer)
     
     var name: String { get }
     var hand: Computer.Hands { get set }
