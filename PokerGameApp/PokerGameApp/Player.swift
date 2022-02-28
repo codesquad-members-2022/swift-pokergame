@@ -12,8 +12,12 @@ class Player {
     private let name: String
     private var cards: Array<Card>
     
-    init() {
-        self.name = Array<String>(["A", "B", "C", "D", "E"])[Int.random(in: 0...4)]
+    init(name: String) {
+        self.name = name
         self.cards = Array<Card>()
+    }
+    
+    func addCard(_ card: Card) {
+        cards.append(card)
     }
 }
