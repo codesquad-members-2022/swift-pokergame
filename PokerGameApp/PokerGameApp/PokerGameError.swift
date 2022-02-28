@@ -10,4 +10,5 @@ import Foundation
 enum PokerGameError: Error {
     case cardIsEmpty
     case gameOver
+    case roundAt7
 }
