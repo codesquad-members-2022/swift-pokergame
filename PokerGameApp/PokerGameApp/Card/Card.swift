@@ -64,7 +64,7 @@ class Card {
 
 extension Card: Comparable, CustomStringConvertible {
     var description: String {
-        return "\(self.getSuit())\(self.getRank())"
+        return "\(self.suit)\(self.rank)"
     }
     
     static func < (lhs: Card, rhs: Card) -> Bool {

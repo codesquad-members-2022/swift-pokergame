@@ -32,5 +32,8 @@ struct CardDeckFactory: Factory {
         let cards = self.suits.flatMap(createCardsBySuit(suit:))
         return CardDeck(cards: cards)
     }
+    
+    // MARK: - Initializer
+    private init() {}
 }
 
