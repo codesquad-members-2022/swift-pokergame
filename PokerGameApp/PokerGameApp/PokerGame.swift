@@ -1,12 +1,6 @@
 import Foundation
 
-class PokerGame: CustomStringConvertible{
-    
-    internal enum Count: Int, CaseIterable{
-        case two = 2
-        case three = 3
-        case four = 4
-    }
+class PokerGame: CustomStringConvertible{    
     
     internal enum Stud: Int, CaseIterable{
         case five = 5
@@ -21,20 +15,11 @@ class PokerGame: CustomStringConvertible{
         return "\(players)\(dealer)"
     }
     
-    init(numberOfPlayers: Count, stud: Stud){
+    init(numberOfPlayers: Players.Count, stud: Stud){
         self.stud = stud
         self.deck = CardDeck()
         self.dealer = Dealer(deck: self.deck)
-
-        var randomNames = ["dale","eddy","jee","foucault","sol"]
-        self.players = Players(creatingLoop: {
-            var players: [Player] = []
-            for _ in 0..<numberOfPlayers.rawValue{
-                guard let playerName = randomNames.popLast() else { continue }
-                players.append(Player(name: playerName))
-            }
-            return players
-        })
+        self.players = Players(numberOfPlayers: numberOfPlayers)
     }
         
     func start(){
