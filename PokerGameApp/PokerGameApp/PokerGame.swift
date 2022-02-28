@@ -24,8 +24,8 @@ class PokerGame: CustomStringConvertible{
     
     init(numberOfPlayers: Count, stud: Stud){
         self.stud = stud
-        self.dealer = Dealer()
         self.deck = CardDeck()
+        self.dealer = Dealer(deck: self.deck)
         self.players = Players(numberOfPlayers: numberOfPlayers)
     }
         
@@ -36,7 +36,6 @@ class PokerGame: CustomStringConvertible{
     
     private func run(){
         if(isNumberOfCardsEnough()){
-            self.deck = dealer.takeOutAllNecessaryCards(deck: self.deck, count: (players.count + 1) * stud.rawValue)
             distributeCards()
         }
     }
@@ -46,10 +45,12 @@ class PokerGame: CustomStringConvertible{
     }
     
     private func distributeCards(){
+        
         for _ in 0..<stud.rawValue{
-            for index in 0..<players.count{
+            var playerIterator = self.players.getIterator(additionalPlayer: self.dealer)
+            while let player = playerIterator.next(){
                 guard let card = dealer.takeOutCard() else { continue }
-                players.addCard(playerIndex: index, card: card)
+                player.addCard(card)
             }
         }
     }
