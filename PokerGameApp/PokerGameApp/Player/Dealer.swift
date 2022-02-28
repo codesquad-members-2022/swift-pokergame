@@ -65,12 +65,23 @@ final class Dealer: Player {
         return minimumRequirement > self.cardDeck.count
     }
     
+    private func collectCardsFromGamblers() {
+        self.emptyCards()
+        
+        guard let players = self.delegate?.players else { return }
+        
+        for player in players {
+            player.emptyCards()
+        }
+    }
+    
     func play() {
         self.prepare()
         self.distributeCards()
         self.delegate?.gameWillEnd()
+        self.collectCardsFromGamblers()
         
-        if self.shoudEndGame() {
+        if !self.shoudEndGame() {
             self.play()
         }
     }

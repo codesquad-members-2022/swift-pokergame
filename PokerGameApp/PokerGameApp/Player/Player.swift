@@ -10,6 +10,7 @@ import Foundation
 protocol Gambler {
     var cards: Array<Card> { get }
     func receive(card: Card)
+    func emptyCards()
 }
 
 class Player: Gambler {
@@ -25,5 +26,15 @@ class Player: Gambler {
     // MARK: - Methods
     func receive(card: Card) {
         self.cards.append(card)
+    }
+    
+    func emptyCards() {
+        self.cards = []
+    }
+}
+
+extension Player: CustomStringConvertible {
+    var description: String {
+        return "\(self.name): \(self.cards)"
     }
 }
