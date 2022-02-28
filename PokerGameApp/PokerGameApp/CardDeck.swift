@@ -9,7 +9,7 @@ import Foundation
 
 struct CardDeck: Equatable {
     static func == (lhs: CardDeck, rhs: CardDeck) -> Bool {
-        return lhs.description == rhs.description
+        return lhs.cards == rhs.cards
     }
     
     
