@@ -1,13 +1,13 @@
 //
-//  PockerGameTests.swift
-//  PockerGameTests
+//  PokerGameTests.swift
+//  PokerGameTests
 //
 //  Created by 송태환 on 2022/02/25.
 //
 
 import XCTest
 
-final class PockerGameTests: XCTestCase {
+final class PokerGameTests: XCTestCase {
     private let factory = CardDeckFactory()
     
     func testCard() {
