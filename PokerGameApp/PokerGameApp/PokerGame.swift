@@ -22,8 +22,9 @@ class PokerGame {
     var sortOfGame: Games
 //    var playerCount: PlayerCount.RawValue = .random(in: 2...5)
     var playerCount: PlayerCount.RawValue
-    var players: [Playable]
+    var players: [Player]
     var dealer: Dealer
+    var computer: Computer = Computer()
     
     init(sortOfGame: Games, playerCount: PlayerCount.RawValue) {
         self.sortOfGame = sortOfGame

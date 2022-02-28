@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct Computer {
-    enum hands: Comparable {
+class Computer {
+    enum Hands: Comparable {
+        case highCard
         case onePair
         case twoPair
         case triple
@@ -18,5 +19,15 @@ struct Computer {
         case fourCard
         case straightFlush
         case royalStraightFlush
+    }
+    private var players: [Playable]
+    init(dealer: Dealer, players: [Player]) {
+        self.players.append(dealer)
+        for player in players {
+            self.players.append(player)
+        }
+    }
+    func getHand(players: [Playable]) {
+        
     }
 }
