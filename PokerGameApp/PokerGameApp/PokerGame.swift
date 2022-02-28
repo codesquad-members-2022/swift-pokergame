@@ -106,14 +106,6 @@ struct PokerGame {
     }
     
     
-    // 카드 수를 세고, 섞고, 전체 카드 수를 리턴합니다.
-    mutating func getTotalCardCount() -> Int {
-        let totalCardCount = totalCards.count
-        totalCards.shuffle()
-        return totalCardCount
-    }
-    
-    
     // 플레이어의 이름을 랜덤으로 생성합니다.
     func makeRandomName(count: Int) -> [String] {
         var players = [String]()
