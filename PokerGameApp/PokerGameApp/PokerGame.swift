@@ -16,6 +16,7 @@ class PokerGame {
     enum PlayerCount: Int {
         case two = 2, three, four, five
     }
+    var rount: Int = 0
     
     private var cardDeck = CardDeck()
     var sortOfGame: Games
