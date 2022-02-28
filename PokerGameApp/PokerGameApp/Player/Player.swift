@@ -8,6 +8,7 @@
 import Foundation
 
 protocol Gambler {
+    var cards: Array<Card> { get }
     func receive(card: Card)
 }
 
@@ -15,7 +16,7 @@ class Player: Gambler {
     // MARK: - Properties
     private(set) var cards = Array<Card>()
     private let name: String
-    
+
     // MARK: - Initializer
     init(name: String) {
         self.name = name
@@ -26,4 +27,3 @@ class Player: Gambler {
         self.cards.append(card)
     }
 }
-
