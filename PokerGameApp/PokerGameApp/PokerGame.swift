@@ -9,15 +9,14 @@ import Foundation
 
 struct PokerGame {
     typealias Rule = Dealer.Rule
+    
     // MARK: - Properties
-    private(set) var players: [Player]
+    private(set) var players: [Gambler]
     private let dealer: Dealer
-    private var rule: Rule
     
     init(rule: Rule) {
-        self.dealer = PlayerFactory.makeDealer()
+        self.dealer = PlayerFactory.makeDealer(rule: rule)
         self.players = PlayerFactory.makePlayers()
-        self.rule = rule
         self.dealer.delegate = self
     }
     
@@ -35,21 +34,18 @@ struct PokerGame {
         self.players = PlayerFactory.makePlayers(names: names)
     }
     
-    mutating func setRule(to rule: Rule) {
-        self.rule = rule
+    mutating func setRule(rule: Rule) {
+        self.dealer.rule = rule
     }
     
     mutating func run() {
-        self.dealer.play(by: self.rule)
+        self.dealer.play()
     }
 }
 
 extension PokerGame: DealerDelegate {
-    func distribute(card: Card, for player: Player) {
-        player.receive(card: card)
-    }
-    
     func gameEnd() {
-        // 더 뽑을 카드가 없음을 노티
+        self.determineWinner()
     }
 }
+

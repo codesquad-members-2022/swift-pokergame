@@ -8,12 +8,13 @@
 import Foundation
 
 struct PlayerFactory {
-    static func makeDealer() -> Dealer {
+    static func makeDealer(rule: Dealer.Rule) -> Dealer {
         let deck = CardDeckFactory.create()
-        return Dealer(deck: deck)
+        return Dealer(deck: deck, rule: rule)
     }
     
     static func makePlayers(names: [String] = ["JK", "Honux", "Cron", "Ivy"]) -> [Player] {
         return names.map { Player(name: $0) }
     }
 }
+

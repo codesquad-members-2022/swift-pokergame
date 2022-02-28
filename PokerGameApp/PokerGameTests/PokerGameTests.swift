@@ -8,7 +8,6 @@
 import XCTest
 
 final class PokerGameTests: XCTestCase {
-    private let factory = CardDeckFactory()
     
     func testCard() {
         let spadeAce = Card(rank: .ace, suit: .spade)
@@ -34,7 +33,7 @@ final class PokerGameTests: XCTestCase {
     }
     
     func testCardDeck() {
-        var deck = self.factory.create()
+        var deck = CardDeckFactory.create()
         XCTAssertTrue(deck.count ==  52, "Total number of cards is 52")
         
         XCTAssertNotNil(deck.removeOne())
