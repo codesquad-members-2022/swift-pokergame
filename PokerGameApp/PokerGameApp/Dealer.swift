@@ -17,6 +17,11 @@ protocol DealerDelegate {
 
 final class Dealer: Player {
     // MARK: - Properties
+    enum Rule: Int {
+        case fiveCardStud = 5
+        case sevenCardStud = 7
+    }
+    
     private var cardDeck: CardDeck
     private var isDeckEmpty: Bool {
         return self.cardDeck.count == 0
@@ -28,6 +33,7 @@ final class Dealer: Player {
     init(deck: CardDeck) {
         self.cardDeck = deck
         super.init(name: "딜러")
+        self.cardDeck.shuffle()
     }
     
     // MARK: - Methods
@@ -38,6 +44,10 @@ final class Dealer: Player {
         }
             
         player.receive(card: card)
+    }
+    
+    func play(by: Rule) {
+        
     }
     
     func draw() {

@@ -8,22 +8,17 @@
 import Foundation
 
 struct PokerGame {
-    enum Rule: Int {
-        case fiveCardStud = 5
-        case sevenCardStud = 7
-    }
-
+    typealias Rule = Dealer.Rule
     // MARK: - Properties
-    private(set) var players: [Player] = []
+    private(set) var players: [Player]
     private let dealer: Dealer
     private var rule: Rule
     
     init(rule: Rule) {
-        let deck = CardDeckFactory.create()
-        self.dealer = Dealer(deck: deck)
+        self.dealer = PlayerFactory.makeDealer()
+        self.players = PlayerFactory.makePlayers()
         self.rule = rule
         self.dealer.delegate = self
-        
     }
     
     // MARK: - Private Methods
@@ -37,31 +32,15 @@ struct PokerGame {
             self.players = []
         }
         
-        for name in names {
-            self.players.append(Player(name: name))
-        }
+        self.players = PlayerFactory.makePlayers(names: names)
     }
     
     mutating func setRule(to rule: Rule) {
         self.rule = rule
     }
     
-    mutating func run(by rule: Self.Rule) {
-        if self.players.isEmpty {
-            self.setPlayers(names: ["JK", "Honux", "Cron", "Ivy"])
-        }
-        
-        let round = self.rule.rawValue
-        
-        for _ in 1...round {
-            self.dealer.draw()
-            
-            for player in self.players {
-                self.dealer.draw()
-            }
-        }
-        
-        self.determineWinner()
+    mutating func run() {
+        self.dealer.play(by: self.rule)
     }
 }
 
