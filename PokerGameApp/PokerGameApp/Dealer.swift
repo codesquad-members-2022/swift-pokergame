@@ -2,16 +2,18 @@ import Foundation
 
 class Dealer: Player{
     
-    init() {
+    private var deck: CardDeck
+    
+    init(deck: CardDeck) {
+        self.deck = deck
         super.init(name: "딜러")
     }
     
-    func takeOutAllNecessaryCards(deck: CardDeck, count: Int)->CardDeck{
-        var deckCopy = deck
+    func takeOutAllNecessaryCards(count: Int){
+  
         for _ in 0..<count{
-            guard let card = deckCopy.removeOne() else { continue }
+            guard let card = self.deck.removeOne() else { continue }
             super.addCard(card)
         }
-        return deckCopy
     }
 }
