@@ -39,7 +39,16 @@ class Dealer: Playable {
     func getHand(cards: [Card], computer: Computer) {
         
     }
-    func giveCard2Player(player: [Player]) -> Card {
-        PockerGame.round
+    func giveCard2Player(players: [Playable], deck: CardDeck) throws -> Card {
+        guard PokerGame.round == 7 else {
+            throw PokerGameError.roundAt7
+        }
+        PokerGame.round += 1
+        var playersWithDealer: [Playable] = players
+        playersWithDealer.append(self)
+        for player in playersWithDealer {
+            let removed = try deck.removeOne()
+            player.addCard(card: removed, round: PokerGame.round)
+        }
     }
 }
