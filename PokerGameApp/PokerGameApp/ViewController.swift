@@ -43,8 +43,8 @@ class ViewController: UIViewController {
         playerCountSelectionControl.selectedSegmentTintColor = UIColor.lightText
         playerCountSelectionControl.center.x = self.view.center.x
         playerCountSelectionControl.center.y = self.view.center.y * CGFloat(0.2)
-        for index in 0..<PokerGame.Count.allCases.count{
-            playerCountSelectionControl.setTitle("\(PokerGame.Count.allCases[index].rawValue)명", forSegmentAt: index)
+        for index in 0..<Players.Count.allCases.count{
+            playerCountSelectionControl.setTitle("\(Players.Count.allCases[index].rawValue)명", forSegmentAt: index)
         }
     }
     
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
     }
     
     func setPokerGame(){
-        let selectedCount = PokerGame.Count.allCases[playerCountSelectionControl.selectedSegmentIndex]
+        let selectedCount = Players.Count.allCases[playerCountSelectionControl.selectedSegmentIndex]
         let selectedStud = PokerGame.Stud.allCases[studSelectionControl.selectedSegmentIndex]
         
         self.pokerGame = PokerGame(numberOfPlayers: selectedCount, stud: selectedStud)
