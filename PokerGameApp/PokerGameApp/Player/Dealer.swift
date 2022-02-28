@@ -33,8 +33,8 @@ final class Dealer: Player {
         return self.cardDeck.count == 0
     }
     
+    private(set) var rule: Rule
     var delegate: DealerDelegate?
-    var rule: Rule
     
     // MARK: - Initializer
     init(deck: CardDeck, rule: Rule) {
@@ -82,6 +82,10 @@ final class Dealer: Player {
         for player in players {
             player.emptyCards()
         }
+    }
+    
+    func setRule(rule: Rule) {
+        self.rule = rule
     }
     
     func play() {
