@@ -24,6 +24,7 @@ struct CardDeck {
     // MARK: - Initializer
     init(cards: [Card]) {
         self.cards = cards
+        self.cache = cards
         self.shuffle()
     }
     
@@ -56,8 +57,6 @@ struct CardDeck {
             return nil
         }
         
-        self.cache.append(card)
-        
         return card
     }
     
@@ -71,8 +70,7 @@ struct CardDeck {
     }
         
     mutating func reset() {
-        self.cards = self.cards.isEmpty ? self.cache : self.cards + self.cache
-        self.cache = []
+        self.cards = self.cache
     }
 }
 
