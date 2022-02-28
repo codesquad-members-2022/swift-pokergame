@@ -16,6 +16,6 @@ protocol Playable {
     
     var name: String { get }
     var hand: Computer.Hands { get set }
-    var cardDeck: [Card] { get set }
+    var playerDeck: [Card] { get set }
     var upCards: [Card] { get set }
 }
