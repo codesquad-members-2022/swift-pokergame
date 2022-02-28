@@ -42,21 +42,6 @@ class DeckTest: XCTestCase {
         
     }
     
-    //52개의 카드가 정상적으로 '하나'씩 제거가 되면 test가 정상적으로 작동한다고 가정하였습니다.
-    func testRemoveOne() {
-        let deck = DeckFactory.makeDeck()
-        
-        let originCount = 52
-        var count = 0
-        
-        for _ in 0..<originCount {
-            count += 1
-            deck.removeOne()
-            
-            XCTAssertTrue(deck.count + count == originCount)
-    }
-}
-    
     //52개의 카드가 순서대로 정상적으로 제거된후 리턴이 되고, 이전에 지운카드와 앞으로 지울 카드가 52번동안 다르다면 test가 정상이라고 생각했습니다.
     func testRemovedOne() {
         let deck = DeckFactory.makeDeck()

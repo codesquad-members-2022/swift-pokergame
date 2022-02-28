@@ -7,54 +7,41 @@
 
 import Foundation
 
-class Game:CustomStringConvertible {
+public class Game {
     
-    var description: String {
-        "\(results())\n\(showPlayerCards())"
-    }
-    
-    private var players:[Player]
-    private var playersRanks:[RankOfHands] { players.map {  $0.checkRankOfHand()  }  }
-    private var playerNames:[String] { players.map { $0.name } }
-    private var playerCards:[[Card]] { players.map{ $0.cards } }
-    
-    init(players:[Player]) {
+    private var players:Players
+    private var dealer:Dealer
+
+    init(dealer:Dealer, players:Players) {
+        self.dealer =  dealer
         self.players = players
     }
     
-    //플레이어들의 이름과 카드의 족보를 비교해 승자를 가릴 수 있게 합니다.
-    func results() -> String{
-        if isOver() {
-            let playerResults = zip(self.playerNames, self.playersRanks)
-            var stringResults:String = "게임결과 \n"
-            
-            for (name,rank) in playerResults {
-                stringResults.append("이름:\(name) 결과:\(rank) \n")
-            }
-            
-            return stringResults
-            
-        }   else { return "카드가 더이상 없습니다." }
-    }
-    
-    //플레이어들이 뽑은 카드를 전부 보여줍니다.
-    func showPlayerCards() -> String {
-        let playerCards = zip(self.playerNames, self.playerCards)
-        var stringResult:String = "카드결과 \n"
-        
-        for (name,cards) in playerCards {
-            stringResult.append("이름:\(name) 결과:\(cards) \n")
+    //딜러가 더이상 카드를 돌릴 수 없을때에는 Game에 정의된 게임의 상태를 String으로 반환하는 함수를 리턴하도록 해보았습니다.
+    //성공 혹은 에러를 뿜기 때문에 GameStatus라는 Enum타입을 하나더 정의했습니다.
+    func start() -> String {
+        if dealer.dealTheCards(players: players) {
+            return GameStatus.successedCase(results).status
         }
-        
-        return stringResult
-    }
-    
-    //player들이 가지고 있는 카드의 갯수가 모두 5 혹은 7이 아니라면 카드가 부족해서 못나누어준 경우이므로 게임을 종료합니다.
-    private func isOver() -> Bool{
-        let playerCardsCount = playerCards.map { $0.count }
-        let isOver = playerCardsCount.allSatisfy { $0 == 5 || $0 == 7 }
-        return isOver
+        return GameStatus.errorCase.status
     }
     
     
+    //총 결과
+    func results() -> String {
+        return "\(showPlayerRanks())\n\(showPlayerCards())"
+    }
+    
+    //Player들의 Rank들만 볼것인지 Card들만 볼것인지 옵션을 주려 선언했습니다.
+    func showPlayerRanks() -> String{
+        return players.WholeNamesAndResults()
+    }
+    
+    func showPlayerCards() -> String {
+        players.wholePlayerCards()
+    }
 }
+
+
+
+

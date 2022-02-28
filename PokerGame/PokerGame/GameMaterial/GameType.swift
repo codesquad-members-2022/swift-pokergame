@@ -5,12 +5,16 @@
 //  Created by 박진섭 on 2022/02/26.
 //
 
-enum GameType:Int {
-    case fiveStud = 5
-    case sevenStud = 7
+enum GameType {
+    case fiveStud
+    case sevenStud
     
     var dealCount:Int {
-        self.rawValue
+        switch self {
+        case .fiveStud:
+            return 5
+        case .sevenStud:
+            return 7
+        }
     }
-    
 }

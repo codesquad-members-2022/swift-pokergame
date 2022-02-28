@@ -17,12 +17,17 @@ final class ViewController: UIViewController {
 
         let deck = DeckFactory.makeDeck()
         
-        let players = PlayerFactory.makePlayers(mode: .threePlayer)
+        let players = PlayerFactory.makePlayers(mode: .twoPlayer)
         
-        let dealer = Dealer(deck: deck, players: players, gameType: .sevenStud)
+        let dealer = Dealer(deck: deck, gameType: .fiveStud)
         
-        let game = dealer.dealTheCards()
-        printGameResult(game: game)
+        let firstGame = Game(dealer: dealer, players: players)
+        let secondGame = Game(dealer: dealer, players: players)
+        let thirdGame = Game(dealer: dealer, players: players)
+        
+        printGameResult(game: firstGame)
+        printGameResult(game: secondGame)
+        printGameResult(game: thirdGame)
         
     }
     
@@ -62,10 +67,7 @@ final class ViewController: UIViewController {
     }
 
     func printGameResult(game:Game) {
-        print(game)
+        print(game.start())
     }
-    
-    
-    
 }
 

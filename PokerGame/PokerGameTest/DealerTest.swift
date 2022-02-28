@@ -22,28 +22,40 @@ class DealerTest: XCTestCase {
         let deck = DeckFactory.makeDeck()
         let players = PlayerFactory.makePlayers(mode: .singlePlayer)
         
-        sut = Dealer(deck: deck, players: players, gameType: .fiveStud)
-        sut = Dealer(deck: deck, players: players, gameType: .sevenStud)
+        sut = Dealer(deck: deck, gameType: .fiveStud)
+        sut = Dealer(deck: deck, gameType: .sevenStud)
     }
 
-    //fiveStud를 플레이 하는 플레이어와 SevenStud를 플레이하는 플레이어들의 카드는 딜러들이 카드를 돌리고 나면 각각 5장,7장이어야 합니다.
+    //Deck에 남아있는 카드의 수는 딜러들이 카드를 돌리고 나면 player수와 Stud에 따라 없어져야합니다.
+    //Deck에 남아있는 카드가 없다면 함수는 false를 리턴합니다.
     func testDealTheCards() {
         let deck = DeckFactory.makeDeck()
         let fiveStudPlayers = PlayerFactory.makePlayers(mode: .singlePlayer)
         let sevenStudPlayers = PlayerFactory.makePlayers(mode: .singlePlayer)
         
-        let fiveStudModeDealer = Dealer(deck: deck, players: fiveStudPlayers, gameType: .fiveStud)
-        let sevenStudModeDealer = Dealer(deck: deck, players: sevenStudPlayers, gameType: .sevenStud)
+        let fiveStudModeDealer = Dealer(deck: deck , gameType: .fiveStud)
+        let sevenStudModeDealer = Dealer(deck: deck, gameType: .sevenStud)
         
-        fiveStudModeDealer.dealTheCards()
-        sevenStudModeDealer.dealTheCards()
+        let dealFive = fiveStudModeDealer.dealTheCards(players: fiveStudPlayers)
+        let deckCountAfterFiveCardDeal = deck.count
         
-        let fiveStudCardCount = fiveStudPlayers.map { $0.cards.count }
-        let sevenStudcardCount = sevenStudPlayers.map{ $0.cards.count }
+        let dealSeven = sevenStudModeDealer.dealTheCards(players: sevenStudPlayers)
+        let deckCountAfterSeveneCardDeal = deck.count
         
-        fiveStudCardCount.forEach { XCTAssertTrue($0 == 5) }
+        //Deck의 카드를 모두 소진
+        sevenStudModeDealer.dealTheCards(players: sevenStudPlayers)
+        sevenStudModeDealer.dealTheCards(players: sevenStudPlayers)
+        sevenStudModeDealer.dealTheCards(players: sevenStudPlayers)
+        let noCardInDeckCase = sevenStudModeDealer.dealTheCards(players: sevenStudPlayers)
         
-        sevenStudcardCount.forEach { XCTAssertTrue($0 == 7) }
+        
+        
+        XCTAssertTrue(dealFive)
+        XCTAssertTrue(dealSeven)
+        XCTAssertFalse(noCardInDeckCase)
+        
+        XCTAssertEqual(deckCountAfterFiveCardDeal, 42)
+        XCTAssertEqual(deckCountAfterSeveneCardDeal, 28)
         
     }
     
