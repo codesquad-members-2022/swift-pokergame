@@ -43,13 +43,7 @@ final class Deck:Equatable {
         }
         return copyUsedCards
     }
-    
-    func removeOne()  {
-        if self.count > 0 {
-            self.usedCards.removeLast()
-        }
-    }
-    
+
     func removedOne() -> Card? {
         guard let removedCard = self.usedCards.popLast() else { return  nil}
         return removedCard

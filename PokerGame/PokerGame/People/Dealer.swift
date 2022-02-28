@@ -8,40 +8,45 @@
 import Foundation
 
 //딜러가 카드를 돌릴때마다 Deck안에 남아있는 card의 갯수를 추적해야하므로 class로 선언했다.
-class Dealer {
+final class Dealer {
     
     private var deck:Deck
     private var cards:[Card] = []
-    private var players:[Player]
     
     var gameType:GameType                                   //한 딜러가 한가지의 게임타입만 사용할수 있는 것은 이상하다고 생각해 외부에서 값을 변경할 수 있도록 설정했습니다.
     
-    init(deck:Deck, players:[Player],gameType:GameType) {
+    init(deck:Deck,gameType:GameType) {
         self.deck = deck
-        self.players = players
         self.gameType = gameType
     }
     
-    //카드를 다 나눠주고 나면 한 게임이 끝난 것이므로 Game을 리턴하도록 해보았습니다.
-    func dealTheCards() -> Game {
+    func dealTheCards(players:Players) -> Bool{
         self.deck.shuffle()                                  //카드를 나누어주기전에 보통 섞기때문에 shuffle함수를 실행했습니다.
             switch gameType {
             case .fiveStud:
-                deal(gameType:gameType)
+                deal(players: players, gameType: .fiveStud)
+                return isDeckEnough(players: players, gameType: gameType)
             case .sevenStud:
-                deal(gameType:gameType)
-            }
-        return Game(players: self.players)
+                deal(players: players, gameType: .sevenStud)
+                return isDeckEnough(players: players, gameType: gameType)
+        }
     }
     
-    private func deal(gameType:GameType) {
-        self.players.map { $0.resetCards() }                    //카드를 돌리기 전에 플레이어들의 카드를 리셋시킵니다.
+    private func isDeckEnough(players:Players, gameType:GameType) -> Bool{
+        switch gameType {
+        case .fiveStud:
+            return deck.count - players.count * 5 > 0
+        case .sevenStud:
+            return deck.count - players.count * 7 > 0
+        }
+    }
+    
+    
+    private func deal(players:Players,gameType:GameType) {
+        players.resetCards()                                    //카드를 돌리기 전에 플레이어들의 카드를 리셋시킵니다.
         for _ in 0..<gameType.dealCount { 
-            self.getTheCard()
-            for player in players {
-                guard let card = deck.removedOne() else { return }
-                player.addCard(card: card)
-            }
+            self.getTheCard()                                   //딜러 한장 받고
+            players.dealCardsForEachPlayer(deck: deck)          //플레이어들에게 한장씩 deck에서 카드를 줍니다.
         }
     }
     

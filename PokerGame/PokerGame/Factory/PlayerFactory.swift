@@ -9,7 +9,7 @@
 final class PlayerFactory {
         
     //참가자의 최대 인원이 4명이므로 Int같은 값을 주기보다는 제한된 값을 주고 싶어서 enum으로 선언했다.
-    static func makePlayers(mode:PlayerMode) -> [Player] {
+    static func makePlayers(mode:PlayerMode) -> Players {
         switch mode {
         case .singlePlayer:
             return self.singlePlayer()
@@ -23,29 +23,29 @@ final class PlayerFactory {
     }
     
     //enum에서 switch할때 타입을 맞춰주기 위해서 [player]로 타입을 맞추어 주었다.
-    private static func singlePlayer() -> [Player] {
+    private static func singlePlayer() -> Players {
         makePlayerWithNumber(number: 1)
     }
 
-    private static func twoPlayer() -> [Player] {
+    private static func twoPlayer() -> Players {
         makePlayerWithNumber(number: 2)
     }
 
-    private static func threePlayer() -> [Player] {
+    private static func threePlayer() -> Players {
         makePlayerWithNumber(number: 3)
     }
 
-    private static func FourPlayer() -> [Player] {
+    private static func FourPlayer() -> Players {
         makePlayerWithNumber(number: 4)
     }
     
-    private static func makePlayerWithNumber(number:Int) -> [Player] {
+    private static func makePlayerWithNumber(number:Int) -> Players {
         var players:[Player] = []
         for _ in 0..<number {
             let player = makePlayer()
             players.append(player)
         }
-        return players
+        return Players(players: players)
     }
     
     //MARK: -- 랜덤한 이름을 가지고 Player를 만드는 함수들.

@@ -18,18 +18,30 @@ struct Card:CustomStringConvertible,Equatable{
     
     //카드의 모양(suit)를 나타내줄 Enum
     //카드의 모양은 총 네가지로 고정되어 있으므로 예외처리를 원활하게 하기 위해서 Enum으로 설정한다.
-    enum Suit:String,CaseIterable,CustomStringConvertible {
+    enum Suit:CaseIterable,CustomStringConvertible {
         
         //description을 이용해서 값을 리턴해보자.
         var description: String {
-            return "\(self.rawValue)"
+            return "\(self.shape)"
         }
         
-        case spade = "♠️"
-        case heart = "❤️"
-        case diamond = "♦️"
-        case clover = "♣️"
+        case spade
+        case heart
+        case diamond
+        case clover
         
+        var shape:String {
+            switch self {
+            case .spade:
+                return "♠️"
+            case .heart:
+                return "❤️"
+            case .diamond:
+                return "♦️"
+            case .clover:
+                return "♣️"
+            }
+        }
     }
     
     //카드의 Rank(숫자)를 나타내줄 Enum
