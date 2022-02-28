@@ -6,7 +6,7 @@ class PokerGameTest: XCTestCase {
     private var pokerGame: PokerGame!
     
     override func setUp(){
-        pokerGame = PokerGame(numberOfPlayers: PokerGame.Count.four, stud: PokerGame.Stud.five)
+        pokerGame = PokerGame(numberOfPlayers: Players.Count.four, stud: PokerGame.Stud.five)
         super.setUp()
     }
     
