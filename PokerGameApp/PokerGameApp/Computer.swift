@@ -9,6 +9,6 @@ import Foundation
 
 struct Computer {
     enum ScoreBoard {
-        case
+        case 
     }
 }

@@ -1,5 +1,5 @@
 //
-//  Dealer.swift
+//  Player.swift
 //  PokerGameApp
 //
 //  Created by YEONGJIN JANG on 2022/02/28.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Dealer: Playable {
+class Player: Playable {
     func addCard(card: Card) {
         <#code#>
     }
@@ -20,7 +20,11 @@ class Dealer: Playable {
         <#code#>
     }
     
-    private let name = "딜러"
+    private let name: String
     private var cardDeck: [Card] = []
     private var upCards: [Card] = []
+    
+    init(name: String) {
+        self.name = name
+    }
 }
