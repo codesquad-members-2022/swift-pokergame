@@ -26,7 +26,7 @@ class PokerGame: CustomStringConvertible{
         self.stud = stud
         self.deck = CardDeck()
         self.dealer = Dealer(deck: self.deck)
-        self.players = Players(numberOfPlayers: numberOfPlayers)
+        self.players = Players(numberOfPlayers: numberOfPlayers.rawValue)
     }
         
     func start(){
