@@ -15,12 +15,18 @@
 ---
 
 ## [2/23] Step2 - 카드 데이터를 클래스로 구현하기
-- class Card, enum Number, enum Shape 생성
-- 카드 정보 출력 메서드 생성
-- 뷰 컨트롤러에서 특정 카드 인스턴스를 만들어 출력
+- [x] class Card, enum Number, enum Shape 생성
+- [x] 카드 정보 출력 메서드 생성
+- [x] 뷰 컨트롤러에서 특정 카드 인스턴스를 만들어 출력
 
 ---
 
 ## [2/25] Step3 - 카드 덱 구조체와 관련 메서드 구현하기
-- struct Deck 생성
-- Deck의 메서드 - count, shuffle, removeOne, reset 구현
+- [x] struct Deck 생성
+- [x] Deck의 메서드 - count, shuffle, removeOne, reset 구현
+
+---
+
+## [2/26, 2/28] Step4 - 게임 로직 구현 및 테스트하기
+- [x] Pokergame, Dealer, Player 생성
+- [x] 7카드-스터드 방식으로 플레이어 3명과 딜러에게 카드 배분 로직 구현
