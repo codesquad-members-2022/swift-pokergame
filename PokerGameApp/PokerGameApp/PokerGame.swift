@@ -32,23 +32,77 @@ struct PokerGame {
         }
 
         dealer = Dealer()
-
-        var totalCardCount = getTotalCardCount()
+        
+        var availableTurnCount = (52 / cardStud) / (playersCount + 1) // 총 가능한 턴 수
+        while availableTurnCount != 0 {
+            distribute(numberOfParticipants: playersCount + 1)  // 참여자들 (딜러, 플레이어)에게 cardStud만큼 카드 분배.
+            availableTurnCount -= 1
+        }
         
         
-//        // 배분할 카드 수 < 참여자 + 딜러 수이거나, 전체 카드 수가 0이면 종료
-//        while !(totalCardCount < playersCount + 1) && totalCardCount != 0 {
-//            guard let distributedCardCount = dealer?.distributeCard(to: &players) else {
-//                break
-//            }
-//            totalCardCount -= distributedCardCount
-//
-//            if dealer?.cards.count == PokerGame.cardStud { // 카드 5장 분배하면 종료..
-//                break
-//            }
-//        }
+    }
+    
+    
+    // Participant에게 cardStud만큼 카드를 분배합니다.
+    mutating func distribute(numberOfParticipants: Int) {
+        var distributedCardCount = 0 // 한 턴에서 분배한 카드 수
         
+        for _ in 0..<cardStud {
+            guard let dealerCard = getCardOfDealer() else {
+                return
+            }
+            dealer?.cards = dealerCard
+            distributedCardCount += 1
+            
+            for player in 0..<players.count {
+                guard let cards = getCard(of: players[player]) else {
+                    return
+                }
+                
+                players[player].cards = cards
+                distributedCardCount += 1
+            }
+        }
+    }
+    
+    
+    // 딜러가 전체 카드덱에서 카드를 한 장 뽑고, 그 카드를 자신의 카드 배열에 추가합니다.
+    mutating func getCardOfDealer() -> [Card]? {
+        guard let cardStatus = dealer?.remove(card: totalCards) else {
+            return nil
+        }
         
+        guard let card = cardStatus.0 else {
+            return nil
+        }
+        
+        guard let totalCard = cardStatus.1 else {
+            return nil
+        }
+        
+        dealer?.receive(card: card) // 뽑은 카드를 자신의 배열에 추가하기
+        self.totalCards = totalCard // 전체 카드덱 업데이트
+        return dealer?.cards // 딜러의 카드 배열 리턴
+    }
+    
+    
+    mutating func getCard(of player: Player) -> [Card]? {
+        var currentPlayer = player
+        guard let cardStatus = dealer?.remove(card: totalCards) else {
+            return nil
+        }
+        
+        guard let card = cardStatus.0 else {
+            return nil
+        }
+        
+        guard let totalCard = cardStatus.1 else {
+            return nil
+        }
+        
+        currentPlayer.receive(card: card) // 받은 카드를 자신의 배열에 추가하기
+        self.totalCards = totalCard // 전체 카드덱 업데이트
+        return currentPlayer.cards // 플레이어의 카드 배열 리턴
     }
     
     
