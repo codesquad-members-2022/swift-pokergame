@@ -13,7 +13,6 @@ class PokerGame: CustomStringConvertible{
         case seven = 7
     }
     
-    
     private (set) var stud: Stud
     private (set) var deck: CardDeck
     var dealer: Dealer
@@ -26,7 +25,16 @@ class PokerGame: CustomStringConvertible{
         self.stud = stud
         self.deck = CardDeck()
         self.dealer = Dealer(deck: self.deck)
-        self.players = Players(numberOfPlayers: numberOfPlayers.rawValue)
+
+        var randomNames = ["dale","eddy","jee","foucault","sol"]
+        self.players = Players(creatingLoop: {
+            var players: [Player] = []
+            for _ in 0..<numberOfPlayers.rawValue{
+                guard let playerName = randomNames.popLast() else { continue }
+                players.append(Player(name: playerName))
+            }
+            return players
+        })
     }
         
     func start(){
