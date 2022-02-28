@@ -11,7 +11,6 @@ enum PokerGameError: Error {
     case invalidDealer
     case invalidCardPicked
     case invalidTotalCard
-    
     case invalidDistributeToDealer
     case invalidDistributeToPlayer
 }
