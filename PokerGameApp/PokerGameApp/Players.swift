@@ -1,6 +1,20 @@
 import Foundation
 
 class Players: CustomStringConvertible{
+    
+    internal enum Count: Int, CaseIterable{
+        case two = 2
+        case three = 3
+        case four = 4
+        
+        func creatingLoop(loop: ()->Void){
+            for _ in 0..<self.rawValue{
+                loop()
+            }
+        }
+    }
+    
+    private var randomNames = ["dale","eddy","jee","foucault","sol"]
     private var players: [Player] = []
     var count: Int{
         return players.count
@@ -9,9 +23,14 @@ class Players: CustomStringConvertible{
         return players.description
     }
     
-    init(creatingLoop: ()->[Player]){
-        for player in creatingLoop(){
-            self.players.append(player)
+    init(numberOfPlayers: Count){
+        createPlayers(numberOfPlayers: numberOfPlayers)
+    }
+    
+    func createPlayers(numberOfPlayers: Count){
+        numberOfPlayers.creatingLoop {
+            guard let playerName = randomNames.popLast() else { return }
+            players.append(Player(name: playerName))
         }
     }
             
