@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  PokerGameApp
-//
-//  Created by YEONGJIN JANG on 2022/02/21.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -26,8 +19,18 @@ class ViewController: UIViewController {
         //아직까진 둘 다로 선언해 보았을 때 그 차이를 모르겠다. 일단 let으로 하는게 좋은듯?!
         let deck: CardDeck = CardDeck()
         deck.reset()
-        deck.shuffle()
-        deck.removeOne()
+        do {
+            try deck.shuffle()
+        }
+        catch {
+            print("카드가 없습니다.")
+        }
+        do  {
+            try deck.removeOne()
+        }
+        catch {
+            print("카드가 없습니다.")
+        }
         print(deck.cardCount)
     }
     
