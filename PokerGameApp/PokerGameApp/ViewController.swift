@@ -28,7 +28,9 @@ class ViewController: UIViewController {
             self.view.addSubview(cardBackView)
         }
         
-        testMethod()
+        let pokerGame = PokerGame()
+        pokerGame.setCards()
+        pokerGame.printStatus()
         
     }
     
