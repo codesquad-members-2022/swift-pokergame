@@ -15,13 +15,14 @@
 		1B6FEFDE27CB1C6A00613870 /* PokerParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6FEFDD27CB1C6A00613870 /* PokerParticipant.swift */; };
 		1B6FEFE027CB1C7C00613870 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6FEFDF27CB1C7C00613870 /* Dealer.swift */; };
 		1B6FEFE227CB298000613870 /* GameMembers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6FEFE127CB297F00613870 /* GameMembers.swift */; };
+		1B6FF02227CC610400613870 /* PokerCardCountTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6FF02127CC610400613870 /* PokerCardCountTestCase.swift */; };
 		1BAF190D27C6298500317699 /* Card+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF190C27C6298500317699 /* Card+Extension.swift */; };
 		1BEB000127C332BF005738B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB000027C332BF005738B5 /* SceneDelegate.swift */; };
 		1BEB000327C332BF005738B5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB000227C332BF005738B5 /* ViewController.swift */; };
 		1BEB000627C332BF005738B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BEB000427C332BF005738B5 /* Main.storyboard */; };
 		1BEB000827C332C1005738B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BEB000727C332C1005738B5 /* Assets.xcassets */; };
 		1BEB000B27C332C1005738B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BEB000927C332C1005738B5 /* LaunchScreen.storyboard */; };
-		1BEB001627C332C1005738B5 /* PokerGameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB001527C332C1005738B5 /* PokerGameAppTests.swift */; };
+		1BEB001627C332C1005738B5 /* PokerGameLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB001527C332C1005738B5 /* PokerGameLogicTests.swift */; };
 		1BEB002027C332C1005738B5 /* PokerGameAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB001F27C332C1005738B5 /* PokerGameAppUITests.swift */; };
 		1BEB002227C332C1005738B5 /* PokerGameAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB002127C332C1005738B5 /* PokerGameAppUITestsLaunchTests.swift */; };
 		1BEB002F27C33583005738B5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1BEB002E27C33583005738B5 /* README.md */; };
@@ -57,6 +58,7 @@
 		1B6FEFDD27CB1C6A00613870 /* PokerParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerParticipant.swift; sourceTree = "<group>"; };
 		1B6FEFDF27CB1C7C00613870 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		1B6FEFE127CB297F00613870 /* GameMembers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMembers.swift; sourceTree = "<group>"; };
+		1B6FF02127CC610400613870 /* PokerCardCountTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerCardCountTestCase.swift; sourceTree = "<group>"; };
 		1BAF190C27C6298500317699 /* Card+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+Extension.swift"; sourceTree = "<group>"; };
 		1BEB000027C332BF005738B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1BEB000227C332BF005738B5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -65,7 +67,7 @@
 		1BEB000A27C332C1005738B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1BEB000C27C332C1005738B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BEB001127C332C1005738B5 /* PokerGameAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerGameAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1BEB001527C332C1005738B5 /* PokerGameAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameAppTests.swift; sourceTree = "<group>"; };
+		1BEB001527C332C1005738B5 /* PokerGameLogicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameLogicTests.swift; sourceTree = "<group>"; };
 		1BEB001B27C332C1005738B5 /* PokerGameAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerGameAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEB001F27C332C1005738B5 /* PokerGameAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameAppUITests.swift; sourceTree = "<group>"; };
 		1BEB002127C332C1005738B5 /* PokerGameAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -115,7 +117,8 @@
 		1BEB001427C332C1005738B5 /* PokerGameAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				1BEB001527C332C1005738B5 /* PokerGameAppTests.swift */,
+				1B6FF02127CC610400613870 /* PokerCardCountTestCase.swift */,
+				1BEB001527C332C1005738B5 /* PokerGameLogicTests.swift */,
 			);
 			path = PokerGameAppTests;
 			sourceTree = "<group>";
@@ -309,7 +312,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BEB001627C332C1005738B5 /* PokerGameAppTests.swift in Sources */,
+				1BEB001627C332C1005738B5 /* PokerGameLogicTests.swift in Sources */,
+				1B6FF02227CC610400613870 /* PokerCardCountTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
