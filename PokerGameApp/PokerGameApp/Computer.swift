@@ -20,14 +20,11 @@ class Computer {
         case straightFlush
         case royalStraightFlush
     }
-    private var players: [Playable]
-    init(dealer: Dealer, players: [Player]) {
-        self.players.append(dealer)
-        for player in players {
-            self.players.append(player)
-        }
+
+    func compare(players: [Playable]) {
+        
     }
-    func getHand(players: [Playable]) {
+    func compute(Deck: [Card]) -> Hands {
         
     }
 }

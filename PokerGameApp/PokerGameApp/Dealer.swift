@@ -42,7 +42,7 @@ class Dealer: Playable {
         return cardsString
     }
     
-    func getHand(cards: [Card], computer: Computer) {
+    func getHand(playerDeck: [Card], computer: Computer) {
         
     }
     func giveCard2Player(players: [Playable], deck: CardDeck) throws -> Card {
