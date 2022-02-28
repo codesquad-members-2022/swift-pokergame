@@ -21,7 +21,7 @@ class Dealer: Playable {
         return cardsString
     }
     
-    func addCard(deck: CardDeck, round: Int) -> Card {
+    func addCard(card: Card, round: Int) {
         <#code#>
     }
     
@@ -38,5 +38,8 @@ class Dealer: Playable {
     
     func getHand(cards: [Card], computer: Computer) {
         
+    }
+    func giveCard2Player(player: [Player]) -> Card {
+        PockerGame.round
     }
 }
