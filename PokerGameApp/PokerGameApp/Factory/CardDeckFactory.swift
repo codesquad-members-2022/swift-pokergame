@@ -7,7 +7,6 @@
 
 import Foundation
 
-/// 팩토리는 왜 Static 으로 선언하는지 조사
 protocol Factory {
     associatedtype T
     static func create() -> T
@@ -34,3 +33,4 @@ struct CardDeckFactory: Factory {
         return CardDeck(cards: cards)
     }
 }
+

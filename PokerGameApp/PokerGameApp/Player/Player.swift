@@ -7,8 +7,11 @@
 
 import Foundation
 
-/// 프로토콜로 딜러와 함께 공통화 가능한지?
-class Player {
+protocol Gambler {
+    func receive(card: Card)
+}
+
+class Player: Gambler {
     // MARK: - Properties
     private(set) var cards = Array<Card>()
     private let name: String
@@ -23,3 +26,4 @@ class Player {
         self.cards.append(card)
     }
 }
+
