@@ -126,4 +126,46 @@ arrangedSubviews나 UIStackView 객체 자체의 속성에 직접 접근하여 �
 
 - [x] Poker Game Logic을 구현해 보았습니다.
 - [x] Poker Game 테스트를 위해 테스트 타겟에 Poker 관련 로직을 실행시켜 보았습니다.
-- [ ] 테스트 관련 추가 자료조사를 통해 좀 더 좋은 테스트 환경을 구축합니다.
+- [x] 테스트 관련 추가 자료조사를 통해 좀 더 좋은 테스트 환경을 구축합니다.
+- [x] 테스트에 적합하도록 객체를 수정합니다.
+
+---
+
+## Defining Test Cases and Test Methods ([Article](https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods))
+
+> 테스트 타겟에 테스트 케이스와 테스트 메소드를 넣음으로써 코드가 예상한 대로 동작할 것임을 확실히 할 수 있다.
+
+### 개요
+
+Xcode 프로젝트에 테스트를 추가하고 다수의 테스트 메소드를 추가하여 작성된 코드의 여러 측면을 검증할 수 있습니다.   
+연관된 테스트 메소드들을 XCTestCase의 서브클래스인 테스트 케이스로 그룹화 합니다.
+
+테스트를 프로젝트의 넣기 위해서는:   
+* 테스트 타겟 안에 XCTestCase 서브클래스를 생성합니다.
+* 테스트 케이스에 다수의 테스트 메소드를 넣습니다.
+* 여러 개의 테스트 선언을 각 테스트 메소드에 넣습니다.
+
+테스트 메소드는 XCTestCase의 서브클래스 메소드이며 파라미터, 리턴값이 없습니다. 이름은 소문자 'test'로 시작합니다. 테스트 메소드들은 XCTest 프레임워크에 의해 자동으로 감지됩니다.
+
+```swift
+class TableValidateionTests: XCTestCase {
+    // Tests that a now table instance has zero rows and columns
+    func testEmptyTableRowAndColumnCount() {
+        let table = Table()
+        XCTAssertEqual(table.rowCount, 0, "Row count was not zero.")
+        XCTAssertEqual(table.columnCount, 0, "Column count was not zero.)
+    }
+}
+```
+
+위의 예시는 ```testEmptyTableRowAndColumnCount()```하나의 테스트 메소드를 갖습니다. 이 메소드는 Table 객체를 생성한 후, rowCount와 columnCount 프로퍼티 양쪽이 모두 0인지 검사합니다.
+
+_Tip_   
+_테스트 케이스와 테스트 메소드 이름은 Xcode의 test navigator, test integration 에서 테스트를 그룹화 하고 식별하기 위해 사용됩니다._   
+_테스트들을 명확히 하기 위해, 각각의 테스트 케이스의 이름으로 테스트를 요약하세요(TableValidationTests, NetworkReachabilityTest, JSONParsingTests 등)._   
+_failing tests 를 잘 알아보기 위해서도 위의 방법을 쓰는 것이 용이합니다(testEmptyTableRowAndColumnCount(), testUnreachableURLAccessThrowsAnError(), testUserJSONFeedParsing() 등)_
+
+### 테스트 조건 선언
+
+테스트 메소드 안에서 조건 선언을 통해 코드가 의도대로 동작하고 있는지 표현할 수 있습니다.   
+XCTAssert 류의 함수들을 이용하여 Boolean, nil, non-nil, expected values, throw error 등을 체크할 수 있습니다.
