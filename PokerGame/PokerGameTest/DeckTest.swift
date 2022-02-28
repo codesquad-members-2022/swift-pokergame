@@ -53,7 +53,7 @@ class DeckTest: XCTestCase {
             count += 1
             deck.removeOne()
             
-            XCTAssertTrue(deck.count == originCount)
+            XCTAssertTrue(deck.count + count == originCount)
     }
 }
     
