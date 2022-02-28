@@ -74,13 +74,10 @@ enum SymbolInt: Int, CaseIterable {
     case jack = 11
     case queen = 12
     case king = 13
-
 }
 
 extension Symbol: CustomStringConvertible {
     var description: String {
         return self.symbolString.rawValue
     }
-    
-    
 }
