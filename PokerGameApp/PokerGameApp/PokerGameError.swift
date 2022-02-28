@@ -8,5 +8,6 @@
 import Foundation
 
 enum PokerGameError: Error {
-    case CardIsEmpty
+    case cardIsEmpty
+    case gameOver
 }

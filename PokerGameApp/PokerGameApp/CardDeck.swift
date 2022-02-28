@@ -20,9 +20,9 @@ class CardDeck {
 
     func shuffle() throws -> [Card] {
         guard !deck.isEmpty else {
-            throw PokerGameError.CardIsEmpty
+            throw PokerGameError.cardIsEmpty
         }
-        let count = cardCount
+        let count = cardCount	
         for i in 0..<count - 1 {   // 0 ~ n - 2
             let randomIndex = Int.random(in: i..<count)
             let temp = deck[i]
@@ -34,7 +34,7 @@ class CardDeck {
     
     func removeOne() throws -> Card {
         guard !deck.isEmpty else {
-            throw PokerGameError.CardIsEmpty
+            throw PokerGameError.gameOver
         }
         return deck.removeFirst()
     }
