@@ -21,7 +21,7 @@ class Player {
         return self.rankOfHand
     }
     
-    func getTheCard(card:Card) {
+    func addCard(card:Card) {
         cards.append(card)
     }
     

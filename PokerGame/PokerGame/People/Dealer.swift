@@ -40,7 +40,7 @@ class Dealer {
             self.getTheCard()
             for player in players {
                 guard let card = deck.removedOne() else { return }
-                player.getTheCard(card: card)
+                player.addCard(card: card)
             }
         }
     }
