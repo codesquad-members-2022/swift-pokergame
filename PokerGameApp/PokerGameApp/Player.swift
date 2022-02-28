@@ -6,6 +6,9 @@ class Player: CustomStringConvertible{
         return self.name
     }
     private var cards: Cards
+    var cardsCount: Int{
+        return self.cards.count
+    }
     var description: String{
         return "\(name) \(cards)"
     }
