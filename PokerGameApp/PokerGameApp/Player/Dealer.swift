@@ -9,7 +9,7 @@ import Foundation
 
 protocol DealerDelegate {
     var players: [Gambler] { get }
-    func gameEnd()
+    func gameWillEnd()
 }
 
 final class Dealer: Player {
@@ -20,7 +20,7 @@ final class Dealer: Player {
     }
     
     private var cardDeck: CardDeck
-    private var isDeckEmpty: Bool {
+    private var hasEmptyDeck: Bool {
         return self.cardDeck.count == 0
     }
     
@@ -41,18 +41,38 @@ final class Dealer: Player {
     }
     
     private func distributeCards() {
-        for _ in 1...rule.rawValue {
+        guard let players = self.delegate?.players else { return }
+        
+        for _ in 1...self.rule.rawValue {
             self.drawCard(for: self)
-            for player in self.delegate?.players ?? [] {
+            
+            for player in players {
                 self.drawCard(for: player)
             }
         }
     }
     
+    private func prepare() {
+        if self.hasEmptyDeck || self.shoudEndGame() {
+            self.cardDeck.reset()
+            self.cardDeck.shuffle()
+        }
+    }
+    
+    private func shoudEndGame() -> Bool {
+        guard let players = self.delegate?.players else { return true }
+        let minimumRequirement = (players.count + 1) * self.rule.rawValue
+        return minimumRequirement > self.cardDeck.count
+    }
+    
     func play() {
-        self.cardDeck.shuffle()
+        self.prepare()
         self.distributeCards()
-        self.delegate?.gameEnd()
+        self.delegate?.gameWillEnd()
+        
+        if self.shoudEndGame() {
+            self.play()
+        }
     }
 }
 
