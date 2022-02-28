@@ -19,6 +19,7 @@
 		8D69077027CA3BCB00F78A51 /* PlayerMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D69076F27CA3BCB00F78A51 /* PlayerMode.swift */; };
 		8D69077427CA4B1000F78A51 /* GameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D69077327CA4B1000F78A51 /* GameType.swift */; };
 		8D69077627CAE25000F78A51 /* DealerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D69077527CAE25000F78A51 /* DealerTest.swift */; };
+		8D69077827CB1A9B00F78A51 /* GameTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D69077727CB1A9B00F78A51 /* GameTest.swift */; };
 		8DB01A6927C4F29100B705E3 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB01A6827C4F29100B705E3 /* Card.swift */; };
 		8DB8078427C3275100085063 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB8078327C3275100085063 /* AppDelegate.swift */; };
 		8DB8078627C3275100085063 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB8078527C3275100085063 /* SceneDelegate.swift */; };
@@ -53,6 +54,7 @@
 		8D69076F27CA3BCB00F78A51 /* PlayerMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMode.swift; sourceTree = "<group>"; };
 		8D69077327CA4B1000F78A51 /* GameType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameType.swift; sourceTree = "<group>"; };
 		8D69077527CAE25000F78A51 /* DealerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerTest.swift; sourceTree = "<group>"; };
+		8D69077727CB1A9B00F78A51 /* GameTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTest.swift; sourceTree = "<group>"; };
 		8DB01A6827C4F29100B705E3 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		8DB8078027C3275100085063 /* PokerGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB8078327C3275100085063 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				8D69076D27CA37FD00F78A51 /* PlayerFactoryTest.swift */,
 				8D69074F27C87BC200F78A51 /* DeckTest.swift */,
 				8D69077527CAE25000F78A51 /* DealerTest.swift */,
+				8D69077727CB1A9B00F78A51 /* GameTest.swift */,
 			);
 			path = PokerGameTest;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				8D69077627CAE25000F78A51 /* DealerTest.swift in Sources */,
 				8D69075027C87BC200F78A51 /* DeckTest.swift in Sources */,
 				8D69076E27CA37FD00F78A51 /* PlayerFactoryTest.swift in Sources */,
+				8D69077827CB1A9B00F78A51 /* GameTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

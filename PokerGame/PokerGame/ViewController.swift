@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 final class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -14,30 +15,18 @@ final class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: Image.backgroundPatternImage) //ViewBackground Pattern
         putCardsOnView(originX: 0, y: 40, count: 7,inset: 10) //여러개의 카드 View에 올리기
 
-        let deckfactory = DeckFactory()
-        let playerFactory = PlayerFactory()
+        let deck = DeckFactory.makeDeck()
         
-        let deck = deckfactory.makeDeck()
-        
-        let players = playerFactory.makePlayers(mode: .threePlayer)
+        let players = PlayerFactory.makePlayers(mode: .threePlayer)
         
         let dealer = Dealer(deck: deck, players: players, gameType: .sevenStud)
         
         let game = dealer.dealTheCards()
         printGameResult(game: game)
         
-        let game1 = dealer.dealTheCards()
-        printGameResult(game: game1)
-        
-        let game2 = dealer.dealTheCards()
-        printGameResult(game: game2)
-        
-        let game3 = dealer.dealTheCards()
-        printGameResult(game: game3)
-
-        
-        
     }
+    
+    
     
     //putCardOnView함수를 몇번 실행할지 정하는 함수
     //ViewDidLoad를 좀 더 깔끔하게 만들기 위해 만들었다.
