@@ -20,4 +20,13 @@ class Player {
     func addCard(_ card: Card) {
         cards.append(card)
     }
+    
+    func printName() {
+        print(self.name)
+    }
+    
+    func printCards() {
+        print("Player \(self.name)'s cards : ")
+        print(cards)
+    }
 }

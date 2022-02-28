@@ -37,4 +37,12 @@ class Dealer {
         return deck.count()
     }
     
+    func printDeck() {
+        print(deck)
+    }
+    
+    func printCards() {
+        print("Dealer's cards : ")
+        print(cards)
+    }
 }
