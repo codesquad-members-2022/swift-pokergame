@@ -7,15 +7,21 @@
 
 import Foundation
 
+/// 딜리게이트 패턴 추가학습할 것
 protocol DealerDelegate {
+    /// 본인이 관리할 필요가 없는 속성, 메서드 위임
     var players: [Player] { get }
-    func draw(card: Card, for player: Player)
+    func distribute(card: Card, for player: Player)
     func gameEnd()
 }
 
 final class Dealer: Player {
     // MARK: - Properties
     private var cardDeck: CardDeck
+    private var isDeckEmpty: Bool {
+        return self.cardDeck.count == 0
+    }
+    
     var delegate: DealerDelegate?
     
     // MARK: - Initializer
@@ -25,19 +31,25 @@ final class Dealer: Player {
     }
     
     // MARK: - Methods
-    func draw() {
-        // 딜러가 뽑아서 플레이어별로 뽑은 카드 전달
+    private func drawCard(for player: Player) {
         guard let card = self.cardDeck.removeOne() else {
             self.delegate?.gameEnd()
             return
         }
-        
-        // 딜러 자신의 카드
-        self.receive(card: card)
+            
+        player.receive(card: card)
+    }
+    
+    func draw() {
+        self.drawCard(for: self)
         
         // 플레이어가 받을 카드를 뽑고 누구에게 전달할지는 PokerGame 에게 위임
         for player in self.delegate?.players ?? [] {
-            self.delegate?.draw(card: card, for: player)
+            guard let card = self.cardDeck.removeOne() else {
+                break
+            }
+            
+            self.delegate?.distribute(card: card, for: player)
         }
     }
 }

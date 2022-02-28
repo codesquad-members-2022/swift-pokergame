@@ -7,10 +7,11 @@
 
 import Foundation
 
+/// 프로토콜로 딜러와 함께 공통화 가능한지?
 class Player {
     // MARK: - Properties
-    let name: String
-    var cards = Array<Card>()
+    private(set) var cards = Array<Card>()
+    private let name: String
     
     // MARK: - Initializer
     init(name: String) {

@@ -7,28 +7,31 @@
 
 import Foundation
 
-struct PokerGame: DealerDelegate {
+struct PokerGame {
     enum Rule: Int {
         case fiveCardStud = 5
         case sevenCardStud = 7
     }
 
     // MARK: - Properties
-    private let dealer: Dealer
     private(set) var players: [Player] = []
+    private let dealer: Dealer
     private var rule: Rule
     
     init(rule: Rule) {
         let deck = CardDeckFactory.create()
         self.dealer = Dealer(deck: deck)
         self.rule = rule
+        self.dealer.delegate = self
+        
     }
     
-    // MARK: - Methods
-    private func playByFiveCardStud() {}
+    // MARK: - Private Methods
+    private func determineWinner() {
+        
+    }
     
-    private func playBySevenCardStud() {}
-    
+    // MARK: - Public Methods
     mutating func setPlayers(names: [String]) {
         if !self.players.isEmpty {
             self.players = []
@@ -43,22 +46,27 @@ struct PokerGame: DealerDelegate {
         self.rule = rule
     }
     
-    mutating func play(by rule: Self.Rule) {
+    mutating func run(by rule: Self.Rule) {
         if self.players.isEmpty {
             self.setPlayers(names: ["JK", "Honux", "Cron", "Ivy"])
         }
         
-        switch rule {
-        case .fiveCardStud:
-            return
-        case .sevenCardStud:
-            return
+        let round = self.rule.rawValue
+        
+        for _ in 1...round {
+            self.dealer.draw()
+            
+            for player in self.players {
+                self.dealer.draw()
+            }
         }
-    
+        
+        self.determineWinner()
     }
-    
-    // MARK: - Delegate Methods
-    func draw(card: Card, for player: Player) {
+}
+
+extension PokerGame: DealerDelegate {
+    func distribute(card: Card, for player: Player) {
         player.receive(card: card)
     }
     
