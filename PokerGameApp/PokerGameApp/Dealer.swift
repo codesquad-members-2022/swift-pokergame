@@ -10,11 +10,11 @@ import Foundation
 class Dealer: Playable {
     var name: String = "딜러"
     var hand: Computer.Hands = .highCard
-    var cardDeck: [Card] = []
+    var playerDeck: [Card] = []
     var upCards: [Card] = []
     
     func openAllCards() -> String {
-        var cardsString: String = cardDeck.reduce("[ ") {
+        var cardsString: String = playerDeck.reduce("[ ") {
             return $0.description + "," + $1.description
         }
         cardsString.append(" ]")
@@ -22,7 +22,13 @@ class Dealer: Playable {
     }
     
     func addCard(card: Card, round: Int) {
-        <#code#>
+        switch round {
+        case 1,4...6:
+            upCards.append(card)
+            fallthrough
+        default:
+            playerDeck.append(card)
+        }
     }
     
     func showUpCards() -> String {
