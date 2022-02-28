@@ -19,8 +19,8 @@ class Player: CustomStringConvertible{
         self.cards.addCard(card)
     }
     
-    func takeOutCard()-> Card?{
-        guard let card = self.cards.removeOne() else { return nil }
-        return card
+    func getCardsIterator() -> IndexingIterator<[Card]>{
+        return self.cards.getIterator()
     }
+
 }
