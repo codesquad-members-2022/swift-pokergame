@@ -1,8 +1,6 @@
 import Foundation
 
 class Players: CustomStringConvertible{
-    
-    private var randomNames = ["dale","eddy","jee","foucault","sol"]
     private var players: [Player] = []
     var count: Int{
         return players.count
@@ -11,18 +9,12 @@ class Players: CustomStringConvertible{
         return players.description
     }
     
-    init(numberOfPlayers: Int){
-        self.randomNames.shuffle()
-        createPlayers(numberOfPlayers: numberOfPlayers)
-    }
-        
-    func createPlayers(numberOfPlayers: Int){
-        for _ in 0..<numberOfPlayers{
-            guard let playerName = randomNames.popLast() else { continue }
-            players.append(Player(name: playerName))
+    init(creatingLoop: ()->[Player]){
+        for player in creatingLoop(){
+            self.players.append(player)
         }
     }
-    
+            
     func addPlayer(_ player: Player){
         self.players.append(player)
     }
