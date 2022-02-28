@@ -9,11 +9,8 @@ class Dealer: Player{
         super.init(name: "딜러")
     }
     
-    func takeOutAllNecessaryCards(count: Int){
-  
-        for _ in 0..<count{
-            guard let card = self.deck.removeOne() else { continue }
-            super.addCard(card)
-        }
+    func takeOutCard()-> Card?{
+        guard let card = self.deck.removeOne() else { return nil }
+        return card
     }
 }
