@@ -20,9 +20,9 @@ class PokerGameTest: XCTestCase {
         pokerGame.start()
         var playerIterator = pokerGame.players.getIterator(additionalPlayer: nil)
         while let player = playerIterator.next(){
-            XCTAssertEqual(player.cards.count, pokerGame.stud.rawValue)
+            XCTAssertEqual(player.cardsCount, pokerGame.stud.rawValue)
         }
-        XCTAssertEqual(pokerGame.dealer.cards.count, pokerGame.stud.rawValue)
+        XCTAssertEqual(pokerGame.dealer.cardsCount, pokerGame.stud.rawValue)
     }
 
 }
