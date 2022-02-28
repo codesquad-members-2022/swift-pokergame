@@ -1,6 +1,7 @@
 import Foundation
 
 class Player: CustomStringConvertible{
+    
     private var name: String
     var currentName: String{
         return self.name
