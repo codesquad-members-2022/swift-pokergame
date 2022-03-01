@@ -10,13 +10,6 @@ import UIKit
 
 class Card {
     
-    enum Shape: String {
-        case spades = "♠︎"
-        case hearts = "♥︎"
-        case clubs = "♣︎"
-        case diamonds = "♦︎"
-    }
-    
     let shape: Shape
     let symbol: Symbol
     
@@ -29,12 +22,6 @@ class Card {
 extension Card: CustomStringConvertible {
     var description: String {
         return "\(shape.description)\(symbol.description)"
-    }
-}
-
-extension Card.Shape: CustomStringConvertible {
-    var description: String {
-        return "\(self.rawValue)"
     }
 }
 
