@@ -20,10 +20,7 @@ class Card {
     let shape: Shape
     let symbol: Symbol
     
-    init?(shape: Shape, symbol: Symbol) {
-        if SymbolInt.init(rawValue: symbol.symbolInt.rawValue) == nil {
-            return nil
-        }
+    init(shape: Shape, symbol: Symbol) {
         self.shape = shape
         self.symbol = symbol
     }
