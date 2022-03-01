@@ -30,17 +30,17 @@ class GameTest: XCTestCase {
         
         sut = Game(dealer: dealer, players: players)
         
-        let noErrorResult = sut.start()                               //함수실행시 오류를 나타내는 String이 리턴되지 않아야합니다.
+        let noErrorResult = sut.start().status                            //함수실행시 오류를 나타내는 String이 리턴되지 않아야합니다.
         
         sut.start()
         sut.start()
         sut.start()
         
-        let errorResult = sut.start()
+        let errorResult = sut.start().status
         
-        XCTAssertNotEqual(noErrorResult, GameStatus.errorCase.status)
+        XCTAssertNotEqual(noErrorResult, GameStatus.error.status)
         
-        XCTAssertEqual(errorResult, GameStatus.errorCase.status)
+        XCTAssertEqual(errorResult, GameStatus.error.status)
         
     }
 

@@ -19,11 +19,11 @@ public class Game {
     
     //딜러가 더이상 카드를 돌릴 수 없을때에는 Game에 정의된 게임의 상태를 String으로 반환하는 함수를 리턴하도록 해보았습니다.
     //성공 혹은 에러를 뿜기 때문에 GameStatus라는 Enum타입을 하나더 정의했습니다.
-    func start() -> String {
+    func start() -> GameStatus {
         if dealer.dealTheCards(players: players) {
-            return GameStatus.successedCase(results).status
+            return GameStatus.successed(results)
         }
-        return GameStatus.errorCase.status
+        return GameStatus.error
     }
     
     

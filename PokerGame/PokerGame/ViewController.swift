@@ -67,7 +67,7 @@ final class ViewController: UIViewController {
     }
 
     func printGameResult(game:Game) {
-        print(game.start())
+        print(game.start().status)
     }
 }
 
