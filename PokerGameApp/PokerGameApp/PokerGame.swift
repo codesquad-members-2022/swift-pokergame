@@ -11,7 +11,7 @@ import Foundation
 class PokerGame {
     
     private let stud: Stud
-    private let playerCount: Int
+    private let playerCount: PlayerCount
     private var dealer: Dealer
     private var players: Players
 
@@ -20,11 +20,18 @@ class PokerGame {
         case seven = 7
     }
     
-    init(stud: Stud, playerCount: Int){
+    enum PlayerCount: Int {
+        case one = 1
+        case two
+        case trhee
+        case four
+    }
+    
+    init(stud: Stud, playerCount: PlayerCount){
         self.stud = stud
         self.playerCount = playerCount
         dealer = Dealer()
-        players = Players(playerCount: playerCount, dealer: dealer)
+        players = Players(playerCount: playerCount.rawValue, dealer: dealer)
     }
     
     
