@@ -34,6 +34,8 @@ class ViewController: UIViewController {
         let bounds: CGRect = UIScreen.main.bounds // (0.0, 0.0, 390.0, 844.0)
         return bounds.width
     }
+    
+    // Image 생성하여 반환
     private func createCardImage() -> UIImageView {
         let imageCard = UIImageView()
         imageCard.image = UIImage(named: "card-back.png")
@@ -51,7 +53,6 @@ class ViewController: UIViewController {
             let cardCoordinateY = CGFloat(50)
             
             card.frame = CGRect(x: cardCoordinateX, y: cardCoordinateY, width: cardWidth, height: cardHeight)
-            
             view.addSubview(card)
         }
     }
