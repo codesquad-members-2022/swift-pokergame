@@ -101,34 +101,22 @@ class PockerGame{
         
     }
     
-    enum Variants: CaseIterable{
-        case fiveCardStud
-        case sevenCardStud
+    enum Variants: Int, CaseIterable{
+        case fiveCardStud = 5
+        case sevenCardStud = 7
         
-        var caseNumber: Int{
-            switch self {
-            case .fiveCardStud:
-                return 5
-            case .sevenCardStud:
-                return 7
-            }
+        func caseNumber() -> Int{
+            return self.rawValue
         }
     }
     
-    enum Entries: CaseIterable{
-        case two
-        case three
-        case four
+    enum Entries: Int, CaseIterable{
+        case two = 2
+        case three = 3
+        case four = 4
         
-        var caseNumber: Int{
-            switch self {
-            case .two:
-                return 2
-            case .three:
-                return 3
-            case .four:
-                return 4
-            }
+        func caseNumber() -> Int{
+            return self.rawValue
         }
     }
 }

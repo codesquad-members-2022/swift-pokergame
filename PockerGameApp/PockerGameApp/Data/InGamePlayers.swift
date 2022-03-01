@@ -46,7 +46,7 @@ struct InGamePlayers{
     }
     
     init(entry: PockerGame.Entries){
-        for _ in 0..<entry.caseNumber{
+        for _ in 0..<entry.caseNumber(){
             players.append(Player(randomName: String.makePlayerName()))
         }
     }

@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PockerGameApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="main" id="BYZ-38-t0r" customClass="ViewController" customModule="PockerGameApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,7 +30,7 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0uu-zC-xJn">
-                                <rect key="frame" x="120" y="83" width="150" height="32"/>
+                                <rect key="frame" x="137" y="83" width="116" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <segments>
@@ -43,6 +43,20 @@
                                     <action selector="entriesControllClick:" destination="BYZ-38-t0r" eventType="valueChanged" id="q0F-Ux-TQ8"/>
                                 </connections>
                             </segmentedControl>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6L3-fl-qlU" userLabel="PlayerView">
+                                <rect key="frame" x="0.0" y="130" width="390" height="480"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="avW-CZ-SUu" kind="embed" id="mwH-ci-AjS"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3ir-Bs-2si" userLabel="DealerView">
+                                <rect key="frame" x="0.0" y="610" width="390" height="105"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="vVy-Ru-UxN" kind="embed" id="1bl-GD-tM2"/>
+                                </connections>
+                            </containerView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVZ-UZ-n1V">
                                 <rect key="frame" x="191" y="768" width="100" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -74,6 +88,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7.6923076923076916" y="67.535545023696685"/>
+        </scene>
+        <!--Players View Controller-->
+        <scene sceneID="7OL-Bx-Vng">
+            <objects>
+                <viewController storyboardIdentifier="PlayersViewController" id="avW-CZ-SUu" customClass="PlayersViewController" customModule="PockerGameApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FvP-ek-VZF">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="bGJ-C8-tmo"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OCJ-b5-Apn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="695" y="1"/>
+        </scene>
+        <!--Dealer View Controller-->
+        <scene sceneID="2l4-P5-EPG">
+            <objects>
+                <viewController storyboardIdentifier="DealerViewController" id="vVy-Ru-UxN" customClass="DealerViewController" customModule="PockerGameApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2I8-Es-YYX">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="105"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="DYJ-j6-VAp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GUu-fB-Hv8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="694" y="317"/>
         </scene>
     </scenes>
     <resources>
