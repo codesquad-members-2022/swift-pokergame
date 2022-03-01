@@ -23,7 +23,6 @@ class ViewController: UIViewController{
         
         let pokerCard = PokerCard(suit: .hearts, rank: .Queen)
         let displayCard = pokerCard.makeCard()
-        print(displayCard)
     }
 
     func backgroundImage(){
