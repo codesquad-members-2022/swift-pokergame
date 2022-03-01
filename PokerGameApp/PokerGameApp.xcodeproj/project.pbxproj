@@ -19,6 +19,7 @@
 		00BD4B1027C4BA6800C29E59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00BD4B0E27C4BA6800C29E59 /* Main.storyboard */; };
 		00BD4B1227C4BA6800C29E59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00BD4B1127C4BA6800C29E59 /* Assets.xcassets */; };
 		00BD4B1527C4BA6800C29E59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00BD4B1327C4BA6800C29E59 /* LaunchScreen.storyboard */; };
+		00E2813127CE51D4000E9880 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E2813027CE51D4000E9880 /* Shape.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		00BD4B1127C4BA6800C29E59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00BD4B1427C4BA6800C29E59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00BD4B1627C4BA6800C29E59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00E2813027CE51D4000E9880 /* Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				00BD4B0A27C4BA6800C29E59 /* SceneDelegate.swift */,
 				00BD4B0C27C4BA6800C29E59 /* ViewController.swift */,
 				00075F0827C6556800E65EF7 /* Card.swift */,
+				00E2813027CE51D4000E9880 /* Shape.swift */,
 				0090E44C27C8F2CF00D34C11 /* Symbol.swift */,
 				0039AD7027C7673700A8C8C8 /* Deck.swift */,
 				0090E44E27C9066900D34C11 /* Dealer.swift */,
@@ -161,6 +164,7 @@
 				00BD4B0927C4BA6800C29E59 /* AppDelegate.swift in Sources */,
 				0090E44F27C9066900D34C11 /* Dealer.swift in Sources */,
 				0039AD7127C7673700A8C8C8 /* Deck.swift in Sources */,
+				00E2813127CE51D4000E9880 /* Shape.swift in Sources */,
 				0090E45127C9067600D34C11 /* Player.swift in Sources */,
 				00BD4B0B27C4BA6800C29E59 /* SceneDelegate.swift in Sources */,
 				00075F0927C6556800E65EF7 /* Card.swift in Sources */,
