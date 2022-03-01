@@ -7,44 +7,7 @@
 
 import Foundation
 
-class Symbol {
-    let symbolInt: SymbolInt
-    let symbolString: SymbolString
-    
-    init(_ symbolInt: SymbolInt) {
-        self.symbolInt = symbolInt
-        switch symbolInt {
-        case .ace:
-            self.symbolString = .ace
-        case .two:
-            self.symbolString = .two
-        case .three:
-            self.symbolString = .three
-        case .four:
-            self.symbolString = .four
-        case .five:
-            self.symbolString = .five
-        case .six:
-            self.symbolString = .six
-        case .seven:
-            self.symbolString = .seven
-        case .eight:
-            self.symbolString = .eight
-        case .nine:
-            self.symbolString = .nine
-        case .ten:
-            self.symbolString = .ten
-        case .jack:
-            self.symbolString = .jack
-        case .queen:
-            self.symbolString = .queen
-        case .king:
-            self.symbolString = .king
-        }
-    }
-}
-
-enum SymbolString: String {
+enum Symbol : String, CaseIterable {
     case ace = "A"
     case two = "2"
     case three = "3"
@@ -60,24 +23,41 @@ enum SymbolString: String {
     case king = "K"
 }
 
-enum SymbolInt: Int, CaseIterable {
-    case ace = 1
-    case two = 2
-    case three = 3
-    case four = 4
-    case five = 5
-    case six = 6
-    case seven = 7
-    case eight = 8
-    case nine = 9
-    case ten = 10
-    case jack = 11
-    case queen = 12
-    case king = 13
+extension Symbol {
+    var value: Int {
+        switch self {
+        case .ace:
+            return 1
+        case .two:
+            return 2
+        case .three:
+            return 3
+        case .four:
+            return 4
+        case .five:
+            return 5
+        case .six:
+            return 6
+        case .seven:
+            return 7
+        case .eight:
+            return 8
+        case .nine:
+            return 9
+        case .ten:
+            return 10
+        case .jack:
+            return 11
+        case .queen:
+            return 12
+        case .king:
+            return 13
+        }
+    }
 }
 
 extension Symbol: CustomStringConvertible {
     var description: String {
-        return self.symbolString.rawValue
+        return self.rawValue
     }
 }
