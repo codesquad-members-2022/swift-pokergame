@@ -12,6 +12,18 @@ class PokerGameAppTests: XCTestCase {
     var sut: CardDeck!
     var sut2: PokerGame!
     
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        sut = CardDeck()
+        sut2 = PokerGame()
+    }
+
+    override func tearDownWithError() throws {
+        sut = nil
+        sut2 = nil
+        try super.tearDownWithError()
+    }
+    
     func testCardIsInitialized() {
         XCTAssertEqual(sut.count, 52, "Card is Not Initialized")
     }
@@ -35,44 +47,43 @@ class PokerGameAppTests: XCTestCase {
         XCTAssertEqual(sut.count, 52)
     }
     
-    func testCardGameIsStarted() {
-        sut2.run()
+    func testPokerGameFiveStud() {
+        let participantCount = [2, 3, 4, 5]
+        
+        for participant in participantCount {
+            sut2 = PokerGame()
+            sut2.cardStud = 5
+            sut2.playersCount = participant - 1
+            
+            let availableTurnCount = (52 / sut2.cardStud) / participant // 총 가능한 턴 수
+            let expectedRemainCardCount = 52 - (sut2.cardStud * participant * availableTurnCount)
+            let remainCardCount = sut2.run()
+            
+            XCTAssertEqual(expectedRemainCardCount, remainCardCount)
+            sut2 = nil
+        }
+    }
+    
+    func testPokerGameSevenStud() {
+        let participantCount = [2, 3, 4, 5]
+        
+        for participant in participantCount {
+            sut2 = PokerGame()
+            sut2.cardStud = 7
+            sut2.playersCount = participant - 1
+            
+            let availableTurnCount = (52 / sut2.cardStud) / participant // 총 가능한 턴 수
+            let expectedRemainCardCount = 52 - (sut2.cardStud * participant * availableTurnCount)
+            let remainCardCount = sut2.run()
+            
+            XCTAssertEqual(expectedRemainCardCount, remainCardCount)
+            sut2 = nil
+        }
     }
     
     func testPlayerNameIsInitialized() {
         let randomValue = Int.random(in: 1...4)
         let randomNames = sut2.makeRandomName(count: randomValue)
         XCTAssertEqual(randomNames.count, randomValue)
-    }
-    
-    func testDealerIsInitialized() {
-        sut2.run()
-        XCTAssertNotNil(sut2.dealer)
-    }
-    
-    func testCardIsDistributedToDealer() {
-        sut2.run()
-        let cardStud = PokerGame.cardStud
-        XCTAssertEqual(sut2.dealer?.cards.count, cardStud)
-    }
-    
-    func testCardIsDistributedToPlayer() {
-        sut2.run()
-        let cardStud = PokerGame.cardStud
-        for index in 0..<sut2.players.count {
-            XCTAssertEqual(sut2.players[index].cards.count, cardStud)
-        }
-    }
-    
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-        sut = CardDeck()
-        sut2 = PokerGame()
-    }
-
-    override func tearDownWithError() throws {
-        sut = nil
-        sut2 = nil
-        try super.tearDownWithError()
     }
 }

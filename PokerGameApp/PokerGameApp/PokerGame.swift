@@ -20,8 +20,8 @@ struct PokerGame {
     }
     
     
-    // 게임을 실행합니다.
-    mutating func run() {
+    // 게임을 실행하고, 남은 카드 수를 리턴합니다.
+    mutating func run() -> Int {
         let playerNames = makeRandomName(count: playersCount) // 참가자 이름 배열 생성
 
         // 플레이어 추가
@@ -38,6 +38,7 @@ struct PokerGame {
         }
         
         
+        return totalCards.count
     }
     
     
