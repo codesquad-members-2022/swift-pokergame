@@ -21,7 +21,7 @@ class Card {
 
 extension Card: CustomStringConvertible {
     var description: String {
-        return "\(shape.description)\(symbol.description)"
+        return "\(shape)\(symbol)"
     }
 }
 
