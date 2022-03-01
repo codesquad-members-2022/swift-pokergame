@@ -11,11 +11,10 @@ struct PokerGame {
     private var dealer: Dealer? // run 하면 Dealer를 지정합니다.
     private var players = [Player]() // run 하면 players를 추가해줍니다.
     private var totalCards = CardDeck() // 전체 카드
-    private var receivedCard: Card? // 딜러로부터 받은 카드
-    private var cardStud: Int = Stud.five.rawValue // default는 5카드 스터드
+    var cardStud: Int = Stud.five.rawValue // default는 5카드 스터드
+    var playersCount: Int = Int.random(in: 1...4) // 플레이어는 1 ~ 4명 (Int.random(in: 1...4))
     
-    
-    enum Stud: Int {
+    private enum Stud: Int {
         case five = 5
         case seven = 7
     }
@@ -23,7 +22,6 @@ struct PokerGame {
     
     // 게임을 실행합니다.
     mutating func run() {
-        let playersCount = Int.random(in: 1...4) // 플레이어는 1 ~ 4명 (Int.random(in: 1...4))
         let playerNames = makeRandomName(count: playersCount) // 참가자 이름 배열 생성
 
         // 플레이어 추가
@@ -44,7 +42,7 @@ struct PokerGame {
     
     
     // Participant에게 cardStud만큼 카드를 분배합니다.
-    mutating func distribute(numberOfParticipants: Int) throws {
+    private mutating func distribute(numberOfParticipants: Int) throws {
         var distributedCardCount = 0 // 한 턴에서 분배한 카드 수
         
         for _ in 0..<cardStud {
@@ -67,7 +65,7 @@ struct PokerGame {
     
     
     // 딜러가 전체 카드덱에서 카드를 한 장 뽑고, 그 카드를 자신의 카드 배열에 추가합니다.
-    mutating func getCardOfDealer() throws -> [Card]? {
+    private mutating func getCardOfDealer() throws -> [Card]? {
         guard let cardStatus = dealer?.remove(card: totalCards) else {
             throw PokerGameError.invalidDealer
         }
@@ -86,7 +84,7 @@ struct PokerGame {
     }
     
     
-    mutating func getCard(of player: Player) throws -> [Card]? {
+    private mutating func getCard(of player: Player) throws -> [Card]? {
         var currentPlayer = player
         guard let cardStatus = dealer?.remove(card: totalCards) else {
             throw PokerGameError.invalidDealer
