@@ -11,15 +11,16 @@ class PokerGame {
     
     private let dealer: Dealer
     private let playerGroup: Array<Player>
-    private var names: [String] = ["JK", "Honux", "Crong"]
+    private var names: [String]
     private let playerNum: Int
     private let cardStud = 7
     
-    init() {
-        self.playerNum = names.count
+    init(playerNames: [String]) {
         self.dealer = Dealer()
+        self.names = playerNames
+        self.playerNum = names.count
         var playerGroup = Array<Player>()
-        for name in names {
+        for name in playerNames {
             playerGroup.append(Player(name: name))
         }
         self.playerGroup = playerGroup

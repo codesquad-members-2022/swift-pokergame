@@ -28,7 +28,8 @@ class ViewController: UIViewController {
             self.view.addSubview(cardBackView)
         }
         
-        let pokerGame = PokerGame()
+        var names: [String] = ["JK", "Honux", "Crong"]
+        let pokerGame = PokerGame(playerNames: names)
         pokerGame.setCards()
         pokerGame.printStatus()
         
