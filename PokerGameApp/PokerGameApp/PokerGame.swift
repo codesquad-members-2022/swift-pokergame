@@ -28,12 +28,12 @@ class PokerGame {
     func setCards() {
         while dealer.getDeckCount() > playerNum {
             for player in playerGroup {
-                guard let card = dealer.pickCard() else {
+                guard let card = dealer.popCardFromDeck() else {
                     return
                 }
                 player.addCard(card)
             }
-            if let card = dealer.pickCard() {
+            if let card = dealer.popCardFromDeck() {
                 dealer.addCard(card)
             }
             if dealer.getCardsCount() == cardStud { return }
