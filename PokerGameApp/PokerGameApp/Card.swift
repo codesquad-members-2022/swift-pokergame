@@ -14,30 +14,34 @@ struct PokerCard {
     }
     
     enum Rank: Int {
-        case Ace = 1
-        case two, three, four, five
-        case six, seven, eight, nine, ten
-        case Jack, Queen, King
+        case Ace = 1, two, three, four, five, six, seven, eight, nine, ten, Jack, Queen, King
     }
     
     var suit: Suit
     var rank: Rank
+    let displayCard: String
     
-    func makeCard() -> String{
-        var rawValue: String
-        switch rank.rawValue{
-        case 1:
-            rawValue = "A"
-        case 11:
-            rawValue = "J"
-        case 12:
-            rawValue = "Q"
-        case 13:
-            rawValue = "K"
+    init(_ suit: Suit, _ rank: Rank) {
+        self.suit = suit
+        self.rank = rank
+        switch rank{
+        case .Ace:
+            displayCard = "\(suit.rawValue)A"
+        case .Jack:
+            displayCard = "\(suit.rawValue)J"
+        case .Queen:
+            displayCard = "\(suit.rawValue)Q"
+        case .King:
+            displayCard = "\(suit.rawValue)K"
         default :
-            rawValue = "기본값"
+            displayCard = "\(suit.rawValue)\(rank.rawValue)"
         }
-        return "\(suit.rawValue)\(rawValue)"
+    }
+}
+
+extension PokerCard: CustomStringConvertible {
+    var description: String {
+        return displayCard
     }
 }
 
