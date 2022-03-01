@@ -591,12 +591,26 @@ VWT는 fix size안에 포함이 되어있기 때문에 Copy가 되더라도 계�
     ~~~
     
   - [X] 카드 리셋시키기
+  카드에서 Deck을만드는 것은 뭔가 부자연스러움.
   ~~~swift
-      //카드를 리셋시키자.
+      //카드를 리셋시키자. //카드에서 Deck을만드는 것은 뭔가 부자연스러움.
     func reset() -> String{
         self.cards = Card.makeDeck()
         return "카드를 전체를 초기화 했습니다. 현재 카드 수 \(self.count)"
     }
+    
+    //DeckFactory로 만든 Deck에서 다시 Deck을 만든다?
+    func reset() -> String
+        func reset() -> String{
+        self.cards = DeckFactory.makeDeck()
+        return "카드를 전체를 초기화 했습니다. 현재 카드 수 \(self.count)"
+    }
+       //defaultCards와 usedCards를 선언한뒤 reset하면 초기 카드를 넣어줌.
+        //사용한 card들을 초기 값으로 바꾸어줌으로써 reset함.
+    func reset() {
+        self.usedCards = self.defaultCards          //함수의 테스트를 위해 리턴값을 주었는데 reset함수는 리턴값 없이도 테스트가 가능할 것 같아 리턴값을 뺴주었습니다.
+    }
+    
   ~~~
    
 - 카드덱 기능을 확인할 수 있는 테스트 코드를 추가한다.
@@ -650,14 +664,298 @@ final class ResultTest {
 
 ### 요구사항
 
+코드를 짜기전에 고려해보기.From(JK)
+- 객체의 값을 get하는 방식보다는 객체에 일을 시키려는 방식을 생각하자
+- mutable 보다는 immnutable 객체나 함수를 구현하자.
+- 매개변수 생략을 자제하고 의도를 명확하게 표현하자.
+- 선언하는 타입에 타입을 붙이지 말고 역할과 책임을 잘 나타낼 수 있는 단어를 지정하자.
+- 코드는 개발자의 의도를 나타낸다. 공백과 여백도 생각을 하면서 써보자.
+- 사용하지 않는 코드나 주석은 과감히 지우자.
+- 사용하는 파일인지 확인후에 커밋, 푸시를 하자
+- CustomStringConvertible 프로토콜을 잘 사용해보자.
+- 강제 언래핑을 자제하자
+- 내부 속성을 private var로 먼저 고려해보자.
+- 테스트를 위해서 getter를 사용하는 것을 자제하자.
+- testable보다는 테스트가 필요한 파일만 test target에 추가하자.
+- [plyaer]보다는 [player]의 타입을 선언 및 활용하는 방법을 생각해보자.
+- 명령 - 쿼리 법칙
+    - 내부에 영향을 주는 메소드와 결과만 리턴하는 메소드를 구분해보자.
+- 각 객체간 의존성을 줄이고 문법상이아닌 논리상으로 이 객체가 꼭 가져야 할 메서드인지 프로퍼티인지를 고려하고 분배하자.
+
+즉, 핵심은! `객체 속성을 가져오지 말고 객체가 일하도록 메소드로 시켜라!`
+
 - [X] 포커 딜러가 나눠줄 수 있는 게임 방식을 선택할 수 있다
 - [X] 게임은 7카드-스터드 방식과 5카드-스터드를 지원한다
+~~~swift
+import Foundation
+
+//딜러가 카드를 돌릴때마다 Deck안에 남아있는 card의 갯수를 추적해야하므로 class로 선언했다.
+final class Dealer {
+    
+    private var deck:Deck
+    private var cards:[Card] = []
+    
+    var gameType:GameType                                   //한 딜러가 한가지의 게임타입만 사용할수 있는 것은 이상하다고 생각해 외부에서 값을 변경할 수 있도록 설정했습니다.
+    
+    init(deck:Deck,gameType:GameType) {
+        self.deck = deck
+        self.gameType = gameType
+    }
+    
+    func dealTheCards(players:Players) -> Bool{
+        self.deck.shuffle()                                  //카드를 나누어주기전에 보통 섞기때문에 shuffle함수를 실행했습니다.
+            switch gameType {
+            case .fiveStud:
+                deal(players: players, gameType: .fiveStud)
+                return isDeckEnough(players: players, gameType: gameType)
+            case .sevenStud:
+                deal(players: players, gameType: .sevenStud)
+                return isDeckEnough(players: players, gameType: gameType)
+        }
+    }
+    
+    private func isDeckEnough(players:Players, gameType:GameType) -> Bool{
+        switch gameType {
+        case .fiveStud:
+            return deck.count - players.count * 5 > 0
+        case .sevenStud:
+            return deck.count - players.count * 7 > 0
+        }
+    }
+    
+    
+    private func deal(players:Players,gameType:GameType) {
+        players.resetCards()                                    //카드를 돌리기 전에 플레이어들의 카드를 리셋시킵니다.
+        for _ in 0..<gameType.dealCount { 
+            self.getTheCard()                                   //딜러 한장 받고
+            players.dealCardsForEachPlayer(deck: deck)          //플레이어들에게 한장씩 deck에서 카드를 줍니다.
+        }
+    }
+    
+    private func getTheCard() {
+            guard let card = deck.removedOne() else { return }
+            cards.append(card)
+    }
+}
+
+enum GameType {
+    case fiveStud
+    case sevenStud
+    
+    var dealCount:Int {
+        switch self {
+        case .fiveStud:
+            return 5
+        case .sevenStud:
+            return 7
+        }
+    }
+}
+
+~~~
+
 - [X] 참가자는 딜러를 제외하고 1명에서 4명까지 참여할 수 있다
+    - 최대 4명까지이므로 Int값을 넣는것 보다는 Enum으로 값을 제한
 - [X] 딜러는 이름이 없고, 참가자는 영문 2~5글자 이내 이름을 가진다
 - [X] 인원이 결정되면 랜덤하게 이름을 생성한다
+    - PlayerFactory로 구현
+~~~swift
+
+final class PlayerFactory {
+        
+    //참가자의 최대 인원이 4명이므로 Int같은 값을 주기보다는 제한된 값을 주고 싶어서 enum으로 선언했다.
+    static func makePlayers(mode:PlayerMode) -> Players {
+        switch mode {
+        case .singlePlayer:
+            return self.singlePlayer()
+        case .twoPlayer:
+            return self.twoPlayer()
+        case .threePlayer:
+            return self.threePlayer()
+        case .fourPlayer:
+            return self.FourPlayer()
+        }
+    }
+    
+    //enum에서 switch할때 타입을 맞춰주기 위해서 [player]로 타입을 맞추어 주었다.
+    private static func singlePlayer() -> Players {
+        makePlayerWithNumber(number: 1)
+    }
+
+    private static func twoPlayer() -> Players {
+        makePlayerWithNumber(number: 2)
+    }
+
+    private static func threePlayer() -> Players {
+        makePlayerWithNumber(number: 3)
+    }
+
+    private static func FourPlayer() -> Players {
+        makePlayerWithNumber(number: 4)
+    }
+    
+    private static func makePlayerWithNumber(number:Int) -> Players {
+        var players:[Player] = []
+        for _ in 0..<number {
+            let player = makePlayer()
+            players.append(player)
+        }
+        return Players(players: players)
+    }
+    
+    //MARK: -- 랜덤한 이름을 가지고 Player를 만드는 함수들.
+    
+    private static func makePlayer() -> Player {
+        let name = makeName()
+        return Player(name: name)
+    }
+    
+    private static func makeName() -> String {
+        let stringSource = "abcdefghijklmnopqrstuvwxyz"
+        return selectRandomStringElement(sourceString: stringSource, length: 5)
+    }
+    
+    private static func selectRandomStringElement(sourceString:String, length:Int) -> String {
+        var selectedString:String = ""
+        for _ in 0..<length {
+            let randomString = sourceString.randomElement() ?? " "
+            selectedString.append(randomString)
+        }
+        return selectedString
+    }
+}
+~~~
+
 - [X] 카드게임 종류와 참가자수에 따라 적절하게 동작을 해야한다
 - [X] 딜러가 딜러 자신을 포함해서 참여자에게 카드를 나눠주고도, 전체 카드가 남은 경우는 계속해서 게임을 진행한다
 - [X] 한 번 나눠준 카드는 다시 덱에 넣지 않고 카드가 부족할 경우 종료한다
+    - dealer의 dealTheCards의 메서드로 구현
+~~~swift
+    
+    func dealTheCards(players:Players) -> Bool{
+        self.deck.shuffle()                                  //카드를 나누어주기전에 보통 섞기때문에 shuffle함수를 실행했습니다.
+            switch gameType {
+            case .fiveStud:
+                deal(players: players, gameType: .fiveStud)
+                return isDeckEnough(players: players, gameType: gameType)
+            case .sevenStud:
+                deal(players: players, gameType: .sevenStud)
+                return isDeckEnough(players: players, gameType: gameType)
+        }
+    }
+    
+    private func isDeckEnough(players:Players, gameType:GameType) -> Bool{
+        switch gameType {
+        case .fiveStud:
+            return deck.count - players.count * 5 > 0
+        case .sevenStud:
+            return deck.count - players.count * 7 > 0
+        }
+    }
+    
+    
+    private func deal(players:Players,gameType:GameType) {
+        players.resetCards()                                    //카드를 돌리기 전에 플레이어들의 카드를 리셋시킵니다.
+        for _ in 0..<gameType.dealCount { 
+            self.getTheCard()                                   //딜러 한장 받고
+            players.dealCardsForEachPlayer(deck: deck)          //플레이어들에게 한장씩 deck에서 카드를 줍니다.
+        }
+    }
+    
+    private func getTheCard() {
+            guard let card = deck.removedOne() else { return }
+            cards.append(card)
+    }
+~~~
+
 - [X] 카드 개수나 참가자 인원에 대한 입력을 구현할 필요없다
 - [X] XCTest를 위한 테스트 타깃을 추가한다
 - [X] 테스트 코드에서 PokerGame 메소드를 호출해서 동작을 확인한다
+    - Game객체를 통해 게임이 지속되는지를 확인 후 GameStatus를 리턴
+~~~swift
+
+public class Game {
+    
+    private var players:Players
+    private var dealer:Dealer
+
+    init(dealer:Dealer, players:Players) {
+        self.dealer =  dealer
+        self.players = players
+    }
+    
+    //딜러가 더이상 카드를 돌릴 수 없을때에는 Game에 정의된 게임의 상태를 String으로 반환하는 함수를 리턴하도록 해보았습니다.
+    //성공 혹은 에러를 뿜기 때문에 GameStatus라는 Enum타입을 하나더 정의했습니다.
+    func start() -> GameStatus {
+        if dealer.dealTheCards(players: players) {
+            return GameStatus.successed(results)
+        }
+        return GameStatus.error
+    }
+    
+    
+    //총 결과
+    func results() -> String {
+        return "\(showPlayerRanks())\n\(showPlayerCards())"
+    }
+    
+    //Player들의 Rank들만 볼것인지 Card들만 볼것인지 옵션을 주려 선언했습니다.
+    func showPlayerRanks() -> String{
+        return players.WholeNamesAndResults()
+    }
+    
+    func showPlayerCards() -> String {
+        players.wholePlayerCards()
+    }
+}
+~~~
+    
+    
+
+~~~swift
+import XCTest
+@testable import PokerGame
+class GameTest: XCTestCase {
+
+    var dealer:Dealer!
+    var sut:Game!
+    
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        let players = PlayerFactory.makePlayers(mode: .threePlayer)
+        let deck = DeckFactory.makeDeck()
+        dealer = Dealer(deck: deck, gameType: .fiveStud)
+        dealer = Dealer(deck: deck, gameType: .sevenStud)
+        
+        sut = Game(dealer: dealer, players: players)
+    }
+
+    //함수가 정상적으로 작동되었다면 result에 player의 name과 card들이 포함되어있어야합니다.
+    func teststart() {
+        let players = PlayerFactory.makePlayers(mode: .threePlayer)
+        let deck = DeckFactory.makeDeck()
+        dealer = Dealer(deck: deck, gameType: .sevenStud)
+        
+        sut = Game(dealer: dealer, players: players)
+        
+        let noErrorResult = sut.start().status                            //함수실행시 오류를 나타내는 String이 리턴되지 않아야합니다.
+        
+        sut.start()
+        sut.start()
+        sut.start()
+        
+        let errorResult = sut.start().status
+        
+        XCTAssertNotEqual(noErrorResult, GameStatus.error.status)
+        
+        XCTAssertEqual(errorResult, GameStatus.error.status)
+        
+    }
+
+    override func tearDownWithError() throws {
+        sut = nil
+        dealer = nil
+        try super.tearDownWithError()
+    }
+}
+~~~
