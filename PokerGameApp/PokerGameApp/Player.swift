@@ -18,7 +18,11 @@ class Player {
     }
     
     func addCard(_ card: Card) {
-        cards.append(card)
+        self.cards.append(card)
+    }
+    
+    func getCardsCount() -> Int {
+        return cards.count
     }
     
     func printName() {
