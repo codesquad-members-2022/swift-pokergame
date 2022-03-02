@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CardDeck: Equatable {
+class CardDeck: Equatable {
     static func == (lhs: CardDeck, rhs: CardDeck) -> Bool {
         return lhs.cards == rhs.cards
     }
@@ -34,7 +34,7 @@ struct CardDeck: Equatable {
     }
     
     
-    mutating func shuffle() {
+    private func shuffle() {
         for index in 0..<count - 1 {
             let temp = cards[index]
             let randomIndex = Int.random(in: index..<count)
@@ -44,12 +44,13 @@ struct CardDeck: Equatable {
     }
     
     
-    mutating func removeOne() -> Card? {
+    func removeOne() -> Card? {
+        shuffle()
         return cards.popLast()
     }
     
     
-    mutating func reset() {
+    private func reset() {
         self.cards = initialCards
     }
 }
