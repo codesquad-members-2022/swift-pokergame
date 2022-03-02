@@ -50,13 +50,13 @@ class PokerGame: CustomStringConvertible {
         var distributedCardCount = 0 // 한 턴에서 분배한 카드 수
 
         for _ in 0..<cardStud {
-            guard let cardDeck = try? getCardOfDealer() else {
+            guard ((try? getCardOfDealer()) != nil) else {
                 throw PokerGameError.invalidDistributeToDealer
             }
             distributedCardCount += 1
 
-            for player in 0..<playerList.count {
-                guard let cardDeck = try? getCard(of: playerList[player]) else {
+            for player in playerList {
+                guard ((try? getCard(of: player)) != nil) else {
                     throw PokerGameError.invalidDistributeToPlayer
                 }
                 distributedCardCount += 1
