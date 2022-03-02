@@ -8,17 +8,13 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var cards: [Card] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setBackgroundImage()
         addCard(count: 7)
-        
-        let pp = PokerGame(stud: .five)
-        let dd = CardDeck()
-        print(pp.description)
-
         
     }
     
