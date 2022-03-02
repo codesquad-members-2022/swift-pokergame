@@ -9,7 +9,7 @@ import Foundation
 
 class PokerGame: CustomStringConvertible {
     var description: String {
-        return "\(dealer.cards)\n\(playerList)"
+        return "\(dealer)\n\(playerList)"
     }
     
     private var dealer: Dealer = Dealer()

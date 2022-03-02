@@ -34,7 +34,7 @@ class CardDeck: Equatable {
     }
     
     
-    private func shuffle() {
+    func shuffle() {
         for index in 0..<count - 1 {
             let temp = cards[index]
             let randomIndex = Int.random(in: index..<count)
@@ -50,7 +50,7 @@ class CardDeck: Equatable {
     }
     
     
-    private func reset() {
+    func reset() {
         self.cards = initialCards
     }
 }
