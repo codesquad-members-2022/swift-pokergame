@@ -18,37 +18,23 @@ import Foundation
  */
 
 struct PokerGame {
-    
-    private var player: Player
-    private var cardDeck: CardDeck
-    private var playerCard: [CardDeck]
-    private var stud: Stud
-    
-    enum Stud: Int, CaseIterable {
-        case five = 5
-        case seven = 7
+  
+    private let dealer: Dealer
+    private let players: Players
+    private let stud: Stud
+    private let numberOfPlayer: NumberOfPlayer
+    var playerCount: Int {
+        return players.playerCount
     }
     
-    init(stud: Stud) {
+    func playGame() {
+        dealer.handOutCards(stud: stud)
+    }
+    
+    init(stud: Stud, numberOfPlayer: NumberOfPlayer) {
+        dealer = Dealer()
+        players = Players(numberOfPlayer: numberOfPlayer)
         self.stud = stud
-        self.player = Player()
-        self.cardDeck = CardDeck()
-        self.playerCard = [CardDeck()]
-        
-    }
-        
-}
-
-extension PokerGame: CustomStringConvertible {
-    var description: String {
-        
-        return ""
+        self.numberOfPlayer = numberOfPlayer
     }
 }
-
-
-//for i in 0..<player.count {
-//    for j in 0..<stud.rawValue {
-//        playerCard.append(cardDeck)
-//    }
-//}
