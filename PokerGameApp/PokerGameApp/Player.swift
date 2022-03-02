@@ -13,15 +13,9 @@ class Player: Participant {
     }
     
     private var name: String
-    var cards = [Card]()
     
     
     init(name: String) {
         self.name = name
-    }
-    
-    
-    override func receive(card: Card) {
-        cards.append(card)
     }
 }

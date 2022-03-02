@@ -13,7 +13,6 @@ class Dealer: Participant {
     }
     
     private var cardDeck = CardDeck()
-    var cards = [Card]()
     
     
     func remove(card: CardDeck) -> Card? {
@@ -24,10 +23,5 @@ class Dealer: Participant {
     
     func returnCardDeck(to pokerGame: CardDeck) -> CardDeck? {
         return pokerGame
-    }
-    
-    
-    override func receive(card: Card) {
-        cards.append(card)
     }
 }

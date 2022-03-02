@@ -9,12 +9,13 @@ import Foundation
 
 class Participant: CustomStringConvertible {
     var description: String {
-        return "😎\(self.cards)"
+        return ""
     }
     
-    private var cards = [Card]()
+    var cards = [Card]()
+    
     
     func receive(card: Card) {
-        
+        cards.append(card)
     }
 }
