@@ -25,5 +25,16 @@ class PokerGameAppTests: XCTestCase {
         systemUnderTest = nil // 테스트한 객체 릴리즈
         try super.tearDownWithError()
     }
+    
+    func testIsCardNumberEqualTo7() {
+        // given
+        systemUnderTest.setCards()
+        
+        // when
+        let playerCardNumber = systemUnderTest.getPlayerCardsNum()
+        
+        // then
+        XCTAssertEqual(playerCardNumber, 7, "Player's card number is not 7")
+    }
 
 }
