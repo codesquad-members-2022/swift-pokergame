@@ -7,23 +7,27 @@
 
 import Foundation
 
-struct Dealer: Participant, CustomStringConvertible {
-    var description: String {
+class Dealer: Participant {
+    override var description: String {
         return "😎Dealer: \(self.cards)"
     }
     
+    private var cardDeck = CardDeck()
     var cards = [Card]()
     
     
-    // 카드를 빼고 (뺀 카드, 전체 카드 상태) 를 리턴합니다.
-    func remove(card: CardDeck) -> (Card?, CardDeck?) {
-        var currentCard = card
-        return (currentCard.removeOne(), currentCard)
+    func remove(card: CardDeck) -> Card? {
+        let currentCardDeck = card
+        return currentCardDeck.removeOne()
     }
     
     
-    // 카드를 받습니다.
-    mutating func receive(card: Card) {
+    func returnCardDeck(to pokerGame: CardDeck) -> CardDeck? {
+        return pokerGame
+    }
+    
+    
+    override func receive(card: Card) {
         cards.append(card)
     }
 }
