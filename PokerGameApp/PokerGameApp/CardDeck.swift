@@ -18,9 +18,9 @@ class CardDeck {
         return deck
     }
 
-    func shuffle() throws -> [Card] {
+    func shuffle() -> Result<[Card], PokerGameError> {
         guard !deck.isEmpty else {
-            throw PokerGameError.cardIsEmpty
+            return Result.failure(PokerGameError.cardIsEmpty)
         }
         let count = cardCount	
         for i in 0..<count - 1 {   // 0 ~ n - 2
@@ -29,14 +29,14 @@ class CardDeck {
             deck[i] = deck[randomIndex]
             deck[randomIndex] = temp
         }
-        return deck
+        return .success(deck)
     }
     
-    func removeOne() throws -> Card {
+    func removeOne()  -> Result<Card, PokerGameError> {
         guard !deck.isEmpty else {
-            throw PokerGameError.gameOver
+            return Result.failure(PokerGameError.cardIsEmpty)
         }
-        return deck.removeFirst()
+        return .success(deck.removeFirst())
     }
 }
 

@@ -14,26 +14,24 @@ class PokerGame {
         case fiveCardStud
     }
     enum PlayerCount: Int {
-        case two = 2, three, four, five
+        case one = 1, two, three, four
     }
     static var round: Int = 0
     
     private var cardDeck = CardDeck()
     var sortOfGame: Games
-//    var playerCount: PlayerCount.RawValue = .random(in: 2...5)
-    var playerCount: PlayerCount.RawValue
-    var players: [Player]
-    var dealer: Dealer
+    var playerCount: PlayerCount
+    var players: [Player] = []
+    var dealer: Dealer = Dealer()
+
     var computer: Computer = Computer()
     
-    init(sortOfGame: Games, playerCount: PlayerCount.RawValue) {
+    init(sortOfGame: Games, playerCount: PlayerCount) {
         self.sortOfGame = sortOfGame
         self.playerCount = playerCount
-        for index in 0..<playerCount {
-            if index == 0 {
-                self.dealer = Dealer()
-            } else {
-                self.players.append(Player(name: self.nameArray.remove(at: Int.random(in: 0..<self.nameArray.count))))
+        for index in 0..<playerCount.rawValue {
+        if index == 0 {
+            self.players.append(Player(name: self.nameArray.remove(at: Int.random(in: 0..<self.nameArray.count))))
             }
         }
     }
