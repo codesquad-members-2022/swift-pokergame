@@ -43,24 +43,5 @@ class ViewController: UIViewController {
         }
         
         showCardImages()
-        
-//        let participantCount = [2, 3, 4, 5]
-//
-//        for participant in participantCount {
-//            var pok = PokerGame()
-//            pok.playersCount = participant - 1
-//
-//            let availableTurnCount = (52 / pok.cardStud) / participant // 총 가능한 턴 수
-//            let expectedRemainCardCount = 52 - (pok.cardStud * participant * availableTurnCount)
-//            let remainCardCount = pok.run()
-//
-//        }
-        var pok = PokerGame()
-        pok.playersCount = 2
-        
-        let availableTurnCount = (52 / pok.cardStud) / 3 // 총 가능한 턴 수
-        let expectedRemainCardCount = 52 - (pok.cardStud * 3 * availableTurnCount)
-        let remainCardCount = pok.run()
-        print(remainCardCount)
     }
 }
