@@ -34,7 +34,7 @@ class PokerGameAppTests: XCTestCase {
         let playerCardNumber = systemUnderTest.getPlayerCardsNum()
         
         // then
-        XCTAssertEqual(playerCardNumber, 7, "Player's card number is not 7")
+        XCTAssertEqual(playerCardNumber, 6, "Player's card number is not 7")
     }
 
 }
