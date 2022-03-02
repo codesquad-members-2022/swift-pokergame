@@ -7,8 +7,14 @@
 
 import Foundation
 
-protocol Participant {
-    var cards: [Card] { get set }
+class Participant: CustomStringConvertible {
+    var description: String {
+        return "😎\(self.cards)"
+    }
     
-    mutating func receive(card: Card)
+    private var cards = [Card]()
+    
+    func receive(card: Card) {
+        
+    }
 }
