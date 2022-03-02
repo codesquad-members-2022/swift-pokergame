@@ -18,7 +18,7 @@
 
     디바이스가 달라져도, 똑같이 구현되는것 확인
 
-<img width="399" alt="pad 9" src="https://user-images.githubusercontent.com/92635121/154929872-44fffbce-a1fe-491e-8940-86cbccf7b2bf.png"> <img width="280" alt="13Pro" src="https://user-images.githubusercontent.com/92635121/154929892-cfa37469-916a-4002-8a2e-102d3d405944.png"> <img width="240" alt="13mini" src="https://user-images.githubusercontent.com/92635121/154929886-bfbb0454-70f4-45f9-af07-5953c4e317c0.png">
+<img width="300" alt="pad 9" src="https://user-images.githubusercontent.com/92635121/154929872-44fffbce-a1fe-491e-8940-86cbccf7b2bf.png"> <img width="230" alt="13Pro" src="https://user-images.githubusercontent.com/92635121/154929892-cfa37469-916a-4002-8a2e-102d3d405944.png"> <img width="200" alt="13mini" src="https://user-images.githubusercontent.com/92635121/154929886-bfbb0454-70f4-45f9-af07-5953c4e317c0.png">
 
     App Name / App Icon 변경
 
@@ -113,8 +113,8 @@
 <aside>
 💡 개발자가 의도한 대로 정확하게 작동하는지 확인하는 과정
 즉, 모든 함수나 메소드에 대한 테스트 케이스를 작성하는 과정
-
 </aside>
+
 | 메서드 | 설명 |
 | --- | --- |
 | • setUpWithError | 가장 먼저 실행되는 메소드로, 어떤 모델이나 시스템을 정의 |
@@ -123,3 +123,31 @@
 | • testPerformanceExample | 성능을 테스트하고, 코드의 실행 속도를 테스트 |
 
 <img width="221" alt="스크린샷 2022-02-23 오후 11 06 51" src="https://user-images.githubusercontent.com/92635121/155342828-125bd418-a5a9-49d2-b478-0b2147386d90.png">
+
+---
+
+## Step 4 - 게임로직 구현하기
+
+### ✅ 타입을 선언하는 이유?
+
+* 너무 광범위한 타입을 세분화
+(Ex. `Int`는 너무 광범위하다. 카드에 들어갈 정수를 `rank` 라는 타입으로 세분화)
+* 컬렉션도 하나의 타입으로 만들어라 → Ex. 카드덱
+
+---
+
+### ✅ mutating / static
+
+* struct는 자신의 `값`을 함수로 바꿀 수 없다.
+    * mutating을 붙여야만 값 변경이 가능하다.
+* `static`은 함수나, 변수 앞에 붙는데 `static`이 붙으면 인스턴스 생성 없이 바로 사용할 수 있다.
+
+```swift
+class Hello {
+    static func sayHello() {
+            print("안녕 나는 지히야")
+    }
+}
+Hello.sayHello() // 이렇게 바로 호출 가능
+``
+
