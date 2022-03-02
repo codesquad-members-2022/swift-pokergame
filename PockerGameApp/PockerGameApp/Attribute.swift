@@ -30,6 +30,7 @@ enum Suit{
         case eight = 8
         case nine = 9
         case ten = 10
+        
         // 실제 카드에서 Ace, Jack, Queen, King이 존재하여
         // 따로 스페셜카드로 묶어 사용하기 편할 것 같아 묶게되었다.
         enum SpecialCard: String{
