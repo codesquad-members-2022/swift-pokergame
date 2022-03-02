@@ -19,6 +19,11 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         setBackground()
         createCardRect()
+        
+        let sampleCard1 = Card(suitShape: .heart, suitCardNumber: .Queen)
+        let sampleCard2 = Card(suitShape: .space, suitCardNumber: .seven)
+        printCardInformation(card: sampleCard1)
+        printCardInformation(card: sampleCard2)
     }
     
     // Background 설정
@@ -57,6 +62,8 @@ class ViewController: UIViewController {
         }
     }
     
+    func printCardInformation(card: Card) {
+        print(card)
+    }
     
 }
-
