@@ -24,13 +24,4 @@ class Player {
     func getCardsCount() -> Int {
         return cards.count
     }
-    
-    func printName() {
-        print(self.name)
-    }
-    
-    func printCards() {
-        print("Player \(self.name)'s cards : ")
-        print(cards)
-    }
 }
