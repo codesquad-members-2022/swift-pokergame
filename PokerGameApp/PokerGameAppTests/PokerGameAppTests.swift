@@ -29,7 +29,7 @@ class PokerGameAppTests: XCTestCase {
     }
     
     func testCardIsShuffled() {
-        let initialCardDeck = sut
+        let initialCardDeck = CardDeck()
         sut.shuffle()
         XCTAssertNotEqual(initialCardDeck, sut, "Card is Not Shuffled")
     }
