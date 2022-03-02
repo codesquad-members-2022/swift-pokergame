@@ -1,7 +1,12 @@
 # swift-pokergame
 2주차 카드게임 저장소
 
+<br>
+
 ---
+
+<br>
+
 ## Step 1 - 게임보드 만들기 (Feb 21 Mon)
 
 ### ✅ StatusBar
@@ -25,7 +30,12 @@
 <img width="300" alt="App Icon : Name" src="https://user-images.githubusercontent.com/92635121/154929833-b8073ff4-4756-4575-af90-9b3994a2be7b.png">
 
 
+<br>
+
 ---
+
+<br>
+
 
 ## Step 2 - 카드 클래스 구현하기 (Feb 21 Mon)
 
@@ -45,7 +55,12 @@
 출력 결과물  
 <img width="379" alt="스크린샷 2022-02-21 오후 11 18 55" src="https://user-images.githubusercontent.com/92635121/154974852-5167d023-a24d-49d0-9e41-d506ceb25387.png">
 
+<br>
+
 ---
+
+<br>
+
 
 ## Step 3 - 카드덱 구현하고 테스트하기
 
@@ -63,7 +78,12 @@
 * Type casting(형변환)/ deinit / 참조횟수계산은 클래스 인스턴스만 가능
 * 클래스는 참조 타입, 구조체는 값 타입
 
+<br>
+
 ---
+
+<br>
+
 
       값 타입과 참조 타입은 뭐가 다른걸까?
 * 값 타입 : 함수의 전달인자로 보낼 때, 전달될 값이 복사
@@ -100,14 +120,23 @@
 * 저장된 프로퍼티가 값타입일때
 * 상속을 받거나, 할 필요가 없을 때
 
+<br>
+
 ---
+
+<br>
+
 
 ### ✅ removeLast(), popLast()
 둘 다 배열의 마지막 요소를 제거하고 리턴
 * removeLast() - 값이 무조건 존재해야함 (아니면 뻑남)
 * popLast() - 값이 없으면 nil을 반환
 
+<br>
+
 ---
+
+<br>
 
 ### ✅ Unit Test
 <aside>
@@ -124,7 +153,11 @@
 
 <img width="221" alt="스크린샷 2022-02-23 오후 11 06 51" src="https://user-images.githubusercontent.com/92635121/155342828-125bd418-a5a9-49d2-b478-0b2147386d90.png">
 
+<br>
+
 ---
+
+<br>
 
 ## Step 4 - 게임로직 구현하기
 
@@ -134,7 +167,11 @@
 (Ex. `Int`는 너무 광범위하다. 카드에 들어갈 정수를 `rank` 라는 타입으로 세분화)
 * 컬렉션도 하나의 타입으로 만들어라 → Ex. 카드덱
 
+<br>
+
 ---
+
+<br>
 
 ### ✅ mutating / static
 
@@ -149,5 +186,5 @@ class Hello {
     }
 }
 Hello.sayHello() // 이렇게 바로 호출 가능
-``
+```
 
