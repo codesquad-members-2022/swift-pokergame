@@ -9,10 +9,9 @@ import XCTest
 @testable import PokerGame
 
 class CardDeckTest: XCTestCase {
-
-    private var cardDeck = CardDeck()
     
     func testCount() {
+        let cardDeck = CardDeck()
         let result = 1...52 ~= cardDeck.count()
         XCTAssertTrue(result)
     }
@@ -27,10 +26,14 @@ class CardDeckTest: XCTestCase {
     }
     
     func testReset() {
+        let cardDeck = CardDeck()
+        
         XCTAssertEqual(cardDeck.count(), 52)
     }
     
     func testRemoveOne() {
+        let cardDeck = CardDeck()
+        
         cardDeck.removeOne()
         let result = 1...51 ~= cardDeck.count()
         XCTAssertTrue(result)
