@@ -9,13 +9,8 @@ import Foundation
 
 protocol Playable {
     //TODO: 프로토콜에선 private 선언을 못하는 이유?
+//    속성도 get set으로 선언 되어있어서 사실상 메서드라고 봐야함.
     func addCard(card: Card, round: Int)
     func showUpCards() -> String
     func openAllCards() -> String
-    func getHand(computer: Computer)
-    
-    var name: String { get }
-    var hand: Computer.Hands { get set }
-    var playerDeck: [Card] { get set }
-    var upCards: [Card] { get set }
 }
