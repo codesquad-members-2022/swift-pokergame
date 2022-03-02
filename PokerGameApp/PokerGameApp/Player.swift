@@ -7,17 +7,21 @@
 
 import Foundation
 
-struct Player: Participant, CustomStringConvertible {
-    var description: String {
+class Player: Participant {
+    override var description: String {
         return "👤User(\(name)): \(self.cards)"
     }
     
-    var name: String
+    private var name: String
     var cards = [Card]()
     
     
-    // 카드를 받습니다.
-    mutating func receive(card: Card) {
+    init(name: String) {
+        self.name = name
+    }
+    
+    
+    override func receive(card: Card) {
         cards.append(card)
     }
 }
