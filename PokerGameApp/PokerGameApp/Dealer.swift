@@ -27,8 +27,4 @@ class Dealer: Player {
     func getDeckCount() -> Int {
         return deck.count()
     }
-    
-    func printDeck() {
-        print(deck)
-    }
 }
