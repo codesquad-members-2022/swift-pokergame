@@ -41,6 +41,10 @@ class PokerGame {
         }
     }
     
+    func getPlayerCardsNum() -> Int {
+        return playerGroup[0].getCardsCount()
+    }
+    
     func printStatus() {
         print("게임 시작")
         dealer.printDeck()
