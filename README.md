@@ -83,7 +83,7 @@ backgroundColor에는 **‘UIColor’**만 들어갈 수 있다!
             [[iOS] UIScreen으로 화면 크기(해상도) 가져오기](https://mildwhale.tistory.com/14)
 ---
 ## ✅  Step2 카드 클래스 구현하기
-### **🧑🏼‍💻 작업 목록**            
+### **🧑🏼‍💻 작업 목록**   
  - [x]  Step1 게임보드 만들기
  - [x]  PR Comment 관련하여 수정하기
  - [ ]  Step2 카드 클래스 구현하기
@@ -189,4 +189,13 @@ Card (suit 무늬 & 숫자) - ( 모양, 숫자 ) 튜플형식으로 나타낼 �
 ![PockerGameBlock](https://user-images.githubusercontent.com/92699723/156373731-ccb02aa7-254f-4d62-a51a-01a8bd0af3dc.png)   
 
 ### 실행결과
-![Screen Shot 2022-03-02 at 22 41 36 PM](https://user-images.githubusercontent.com/92699723/156373670-4deeedf8-82cb-4d59-9c52-dfbd508c271a.png)
+![Screen Shot 2022-03-02 at 22 41 36 PM](https://user-images.githubusercontent.com/92699723/156373670-4deeedf8-82cb-4d59-9c52-dfbd508c271a.png)   
+
+## ✅  Step3 카드덱 구현하고 테스트하기
+### **🧑🏼‍💻 작업 목록**   
+- [ ]  Step3 카드덱 구현하고 테스트하기
+  - [ ]  구조체와 클래스의 차이 학습 및 속성 변화시 어떤 변화가 있는지 확인
+  - [ ]  참조 접근자를 활용해서 정보를 감추고 메소드 인터페이스를 통해 접근하는 방식 학습
+  - [ ]  클래스 메모리 관리 방식에 대해 학습
+  - [ ]  reset()할 때 이전에 만든 카드 객체는 어떻게 되는지 설명할  수 있어야한다.
+  - [ ]  개발 환경에서 제공하는 메모리를 분석하는 디버깅 도구 확습
