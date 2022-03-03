@@ -67,7 +67,7 @@ class PokerGame: CustomStringConvertible {
 
     // 딜러가 전체 카드덱에서 카드를 한 장 뽑고, 그 카드를 자신의 카드 배열에 추가한 후에 전체 카드덱 리턴.
     private func getCardOfDealer() throws -> CardDeck {
-        guard let card = dealer.remove(card: totalCards) else {
+        guard let card = dealer.remove(cardDeck: totalCards) else {
             throw PokerGameError.invalidCardRemoved
         }
         dealer.receive(card: card) // 뽑은 카드를 자신의 배열에 추가하기
@@ -83,7 +83,7 @@ class PokerGame: CustomStringConvertible {
     private func getCard(of player: Player) throws -> CardDeck {
         let currentPlayer = player
         
-        guard let card = dealer.remove(card: totalCards) else {
+        guard let card = dealer.remove(cardDeck: totalCards) else {
             throw PokerGameError.invalidCardRemoved
         }
         currentPlayer.receive(card: card)
