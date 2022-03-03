@@ -72,7 +72,7 @@ class PokerGame: CustomStringConvertible {
         }
         dealer.receive(card: card) // 뽑은 카드를 자신의 배열에 추가하기
         
-        guard let cardDeck = dealer.returnCardDeck(to: totalCards) else {
+        guard let cardDeck = dealer.give(cardDeck: totalCards) else {
             throw PokerGameError.invalidCardDeck
         }
         self.totalCards = cardDeck // 전체 카드덱 업데이트
@@ -88,7 +88,7 @@ class PokerGame: CustomStringConvertible {
         }
         currentPlayer.receive(card: card)
         
-        guard let cardDeck = dealer.returnCardDeck(to: totalCards) else {
+        guard let cardDeck = dealer.give(cardDeck: totalCards) else {
             throw PokerGameError.invalidCardDeck
         }
         self.totalCards = cardDeck

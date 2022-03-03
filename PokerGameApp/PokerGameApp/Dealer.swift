@@ -21,7 +21,7 @@ class Dealer: Participant {
     }
     
     
-    func returnCardDeck(to pokerGame: CardDeck) -> CardDeck? {
-        return pokerGame
+    func give(cardDeck: CardDeck) -> CardDeck? {
+        return cardDeck
     }
 }
