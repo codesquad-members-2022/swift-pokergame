@@ -7,6 +7,13 @@ class Dealer: Playable {
     private var upCards: [Card] = []
     
     func openAllCards() -> String {
+        guard playerDeck.count != 1 else {
+            if let firstCard = playerDeck.first?.description {
+                return "[ \(firstCard.description) ]"
+            } else {
+                return "There is no card"
+            }
+        }
         var cardsString: String = playerDeck.reduce("[ ") {
             return $0.description + "," + $1.description
         }
@@ -28,8 +35,19 @@ class Dealer: Playable {
         guard !upCards.isEmpty else {
             return "There is no upCard"
         }
+        guard playerDeck.count != 1 else {
+            if let firstCard = upCards.first?.description {
+                return "[ \(firstCard.description) ]"
+            } else {
+                return "There is no card"
+            }
+        }
         var cardsString: String = upCards.reduce("[ ") {
-            return $0.description + "," + $1.description
+            if playerDeck.count == 1 {
+                return $0.description
+            } else {
+                return $0.description + "," + $1.description
+            }
         }
         cardsString.append(" ]")
         return cardsString

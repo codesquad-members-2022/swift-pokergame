@@ -15,6 +15,13 @@ class Player: Playable {
         guard !upCards.isEmpty else {
             return "There is no upCard"
         }
+        guard playerDeck.count != 1 else {
+            if let firstCard = playerDeck.first?.description {
+                return "[ \(firstCard.description) ]"
+            } else {
+                return "There is no card"
+            }
+        }
         var cardsString: String = upCards.reduce("[ ") {
             return $0.description + "," + $1.description
         }
@@ -23,6 +30,13 @@ class Player: Playable {
     }
     
     func openAllCards() -> String {
+        guard playerDeck.count != 1 else {
+            if let firstCard = playerDeck.first?.description {
+                return "[ \(firstCard.description) ]"
+            } else {
+                return "There is no card"
+            }
+        }
         var cardsString: String = playerDeck.reduce("[ ") {
             return $0.description + "," + $1.description
         }
