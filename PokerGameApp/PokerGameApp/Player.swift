@@ -5,26 +5,15 @@ class Player: Playable {
         playerDeck.append(card)
     }
     
-    func openAllCards() -> String {
-        guard playerDeck.count != 1 else {
-            if let firstCard = playerDeck.first?.description {
-                return "[ \(firstCard.description) ]"
-            } else {
-                return "There is no card"
-            }
-        }
-        let cardsString : String = playerDeck.reduce("") {
-            var tempString:String = $0.description + ", " + $1.description
-            tempString.removeFirst();tempString.removeFirst()
-            tempString.append("]")
-            var result = "["
-            result += tempString
-            return result
-        }
-        return cardsString
+    func openAllCards() -> [Card] {
+        return playerDeck
     }
     
-    private var name: String
+    func intruduceYourSelf() -> String {
+        return "\(self.name)"
+    }
+    
+    private let name: String
     private var playerDeck: [Card] = []
     private var hand : Computer.Hands = .highCard
     
