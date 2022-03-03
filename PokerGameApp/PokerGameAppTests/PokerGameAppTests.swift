@@ -6,21 +6,22 @@ class PokerGameAppTests: XCTestCase {
     
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = PokerGame(sortOfGame: .sevenCardStud, playerCount: .four)
+        sut = PokerGame(sortOfGame: .fiveCardStud, playerCount: .two)
     }
 
     override func tearDownWithError() throws {
         sut = nil
         try super.tearDownWithError()
     }
+    
     func testCardIsDestributed2Players() {
         //give
-        let roundOne = sut.play()
+        let _ = sut.play()
         
         //when
-        let printCards = sut.open()
+        let _ = sut.open()
         
         //then
-        XCTAssertEqual(sut.deckCount(), 47, "The number of card isn't the same")
+        XCTAssertEqual(sut.deckCount(), 17, "The number of card isn't the same")
     }
 }
