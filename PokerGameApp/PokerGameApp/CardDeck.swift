@@ -6,7 +6,7 @@ class CardDeck {
         return deck.count
     }
 
-    func reset() -> [Card] {
+    func reset() {
         deck.removeAll()
         let shapeSet: Set<Card.Shape> = [.club, .diamond, .heart, .spade]
         let rankSet: Set<Card.Rank> = [.ace, .two, .three, .four, .five, .six, .seven, .eight, .nine, .ten, .jack, .queen, .king]
@@ -15,12 +15,11 @@ class CardDeck {
                 deck.append(Card(shape: shape, rank: rank))
             }
         }
-        return deck
     }
 
-    func shuffle() -> Result<[Card], PokerGameError> {
+    func shuffle() {
         guard !deck.isEmpty else {
-            return Result.failure(PokerGameError.cardIsEmpty)
+            return
         }
         let count = cardCount	
         for i in 0..<count - 1 {   // 0 ~ n - 2
@@ -29,7 +28,6 @@ class CardDeck {
             deck[i] = deck[randomIndex]
             deck[randomIndex] = temp
         }
-        return .success(deck)
     }
     
     func removeOne()  -> Result<Card, PokerGameError> {

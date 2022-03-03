@@ -19,20 +19,33 @@ class PokerGame {
     static var round: Int = 0
     
     private var cardDeck = CardDeck()
-    var sortOfGame: Games
-    var playerCount: PlayerCount
-    var players: [Player] = []
-    var dealer: Dealer = Dealer()
-
-    var computer: Computer = Computer()
+    private var sortOfGame: Games
+    private var playerCount: PlayerCount
+    private var players: [Player] = []
+    private var dealer: Dealer = Dealer()
+    
+    private var computer: Computer = Computer()
     
     init(sortOfGame: Games, playerCount: PlayerCount) {
         self.sortOfGame = sortOfGame
         self.playerCount = playerCount
-        for index in 0..<playerCount.rawValue {
-        if index == 0 {
-            self.players.append(Player(name: self.nameArray.remove(at: Int.random(in: 0..<self.nameArray.count))))
-            }
+        for _ in 0..<playerCount.rawValue {
+            self.players.append(Player(name: self.nameArray.remove(at: Int.random(in: 0..<self.nameArray.count))))            }
+    }
+    
+    func play() {
+        cardDeck.reset()
+        cardDeck.shuffle()
+        dealer.giveCard2Player(players: players, deck: cardDeck)
+    }
+    func deckCount() -> Int {
+        return cardDeck.cardCount
+    }
+    func open() {
+        print(players.count)
+        print("딜러 = \(dealer.openAllCards())")
+        for player in players {
+            print("\(player.name) = \(player.openAllCards())")
         }
     }
 }

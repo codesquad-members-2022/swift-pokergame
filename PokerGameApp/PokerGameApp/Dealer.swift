@@ -1,10 +1,10 @@
 import Foundation
 
 class Dealer: Playable {
-    var name: String = "딜러"
-    var hand: Computer.Hands = .highCard
-    var playerDeck: [Card] = []
-    var upCards: [Card] = []
+    private var name: String = "딜러"
+    private var hand: Computer.Hands = .highCard
+    private var playerDeck: [Card] = []
+    private var upCards: [Card] = []
     
     func openAllCards() -> String {
         var cardsString: String = playerDeck.reduce("[ ") {
@@ -37,7 +37,7 @@ class Dealer: Playable {
 
     //TODO: throws를 Result<>로 변환을 해야할 거같은데.. 인터넷에 나와있는 예제들은 비동기 함수에서 적용하는 법을 알려줘서 지금과 같은 동기 함수에서는 어떻게 적용해야할지 모르겠다. https://onelife2live.tistory.com/1 잘 정리되어있음.
     func giveCard2Player(players: [Playable], deck: CardDeck) {
-        guard PokerGame.round == 7 else {
+        guard PokerGame.round != 7 else {
             print("카드를 모두 배분했습니다.")
             return
         }
