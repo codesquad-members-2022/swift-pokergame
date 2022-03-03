@@ -26,15 +26,19 @@ class PokerGameAppTests: XCTestCase {
         try super.tearDownWithError()
     }
     
-    func testIsCardNumberEqualTo7() {
-        // given
+    func testIsPokerGameAllSet() {
+        // given - 테스트에 필요한 값 설정
+        systemUnderTest = PokerGame(playerNames: ["JK", "Honux", "Crong"])
+        let cardNumber = 7
+        
+        // when - 테스트할 코드를 실행
         systemUnderTest.setCards()
+        let dealerCardNum = systemUnderTest.getDealerCardsNum()
+        let playerCardNums = systemUnderTest.getPlayersCardsNum()
         
-        // when
-        let playerCardNumber = systemUnderTest.getPlayerCardsNum()
-        
-        // then
-        XCTAssertEqual(playerCardNumber, 7, "Player's card number is not 7")
+        // then - 테스트에 기대되는 결과값 단정
+        XCTAssertEqual(dealerCardNum, cardNumber)
+        playerCardNums.map{ XCTAssertEqual($0, cardNumber) }           
     }
 
 }
