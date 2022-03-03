@@ -41,7 +41,11 @@ class PokerGame {
         }
     }
     
-    func getPlayerCardsNum() -> Int {
-        return playerGroup[0].getCardsCount()
+    func getDealerCardsNum() -> Int {
+        return dealer.getCardsCount()
+    }
+    
+    func getPlayersCardsNum() -> [Int] {
+        return playerGroup.map{ $0.getCardsCount()}
     }
 }
