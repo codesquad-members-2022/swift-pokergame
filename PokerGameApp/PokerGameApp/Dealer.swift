@@ -9,7 +9,7 @@ import Foundation
 
 class Dealer: Participant {
     override var description: String {
-        return "😎Dealer: \(self.cards)"
+        return "😎Dealer: \(self.show()))"
     }
     
     private var cardDeck = CardDeck()

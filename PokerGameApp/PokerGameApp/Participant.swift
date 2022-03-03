@@ -12,10 +12,15 @@ class Participant: CustomStringConvertible {
         return ""
     }
     
-    var cards = [Card]()
+    private var cards = [Card]()
     
     
     func receive(card: Card) {
         cards.append(card)
+    }
+    
+    
+    func show() -> [Card] {
+        return cards
     }
 }

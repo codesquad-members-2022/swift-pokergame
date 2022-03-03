@@ -9,7 +9,7 @@ import Foundation
 
 class Player: Participant {
     override var description: String {
-        return "👤User(\(name)): \(self.cards)"
+        return "👤User(\(name)): \(self.show())"
     }
     
     private var name: String
