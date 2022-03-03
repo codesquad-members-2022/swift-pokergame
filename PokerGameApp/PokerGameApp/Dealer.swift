@@ -49,7 +49,8 @@ class Dealer: Playable {
             if let removed = try? deck.removeOne().get() {
                 player.addCard(card: removed, round: PokerGame.round)
             } else {
-             print("Card is empty.")
+                print("Card is empty.")
+                return
             }
         }
     }
