@@ -15,8 +15,8 @@ class Dealer: Participant {
     private var cardDeck = CardDeck()
     
     
-    func remove(card: CardDeck) -> Card? {
-        let currentCardDeck = card
+    func remove(cardDeck: CardDeck) -> Card? {
+        let currentCardDeck = cardDeck
         return currentCardDeck.removeOne()
     }
     
