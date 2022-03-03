@@ -9,11 +9,17 @@ import Foundation
 
 class PokerGame {
     
+    enum Stud: Int{
+        case seven = 7
+        case five = 5
+    }
+    
     private let dealer: Dealer
     private let playerGroup: Array<Player>
     private var names: [String]
     private let playerNum: Int
-    private let cardStud = 7
+    private let cardStud7 = Stud.seven.rawValue
+    private let cardStud5 = Stud.five.rawValue
     
     init(playerNames: [String]) {
         self.dealer = Dealer()
@@ -26,7 +32,7 @@ class PokerGame {
         self.playerGroup = playerGroup
     }
     
-    func setCards() {
+    func setCard(stud: Stud) {
         while dealer.getDeckCount() > playerNum {
             for player in playerGroup {
                 guard let card = dealer.popCardFromDeck() else {
@@ -37,7 +43,8 @@ class PokerGame {
             if let card = dealer.popCardFromDeck() {
                 dealer.addCard(card)
             }
-            if dealer.getCardsCount() == cardStud { return }
+            if dealer.getCardsCount() == stud.rawValue { return }
+            
         }
     }
     
