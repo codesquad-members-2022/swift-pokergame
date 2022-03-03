@@ -30,8 +30,7 @@ class ViewController: UIViewController {
         
         let names: [String] = ["JK", "Honux", "Crong"]
         let pokerGame = PokerGame(playerNames: names)
-        pokerGame.setCards()
-        
+        pokerGame.setCard(stud: .seven)
     }
 }
 
