@@ -20,12 +20,4 @@ class Computer {
         case straightFlush
         case royalStraightFlush
     }
-
-//    func compare(players: [Playable]) {
-//        
-//    }
-    
-//    func compute(Deck: [Card]) -> Hands {
-//
-//    }
 }
