@@ -37,11 +37,12 @@ class Player: Playable {
                 return "There is no card"
             }
         }
-        var cardsString: String = playerDeck.reduce("[ ") {
-            return $0.description + "," + $1.description
-        }
-        cardsString.append(" ]")
-        return cardsString
+        var cardsString : String = playerDeck.reduce("") { return $0.description + ", " + $1.description}
+        cardsString.removeFirst(); cardsString.removeFirst()
+        cardsString.append("]")
+        var result: String = "["
+        result += cardsString
+        return result
     }
 //    func getHand(computer: Computer) {
 //        <#code#>
