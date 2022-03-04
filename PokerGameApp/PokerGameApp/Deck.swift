@@ -24,6 +24,13 @@ class Deck {
         }
     }
     
+    func removeOne() -> Card {
+        let i = Int.random(in: 0...51)
+        let tmp = cards[i]
+        cards.remove(at: i)
+        return tmp
+    }
+    
     func reset() {
         currentCount = 52
         cards = []
