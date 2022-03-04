@@ -17,6 +17,13 @@ class Deck {
         return cards.count
     }
     
+    func shuffle() {
+        for i in 0...50 {
+            let j = Int.random(in: (i+1)...51)
+            cards.swapAt(i, j)
+        }
+    }
+    
     func reset() {
         currentCount = 52
         cards = []
