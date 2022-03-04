@@ -27,7 +27,7 @@ class Deck {
     }
     
     func removeOne() -> Card {
-        let i = Int.random(in: 0...51)
+        let i = Int.random(in: 0...cards.count - 1)
         let tmp = cards[i]
         cards.remove(at: i)
         return tmp
