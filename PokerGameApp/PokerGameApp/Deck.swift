@@ -13,4 +13,13 @@ class Deck {
  
     init() {}
     
+    func count() -> Int {
+        return cards.count
+    }
+    
+    func reset() {
+        currentCount = 52
+        cards = []
+    }
+    
 }
