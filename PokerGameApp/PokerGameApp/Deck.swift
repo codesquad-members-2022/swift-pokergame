@@ -42,8 +42,7 @@ class Deck {
                 cards.append(Card(Card.Num(rawValue: j) ?? Card.Num.one, Card.Shape(rawValue: i) ?? Card.Shape.spade))
             }
         }
-        print(cards)
-        
+
     }
     
 }
