@@ -11,7 +11,9 @@ class Deck {
     var currentCount: Int = 52
     var cards: [Card] = []
  
-    init() {}
+    init() {
+        reset()
+    }
     
     func count() -> Int {
         return cards.count
