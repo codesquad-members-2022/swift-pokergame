@@ -13,11 +13,32 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        testDeck()
+        
         setBackground()
         addCardToView()
         
         createCard()
         printCard()
+    }
+    
+    func testDeck() {
+        let deck = Deck()
+        
+        print("current count:", deck.count())
+        print("card list:", deck.cards, "\n")
+        
+        print("shuffle test")
+        deck.shuffle()
+        print("shuffled card list:", deck.cards, "\n")
+        
+        print("removeOne test")
+        for _ in 0..<25 {
+            print("cards count:", deck.count(), terminator: ", ")
+            print("removed card:", deck.removeOne(), terminator: "\t=> ")
+            print("removed cards count:", deck.count())
+        }
+        
     }
     
     func createCard() {
