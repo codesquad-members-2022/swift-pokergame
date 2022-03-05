@@ -20,6 +20,9 @@ class Deck {
     }
     
     func shuffle() {
+        if cards.count != 51 {
+            return
+        }
         for i in 0...50 {
             let j = Int.random(in: (i+1)...51)
             cards.swapAt(i, j)
