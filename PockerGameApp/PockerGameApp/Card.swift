@@ -10,7 +10,7 @@ import Foundation
 class Card: CustomStringConvertible {
     // 크게 카드의 속성을 2가지로만 보았을 때 미션에서 제시한 것 처럼 '모양'과 '숫자'를 확인할 수 있었다.
     // enum으로 타입을 정의하여 자주 사용되는 property를 중첩으로 묶어서 사용하면 편리할 것 같았다.
-    enum Suitshape: String, CustomStringConvertible{
+    enum Suitshape: String, CustomStringConvertible, CaseIterable{
         case heart
         case clover
         case space
@@ -31,7 +31,7 @@ class Card: CustomStringConvertible {
         
     }
     // 카드가 가지고 있는 숫자들을 비교할 때 rawValue로 처리하면 편할 것 같았다.
-    enum SuitNumber: Int, CustomStringConvertible{
+    enum SuitNumber: Int, CustomStringConvertible, CaseIterable{
         case ace
         case two
         case three
