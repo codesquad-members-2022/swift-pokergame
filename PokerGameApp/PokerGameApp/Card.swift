@@ -8,17 +8,17 @@
 import Foundation
 
 class Card {
-    let num: Num
-    let shape: Shape // Card에서만 사용할 가능성이 높으므로, Nested enum타입으로
+    let num: CardNum
+    let shape: CardShape // Card에서만 사용할 가능성이 높으므로, Nested enum타입으로
 
-    enum Shape: Int {
+    enum CardShape: Int {
         case spade = 1
         case clover
         case diamond
         case heart
     }
     
-    enum Num: Int {
+    enum CardNum: Int {
         case one = 1
         case two
         case three
@@ -34,7 +34,7 @@ class Card {
         case thirteen
     }
     
-    init(_ num: Num, _ shape: Shape){
+    init(_ num: CardNum, _ shape: CardShape){
         self.num = num
         self.shape = shape
     }
@@ -45,13 +45,13 @@ extension Card: CustomStringConvertible {
     var description: String {
         var info: String = ""
         switch shape {
-        case Shape.spade:
+        case CardShape.spade:
             info.append("♠")
-        case Shape.clover:
+        case CardShape.clover:
             info.append("♣︎")
-        case Shape.diamond:
+        case CardShape.diamond:
             info.append("♦︎")
-        case Shape.heart:
+        case CardShape.heart:
             info.append("♥︎")
         }
         

@@ -45,7 +45,7 @@ class Deck {
         
         for i in 1...4 {
             for j in 1...13 {
-                cards.append(Card(Card.Num(rawValue: j) ?? Card.Num.one, Card.Shape(rawValue: i) ?? Card.Shape.spade))
+                cards.append(Card(Card.CardNum(rawValue: j) ?? Card.CardNum.one, Card.CardShape(rawValue: i) ?? Card.CardShape.spade))
             }
         }
 
