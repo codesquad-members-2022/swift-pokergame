@@ -39,5 +39,9 @@ struct PokerCardDeck {
         }
     }
     
+    mutating func removeOne() -> PokerCard{
+        return pokercardDeck.removeLast()
+    }
+    
 }
 
