@@ -16,14 +16,17 @@ struct Deck {
         makeDeck()
     }
     
+//  ‘카드’라는 객체를 ‘카드덱'이라는 또 다른 객체에 넣는다
+//  ‘카드'의 객체가 가지고 있는 속성 = 모양, 숫자
     mutating func makeDeck() {
         for shape in Card.Suitshape.allCases {
-            for rank in Card.SuitNumber.allCases {
-                cardDeck.append(Card(suitShape: shape, suitCardNumber: rank))
+            for number in Card.SuitNumber.allCases {
+                cardDeck.append(Card(suitShape: shape, suitCardNumber: number))
             }
         }
     }
     
+//  ‘카드덱’의 객체가 가지고 있는 것은 위 범주를 포함하고 52개라는 카드의 개수
     func count() -> Int {
         return cardDeck.count
     }
@@ -41,8 +44,7 @@ struct Deck {
     }
     
     mutating func removeOne() -> Card {
-        let length = self.count()
-        let randomIndex = Int.random(in: 0..<length)
+        let randomIndex = Int.random(in: 0..<count())
         
         let removeOneofCards = cardDeck.remove(at: randomIndex)
         return removeOneofCards
