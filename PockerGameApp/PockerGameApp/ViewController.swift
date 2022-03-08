@@ -20,8 +20,8 @@ class ViewController: UIViewController {
         setBackground()
         createCardRect()
         
-        let sampleCard1 = Card(suitShape: .heart, suitCardNumber: .Queen)
-        let sampleCard2 = Card(suitShape: .space, suitCardNumber: .seven)
+        let sampleCard1 = Card(suitShape: .heart, cardRank: .Queen)
+        let sampleCard2 = Card(suitShape: .space, cardRank: .seven)
         printCardInformation(card: sampleCard1)
         printCardInformation(card: sampleCard2)
         
@@ -88,7 +88,7 @@ class ViewController: UIViewController {
         print()
         print("> 카드 하나 뽑기")
         let currentCount = deck.count()
-        print( deck.removeOne() )
+        print( deck.removeOne() ?? false )
         
         if currentCount-1 == deck.count() {
             print("총 \(deck.count())장의 카드가 남아있습니다.")
