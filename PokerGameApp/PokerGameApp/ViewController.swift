@@ -33,9 +33,14 @@ class ViewController: UIViewController {
         print("shuffled card list:", deck.cards, "\n")
         
         print("removeOne test")
-        for _ in 0..<25 {
+        for _ in 0..<53 {
             print("cards count:", deck.count(), terminator: ", ")
-            print("removed card:", deck.removeOne(), terminator: "\t=> ")
+            let tmp = deck.removeOne()
+            if tmp == nil {
+                print("removed card: empty", terminator: "\t=> ")
+            } else {
+                print("removed card:", tmp!, terminator: "\t=> ")
+            }
             print("removed cards count:", deck.count())
         }
         

@@ -29,7 +29,10 @@ class Deck {
         }
     }
     
-    func removeOne() -> Card {
+    func removeOne() -> Card? {
+        if cards.isEmpty == true {
+            return nil
+        }
         let i = Int.random(in: 0...cards.count - 1)
         let tmp = cards[i]
         cards.remove(at: i)
