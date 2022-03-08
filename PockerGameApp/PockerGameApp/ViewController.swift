@@ -24,6 +24,8 @@ class ViewController: UIViewController {
         let sampleCard2 = Card(suitShape: .space, suitCardNumber: .seven)
         printCardInformation(card: sampleCard1)
         printCardInformation(card: sampleCard2)
+        
+        testAboutCarddeck()
     }
     
     // Background 설정
@@ -66,4 +68,42 @@ class ViewController: UIViewController {
         print(card)
     }
     
+    // Step3 - '카드덱' 테스트 함수
+    func testAboutCarddeck() {
+        print("> 카드 초기화")
+        var deck = Deck()
+        
+        if deck.count() == 52 {
+            print("카드 전체를 초기화했습니다")
+            print("총 \( deck.count() )장의 카드가 있습니다.")
+        } else {
+            print("카드 초기화에 실패하였습니다.")
+        }
+        
+        print()
+        print("> 카드 섞기")
+        deck.shuffle()
+        print("전체 \( deck.count() )장의 카드를 섞었습니다.")
+        
+        print()
+        print("> 카드 하나 뽑기")
+        let currentCount = deck.count()
+        print( deck.removeOne() )
+        
+        if currentCount-1 == deck.count() {
+            print("총 \(deck.count())장의 카드가 남아있습니다.")
+        } else {
+            print("잘못된 카드 뽑기가 실행되었습니다.")
+        }
+        
+        print()
+        print("> 카드 리셋")
+        deck.reset()
+        if deck.count() == 52 {
+            print("리셋된 카드는 \(deck.count())입니다.")
+        } else {
+            print("잘못된 리셋이 실행되었습니다.")
+        }
+        
+    }
 }
