@@ -9,11 +9,11 @@ import Foundation
 import QuartzCore
 
 struct PokerCard {
-    enum Suit: Character {
+    enum Suit: Character, CaseIterable {
         case spades = "♠", hearts = "♡", diamonds = "♢", clubs = "♣"
     }
     
-    enum Rank: Int {
+    enum Rank: Int, CaseIterable {
         case Ace = 1, two, three, four, five, six, seven, eight, nine, ten, Jack, Queen, King
     }
     
