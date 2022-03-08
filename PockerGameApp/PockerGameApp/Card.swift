@@ -19,10 +19,9 @@ class Card: CustomStringConvertible {
         var description: String {
             return "\(self.rawValue)"
         }
-    
     }
     // 카드가 가지고 있는 숫자들을 비교할 때 rawValue로 처리하면 편할 것 같았다.
-    enum SuitNumber: Int, CustomStringConvertible, CaseIterable{
+    enum Rank: Int, CustomStringConvertible, CaseIterable{
         case ace
         case two
         case three
@@ -56,15 +55,15 @@ class Card: CustomStringConvertible {
     // 다른 객체로 인한 간섭이 있으면 안될 것 같아 let으로 선언하였습니다.
     //다른 객체는 Card 객체의 suitShape, suitCardNumber, suitSpecialCard 각각의 객체에만 접근할 수 있도록 하였습니다.
     let suitShape: Suitshape
-    let suitCardNumber: SuitNumber
+    let cardRank: Rank
     
-    init(suitShape: Suitshape, suitCardNumber: SuitNumber) {
+    init(suitShape: Suitshape, cardRank: Rank) {
         self.suitShape = suitShape
-        self.suitCardNumber = suitCardNumber
+        self.cardRank = cardRank
     }
     
     var description: String {
-        return "\(self.suitShape)\(self.suitCardNumber)"
+        return "\(self.suitShape)\(self.cardRank)"
     }
     
 }
