@@ -15,14 +15,17 @@ class ViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundImage()
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         cardImage()
         let pokerDisplay = PokerCard.init(.hearts, .seven)
-        let pokerCardDeck = PokerCardDeck()
+        var pokerCardDeck = PokerCardDeck()
         let pokerCount = pokerCardDeck.count()
+        
     }
 
     func backgroundImage(){
@@ -45,6 +48,8 @@ class ViewController: UIViewController{
             cardImageView[i].frame = CGRect(x: (cardWidth * CGFloat(i)), y: 0, width: (cardWidth - margin), height: cardHeight)
         }
     }
+    
+    
 
 }
   
