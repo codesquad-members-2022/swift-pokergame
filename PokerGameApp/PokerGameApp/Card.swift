@@ -11,14 +11,14 @@ class Card {
     let num: CardNum
     let shape: CardShape // Card에서만 사용할 가능성이 높으므로, Nested enum타입으로
 
-    enum CardShape: Int {
+    enum CardShape: Int, CaseIterable {
         case spade = 1
         case clover
         case diamond
         case heart
     }
     
-    enum CardNum: Int {
+    enum CardNum: Int, CaseIterable {
         case one = 1
         case two
         case three
