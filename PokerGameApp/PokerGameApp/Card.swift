@@ -11,14 +11,40 @@ class Card {
     let num: CardNum
     let shape: CardShape // Card에서만 사용할 가능성이 높으므로, Nested enum타입으로
 
-    enum CardShape: Int, CaseIterable {
-        case spade = 1
+    enum CardShape: CaseIterable, CustomStringConvertible {
+        var description: String {
+            switch self {
+            case CardShape.spade:
+                return "♠"
+            case CardShape.clover:
+                return "♣︎"
+            case CardShape.diamond:
+                return "♦︎"
+            case CardShape.heart:
+                return "♥︎"
+            }
+        }
+        case spade
         case clover
         case diamond
         case heart
     }
     
-    enum CardNum: Int, CaseIterable {
+    enum CardNum: Int, CaseIterable, CustomStringConvertible {
+        var description: String {
+            switch self {
+            case CardNum.one:
+                return "A"
+            case CardNum.eleven:
+                return "J"
+            case CardNum.twelve:
+                return "Q"
+            case CardNum.thirteen:
+                return "K"
+            default:
+                return String(describing: self.rawValue)
+            }
+        }
         case one = 1
         case two
         case three
@@ -43,34 +69,6 @@ class Card {
 
 extension Card: CustomStringConvertible {
     var description: String {
-        var info: String = ""
-        switch shape {
-        case CardShape.spade:
-            info.append("♠")
-        case CardShape.clover:
-            info.append("♣︎")
-        case CardShape.diamond:
-            info.append("♦︎")
-        case CardShape.heart:
-            info.append("♥︎")
-        }
-        
-        let n = num.rawValue
-        var str: String
-        switch n {
-        case 1:
-            str = "A"
-        case 11:
-            str = "J"
-        case 12:
-            str = "Q"
-        case 13:
-            str = "K"
-        default:
-            str = String("\(n)")
-        }
-        info.append(str)
-        
-        return info
+        return "\(self.shape)\(self.num)"
     }
 }
