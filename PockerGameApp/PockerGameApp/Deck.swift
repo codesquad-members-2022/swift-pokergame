@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreImage
 
 struct Deck {
     
@@ -27,8 +28,16 @@ struct Deck {
         return cardDeck.count
     }
     
-    func shuffle() {
+    mutating func shuffle() {
+        let length = self.count()
         
+        for index in 0..<length-1 {
+            let randomIndex = Int.random(in: index..<length)
+            
+            let temp = cardDeck[index]
+            cardDeck[index] = cardDeck[randomIndex]
+            cardDeck[randomIndex] = temp
+        }
     }
     
     func removeOne() {
