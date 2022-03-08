@@ -43,9 +43,10 @@ class Deck {
         currentCount = 52
         cards = []
         
-        for i in 1...4 {
-            for j in 1...13 {
-                cards.append(Card(Card.CardNum(rawValue: j) ?? Card.CardNum.one, Card.CardShape(rawValue: i) ?? Card.CardShape.spade))
+        Card.CardShape.allCases.forEach {
+            let shape = $0
+            Card.CardNum.allCases.forEach {
+                cards.append(Card($0, shape))
             }
         }
 
