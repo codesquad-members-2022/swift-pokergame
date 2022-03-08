@@ -43,5 +43,9 @@ struct PokerCardDeck {
         return pokercardDeck.removeLast()
     }
     
+    mutating func reset(){
+        pokercardDeck = pokercard
+    }
+    
 }
 
