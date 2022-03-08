@@ -40,11 +40,17 @@ struct Deck {
         }
     }
     
-    func removeOne() {
+    mutating func removeOne() -> Card {
+        let length = self.count()
+        let randomIndex = Int.random(in: 0..<length)
         
+        let removeOneofCards = cardDeck.remove(at: randomIndex)
+        return removeOneofCards
     }
     
-    func reset() {
-        
+    mutating func reset() {
+        cardDeck.removeAll()
+        makeDeck()
     }
+    
 }
