@@ -21,7 +21,7 @@ struct Deck {
     mutating func makeDeck() {
         for shape in Card.Suitshape.allCases {
             for number in Card.Rank.allCases {
-                cardDeck.append(Card(suitShape: shape, suitCardNumber: number))
+                cardDeck.append(Card(suitShape: shape, cardRank: number))
             }
         }
     }
@@ -43,11 +43,11 @@ struct Deck {
         }
     }
     
-    mutating func removeOne() -> Card {
-        let randomIndex = Int.random(in: 0..<count())
-        
-        let removeOneofCards = cardDeck.remove(at: randomIndex)
-        return removeOneofCards
+    mutating func removeOne() -> Card? {
+        guard let randomOneOfCards = cardDeck.popLast() else {
+            return nil
+        }
+        return randomOneOfCards
     }
     
     mutating func reset() {
