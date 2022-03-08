@@ -23,9 +23,21 @@ struct PokerCardDeck {
         }
         self.pokercardDeck = pokercard
     }
+    
     func count() -> Int{
         return pokercardDeck.count
     }
-        
+    
+    mutating func shuffle() {
+        let pokerCount = pokercardDeck.count
+        for i in 0..<pokerCount - 1 {
+            let randomIndex = Int.random(in: i..<pokerCount)
+            let temp = self.pokercardDeck[i]
+            
+            self.pokercardDeck[i] = self.pokercardDeck[randomIndex]
+            self.pokercardDeck[randomIndex] = temp
+        }
+    }
+    
 }
 
