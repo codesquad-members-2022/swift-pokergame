@@ -199,7 +199,7 @@ Card (suit 무늬 & 숫자) - ( 모양, 숫자 ) 튜플형식으로 나타낼 �
   - [x]  클래스 메모리 관리 방식에 대해 학습
   - [x]  reset()할 때 이전에 만든 카드 객체는 어떻게 되는지 설명할  수 있어야한다.
   - [x]  개발 환경에서 제공하는 메모리를 분석하는 디버깅 도구 확습   
-  - [ ]  
+  
 ## 🟢 ARC (Automatic Reference Counting) 자동 참조 카운팅
 참조 타입은 하나의 인스턴스가 참조를 통해 여러곳에서 접근하기 때문에 언제 메모리에서 해제되는지가 중요한 문제이다.   
 해제되지 않으면 한정적인 메모리 자원을 낭비하게 되며, 이는 성능의 저하로 이어지게 된다.
@@ -255,11 +255,8 @@ Card (suit 무늬 & 숫자) - ( 모양, 숫자 ) 튜플형식으로 나타낼 �
 ## 🔴 메모리 분석 도구 - 수업자료 확인
 
 - Instruments는 강력하고 유연한 성능 분석 및 테스트도구로서 Xcode tool 집합의 일부이다.
-
 [[iOS - Xcode] Memory Leak, strong Reference, cycle 확인 방법 (with Instruments)](https://ios-development.tistory.com/604)
-
 [Xcode ) About Instruments](https://zeddios.tistory.com/522)
-
 [모든 iOS 개발자가 Instruments에서해야 할 일](https://gist.github.com/HwangByungJo/f0ad11feb33df8b5c44e1a85d95e1a0d)
 
 ---
@@ -267,3 +264,10 @@ Card (suit 무늬 & 숫자) - ( 모양, 숫자 ) 튜플형식으로 나타낼 �
 ## 🟢 참조 접근자 (Access Control)
 
 [Swift Syntax](https://www.notion.so/Swift-Syntax-3ea1cd0b217f46cb9094b7e0f773f541)
+
+## ✅  Step4 게임로직 구현하기
+### **🧑🏼‍💻 작업 목록**   
+- [ ]  카드덱을 활용해서 게임을 위해 카드를 나눠주는 포커 게임 딜러와 카드를 받는 참가자를 설계하고, 각 역할을 담당하는 클래스를 구현한다.
+- [ ]  카드 게임 규칙과 참가자 수에 따라서 각기 다른 방식으로 카드를 뽑아 전달한다.
+- [ ]  딜러와 참가자를 포함하는 PockerGame 객체를 작성한다.
+- [ ]  PockerGame 동작을 확인하기 위해 XCTest 단위 테스트를 구현한다.
