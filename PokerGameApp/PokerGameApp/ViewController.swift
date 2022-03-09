@@ -15,17 +15,13 @@ class ViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundImage()
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         cardImage()
-        let pokerDisplay = PokerCard.init(.hearts, .seven)
-        var pokerCardDeck = PokerCardDeck()
-        let pokerCount = pokerCardDeck.count()
         
+        testCardDeck()
     }
 
     func backgroundImage(){
@@ -49,8 +45,28 @@ class ViewController: UIViewController{
         }
     }
     
-    
+    func testCardDeck(){
+        let pokerCardDeck = PokerCardDeck()
+        let pokerCount1 = pokerCardDeck.count()
+        pokerCardDeck.shuffle()
+        let pokerPicking1 = pokerCardDeck.removeOne()
+        let pokerPicking2 = pokerCardDeck.removeOne()
+        let pokerCount2 = pokerCardDeck.count()
 
+        print("> 카드 초기화")
+        print("카드 전체를 초기화했습니다.")
+        print("총 \(pokerCount1)장의 카드가 있습니다.\n")
+        
+        print("> 카드 섞기")
+        print("전체 \(pokerCount1)장의 카드를 섞었습니다.\n")
+        
+        print(">  카드 하나 뽑기")
+        print("\(pokerPicking1)\n")
+        
+        print(">  카드 하나 뽑기")
+        print("\(pokerPicking2)\n")
+        print("총 \(pokerCount2)장의 카드가 남아있습니다.")
+    }
 }
   
     

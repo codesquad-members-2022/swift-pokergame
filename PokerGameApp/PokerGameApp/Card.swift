@@ -8,7 +8,7 @@
 import Foundation
 import QuartzCore
 
-struct PokerCard {
+class PokerCard {
     enum Suit: Character, CaseIterable {
         case spades = "♠", hearts = "♡", diamonds = "♢", clubs = "♣"
     }
