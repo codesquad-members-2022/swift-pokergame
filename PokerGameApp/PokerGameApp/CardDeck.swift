@@ -7,45 +7,42 @@
 
 import Foundation
 
-struct PokerCardDeck {
+class PokerCardDeck {
     private var pokercard: [PokerCard] = []
-    private var pokercardDeck: [PokerCard] = []
     
     init(){
         makeCardDeck()
     }
     
-    mutating func makeCardDeck() {
+    func makeCardDeck() {
         for suits in PokerCard.Suit.allCases{
             for ranks in PokerCard.Rank.allCases{
                 self.pokercard.append(PokerCard(suits, ranks))
             }
         }
-        self.pokercardDeck = pokercard
     }
     
     func count() -> Int{
-        return pokercardDeck.count
+        return pokercard.count
     }
     
-    mutating func shuffle() {
-        let pokerCount = pokercardDeck.count
+    func shuffle(){
+        let pokerCount = pokercard.count
         for i in 0..<pokerCount - 1 {
             let randomIndex = Int.random(in: i..<pokerCount)
-            let temp = self.pokercardDeck[i]
+            let temp = self.pokercard[i]
             
-            self.pokercardDeck[i] = self.pokercardDeck[randomIndex]
-            self.pokercardDeck[randomIndex] = temp
+            self.pokercard[i] = self.pokercard[randomIndex]
+            self.pokercard[randomIndex] = temp
         }
     }
     
-    mutating func removeOne() -> PokerCard{
-        return pokercardDeck.removeLast()
+    func removeOne() -> PokerCard{
+        return pokercard.removeLast()
     }
     
-    mutating func reset(){
-        pokercardDeck = pokercard
+    func reset(){
+        makeCardDeck()
     }
-    
 }
 
