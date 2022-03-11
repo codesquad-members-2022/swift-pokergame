@@ -27,7 +27,7 @@ class ViewController: UIViewController {
 //        printCardInformation(card: sampleCard2)
 
 //      테스트 코드 호출
-        testAboutCarddeck()
+//        testAboutCarddeck()
     }
     
     //MARK: Background 설정
