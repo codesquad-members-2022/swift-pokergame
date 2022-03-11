@@ -20,8 +20,8 @@ struct Deck {
 //  ‘카드'의 객체가 가지고 있는 속성 = 모양, 숫자
     mutating func makeDeck() {
         for shape in Card.Suitshape.allCases {
-            for number in Card.Rank.allCases {
-                cardDeck.append(Card(suitShape: shape, cardRank: number))
+            for rank in Card.Rank.allCases {
+                cardDeck.append(Card(suitShape: shape, cardRank: rank))
             }
         }
     }
