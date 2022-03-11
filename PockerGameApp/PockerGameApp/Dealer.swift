@@ -36,7 +36,7 @@ class Dealer {
     }
     
     //MARK: 카드덱에서 나눠준 카드 제거
-    func removeTheCard() {
+    func removeACard() {
         
     }
     
@@ -55,13 +55,13 @@ class Dealer {
     //MARK: 7-card stud
     func sevenCardStud() {
         giveToCard()
-        removeTheCard()
+        removeACard()
     }
     
     //MARK: 5-card stud
     func fiveCardStud() {
         giveToCard()
-        removeTheCard()
+        removeACard()
     }
     
 }

@@ -18,11 +18,22 @@ class Player {
         
     }
     
-    //MARK: 참가자명 문자열 랜덤생성 -> makeRandomParticipant() 안에 중첩으로 만들 수 있을까?
-    func makeRandomName() {
-        // 2~5글자 이내로
+    //MARK: 참가자 랜덤하게 배정 -> makeRandomParticipant() 안에 중첩으로 만들 수 있을까?
+    func makeRandomName() -> Array<String> {
+        // 2~5글자 이내의 참가자들 중 참가자 랜덤으로 배정
+        let participant = ["Chole", "Honux", "Crong", "JK", "Jin", "Koon"]
+        var storageParticipant = [String]()
         
-    }
+        for order in 0..<participant.count {
+            switch participant[order].count {
+            case 2...5:
+                storageParticipant[order].append(participant[order])
+            default:
+                exit(1)
+            }
+        }
+        return storageParticipant
+    }R
     
     //MARK: 딜러에게 받은 카드 모아놓는 역할
     func receiveToCard() {
