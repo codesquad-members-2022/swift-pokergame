@@ -25,8 +25,10 @@ class Dealer {
         // 현재는 이렇게 진행하고 return으로 함수를 호출하는 식으로 진행할 예정
         if chooseGameNumber == 7 {
             return 7
-        } else {
+        } else if chooseGameNumber == 5 {
             return 5
+        } else {
+            exit(0)
         }
     }
     
