@@ -46,7 +46,7 @@ class Dealer {
                 tempStorage.remove(at: check)
             }
         }
-        
+        // return 할 수 있을수도 있어서 공백처리
     }
     
     //MARK: 카드덱에 얼마나 남아있는지 갯수 확인하고 값을 리턴
