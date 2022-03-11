@@ -13,27 +13,26 @@ import Foundation
 class Player {
     
     //MARK: 참가자(1~4명) 랜덤으로 생성
-    func makeRandomParticipant() {
-        let participant: Array<Int>
-        
+    func makeRandomParticipant() -> Int {
+        return Int.random(in: 1...4)
     }
     
     //MARK: 참가자 랜덤하게 배정 -> makeRandomParticipant() 안에 중첩으로 만들 수 있을까?
-    func makeRandomName() -> Array<String> {
+    func makeRandomMember(with Number:Int) -> Array<String> {
         // 2~5글자 이내의 참가자들 중 참가자 랜덤으로 배정
         let participant = ["Chole", "Honux", "Crong", "JK", "Jin", "Koon"]
         var storageParticipant = [String]()
         
-        for order in 0..<participant.count {
+        for order in 0..<Number {
             switch participant[order].count {
-            case 2...5:
+            case 2...5
                 storageParticipant[order].append(participant[order])
             default:
                 exit(1)
             }
         }
         return storageParticipant
-    }R
+    }
     
     //MARK: 딜러에게 받은 카드 모아놓는 역할
     func receiveToCard() {
