@@ -23,15 +23,15 @@ class Card: CustomStringConvertible {
     // 카드가 가지고 있는 숫자들을 비교할 때 rawValue로 처리하면 편할 것 같았다.
     enum Rank: Int, CustomStringConvertible, CaseIterable{
         case ace
-        case two
-        case three
-        case four
-        case five
-        case six
-        case seven
-        case eight
-        case nine
-        case ten
+        case two = 2
+        case three = 3
+        case four = 4
+        case five = 5
+        case six = 6
+        case seven = 7
+        case eight = 8
+        case nine = 9
+        case ten = 10
         case Jack
         case Queen
         case King

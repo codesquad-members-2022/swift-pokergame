@@ -19,16 +19,18 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         setBackground()
         createCardRect()
-        
-        let sampleCard1 = Card(suitShape: .heart, cardRank: .Queen)
-        let sampleCard2 = Card(suitShape: .space, cardRank: .seven)
-        printCardInformation(card: sampleCard1)
-        printCardInformation(card: sampleCard2)
-        
+
+//        카드 모양, 숫자 출력확인
+//        let sampleCard1 = Card(suitShape: .heart, cardRank: .Queen)
+//        let sampleCard2 = Card(suitShape: .space, cardRank: .seven)
+//        printCardInformation(card: sampleCard1)
+//        printCardInformation(card: sampleCard2)
+
+//      테스트 코드 호출
         testAboutCarddeck()
     }
     
-    // Background 설정
+    //MARK: Background 설정
     private func setBackground() {
         guard let patternImage: UIImage = UIImage(named: "bg_pattern.png") else {
             return
@@ -36,20 +38,20 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: patternImage)
     }
     
-    // Screen의 Coordinate Value 찾기
+    //MARK: Screen의 Coordinate Value 찾기
     private func getScreenWidth() -> CGFloat {
         let bounds: CGRect = UIScreen.main.bounds // (0.0, 0.0, 390.0, 844.0)
         return bounds.width
     }
     
-    // Image 생성하여 반환
+    //MARK: Image 생성하여 반환
     private func createCardImage() -> UIImageView {
         let imageCard = UIImageView()
         imageCard.image = UIImage(named: "card-back.png")
         return imageCard
     }
     
-    // 카드 7개 만들기
+    //MARK: 카드 7개 만들기
     private func createCardRect() {
         for cardCount in 0...numberOfCard {
             let card = createCardImage()
@@ -68,13 +70,14 @@ class ViewController: UIViewController {
         print(card)
     }
     
-    // Step3 - '카드덱' 테스트 함수
+    //MARK: Step3 - '카드덱' 테스트 함수
     func testAboutCarddeck() {
         print("> 카드 초기화")
         var deck = Deck()
         
         if deck.count() == 52 {
             print("카드 전체를 초기화했습니다")
+            //print( deck )
             print("총 \( deck.count() )장의 카드가 있습니다.")
         } else {
             print("카드 초기화에 실패하였습니다.")
