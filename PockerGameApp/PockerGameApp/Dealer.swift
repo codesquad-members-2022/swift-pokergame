@@ -31,13 +31,20 @@ class Dealer {
     }
     
     //MARK: 딜러 -> 참가자에게 카드 전달
-    func giveToCard() {
-        
+    func giveToCard() -> Card? {
+        return cardDeck.removeOne()
     }
     
     //MARK: 카드덱에서 나눠준 카드 제거
-    func removeACard() {
-        
+    func removeACard(at giveCard:Card?) {
+        var tempStorage: [Card] = []
+    
+        for check in 0..<cardDeck.count(){
+            if tempStorage[check] === giveCard {
+                tempStorage.remove(at: check)
+            }
+        }
+        g
     }
     
     //MARK: 카드덱에 얼마나 남아있는지 갯수 확인하고 값을 리턴
@@ -55,13 +62,13 @@ class Dealer {
     //MARK: 7-card stud
     func sevenCardStud() {
         giveToCard()
-        removeACard()
+        removeACard(at: giveToCard())
     }
     
     //MARK: 5-card stud
     func fiveCardStud() {
         giveToCard()
-        removeACard()
+        removeACard(at: giveToCard())
     }
     
 }

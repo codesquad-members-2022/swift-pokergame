@@ -25,7 +25,7 @@ class Player {
         
         for order in 0..<Number {
             switch participant[order].count {
-            case 2...5
+            case 2...5:
                 storageParticipant[order].append(participant[order])
             default:
                 exit(1)
@@ -34,10 +34,11 @@ class Player {
         return storageParticipant
     }
     
-    //MARK: 딜러에게 받은 카드 모아놓는 역할
+    //MARK: 딜러에게 받은 카드 모아놓는 역할 - giveToCard()로 부터 받아온다.
     func receiveToCard() {
         let receiveCarddeck: Array<Card>
         
     }
     
 }
+
