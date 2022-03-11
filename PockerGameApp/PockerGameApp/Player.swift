@@ -38,7 +38,7 @@ class Player {
     func receiveToCard(from dealer: Card) {
         var receiveCarddeck: Array<Card> = []
         receiveCarddeck.append(dealer)
-        
+        // return 할 수 있을수도 있어서 공백처리
     }
     
 }
