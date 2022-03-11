@@ -14,5 +14,26 @@ import Foundation
 //-> 테스트 코드에서 PockerGame 메소드를 호출해서 동작을 확인.
 
 class PockerGame {
+    var dealer = Dealer()
+    var player = Player()
+    
+    //MARK: 카드게임 종류와 참가자수에 따라 적절하게 동작
+    func startGame() {
+        //게임 종류에 따라 게임 시작
+        let gameType:Int = 0
+        
+        if gameType == 7 {
+            //sevenCardStud()
+        } else if gameType == 5 {
+            //fiveCardStud()
+        } else {
+            exit(1)
+        }
+    }
+    
+    //MARK: UnitTest 실행할 내용
+    func unitTestCode() {
+        
+    }
     
 }
