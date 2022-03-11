@@ -35,8 +35,9 @@ class Player {
     }
     
     //MARK: 딜러에게 받은 카드 모아놓는 역할 - giveToCard()로 부터 받아온다.
-    func receiveToCard() {
-        let receiveCarddeck: Array<Card>
+    func receiveToCard(from dealer: Card) {
+        var receiveCarddeck: Array<Card> = []
+        receiveCarddeck.append(dealer)
         
     }
     
