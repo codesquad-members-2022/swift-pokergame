@@ -12,6 +12,7 @@
 		5B54C28F27D87F25007FEE85 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54C28E27D87F25007FEE85 /* Dealer.swift */; };
 		5B54C29127D87F36007FEE85 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54C29027D87F36007FEE85 /* Player.swift */; };
 		5B54C29327DB1E4B007FEE85 /* PockerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54C29227DB1E4B007FEE85 /* PockerGame.swift */; };
+		5B54C29B27DF8475007FEE85 /* PockerGameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54C29A27DF8475007FEE85 /* PockerGameAppTests.swift */; };
 		5BA7A07F27C773DA005254A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7A07E27C773DA005254A4 /* AppDelegate.swift */; };
 		5BA7A08127C773DA005254A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7A08027C773DA005254A4 /* SceneDelegate.swift */; };
 		5BA7A08327C773DA005254A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7A08227C773DA005254A4 /* ViewController.swift */; };
@@ -20,12 +21,24 @@
 		5BA7A08B27C773DB005254A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BA7A08927C773DB005254A4 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5B54C29C27DF8475007FEE85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BA7A07327C773DA005254A4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BA7A07A27C773DA005254A4;
+			remoteInfo = PockerGameApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		5B2165D027CE59100007E835 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		5B54C28C27D595B4007FEE85 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		5B54C28E27D87F25007FEE85 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		5B54C29027D87F36007FEE85 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		5B54C29227DB1E4B007FEE85 /* PockerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockerGame.swift; sourceTree = "<group>"; };
+		5B54C29827DF8475007FEE85 /* PockerGameAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PockerGameAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B54C29A27DF8475007FEE85 /* PockerGameAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockerGameAppTests.swift; sourceTree = "<group>"; };
 		5BA7A07B27C773DA005254A4 /* PockerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PockerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BA7A07E27C773DA005254A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BA7A08027C773DA005254A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +50,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5B54C29527DF8475007FEE85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5BA7A07827C773DA005254A4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -47,10 +67,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B54C29927DF8475007FEE85 /* PockerGameAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				5B54C29A27DF8475007FEE85 /* PockerGameAppTests.swift */,
+			);
+			path = PockerGameAppTests;
+			sourceTree = "<group>";
+		};
 		5BA7A07227C773DA005254A4 = {
 			isa = PBXGroup;
 			children = (
 				5BA7A07D27C773DA005254A4 /* PockerGameApp */,
+				5B54C29927DF8475007FEE85 /* PockerGameAppTests */,
 				5BA7A07C27C773DA005254A4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				5BA7A07B27C773DA005254A4 /* PockerGameApp.app */,
+				5B54C29827DF8475007FEE85 /* PockerGameAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -85,6 +115,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5B54C29727DF8475007FEE85 /* PockerGameAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B54C29E27DF8475007FEE85 /* Build configuration list for PBXNativeTarget "PockerGameAppTests" */;
+			buildPhases = (
+				5B54C29427DF8475007FEE85 /* Sources */,
+				5B54C29527DF8475007FEE85 /* Frameworks */,
+				5B54C29627DF8475007FEE85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5B54C29D27DF8475007FEE85 /* PBXTargetDependency */,
+			);
+			name = PockerGameAppTests;
+			productName = PockerGameAppTests;
+			productReference = 5B54C29827DF8475007FEE85 /* PockerGameAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		5BA7A07A27C773DA005254A4 /* PockerGameApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5BA7A08F27C773DB005254A4 /* Build configuration list for PBXNativeTarget "PockerGameApp" */;
@@ -112,6 +160,10 @@
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
+					5B54C29727DF8475007FEE85 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 5BA7A07A27C773DA005254A4;
+					};
 					5BA7A07A27C773DA005254A4 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
@@ -131,11 +183,19 @@
 			projectRoot = "";
 			targets = (
 				5BA7A07A27C773DA005254A4 /* PockerGameApp */,
+				5B54C29727DF8475007FEE85 /* PockerGameAppTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5B54C29627DF8475007FEE85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5BA7A07927C773DA005254A4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -149,6 +209,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5B54C29427DF8475007FEE85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B54C29B27DF8475007FEE85 /* PockerGameAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5BA7A07727C773DA005254A4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -165,6 +233,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5B54C29D27DF8475007FEE85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5BA7A07A27C773DA005254A4 /* PockerGameApp */;
+			targetProxy = 5B54C29C27DF8475007FEE85 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5BA7A08427C773DA005254A4 /* Main.storyboard */ = {
@@ -186,6 +262,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5B54C29F27DF8475007FEE85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Jason.PockerGameAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PockerGameApp.app/PockerGameApp";
+			};
+			name = Debug;
+		};
+		5B54C2A027DF8475007FEE85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Jason.PockerGameAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PockerGameApp.app/PockerGameApp";
+			};
+			name = Release;
+		};
 		5BA7A08D27C773DB005254A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -359,6 +469,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5B54C29E27DF8475007FEE85 /* Build configuration list for PBXNativeTarget "PockerGameAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B54C29F27DF8475007FEE85 /* Debug */,
+				5B54C2A027DF8475007FEE85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5BA7A07627C773DA005254A4 /* Build configuration list for PBXProject "PockerGameApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
