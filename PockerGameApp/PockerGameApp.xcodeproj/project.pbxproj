@@ -13,6 +13,8 @@
 		5B54C29127D87F36007FEE85 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54C29027D87F36007FEE85 /* Player.swift */; };
 		5B54C29327DB1E4B007FEE85 /* PockerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54C29227DB1E4B007FEE85 /* PockerGame.swift */; };
 		5B54C29B27DF8475007FEE85 /* PockerGameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54C29A27DF8475007FEE85 /* PockerGameAppTests.swift */; };
+		5B54C2A227E06CEC007FEE85 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54C2A127E06CEC007FEE85 /* Participant.swift */; };
+		5B54C2A427E07E87007FEE85 /* PlayableProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54C2A327E07E87007FEE85 /* PlayableProtocal.swift */; };
 		5BA7A07F27C773DA005254A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7A07E27C773DA005254A4 /* AppDelegate.swift */; };
 		5BA7A08127C773DA005254A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7A08027C773DA005254A4 /* SceneDelegate.swift */; };
 		5BA7A08327C773DA005254A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA7A08227C773DA005254A4 /* ViewController.swift */; };
@@ -39,6 +41,8 @@
 		5B54C29227DB1E4B007FEE85 /* PockerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockerGame.swift; sourceTree = "<group>"; };
 		5B54C29827DF8475007FEE85 /* PockerGameAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PockerGameAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B54C29A27DF8475007FEE85 /* PockerGameAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockerGameAppTests.swift; sourceTree = "<group>"; };
+		5B54C2A127E06CEC007FEE85 /* Participant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
+		5B54C2A327E07E87007FEE85 /* PlayableProtocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayableProtocal.swift; sourceTree = "<group>"; };
 		5BA7A07B27C773DA005254A4 /* PockerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PockerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BA7A07E27C773DA005254A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BA7A08027C773DA005254A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,9 +105,11 @@
 				5BA7A08227C773DA005254A4 /* ViewController.swift */,
 				5B2165D027CE59100007E835 /* Card.swift */,
 				5B54C28C27D595B4007FEE85 /* Deck.swift */,
-				5B54C29227DB1E4B007FEE85 /* PockerGame.swift */,
 				5B54C28E27D87F25007FEE85 /* Dealer.swift */,
 				5B54C29027D87F36007FEE85 /* Player.swift */,
+				5B54C2A327E07E87007FEE85 /* PlayableProtocal.swift */,
+				5B54C2A127E06CEC007FEE85 /* Participant.swift */,
+				5B54C29227DB1E4B007FEE85 /* PockerGame.swift */,
 				5BA7A08427C773DA005254A4 /* Main.storyboard */,
 				5BA7A08727C773DB005254A4 /* Assets.xcassets */,
 				5BA7A08927C773DB005254A4 /* LaunchScreen.storyboard */,
@@ -223,7 +229,9 @@
 			files = (
 				5BA7A08327C773DA005254A4 /* ViewController.swift in Sources */,
 				5B54C29327DB1E4B007FEE85 /* PockerGame.swift in Sources */,
+				5B54C2A227E06CEC007FEE85 /* Participant.swift in Sources */,
 				5BA7A07F27C773DA005254A4 /* AppDelegate.swift in Sources */,
+				5B54C2A427E07E87007FEE85 /* PlayableProtocal.swift in Sources */,
 				5B54C28F27D87F25007FEE85 /* Dealer.swift in Sources */,
 				5B54C28D27D595B4007FEE85 /* Deck.swift in Sources */,
 				5B54C29127D87F36007FEE85 /* Player.swift in Sources */,
