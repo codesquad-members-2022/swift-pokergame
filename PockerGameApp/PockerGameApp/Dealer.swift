@@ -14,7 +14,14 @@ import Foundation
 //포커 딜러가 나눠줄 수 있는 게임 방식을 선택 -> 7카드-스터드 or 5카드-스터드 Ok
 //-> 딜러의 이름은 없다. -> 카드를 한 번 나눠준 카드는 다시 덱에 넣지않도록 한다.
 //-> 카드 개수나 참가자 인원에 대한 입력을 구현할 필요없다.
-class Dealer {
+class Dealer: Playable {
+    
+    private(set) var name: String
+    
+    init() {
+        self.name = "딜러"
+    }
+    
     private var cardDeck = Deck()
     
     //MARK: 딜러가 나눠줄 수 있는 게임 방식 선택
