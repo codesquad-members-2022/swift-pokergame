@@ -9,23 +9,31 @@ import XCTest
 @testable import PockerGameApp
 
 class PockerGameAppTests: XCTestCase {
-    
-    var game: PockerGame!
+    private var pockerGame: PockerGame!
 
     override func setUpWithError() throws {
+        pockerGame = PockerGame(stud: .seven, playerCount: .three)
         
     }
 
     override func tearDownWithError() throws {
-        
+        pockerGame = nil
     }
 
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+        pockerGame.playNow()
+        
+        (0..<pockerGame.participants.count).forEach{ player in
+            let playerHandCount = pockerGame.participants.players[player].hand.getCards.count
+            XCTAssertEqual(playerHandCount, pockerGame.stud.rawValue,
+            "⚠️ Wrong Player Hand Count")
+        }
+        
+        (0..<pockerGame.participants.count).forEach{ Player in
+            let playerCount = pockerGame.participants.count
+            XCTAssertEqual(playerCount, pockerGame.playerCount.rawValue + 1,
+            "⚠️ Wrong Player Hand Count")
+        }
     }
 
 }
