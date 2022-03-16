@@ -16,68 +16,39 @@ import Foundation
 //-> 카드 개수나 참가자 인원에 대한 입력을 구현할 필요없다.
 class Dealer: Playable {
     
+    private(set) var cardDeck: Deck
+    private(set) var hand: Array<Card>
     private(set) var name: String
     
     init() {
-        self.name = "딜러"
-    }
-    
-    private var cardDeck = Deck()
-    
-    //MARK: 딜러가 나눠줄 수 있는 게임 방식 선택
-    func chooseAGame() -> Int {
-        //print("> 플레이하실 포커게임을 선택하세요.(7스터드 = 7, 5스터드 = 5를 입력)
-        let chooseGameNumber = Int(readLine()!)!
-        
-        // 현재는 이렇게 진행하고 return으로 함수를 호출하는 식으로 진행할 예정
-        if chooseGameNumber == 7 {
-            return 7
-        } else if chooseGameNumber == 5 {
-            return 5
-        } else {
-            exit(0)
-        }
+        self.cardDeck = Deck()
+        self.name = "Dealer"
+        self.hand = [Card]()
     }
     
     //MARK: 딜러 -> 참가자에게 카드 전달
-    func giveToCard() -> Card? {
-        return cardDeck.removeOne()
-    }
-    
-    //MARK: 카드덱에서 나눠준 카드 제거
-    func removeACard(at giveCard:Card?) {
-        var tempStorage: [Card] = []
-    
-        for check in 0..<cardDeck.count(){
-            if tempStorage[check] === giveCard {
-                tempStorage.remove(at: check)
+    func distributeCard(to participants:Participants, by stud: Int)  {
+        participants.players.forEach {
+            player in (0..<stud).forEach { _ in player.receive(card: self.cardDeck.removeOne())
             }
         }
-        // return 할 수 있을수도 있어서 공백처리
     }
     
-    //MARK: 카드덱에 얼마나 남아있는지 갯수 확인하고 값을 리턴
-    func howManyLeftOfCard() -> Int {
-        let remainCount: Int = 0
-        
-        return remainCount
+    //MARK: 카드덱에 얼마나 남아있는지 갯수 확인하여 실행여부 확인 - Edit End -
+    func isPossiblePlay(count:Int) -> Bool {
+        return self.cardDeck.count() >= count
     }
     
-    //MARK: 리턴받은 값을 비교하여 전체카드의 갯수가 남아있으면 계속 게임진행
-    func checkRemainingCards() {
-        
+    //MARK: 카드를 모두 초기화하고 셔플하는 역할 - Edit End -
+    func generateShuffleDeck() {
+        self.cardDeck.reset()
+        self.cardDeck.shuffle()
     }
     
-    //MARK: 7-card stud
-    func sevenCardStud() {
-        giveToCard()
-        removeACard(at: giveToCard())
-    }
-    
-    //MARK: 5-card stud
-    func fiveCardStud() {
-        giveToCard()
-        removeACard(at: giveToCard())
+    //MARK: 포커게임을 시작 - Edit End -
+    func getStartPockerGame(stud: Int, participants: Participants) {
+        self.generateShuffleDeck()
+        self.distributeCard(to: participants, by: stud)
     }
     
 }

@@ -14,29 +14,38 @@ import Foundation
 //-> 테스트 코드에서 PockerGame 메소드를 호출해서 동작을 확인.
 
 class PockerGame {
-    private var player:Player = Player()
-    private var dealer:Dealer = Dealer()
-    private var playerCount:Int
-    private var makeRandomParticipant = Int.random(in: 1...4) //플레이어 1~4명 랜덤생성
+    private var participant:Participants
+    private var dealer:Dealer
+    private(set) var stud: Stud
+    private(set) var playerCount: PlayerCount
     
-    private let stud: Stud
-    
-    //MARK: dealer에게 어떤 스터드를 선택할 것인지 선택지를 제공해준다.
     enum Stud: Int {
         case seven = 7
         case five = 5
     }
     
+    enum PlayerCount: Int {
+        case one = 1
+        case two = 2
+        case three = 3
+        case four = 4
+    }
+    
     //MARK: 초기화
-    init(stud: Stud, playerCount: Int ) {
+    init(stud: Stud, playerCount: PlayerCount) {
         self.stud = stud
-        self.playerCount = Int.random(in: 1...4)
+        self.playerCount = playerCount
+        self.dealer = Dealer()
+        self.participant = Participants(playerCount: playerCount.rawValue, dealer: dealer)
     }
     
     //MARK: 카드게임 종류와 참가자수에 따라 적절하게 동작
     func playNow() {
-        
+        if dealer.isPossiblePlay(count: stud.rawValue * participant.count) {
+            dealer.getStartPockerGame(stud: stud.rawValue, participants: participant)
+        } else {
+            exit(1)
+        }
     }
-    
     
 }

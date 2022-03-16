@@ -16,18 +16,11 @@ class Player: Playable {
     
     //MARK: Dealer와 Player 모두 게임을 플레이 할 수 있는 속성을 부여해준다.
     private(set) var name: String
+    private(set) var hand: Array<Card>
     
     init(name:String) {
         self.name = name
+        self.hand = [Card]()
     }
     
-}
-
-extension Playable {
-    //MARK: 딜러에게 받은 카드 모아놓는 역할 - giveToCard()로 부터 받아온다.
-    func receiveToCard(from dealer: Card) {
-        var receiveCarddeck: Array<Card> = []
-        receiveCarddeck.append(dealer)
-        // return 할 수 있을수도 있어서 공백처리
-    }
 }

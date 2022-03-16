@@ -43,11 +43,8 @@ struct Deck {
         }
     }
     
-    mutating func removeOne() -> Card? {
-        guard let randomOneOfCards = cardDeck.popLast() else {
-            return nil
-        }
-        return randomOneOfCards
+    mutating func removeOne() -> Card {
+           return self.cardDeck.removeFirst()
     }
     
     mutating func reset() {
