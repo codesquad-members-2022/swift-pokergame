@@ -17,13 +17,13 @@ import Foundation
 class Dealer: Playable {
     
     private(set) var cardDeck: Deck
-    private(set) var hand: Array<Card>
+    private(set) var hand: Hand
     private(set) var name: String
     
     init() {
         self.cardDeck = Deck()
         self.name = "Dealer"
-        self.hand = [Card]()
+        self.hand = Hand()
     }
     
     //MARK: 딜러 -> 참가자에게 카드 전달

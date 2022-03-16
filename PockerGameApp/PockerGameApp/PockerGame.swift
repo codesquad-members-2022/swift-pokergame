@@ -13,8 +13,8 @@ import Foundation
 //-> XCTest를 위한 테스트 타깃을 추가한다.
 //-> 테스트 코드에서 PockerGame 메소드를 호출해서 동작을 확인.
 
-class PockerGame {
-    private var participant:Participants
+struct PockerGame {
+    private(set) var participants:Participants
     private var dealer:Dealer
     private(set) var stud: Stud
     private(set) var playerCount: PlayerCount
@@ -36,13 +36,13 @@ class PockerGame {
         self.stud = stud
         self.playerCount = playerCount
         self.dealer = Dealer()
-        self.participant = Participants(playerCount: playerCount.rawValue, dealer: dealer)
+        self.participants = Participants(playerCount: playerCount.rawValue, dealer: dealer)
     }
     
     //MARK: 카드게임 종류와 참가자수에 따라 적절하게 동작
     func playNow() {
-        if dealer.isPossiblePlay(count: stud.rawValue * participant.count) {
-            dealer.getStartPockerGame(stud: stud.rawValue, participants: participant)
+        if dealer.isPossiblePlay(count: stud.rawValue * participants.count) {
+            dealer.getStartPockerGame(stud: stud.rawValue, participants: participants)
         } else {
             exit(1)
         }
