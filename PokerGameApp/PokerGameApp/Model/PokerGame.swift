@@ -9,12 +9,13 @@ class PokerGame {
     enum PlayerCount: Int {
         case one = 1, two, three, four
     }
-    static var round: Int = 0
+    
+    private var round: Int = 0
     
     private var cardDeck = CardDeck()
     private var sortOfGame: Games
     private var playerCount: PlayerCount // 딜러를 제외한 숫자
-    private var players: [Player] = []
+    private var players: [Playable] = []
     private var dealer: Dealer = Dealer()
     private var computer: Computer = Computer()
     private var nameArray: [String] = ["HK", "JK", "Crong", "Honux", "Chloe", "Ivy", "Gucci"]
@@ -23,7 +24,9 @@ class PokerGame {
         self.sortOfGame = sortOfGame
         self.playerCount = playerCount
         for _ in 0..<playerCount.rawValue {
-            self.players.append(Player(name: self.nameArray.remove(at: Int.random(in: 0..<self.nameArray.count))))            }
+            self.players.append(Player(name: self.nameArray.remove(at: Int.random(in: 0..<self.nameArray.count))))
+        }
+        players.append(dealer)
     }
     
     func play() {
@@ -35,9 +38,7 @@ class PokerGame {
     }
 
     func open() {
-        var playersWtihDealer: [Playable] = players
-        playersWtihDealer.append(dealer)
-        for player in playersWtihDealer {
+        for player in players {
             print("\(player.intruduceYourSelf()) = \(printSomeoneCards(player: player))")
         }
     }
@@ -58,17 +59,14 @@ class PokerGame {
     }
     //TODO: throws를 Result<>로 변환을 해야할 거같은데.. 인터넷에 나와있는 예제들은 비동기 함수에서 적용하는 법을 알려줘서 지금과 같은 동기 함수에서는 어떻게 적용해야할지 모르겠다. https://onelife2live.tistory.com/1 잘 정리되어있음.
     func giveCard2Player() {
-        guard PokerGame.round != 7 else {
+        guard round != 7 else {
             print("카드를 모두 배분했습니다.")
             return
         }
-        PokerGame.round += 1
-        var playersWithDealer: [Playable] = players
-        playersWithDealer.append(dealer)
-        
-        for player in playersWithDealer {
-            if let removed = try? cardDeck.removeOne().get() {
-                player.addCard(card: removed)
+        round += 1
+        for player in players {
+            if let selectedCard = try? cardDeck.removeOne().get() {
+                player.addCard(card: selectedCard)
             } else {
                 print("Card is empty.")
                 return
