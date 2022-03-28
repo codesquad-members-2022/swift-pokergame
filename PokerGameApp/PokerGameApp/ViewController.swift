@@ -15,8 +15,8 @@ class ViewController: UIViewController {
             // 사이 간격 카드 하나보다 약간 넓게 조정
             offset += SizeOfCard.width + 3
         }
-//        let game = PokerGame(sortOfGame: .sevenCardStud, playerCount: .four)
-//        game.play()
+        let game = PokerGame(sortOfGame: .sevenCardStud, playerCount: .four)
+        game.play()
     }
     
     func createCard(XCoordinate: Int) {
