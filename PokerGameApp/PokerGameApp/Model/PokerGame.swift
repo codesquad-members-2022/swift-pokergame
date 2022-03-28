@@ -37,10 +37,13 @@ class PokerGame {
         }
     }
 
-    func open() {
+    func informResult() -> String {
+        var result: String = ""
         for player in players {
-            print("\(player.intruduceYourSelf()) = \(printSomeoneCards(player: player))")
+            result += "\(player.intruduceYourSelf()) = \(printSomeoneCards(player: player))"
+            result += "\n"
         }
+        return result
     }
     
     func printSomeoneCards(player: Playable) -> String {

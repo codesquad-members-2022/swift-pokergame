@@ -36,4 +36,15 @@ class PokerGameAppTests: XCTestCase {
         XCTAssertEqual(suggest, given.rawValue + 1)
         
     }
+    
+    func testDidGameInformResult() {
+        //give
+        let _ = sut.play()
+        
+        //when
+        let resultOfGamePlay : String = sut.informResult()
+        
+        //then
+        XCTAssertNotNil(resultOfGamePlay, "\(resultOfGamePlay)")
+    }
 }
