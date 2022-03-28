@@ -15,8 +15,8 @@ class PokerGame {
     private var cardDeck = CardDeck()
     private var sortOfGame: Games
     private var playerCount: PlayerCount // 딜러를 제외한 숫자
-    private var players: [Playable] = []
-    private var dealer: Dealer = Dealer()
+    private(set) var players: [Playable] = []
+    private(set) var dealer: Dealer = Dealer()
     private var computer: Computer = Computer()
     private var nameArray: [String] = ["HK", "JK", "Crong", "Honux", "Chloe", "Ivy", "Gucci"]
     

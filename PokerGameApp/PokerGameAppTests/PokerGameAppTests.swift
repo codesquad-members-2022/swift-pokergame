@@ -16,12 +16,12 @@ class PokerGameAppTests: XCTestCase {
     
     func testCardIsDestributed2Players() {
         //give
-        let _ = sut.play()
+        let _ = sut.giveCard2Player()
         
         //when
-        let _ = sut.open()
+        let result = sut.printSomeoneCards(player: sut.dealer)
         
         //then
-
+        XCTAssertEqual(result, "")
     }
 }
