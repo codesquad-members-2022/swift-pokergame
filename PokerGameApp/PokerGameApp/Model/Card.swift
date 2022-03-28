@@ -7,6 +7,18 @@
 
 import Foundation
 
+enum Shape: Character {
+    case spade = "♤"
+    case heart = "♡"
+    case diamond = "◇"
+    case club = "♧"
+}
+
+enum Rank: Int {
+    case two = 2, three, four, five, six, seven, eight, nine, ten
+    case ace = 1, jack = 11, queen = 12, king = 13
+}
+
 class Card: CustomStringConvertible {
     let shape: Shape, rank: Rank
     init(shape: Shape, rank: Rank) {
@@ -14,17 +26,6 @@ class Card: CustomStringConvertible {
         self.rank = rank
     }
     
-    enum Shape: Character {
-        case spade = "♤"
-        case heart = "♡"
-        case diamond = "◇"
-        case club = "♧"
-    }
-
-    enum Rank: Int {
-        case two = 2, three, four, five, six, seven, eight, nine, ten
-        case ace = 1, jack = 11, queen = 12, king = 13
-    }
     
     var description: String {
         switch rank {
