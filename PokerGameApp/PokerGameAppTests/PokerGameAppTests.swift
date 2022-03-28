@@ -24,4 +24,16 @@ class PokerGameAppTests: XCTestCase {
         //then
         XCTAssertEqual(result, 7)
     }
+    
+    func testNumberOfParicipants() {
+        //give
+        let given = sut.playerCount
+        
+        //when
+        let suggest = sut.players.count
+        
+        //then
+        XCTAssertEqual(suggest, given.rawValue + 1)
+        
+    }
 }

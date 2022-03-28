@@ -14,7 +14,7 @@ class PokerGame {
     
     private var cardDeck = CardDeck()
     private var sortOfGame: Games
-    private var playerCount: PlayerCount // 딜러를 제외한 숫자
+    var playerCount: PlayerCount // 딜러를 제외한 숫자 예) playerCount 가 2면, 카드게임에 참여하는 주체는 총 3명
     private(set) var players: [Participant] = []
     private(set) var dealer: Dealer = Dealer()
     private var computer: Computer = Computer()
@@ -57,7 +57,9 @@ class PokerGame {
         }
         return deckString
     }
+    
     //TODO: throws를 Result<>로 변환을 해야할 거같은데.. 인터넷에 나와있는 예제들은 비동기 함수에서 적용하는 법을 알려줘서 지금과 같은 동기 함수에서는 어떻게 적용해야할지 모르겠다. https://onelife2live.tistory.com/1 잘 정리되어있음.
+    
     func giveCard2Player() {
         round += 1
         for player in players {
