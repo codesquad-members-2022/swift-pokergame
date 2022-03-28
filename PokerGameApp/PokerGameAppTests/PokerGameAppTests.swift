@@ -6,7 +6,7 @@ class PokerGameAppTests: XCTestCase {
     
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = PokerGame(sortOfGame: .fiveCardStud, playerCount: .two)
+        sut = PokerGame(sortOfGame: .sevenCardStud, playerCount: .two)
     }
 
     override func tearDownWithError() throws {
@@ -16,12 +16,12 @@ class PokerGameAppTests: XCTestCase {
     
     func testCardIsDestributed2Players() {
         //give
-        let _ = sut.giveCard2Player()
+        let _ = sut.play()
         
         //when
-        let result = sut.printSomeoneCards(player: sut.dealer)
+        let result = sut.dealer.cardCount
         
         //then
-        XCTAssertEqual(result, "")
+        XCTAssertEqual(result, 7)
     }
 }
