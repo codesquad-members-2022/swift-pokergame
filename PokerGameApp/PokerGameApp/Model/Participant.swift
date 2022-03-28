@@ -10,8 +10,9 @@ import Foundation
 class Participant : Playable {
     
     let name: String
+    
     private var playerDeck: [Card] = []
-    private var hand : Computer.Hands = .highCard
+    private var hand : Hand = .highCard
     var cardCount: Int {
         return playerDeck.count
     }

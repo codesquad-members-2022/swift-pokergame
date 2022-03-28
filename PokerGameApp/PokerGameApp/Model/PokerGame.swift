@@ -17,7 +17,6 @@ class PokerGame {
     var playerCount: PlayerCount // 딜러를 제외한 숫자 예) playerCount 가 2면, 카드게임에 참여하는 주체는 총 3명
     private(set) var players: [Participant] = []
     private(set) var dealer: Dealer = Dealer()
-    private var computer: Computer = Computer()
     private var nameArray: [String] = ["HK", "JK", "Crong", "Honux", "Chloe", "Ivy", "Gucci"]
     
     init(sortOfGame: Games, playerCount: PlayerCount) {
