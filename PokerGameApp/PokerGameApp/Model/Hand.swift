@@ -14,3 +14,4 @@ enum Hand: Comparable {
     case straightFlush
     case backStraightFlush
 }
+
