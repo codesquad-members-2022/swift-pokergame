@@ -9,6 +9,5 @@ import Foundation
 
 protocol Playable {
     func addCard(card: Card)
-    func openAllCards() -> [Card]
     func intruduceYourSelf() -> String
 }
