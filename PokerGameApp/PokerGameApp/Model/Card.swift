@@ -7,11 +7,25 @@
 
 import Foundation
 
-enum Shape: Character {
-    case spade = "♤"
-    case heart = "♡"
-    case diamond = "◇"
-    case club = "♧"
+enum Shape: Comparable {
+    
+    case club
+    case heart
+    case diamond
+    case spade
+    
+    var picture: String {
+        switch self {
+        case .spade:
+            return "♤"
+        case .diamond:
+            return "◇"
+        case .heart:
+            return "♡"
+        case .club:
+            return "♧"
+        }
+    }
 }
 
 enum Rank: Int {
@@ -30,15 +44,15 @@ class Card: CustomStringConvertible {
     var description: String {
         switch rank {
         case .ace:
-            return "\(shape.rawValue)A"
+            return "\(shape.picture)A"
         case .jack:
-            return "\(shape.rawValue)J"
+            return "\(shape.picture)J"
         case .queen:
-            return "\(shape.rawValue)Q"
+            return "\(shape.picture)Q"
         case .king:
-            return "\(shape.rawValue)K"
+            return "\(shape.picture)K"
         default:
-            return "\(shape.rawValue)\(rank.rawValue)"
+            return "\(shape.picture)\(rank.rawValue)"
         }
     }
 }
