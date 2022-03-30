@@ -25,7 +25,7 @@ class Computer {
                 sumOfShapes[index+2] > 0 &&
                 sumOfShapes[index+3] > 0 &&
                 sumOfShapes[index+4] > 0 {
-                if index == 1 {
+                if sumOfShapes[0] >= 1 {
                     return (true, true)
                 } else {
                     return (false,true)
@@ -65,7 +65,7 @@ class Computer {
                     value[index+2] > 0 &&
                     value[index+3] > 0 &&
                     value[index+4] > 0 {
-                    if index == 1 {
+                    if value[0] >= 1 {
                         return (true, true)
                     } else {
                         return (false, true)
@@ -79,21 +79,21 @@ class Computer {
     
     private func judgementHand(_ pairs: Int, _ isTriple: Bool, _ isFourCard: Bool,_ isFlush: Bool, _ isStraight: (back:Bool, straight:Bool), _ isStraightFlush: (back:Bool, straightFlush:Bool)) -> Hand {
         switch (pairs, isTriple, isFourCard, isFlush, isStraight.back, isStraight.straight, isStraightFlush.back, isStraightFlush.straightFlush) {
-        case (_, _, _, _, _, _, isStraightFlush.back, isStraightFlush.straightFlush):
+        case (_, _, _, _, _, _, true, true):
             return .backStraightFlush
-        case (_, _, _, _, _, _, _, isStraightFlush.straightFlush):
+        case (_, _, _, _, _, _, _, true):
             return .straightFlush
-        case (_, _, isFourCard, _, _, _, _, _):
+        case (_, _, true, _, _, _, _, _):
             return .fourCard
-        case (1...2, isTriple, _, _, _, _, _, _):
+        case (1...2, true, _, _, _, _, _, _):
             return .fullHouse
-        case (_,_,_, isFlush, _, _, _, _):
+        case (_,_,_, true, _, _, _, _):
             return .flush
-        case (_, _, _, _, isStraight.back, isStraight.straight, _, _):
+        case (_, _, _, _, true, true, _, _):
             return .backStraight
-        case (_, _, _, _, _, isStraight.straight, _, _):
+        case (_, _, _, _, _, true, _, _):
             return .straight
-        case (_, isTriple, _, _, _, _, _, _):
+        case (_, true, _, _, _, _, _, _):
             return .triple
         case (2, _,_,_,_,_,_,_):
             return .twoPair
@@ -133,8 +133,8 @@ class Computer {
     }
     
     // 같은 숫자의 패가 있는지 확인
-    private func checkSameRankCard(_ lineForNumber: [Int]?) {
-        guard let sumOfShapes = lineForNumber else {
+    private func checkSameRankCard(_ fourLine2Oneline: [Int]?) {
+        guard let sumOfShapes = fourLine2Oneline else {
             return
         }
         sumOfShapes.forEach { index in
