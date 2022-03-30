@@ -38,6 +38,26 @@
                ReferencedContainer = "container:PokerGameApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "00FF024427F3EB81008651C6"
+               BuildableName = "ShapeOrderTest.xctest"
+               BlueprintName = "ShapeOrderTest"
+               ReferencedContainer = "container:PokerGameApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "00FF025127F407B2008651C6"
+               BuildableName = "ComputerTest.xctest"
+               BlueprintName = "ComputerTest"
+               ReferencedContainer = "container:PokerGameApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

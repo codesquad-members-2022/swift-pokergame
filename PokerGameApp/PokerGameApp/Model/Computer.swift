@@ -50,6 +50,13 @@ class Computer {
         return false
     }
     
+    func getHand(_ playerDeck: [Card]) -> Hand {
+        shapeRankTable = caculateHandTable(playerDeck)
+        sumOfShapes = getSumOfShapes(shapeRankTable)
+        checkSameRankCard(sumOfShapes)
+        return judgementHand(pairsCount, isTriple, isFourCard, isFlush, isStraight, isStraightFlush)
+    }
+    
     private var isStraightFlush : (back: Bool, straightFlush: Bool) {
         for value in shapeRankTable.values {
             for index in 0..<10 {
@@ -69,13 +76,6 @@ class Computer {
         return (false, false)
     }
     
-    //MARK: 컴퓨터 클래스에서는 이 메서드만 실행될것임
-    func getHand(_ player: Participant) -> Hand {
-        shapeRankTable = caculateHandTable(player.playerDeck)
-        sumOfShapes = getSumOfShapes(shapeRankTable)
-        checkSameRankCard(sumOfShapes)
-        return judgementHand(pairsCount, isTriple, isFourCard, isFlush, isStraight, isStraightFlush)
-    }
     
     private func judgementHand(_ pairs: Int, _ isTriple: Bool, _ isFourCard: Bool,_ isFlush: Bool, _ isStraight: (back:Bool, straight:Bool), _ isStraightFlush: (back:Bool, straightFlush:Bool)) -> Hand {
         switch (pairs, isTriple, isFourCard, isFlush, isStraight.back, isStraight.straight, isStraightFlush.back, isStraightFlush.straightFlush) {
