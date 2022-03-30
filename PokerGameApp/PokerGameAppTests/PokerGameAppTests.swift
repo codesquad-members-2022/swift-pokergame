@@ -48,4 +48,23 @@ class PokerGameAppTests: XCTestCase {
         //then
         XCTAssertNotNil(resultOfGamePlay, "\(resultOfGamePlay)")
     }
+    
+    func testShapeOfCard() {
+        //given
+        let heart = Shape.heart
+        let spade = Shape.spade
+        let club = Shape.club
+        let diamond = Shape.diamond
+        
+        //when
+        let order1: Bool = spade > diamond
+        let order2: Bool = diamond > heart
+        let order3: Bool = heart > club
+        
+        //then
+        XCTAssertTrue(order1)
+        XCTAssertTrue(order2)
+        XCTAssertTrue(order3)
+        
+    }
 }
