@@ -18,6 +18,7 @@ class PokerGame {
     private(set) var players: [Participant] = []
     private(set) var dealer: Dealer = Dealer()
     private var nameArray: [String] = ["HK", "JK", "Crong", "Honux", "Chloe", "Ivy", "Gucci"]
+    private let computer = Computer()
     
     init(sortOfGame: Games, playerCount: PlayerCount) {
         self.sortOfGame = sortOfGame
@@ -45,8 +46,8 @@ class PokerGame {
         return result
     }
     
-    func printSomeoneCards(player: Playable) -> String {
-        let deck = player.openAllCards()
+    private func printSomeoneCards(player: Participant) -> String {
+        let deck = player.playerDeck
         var deckString: String {
             var result: String = "["
             for card in deck {
@@ -60,8 +61,6 @@ class PokerGame {
         return deckString
     }
     
-    //TODO: throws를 Result<>로 변환을 해야할 거같은데.. 인터넷에 나와있는 예제들은 비동기 함수에서 적용하는 법을 알려줘서 지금과 같은 동기 함수에서는 어떻게 적용해야할지 모르겠다. https://onelife2live.tistory.com/1 잘 정리되어있음.
-    
     func giveCard2Player() {
         round += 1
         for player in players {
@@ -73,5 +72,16 @@ class PokerGame {
             }
         }
     }
-    
+}
+
+extension PokerGame {
+    func pickWinner(_ playerList : [Participant], _ computer : Computer ) -> Participant {
+        var playerAndHand: [Participant : Hand] = [:]
+        for player in playerList {
+            let hand = player.computeMyHand(computer)
+            playerAndHand.updateValue(hand, forKey: player)
+        }
+        //TODO: 고쳐야함
+        return playerList[0]
+    }
 }
