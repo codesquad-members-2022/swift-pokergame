@@ -15,9 +15,9 @@ class Computer {
     
     private var sumOfShapes : [Int]?
     
-    private var isStraight : Bool {
+    private var isStraight : (back: Bool, straight: Bool) {
         guard let sumOfShapes = self.sumOfShapes else {
-            return false
+            return (false ,false)
         }
         for index in 0..<10 {
             if sumOfShapes[index] > 0 &&
@@ -25,12 +25,16 @@ class Computer {
                 sumOfShapes[index+2] > 0 &&
                 sumOfShapes[index+3] > 0 &&
                 sumOfShapes[index+4] > 0 {
-                return true
+                if index == 1 {
+                    return (true, true)
+                } else {
+                    return (false,true)
+                }
             }
         }
-        //TODO: 고칠것
-        return false
+        return (false,false)
     }
+    
     private var isFlush : Bool {
         for key in shapeRankTable.keys {
             shapeRankTable[key]?.forEach({ index in
@@ -45,9 +49,24 @@ class Computer {
         }
         return false
     }
-    //TODO: 고칠것 2
-    func checkStraightFlush() -> Bool {
-        return false
+    
+    private var isStraightFlush : (back: Bool, straightFlush: Bool) {
+        for value in shapeRankTable.values {
+            for index in 0..<10 {
+                if value[index] > 0 &&
+                    value[index+1] > 0 &&
+                    value[index+2] > 0 &&
+                    value[index+3] > 0 &&
+                    value[index+4] > 0 {
+                    if index == 1 {
+                        return (true, true)
+                    } else {
+                        return (false, true)
+                    }
+                }
+            }
+        }
+        return (false, false)
     }
     
     //MARK: 컴퓨터 클래스에서는 이 메서드만 실행될것임
@@ -55,8 +74,34 @@ class Computer {
         shapeRankTable = caculateHandTable(player.playerDeck)
         sumOfShapes = getSumOfShapes(shapeRankTable)
         checkSameRankCard(sumOfShapes)
-        //TODO: 고칠것 3
-        return Hand.highCard
+        return judgementHand(pairsCount, isTriple, isFourCard, isFlush, isStraight, isStraightFlush)
+    }
+    
+    private func judgementHand(_ pairs: Int, _ isTriple: Bool, _ isFourCard: Bool,_ isFlush: Bool, _ isStraight: (back:Bool, straight:Bool), _ isStraightFlush: (back:Bool, straightFlush:Bool)) -> Hand {
+        switch (pairs, isTriple, isFourCard, isFlush, isStraight.back, isStraight.straight, isStraightFlush.back, isStraightFlush.straightFlush) {
+        case (_, _, _, _, _, _, isStraightFlush.back, isStraightFlush.straightFlush):
+            return .backStraightFlush
+        case (_, _, _, _, _, _, _, isStraightFlush.straightFlush):
+            return .straightFlush
+        case (_, _, isFourCard, _, _, _, _, _):
+            return .fourCard
+        case (1...2, isTriple, _, _, _, _, _, _):
+            return .fullHouse
+        case (_,_,_, isFlush, _, _, _, _):
+            return .flush
+        case (_, _, _, _, isStraight.back, isStraight.straight, _, _):
+            return .backStraight
+        case (_, _, _, _, _, isStraight.straight, _, _):
+            return .straight
+        case (_, isTriple, _, _, _, _, _, _):
+            return .triple
+        case (2, _,_,_,_,_,_,_):
+            return .twoPair
+        case (1, _,_,_,_,_,_,_):
+            return .onePair
+        default:
+            return .highCard
+        }
     }
     
     private func caculateHandTable(_ playerDeck: [Card]) -> [Shape : [Int]] {
@@ -105,5 +150,4 @@ class Computer {
             }
         }
     }
- }
-
+}
