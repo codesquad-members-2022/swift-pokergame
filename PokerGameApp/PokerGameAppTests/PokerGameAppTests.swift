@@ -7,7 +7,7 @@ class PokerGameAppTests: XCTestCase {
     
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = PokerGame(sortOfGame: .sevenCardStud, playerCount: .two)
+        sut = PokerGame(sortOfGame: .sevenCardStud, playerCount: .four)
     }
 
     override func tearDownWithError() throws {
@@ -43,13 +43,13 @@ class PokerGameAppTests: XCTestCase {
         let _ = sut.play()
         
         //when
-        let resultOfGamePlay : String = sut.informResult()
+        let resultOfGamePlay : String = sut.informResult(sut.computer)
         
         //then
         XCTAssertNotNil(resultOfGamePlay, "\(resultOfGamePlay)")
     }
     
-    func testShapeOfCard() {
+    func testOrderOfShape() {
         //given
         let heart = Shape.heart
         let spade = Shape.spade
@@ -60,11 +60,27 @@ class PokerGameAppTests: XCTestCase {
         let order1: Bool = spade > diamond
         let order2: Bool = diamond > heart
         let order3: Bool = heart > club
+        let order4: Bool = spade < club
         
         //then
         XCTAssertTrue(order1)
         XCTAssertTrue(order2)
         XCTAssertTrue(order3)
-        
+        XCTAssertFalse(order4)
     }
+    
+    // 실패가 나게끔 처리한 코드
+    func testPickWinner() {
+        // given
+        let _  = sut.play()
+        let consoleBanner = sut.informResult(sut.computer)
+        
+        // when
+        let winner = sut.pickWinner(sut.players, sut.computer)
+        print(consoleBanner)
+        
+        // then
+        XCTAssertEqual(winner.name, "", "승자는 \(winner.name)입니다")
+    }
+
 }
