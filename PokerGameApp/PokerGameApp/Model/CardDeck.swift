@@ -8,8 +8,8 @@ class CardDeck {
 
     func reset() {
         deck.removeAll()
-        let shapeSet: Set<Card.Shape> = [.club, .diamond, .heart, .spade]
-        let rankSet: Set<Card.Rank> = [.ace, .two, .three, .four, .five, .six, .seven, .eight, .nine, .ten, .jack, .queen, .king]
+        let shapeSet: Set<Shape> = [.club, .diamond, .heart, .spade]
+        let rankSet: Set<Rank> = [.ace, .two, .three, .four, .five, .six, .seven, .eight, .nine, .ten, .jack, .queen, .king]
         for shape in shapeSet {
             for rank in rankSet {
                 deck.append(Card(shape: shape, rank: rank))
