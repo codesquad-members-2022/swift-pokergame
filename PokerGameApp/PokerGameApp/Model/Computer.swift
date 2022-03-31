@@ -8,11 +8,7 @@ class Computer {
                                                    .diamond : [Int](repeating: 0, count: 13),
                                                    .heart : [Int](repeating: 0, count: 13),
                                                    .spade: [Int](repeating: 0, count: 13)]
-    private var countPerShape : [Shape: Int] = [.heart : 0,
-                                                .spade : 0,
-                                                .club : 0,
-                                                .diamond : 0]
-    
+        
     private var sumOfShapes : [Int]?
     
     private var isStraight : (back: Bool, straight: Bool) {
@@ -25,7 +21,7 @@ class Computer {
                 sumOfShapes[index+2] > 0 &&
                 sumOfShapes[index+3] > 0 &&
                 sumOfShapes[index+4] > 0 {
-                if sumOfShapes[0] >= 1 {
+                if index == 0 {
                     return (true, true)
                 } else {
                     return (false,true)
@@ -36,6 +32,11 @@ class Computer {
     }
     
     private var isFlush : Bool {
+        var countPerShape : [Shape: Int] = [.heart : 0,
+                                            .spade : 0,
+                                            .club : 0,
+                                            .diamond : 0]
+
         for key in shapeRankTable.keys {
             shapeRankTable[key]?.forEach({ index in
                 countPerShape[key]! += index
@@ -54,7 +55,20 @@ class Computer {
         shapeRankTable = caculateHandTable(playerDeck)
         sumOfShapes = getSumOfShapes(shapeRankTable)
         checkSameRankCard(sumOfShapes)
-        return judgementHand(pairsCount, isTriple, isFourCard, isFlush, isStraight, isStraightFlush)
+        let hand =  judgementHand(pairsCount, isTriple, isFourCard, isFlush, isStraight, isStraightFlush)
+        reset()
+        return hand
+    }
+    
+    private func reset() {
+        pairsCount = 0
+        isTriple = false
+        isFourCard = false
+        sumOfShapes = nil
+        shapeRankTable = [.club : [Int](repeating: 0, count: 13),
+                          .diamond : [Int](repeating: 0, count: 13),
+                          .heart : [Int](repeating: 0, count: 13),
+                          .spade: [Int](repeating: 0, count: 13)]
     }
     
     private var isStraightFlush : (back: Bool, straightFlush: Bool) {
@@ -65,7 +79,7 @@ class Computer {
                     value[index+2] > 0 &&
                     value[index+3] > 0 &&
                     value[index+4] > 0 {
-                    if value[0] >= 1 {
+                    if index == 0 {
                         return (true, true)
                     } else {
                         return (false, true)
@@ -75,7 +89,6 @@ class Computer {
         }
         return (false, false)
     }
-    
     
     private func judgementHand(_ pairs: Int, _ isTriple: Bool, _ isFourCard: Bool,_ isFlush: Bool, _ isStraight: (back:Bool, straight:Bool), _ isStraightFlush: (back:Bool, straightFlush:Bool)) -> Hand {
         switch (pairs, isTriple, isFourCard, isFlush, isStraight.back, isStraight.straight, isStraightFlush.back, isStraightFlush.straightFlush) {
@@ -104,7 +117,7 @@ class Computer {
         }
     }
     
-    private func caculateHandTable(_ playerDeck: [Card]) -> [Shape : [Int]] {
+    private  func caculateHandTable(_ playerDeck: [Card]) -> [Shape : [Int]] {
         
         playerDeck.forEach { card in
             let rank2Index = card.rank.rawValue - 1
@@ -133,7 +146,7 @@ class Computer {
     }
     
     // 같은 숫자의 패가 있는지 확인
-    private func checkSameRankCard(_ fourLine2Oneline: [Int]?) {
+    private  func checkSameRankCard(_ fourLine2Oneline: [Int]?) {
         guard let sumOfShapes = fourLine2Oneline else {
             return
         }
