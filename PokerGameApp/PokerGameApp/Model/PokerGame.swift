@@ -18,7 +18,7 @@ class PokerGame {
     private(set) var players: [Participant] = []
     private(set) var dealer: Dealer = Dealer()
     private var nameArray: [String] = ["HK", "JK", "Crong", "Honux", "Chloe", "Ivy", "Gucci"]
-    private let computer = Computer()
+    let computer = Computer()
     
     init(sortOfGame: Games, playerCount: PlayerCount) {
         self.sortOfGame = sortOfGame
@@ -37,10 +37,10 @@ class PokerGame {
         }
     }
 
-    func informResult() -> String {
+    func informResult(_ computer: Computer) -> String {
         var result: String = ""
         for player in players {
-            result += "\(player.intruduceYourSelf()) = \(printSomeoneCards(player: player))"
+            result += "\(player.intruduceYourSelf()) = \(printSomeoneCards(player: player)) [\(player.computeMyHand(computer))]"
             result += "\n"
         }
         return result
@@ -61,7 +61,7 @@ class PokerGame {
         return deckString
     }
     
-    func giveCard2Player() {
+    private func giveCard2Player() {
         round += 1
         for player in players {
             if let selectedCard = try? cardDeck.removeOne().get() {
@@ -81,7 +81,16 @@ extension PokerGame {
             let hand = player.computeMyHand(computer)
             playerAndHand.updateValue(hand, forKey: player)
         }
-        //TODO: 고쳐야함
-        return playerList[0]
+        
+        let firstKey = Array(playerAndHand.keys)[0]
+        let firstValue = firstKey.computeMyHand(computer)
+        var winner : (player: Participant, hand: Hand) = (firstKey,firstValue)
+        for (player, hand) in playerAndHand {
+            if winner.hand < hand {
+                winner = (player,hand)
+            }
+        }
+
+        return winner.player
     }
 }
