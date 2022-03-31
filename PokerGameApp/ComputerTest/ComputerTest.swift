@@ -1,10 +1,3 @@
-//
-//  ComputerTest.swift
-//  ComputerTest
-//
-//  Created by YEONGJIN JANG on 2022/03/30.
-//
-
 import XCTest
 @testable import PokerGameApp
 
@@ -39,7 +32,6 @@ class ComputerTest: XCTestCase {
         XCTAssertEqual(hand, .backStraightFlush)
     }
     
-    //TODO: Straight 가 나와야하는데 왜 BackStraight 가 나올까?
     func testStraightFlush() {
         //give
         let playerDeck : [Card] = [Card(shape: .diamond, rank: .three),
@@ -110,13 +102,13 @@ class ComputerTest: XCTestCase {
     
     func testStraight() {
         //given
-        let playerDeck : [Card] = [Card(shape: .club, rank: .ten),
-                                   Card(shape: .heart, rank: .nine),
-                                   Card(shape: .club, rank: .king),
-                                   Card(shape: .club, rank: .jack),
+        let playerDeck : [Card] = [Card(shape: .club, rank: .ace),
+                                   Card(shape: .heart, rank: .seven),
+                                   Card(shape: .club, rank: .three),
+                                   Card(shape: .club, rank: .four),
                                    Card(shape: .diamond, rank: .five),
                                    Card(shape: .heart, rank: .queen),
-                                   Card(shape: .spade, rank: .two)]
+                                   Card(shape: .spade, rank: .six)]
         
         //when
         let hand : Hand = sut.getHand(playerDeck)
