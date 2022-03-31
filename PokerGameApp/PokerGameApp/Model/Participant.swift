@@ -55,6 +55,7 @@ extension Participant: Hashable {
 
 extension Participant {
     func computeMyHand(_ computer: Computer) -> Hand {
-        return computer.getHand(self.playerDeck)
+        let hand = computer.getHand(self.playerDeck)
+        return hand
     }
 }
